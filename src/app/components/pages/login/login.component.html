@@ -16,19 +16,22 @@
                         
                         <form [formGroup]="form">
                             <div class="form-group">
-                                <input type="email" class="form-control" placeholder="Email" formControlName="email">
-                                <div *ngIf="submitted && form.get('email').errors" class="alert alert-danger">
-                                    <div *ngIf="form.get('email').errors.required">
-                                        email is required
-                                    </div>
-                                </div>    
+                                <input type="email" class="form-control" placeholder="Email" formControlName="email" [ngClass]="{ 'is-invalid': submitted && f.email.errors }">
+                                <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                                    <div *ngIf="f.email.errors.required">Email is required</div>
+                                    <div *ngIf="f.email.errors.email">Email is invalid</div>
+                                </div>     
                             </div>
 
                             <div class="form-group">
-                                <input type="password" class="form-control" placeholder="Password" formControlName="password">
-                                <div *ngIf="submitted && form.get('password').errors" class="alert alert-danger">
-                                    <div *ngIf="form.get('password').errors.required">
-                                      Password is required
+                                <input type="password" class="form-control" placeholder="Password" formControlName="password" [ngClass]="{ 'is-invalid': submitted && f.password.errors }">
+                                  <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                                    <div *ngIf="f.password.errors.required">Password is required</div>
+                                    <div *ngIf="f.password.errors.minlength">
+                                      Password must be at least 6 characters
+                                    </div>
+                                    <div *ngIf="f.password.errors.maxlength">
+                                      Password must not exceed 40 characters
                                     </div>
                                   </div>
                             </div>
