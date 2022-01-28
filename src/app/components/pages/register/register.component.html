@@ -13,32 +13,55 @@
                     <div class="top">
                         <h2>Sign Up</h2>
 
-                        <form>
+                        <form [formGroup]="form">
                             <div class="form-group">
-                                <input type="text" class="form-control" placeholder="Name">
+                              <input type="text" id="name" class="form-control" placeholder="Name" formControlName="name">
+                              <div *ngIf="submitted && form.get('name').errors" class="alert alert-danger">
+                                <div *ngIf="form.get('name').errors.required">
+                                    name is required
+                                </div>
+                              </div>
+                            </div>
+                            <div class="form-group">
+                                <input type="email" id="email" class="form-control" placeholder="Email" formControlName="email">
+                                <div *ngIf="submitted && form.get('email').errors" class="alert alert-danger">
+                                    <div *ngIf="form.get('email').errors.required">
+                                        email is required
+                                    </div>
+                                  </div>
                             </div>
 
                             <div class="form-group">
-                                <input type="email" class="form-control" placeholder="Email">
+                                <input type="text" id="phone" class="form-control" placeholder="Phone" formControlName="phone">
+                                <div *ngIf="submitted && form.get('phone').errors" class="alert alert-danger">
+                                    <div *ngIf="form.get('phone').errors.required">
+                                        phone is required
+                                    </div>
+                                  </div>
                             </div>
 
                             <div class="form-group">
-                                <input type="text" class="form-control" placeholder="Phone">
+                                <input type="password" id="password" class="form-control" placeholder="Password" formControlName="password">
+                                <div *ngIf="submitted && form.get('password').errors" class="alert alert-danger">
+                                    <div *ngIf="form.get('password').errors.required">
+                                      Password is required
+                                    </div>
+                                  </div>
                             </div>
 
                             <div class="form-group">
-                                <input type="text" class="form-control" placeholder="Subject">
+                                <input type="password" id="confirmPassword" class="form-control" placeholder="Confirm Password" formControlName="confirmPassword">
+                                <div *ngIf="submitted && form.get('confirmPassword').errors" class="alert alert-danger">
+                                    <div *ngIf="form.get('confirmPassword').errors.required">
+                                        Confirm Password is required
+                                      </div>
+                                <div *ngIf="form.get('confirmPassword').errors.confirmPasswordValidator">
+                                    Passsword and Confirm Password didn't match.
+                                  </div>
+                                </div>
                             </div>
 
-                            <div class="form-group">
-                                <input type="password" class="form-control" placeholder="Password">
-                            </div>
-
-                            <div class="form-group">
-                                <input type="password" class="form-control" placeholder="Confirm Password">
-                            </div>
-
-                            <button type="submit" class="btn">Sign Up Here</button>
+                            <button (click)="signUpForm()" type="submit" class="btn">Sign Up Here</button>
                         </form>
                         <div class="create-account"> 
                             <span class="account-direction">Already have an account? <a style="font-weight: 600; color: #fe4a55;" routerLink="/login">Log in</a></span>
