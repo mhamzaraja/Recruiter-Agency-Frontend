@@ -35,6 +35,8 @@ import { CandidatesDetailsComponent } from './components/pages/candidates-detail
 import { BlogDetailsComponent } from './components/pages/blog-details/blog-details.component';
 import { BlogComponent } from './components/pages/blog/blog.component';
 import { ContactComponent } from './components/pages/contact/contact.component';
+import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -73,8 +75,11 @@ import { ContactComponent } from './components/pages/contact/contact.component';
     ContactComponent
   ],
   imports: [
+    CommonModule,
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

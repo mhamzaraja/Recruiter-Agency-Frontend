@@ -14,16 +14,26 @@
                     <div class="top">
                         <h2>Login</h2>
                         
-                        <form>
+                        <form [formGroup]="form">
                             <div class="form-group">
-                                <input type="email" class="form-control" placeholder="Email">
+                                <input type="email" class="form-control" placeholder="Email" formControlName="email">
+                                <div *ngIf="submitted && form.get('email').errors" class="alert alert-danger">
+                                    <div *ngIf="form.get('email').errors.required">
+                                        email is required
+                                    </div>
+                                </div>    
                             </div>
 
                             <div class="form-group">
-                                <input type="password" class="form-control" placeholder="Password">
+                                <input type="password" class="form-control" placeholder="Password" formControlName="password">
+                                <div *ngIf="submitted && form.get('password').errors" class="alert alert-danger">
+                                    <div *ngIf="form.get('password').errors.required">
+                                      Password is required
+                                    </div>
+                                  </div>
                             </div>
 
-                            <button type="submit" class="btn">Login Here</button>
+                            <button (click)="logInForm()" type="submit" class="btn">Login Here</button>
                         </form>
                         <div class="create-account"> 
                             <span class="account-direction">Create an account? <a style="font-weight: 600; color: #fe4a55;" routerLink="/register">Sign Up</a></span>
