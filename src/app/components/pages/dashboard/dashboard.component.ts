@@ -9,12 +9,12 @@ import { FormGroup, FormBuilder, Validators, FormControl, AbstractControl } from
 export class DashboardComponent implements OnInit {
 
   submitted: boolean = false;
-  form: FormGroup;
+  basicInfoForm: FormGroup;
 
   constructor(private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
-    this.form = this.formBuilder.group({
+    this.basicInfoForm = this.formBuilder.group({
       name: [null, [Validators.required]],
       email: [null, [Validators.required, Validators.email]],
       phone: [null, [Validators.required]],
@@ -34,18 +34,18 @@ export class DashboardComponent implements OnInit {
   }
 
   get f(): { [key: string]: AbstractControl } {
-    return this.form.controls;
+    return this.basicInfoForm.controls;
   }
 
   baiscInfoForm(){
     this.submitted = true;
-    if (this.form.invalid) {
+    if (this.basicInfoForm.invalid) {
       return;
     }
     else {
-        console.log('baiscInfoForm submitted', this.form.value);
+        console.log('baiscInfoForm submitted', this.basicInfoForm.value);
         this.submitted = false;
-        this.form.reset();
+        this.basicInfoForm.reset();
     }
   }
 
