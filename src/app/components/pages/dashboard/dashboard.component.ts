@@ -12,10 +12,29 @@ export class DashboardComponent implements OnInit {
   submittedEdu: boolean = false;
   submittedExp: boolean = false;
   submittedPrj: boolean = false;
+  submittedSkill: boolean = false;
+  submittedLanguage: boolean = false;
+
   basicInfoForm: FormGroup;
   educationForm: FormGroup;
   experienceForm: FormGroup;
   proejctForm: FormGroup;
+  skillsForm: FormGroup;
+  languageForm: FormGroup;
+
+  public placeholder: string = '';
+  public keyword = 'skill';
+  public historyHeading: string = 'Recently selected';
+  public educationInfo = [];
+
+  public skillsData = ['Albania', 'Andorra', 'Armenia', 'Austria', 'Azerbaijan', 'Belarus',
+    'Belgium', 'Bosnia & Herzegovina', 'Bulgaria', 'Croatia', 'Cyprus',
+    'Czech Republic', 'Denmark', 'Estonia', 'Finland', 'France', 'Georgia',
+    'Germany', 'Greece', 'Hungary', 'Iceland', 'India', 'Ireland', 'Italy', 'Kosovo',
+    'Latvia', 'Liechtenstein', 'Lithuania', 'Luxembourg', 'Macedonia', 'Malta',
+    'Moldova', 'Monaco', 'Montenegro', 'Netherlands', 'Norway', 'Poland',
+    'Portugal', 'Romania', 'Russia', 'San Marino', 'Serbia', 'Slovakia', 'Slovenia',
+    'Spain', 'Sweden', 'Switzerland', 'Turkey', 'Ukraine', 'United Kingdom', 'Vatican City'];
 
 
   constructor(private formBuilder: FormBuilder) { }
@@ -40,12 +59,12 @@ export class DashboardComponent implements OnInit {
     });
 
     this.educationForm = this.formBuilder.group({
-     degreeTitle: [""],
+     degreeTitle: ["Bachelors in Science"],
      fieldOfStudy: [null, [Validators.required]],
-     location: [""],
+     location: ["Rawalpindi"],
      institute: [null, [Validators.required]],
-     completionYear: [""],
-     gpa: [""],
+     completionYear: ["2019"],
+     gpa: ["3.4"],
     });
 
     this.experienceForm = this.formBuilder.group({
@@ -79,6 +98,17 @@ export class DashboardComponent implements OnInit {
     this.proejctForm.get('checkbox').valueChanges.subscribe(value => {
       value ? this.proejctForm.get('endDate').disable() :  this.proejctForm.get('endDate').enable();
     })
+
+    this.skillsForm = this.formBuilder.group({
+      skill: [{value: '', disabled: false}, Validators.required],
+      experienceSkill: ['']
+    })
+
+    this.languageForm = this.formBuilder.group({
+      language:[''],
+      proficiencyLang:['']
+
+    })
   }
 
   get f(): { [key: string]: AbstractControl } {
@@ -96,6 +126,16 @@ export class DashboardComponent implements OnInit {
   get fprj(): { [key: string]: AbstractControl } {
     return this.proejctForm.controls;
   }
+
+  get fskill(): { [key: string]: AbstractControl } {
+    return this.skillsForm.controls;
+  }
+
+  get flang(): { [key: string]: AbstractControl } {
+    return this.languageForm.controls;
+  }
+
+
 
   baiscInfoForm(){
     this.submitted = true;
@@ -115,7 +155,8 @@ export class DashboardComponent implements OnInit {
       return;
     }
     else {
-        console.log('educationForm submitted', this.educationForm.value);
+        this.educationInfo.push( this.educationForm.value);
+        console.log('educationForm submitted', this.educationInfo);
         this.submittedEdu = false;
         this.educationForm.reset();
     }
@@ -144,6 +185,41 @@ export class DashboardComponent implements OnInit {
         this.submittedPrj = false;
         this.proejctForm.reset();
     }
+  }
+
+  skillsInfoForm(){
+    this.submittedSkill = true;
+    if (this.skillsForm.invalid) {
+      return;
+    }
+    else {
+        console.log('skillsForm submitted', this.skillsForm.value);
+        this.submittedSkill = false;
+        this.skillsForm.reset();
+    }
+  }
+
+  languageInfoForm(){
+    this.submittedLanguage = true;
+    if (this.languageForm.invalid) {
+      return;
+    }
+    else {
+        console.log('languageForm submitted', this.languageForm.value);
+        this.submittedLanguage = false;
+        this.languageForm.reset();
+    }
+  }
+
+  toggleEdit(edu){
+    // this.educationInfo[edu];
+    // console.log("this.educationInfo[i]",edu);
+
+
+    this.educationForm.controls.fieldOfStudy.setValue(edu.fieldOfStudy);
+    this.educationForm.controls.institute.setValue(edu.institute);
+    this.educationForm.controls.degreeTitle.setValue(edu.degreeTitle);
+    this.educationForm;
   }
 
 }

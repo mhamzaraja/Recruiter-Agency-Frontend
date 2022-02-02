@@ -3,3 +3,19 @@
 
 height: 200px;
 }
+.ng-autocomplete {
+    width: 100%;
+}
+.autocomplete-container .input-container input {
+    border-radius: 5px !important;
+    height: 50px !important;
+}
+.ng-autocomplete .autocomplete-container {
+    box-shadow: unset !important;
+}
+
+.person-details-area .details-item .bottom-item {
+    padding-bottom: 30px;
+    margin-bottom: 20px;
+    border-bottom: 1.5px solid #e41212;
+}
