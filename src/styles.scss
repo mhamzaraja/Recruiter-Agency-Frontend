@@ -7335,3 +7335,9 @@ button {
 span.account-direction {
     color: rgb(0, 0, 0);
 }
+.nice-select {
+    display: none !important;
+}
+select {
+    display: block !important;
+}

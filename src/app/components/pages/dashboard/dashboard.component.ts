@@ -25,7 +25,14 @@ export class DashboardComponent implements OnInit {
   public placeholder: string = '';
   public keyword = 'skill';
   public historyHeading: string = 'Recently selected';
+
   public educationInfo = [];
+  public experienceInfo = [];
+  public projectsInfo = [];
+  public skillInfo = [];
+  public languageInfo = [];
+
+
 
   public skillsData = ['Albania', 'Andorra', 'Armenia', 'Austria', 'Azerbaijan', 'Belarus',
     'Belgium', 'Bosnia & Herzegovina', 'Bulgaria', 'Croatia', 'Cyprus',
@@ -50,8 +57,8 @@ export class DashboardComponent implements OnInit {
       maritalStatus: [null, [Validators.required,]],
       nationality: [null, [Validators.required,]],
       cnic: [null, [Validators.required,]],
-      career: [""],
-      experience: [""],
+      career: ["",[Validators.required]],
+      experience: ["",[Validators.required]],
       city: [null, [Validators.required,]],
       area: [null, [Validators.required,]],
       expectedSalary: [null, [Validators.required,]]
@@ -59,21 +66,21 @@ export class DashboardComponent implements OnInit {
     });
 
     this.educationForm = this.formBuilder.group({
-     degreeTitle: ["Bachelors in Science"],
+     degreeTitle: ["",[Validators.required]],
      fieldOfStudy: [null, [Validators.required]],
-     location: ["Rawalpindi"],
+     location: ["",[Validators.required]],
      institute: [null, [Validators.required]],
-     completionYear: ["2019"],
-     gpa: ["3.4"],
+     completionYear: ["",[Validators.required]],
+     gpa: ["",[Validators.required]],
     });
 
     this.experienceForm = this.formBuilder.group({
       jobTitle: [null, [Validators.required]],
       company: [null, [Validators.required]],
-      industry: [""],
-      manageTeam: [""],
-      salary: [""],
-      locationExp: [""],
+      industry: ["",[Validators.required]],
+      manageTeam: ["",[Validators.required]],
+      salary: ["",[Validators.required]],
+      locationExp: ["",[Validators.required]],
       startDate: [null, [Validators.required]],
       endDate: [null, [Validators.required]],
       summaryExp: [null, [Validators.required]],
@@ -91,7 +98,7 @@ export class DashboardComponent implements OnInit {
       startDate: [null, [Validators.required]],
       endDate: [null, [Validators.required]],
       checkbox: false,
-      associated: [""],
+      associated: ["",[Validators.required]],
       descPrj: [null, [Validators.required]],
     })  
     
@@ -169,6 +176,7 @@ export class DashboardComponent implements OnInit {
       return;
     }
     else {
+        this.experienceInfo.push(this.experienceForm.value);
         console.log('experienceForm submitted', this.experienceForm.value);
         this.submittedExp = false;
         this.experienceForm.reset();
@@ -181,6 +189,7 @@ export class DashboardComponent implements OnInit {
       return;
     }
     else {
+        this.projectsInfo.push(this.proejctForm.value);
         console.log('projectForm submitted', this.proejctForm.value);
         this.submittedPrj = false;
         this.proejctForm.reset();
@@ -193,6 +202,7 @@ export class DashboardComponent implements OnInit {
       return;
     }
     else {
+        this.skillInfo.push(this.skillsForm.value);
         console.log('skillsForm submitted', this.skillsForm.value);
         this.submittedSkill = false;
         this.skillsForm.reset();
@@ -205,6 +215,7 @@ export class DashboardComponent implements OnInit {
       return;
     }
     else {
+        this.languageInfo.push(this.languageForm.value);
         console.log('languageForm submitted', this.languageForm.value);
         this.submittedLanguage = false;
         this.languageForm.reset();
