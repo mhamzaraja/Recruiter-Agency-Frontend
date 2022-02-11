@@ -7074,6 +7074,16 @@ button {
 
 /*----- Dashboard CSS -----*/
 .dashboard-area {
+    .nice-select {
+        width: 100% ;
+        display: block;
+        padding-left: 20px;
+        height: 50px;
+        border: 1px solid #fff;
+        font-size: 14px;
+        transition: 0.5s all ease;
+        margin-bottom: 30px;
+    }
     .profile-item {
         text-align: center;
 
@@ -7324,4 +7334,10 @@ button {
 }
 span.account-direction {
     color: rgb(0, 0, 0);
+}
+.nice-select {
+    display: none !important;
+}
+select {
+    display: block !important;
 }
