@@ -13,6 +13,7 @@ export class LoginComponent implements OnInit {
 
     submitted: boolean = false;
     form: FormGroup;
+    response: any;
 
     constructor(private formBuilder: FormBuilder,
         private loginServices: LoginService,
@@ -35,22 +36,23 @@ export class LoginComponent implements OnInit {
     logInForm() {
         this.submitted = true;
         if (this.form.valid) {
-            this.loginServices.login(this.form.value).subscribe((response: any) => {
-                let userData = response.data;
-                console.log("test");
+            this.loginServices.login(this.form.value).subscribe((res: any) => {
+                this.response = res.data;
+                // console.log(this.response);
 
+                // getting token
                 const now= new Date();
-                localStorage.setItem('userToken', JSON.stringify(userData) )
+                localStorage.setItem('userToken', JSON.stringify('this.response') )
 
-                if(response.success == true){
+                if(res.success == true){
                     this.router.navigate(['/dashboard']);
                 } else {
-                    this.toastr.error(response.message);
+                    this.toastr.error(res.message);
                 }
             });
             this.submitted = false;
         } else {
-            this.toastr.error("response.message");
+            this.toastr.error(this.response.message);
         }
     }
 
