@@ -1,4 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
+@import '~ngx-toastr/toastr';
 
 $heading-font: 'Quicksand', sans-serif;
 $common-font: 'Poppins', sans-serif;
@@ -120,7 +121,7 @@ button {
                                 color: $pink-color;
                             }
                         }
-                        a {                                
+                        a {
                             position: relative;
 
                             &:before {
@@ -285,7 +286,7 @@ button {
         .row {
             margin-left: 0;
             margin-right: 0;
-            
+
             .col-lg-8 {
                 padding-left: 0;
                 padding-right: 0;
@@ -296,7 +297,7 @@ button {
             }
         }
     }
-    .banner-shape {            
+    .banner-shape {
         position: absolute;
         bottom: 0;
         left: 0;
@@ -430,11 +431,11 @@ button {
         ul {
             margin: 0;
             padding: 0;
-    
+
             li {
                 list-style-type: none;
                 display: inline-block;
-    
+
                 span {
                     display: block;
                     color: $blue-color;
@@ -447,7 +448,7 @@ button {
                     display: block;
                     color: $pink-color;
                     margin-right: 5px;
-    
+
                     &:hover {
                         color: $blue-color;
                     }
@@ -546,11 +547,11 @@ button {
             max-width: 300px;
             position: absolute;
             left: -410px;
-            top: 85px;    
+            top: 85px;
             padding: 25px 25px 25px;
             margin-bottom: 0;
             border-radius: 30px 30px 0 0;
-    
+
             &:before {
                 position: absolute;
                 content: '';
@@ -946,7 +947,7 @@ button {
                     display: inline-block;
                     position: relative;
                     margin-right: 20px;
-            
+
                     i {
                         display: inline-block;
                         height: 50px;
@@ -1078,7 +1079,7 @@ button {
             left: -42px;
             opacity: 1;
         }
-        .two {      
+        .two {
             position: absolute;
             top: -2px;
             right: -5px;
@@ -1319,7 +1320,7 @@ button {
 
         a {
             display: block;
-            position: relative;    
+            position: relative;
 
             &:after {
                 position: absolute;
@@ -1331,7 +1332,7 @@ button {
                 background: linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(255,255,255,0) 100%);
                 opacity: .60;
             }
-    
+
             img {
                 width: 100%;
                 transition: $transition;
@@ -1543,7 +1544,7 @@ button {
     &:hover {
         transform: translate(0, -10px);
         box-shadow: 0px 0px 20px 0px #dddddd24;
-        
+
         .top {
             a {
                 img {
@@ -1694,7 +1695,7 @@ button {
     .app-content {
         .section-title {
             margin-bottom: 25px;
-    
+
             .sub-title {
                 color: $white-color;
             }
@@ -1706,12 +1707,12 @@ button {
             margin: 0;
             padding: 0;
             position: relative;
-    
+
             li {
                 list-style-type: none;
                 display: inline-block;
                 margin-right: 10px;
-    
+
                 &:last-child {
                     margin-right: 0;
                 }
@@ -1720,7 +1721,7 @@ button {
                     border: 1px solid transparent;
                     border-radius: 10px;
                     border: 1px solid $white-color;
-    
+
                     &:hover {
                         transform: translate(5px, 0);
                     }
@@ -1844,7 +1845,7 @@ button {
                 padding-left: 15px;
                 transition: $transition;
                 font-size: 15px;
-    
+
                 &:focus {
                     box-shadow: none;
                     border: 1px dashed $pink-color;
@@ -1983,7 +1984,7 @@ button {
                                 color: $green-color;
                             }
                         }
-                        a {   
+                        a {
                             color: $white-color;
 
                             &:before {
@@ -2392,7 +2393,7 @@ button {
                     &:hover {
                         background-color: #17870a;
                     }
-                }  
+                }
                 span {
                     color: $blue-color;
                 }
@@ -2406,7 +2407,7 @@ button {
                     }
                 }
             }
-        }      
+        }
     }
     .explore-img {
         position: absolute;
@@ -2800,10 +2801,10 @@ button {
         h3 {
             font-size: 20px;
             margin-bottom: 5px;
-    
+
             a {
                 color: $blue-color;
-    
+
                 &:hover {
                     color: $green-color;
                 }
@@ -2820,7 +2821,7 @@ button {
         ul {
             margin: 0;
             padding: 0;
-    
+
             li {
                 list-style-type: none;
                 display: inline-block;
@@ -2837,11 +2838,11 @@ button {
             text-align: left;
             margin-left: 45px;
             margin-top: 22px;
-    
+
             a {
                 color: #7068a3;
                 font-size: 15px;
-    
+
                 i {
                     color: #7068a3;
                     top: -4px;
@@ -2849,7 +2850,7 @@ button {
                 &:hover {
                     margin-left: -45px;
                     color: $green-color;
-    
+
                     .one {
                         left: -60px;
                     }
@@ -3164,7 +3165,7 @@ button {
                                 color: $pink-color;
                             }
                         }
-                        a {   
+                        a {
                             color: $white-color;
 
                             &:before {
@@ -3386,7 +3387,7 @@ button {
     position: relative;
     padding: 25px 35px 25px 105px;
     transition: $transition;
-    
+
     &:hover {
         transform: translate(0, -10px);
     }
@@ -3601,7 +3602,7 @@ button {
                     display: inline-block;
                     position: relative;
                     margin-right: 20px;
-            
+
                     i {
                         display: inline-block;
                         height: 50px;
@@ -3840,7 +3841,7 @@ button {
         h4 {
             font-size: 25px;
             color: $pink-color;
-            border-bottom: 1px dashed #c9c9c9;    
+            border-bottom: 1px dashed #c9c9c9;
             margin-bottom: 0;
             padding-bottom: 15px;
 
@@ -4138,7 +4139,7 @@ button {
                 a {
                     display: inline-block;
                     color: $white-color;
-                    
+
                     &:hover {
                         color: $pink-color;
                     }
@@ -4332,7 +4333,7 @@ button {
                         display: block;
                         width: 100%;
 
-                        .list { 
+                        .list {
                             .option {
                                 display: block;
                                 width: 100%;
@@ -4403,7 +4404,7 @@ button {
                     border: 1px solid #e1e1e1;
                     font-size: 14px;
                     padding-left: 40px;
-    
+
                     &:focus {
                         box-shadow: none;
                         border: 1px solid $pink-color;
@@ -4445,7 +4446,7 @@ button {
                         border: 1px solid #e1e1e1;
                         font-size: 14px;
                         padding-left: 15px;
-        
+
                         &:focus {
                             box-shadow: none;
                             border: 1px solid $pink-color;
@@ -4477,15 +4478,15 @@ button {
                     width: 10px;
                 }
                 ::-webkit-scrollbar-track {
-                    background: #e1e1e1; 
+                    background: #e1e1e1;
                     border-radius: 30px;
                 }
                 ::-webkit-scrollbar-thumb {
-                    background: #acacac; 
+                    background: #acacac;
                     border-radius: 30px;
                 }
                 ::-webkit-scrollbar-thumb:hover {
-                    background: $pink-color; 
+                    background: $pink-color;
                 }
             }
             .cmn-padding {
@@ -4522,7 +4523,7 @@ button {
                             border: 1px solid #e1e1e1;
                             font-size: 14px;
                             padding-left: 45px;
-            
+
                             &:focus {
                                 box-shadow: none;
                                 border: 1px solid $pink-color;
@@ -4624,13 +4625,13 @@ button {
     .job-cmn-cat {
         margin: 0;
         padding: 0;
-    
+
         li {
             list-style-type: none;
             display: block;
             color: #7d789b;
             margin-bottom: 15px;
-    
+
             &:last-child {
                 margin-bottom: 0;
             }
@@ -4773,11 +4774,11 @@ button {
                 z-index: 1;
                 transition: $transition;
                 opacity: 0;
-        
+
                 &:hover {
                     color: $pink-color !important;
                     background-color: transparent !important;
-        
+
                     &:after {
                         background-color: #fff;
                     }
@@ -4804,11 +4805,11 @@ button {
                 z-index: 1;
                 transition: $transition;
                 opacity: 0;
-        
+
                 &:hover {
                     color: $pink-color !important;
                     background-color: transparent !important;
-        
+
                     &:after {
                         background-color: #fff;
                     }
@@ -5102,7 +5103,7 @@ button {
         .widget-item {
             border-radius: 0 0 5px 5px;
             border-top: 0;
-            
+
             a {
                 display: block;
                 color: $grey-color;
@@ -5146,7 +5147,7 @@ button {
                 }
                 span {
                     display: block;
-                    color: $pink-color; 
+                    color: $pink-color;
                     font-weight: 500;
                     position: absolute;
                     top: 0;
@@ -5167,13 +5168,13 @@ button {
                 padding: 0;
                 display: flex;
                 flex-wrap: wrap;
-    
+
                 li {
                     list-style-type: none;
                     display: block;
                     flex: 0 0 30%;
                     max-width: 30%;
-    
+
                     &:last-child {
                         flex: 0 0 60%;
                         max-width: 60%;
@@ -5194,7 +5195,7 @@ button {
                         margin-bottom: 4px;
                         font-size: 15px;
                         font-weight: 500;
-    
+
                         &:hover {
                             color: $pink-color;
                         }
@@ -5419,7 +5420,7 @@ button {
                     border: 0;
                     width: 200px;
                     display: block;
-                    
+
                     .list {
                         width: 100%;
                         display: block;
@@ -5545,7 +5546,7 @@ button {
                     }
                 }
             }
-        }        
+        }
     }
 }
 .person-details-area {
@@ -5619,7 +5620,7 @@ button {
                 .skill {
                     margin-bottom: 35px;
                     position: relative;
-                        
+
                     &:before{
                         width: 100%;
                         height: 3px;
@@ -5647,7 +5648,7 @@ button {
             background: $pink-color;
             display: block;
             position: relative;
-    
+
             &:before {
                 position: absolute;
                 content: '';
@@ -5670,43 +5671,43 @@ button {
             }
         }
         .skill1 {
-            width: 56%;  
-    
+            width: 56%;
+
             .skill-count1 {
                 right: 7px;
             }
         }
         .skill2 {
             width: 80%;
-    
+
             .skill-count2 {
                 right: 7px;
             }
         }
         .skill3 {
             width: 90%;
-    
+
             .skill-count3 {
                 right: 7px;
             }
         }
         .skill4 {
             width: 70%;
-    
+
             .skill-count4 {
                 right: 7px;
             }
         }
         .skill5 {
             width: 80%;
-    
+
             .skill-count5 {
                 right: 7px;
             }
         }
         .skill6 {
             width: 90%;
-    
+
             .skill-count6 {
                 right: 7px;
             }
@@ -6074,7 +6075,7 @@ button {
                             font-size: 16px;
                             color: $white-color;
                             background-color: #3b5998;
-                            
+
                             i {
                                 line-height: 30px;
                             }
@@ -6117,7 +6118,7 @@ button {
                 position: relative;
                 transition: $transition;
                 margin-bottom: 30px;
-                
+
                 &:hover {
                     a {
                         opacity: 1;
@@ -6298,9 +6299,9 @@ button {
         }
     }
 }
-/*----- End Blog Details CSS -----*/    
+/*----- End Blog Details CSS -----*/
 
-/*----- Contact CSS -----*/    
+/*----- Contact CSS -----*/
 .contact-info-area {
     .info-item {
         margin-bottom: 30px;
@@ -6469,9 +6470,9 @@ button {
         display: block;
     }
 }
-/*----- End Contact CSS -----*/    
+/*----- End Contact CSS -----*/
 
-/*----- User Form CSS -----*/   
+/*----- User Form CSS -----*/
 .user-form-area {
     padding-top: 70px;
     padding-bottom: 70px;
@@ -6607,10 +6608,10 @@ button {
             }
         }
     }
-} 
-/*----- End User Form CSS -----*/    
+}
+/*----- End User Form CSS -----*/
 
-/*----- Employers CSS -----*/    
+/*----- Employers CSS -----*/
 .employer-area.two {
     padding-top: 0;
 
@@ -6673,9 +6674,9 @@ button {
         }
     }
 }
-/*----- End Employers CSS -----*/    
+/*----- End Employers CSS -----*/
 
-/*----- Employer Details CSS -----*/   
+/*----- Employer Details CSS -----*/
 .employer-details-area {
     .client-wrap {
         padding-top: 20px;
@@ -6829,10 +6830,10 @@ button {
             }
         }
     }
-} 
-/*----- End Employer Details CSS -----*/    
+}
+/*----- End Employer Details CSS -----*/
 
-/*----- Testimonials CSS -----*/    
+/*----- Testimonials CSS -----*/
 .feedback-area.two {
     background-color: $white-color;
     padding-bottom: 70px;
@@ -6845,15 +6846,15 @@ button {
         box-shadow: 0px 0px 20px 0px #dddddd57;
     }
 }
-/*----- End Testimonials CSS -----*/    
+/*----- End Testimonials CSS -----*/
 
-/*----- FAQ CSS -----*/    
+/*----- FAQ CSS -----*/
 .faq-area {
     .faq-content {
-        .accordion { 
+        .accordion {
             margin: 0;
             padding: 0;
-        
+
             p {
                 display: none;
                 padding: 20px 15px 15px 15px;
@@ -6869,7 +6870,7 @@ button {
                 border-radius: 5px;
                 font-size: 17px;
                 color: $blue-color;
-    
+
                 &:after {
                     position: absolute;
                     right: 20px;
@@ -6895,7 +6896,7 @@ button {
                 list-style-type: none;
                 margin-bottom: 30px;
                 display: block;
-        
+
                 &:first-child {
                     border-top: 0;
                 }
@@ -6944,7 +6945,7 @@ button {
         }
     }
 }
-/*----- End FAQ CSS -----*/    
+/*----- End FAQ CSS -----*/
 
 /*----- Coming Soon CSS -----*/
 .coming-soon-area {
@@ -7274,13 +7275,13 @@ button {
     animation: sk-rotateplane 1.2s infinite ease-in-out;
 }
 @keyframes sk-rotateplane {
-    0% { 
+    0% {
         transform: perspective(120px) rotateX(0deg) rotateY(0deg);
-    } 
-    50% { 
+    }
+    50% {
         transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg);
-    } 
-    100% { 
+    }
+    100% {
         transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
     }
 }
@@ -7327,7 +7328,7 @@ button {
 }
 /*----- End Back to Top -----*/
 
-//***************Customm CSS***********// 
+//***************Customm CSS***********//
 
 .create-account {
     padding-top: 20px;

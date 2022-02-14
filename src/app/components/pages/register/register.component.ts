@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl, AbstractControl  } from '@angular/forms';
+import { RegisterService } from './services/register.service';
 
 @Component({
   selector: 'app-register',
@@ -10,19 +11,20 @@ export class RegisterComponent implements OnInit {
   submitted: boolean = false;
   form: FormGroup
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: FormBuilder, private registerService : RegisterService) {
+
+  }
 
   ngOnInit(): void {
     this.form = this.formBuilder.group({
-      name: [null, Validators.required],
+      username: [null, Validators.required],
       email: [null, [Validators.required, Validators.email]],
-      phone: [null, [Validators.required,]],
       password: ["", [Validators.required, Validators.minLength(6), Validators.maxLength(40)]],
       confirmPassword: ["", [Validators.required,]]
       },
       {
         validator: this.confirmPasswordValidator("password", "confirmPassword")
-      });  
+      });
   }
 
   get f(): { [key: string]: AbstractControl } {
@@ -32,6 +34,7 @@ export class RegisterComponent implements OnInit {
   signUpForm(){
       this.submitted = true;
     if (this.form.valid) {
+        this.registerService.signup(this.form.value);
         console.log('form submitted', this.form.value);
         this.submitted = false;
         this.form.reset();
