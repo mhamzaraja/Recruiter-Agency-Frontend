@@ -157,15 +157,11 @@ export class DashboardComponent implements OnInit {
             this.toastr.error(this.response.message);
         }
         else {
-            this.dashboardService.basicInfoForm(this.basicInfoForm.value).subscribe((res: any) => {
-                this.response = res.data;
-                console.log(this.response);
-
-                if(res.success == true){
-                    this.toastr.success(res.message);
-                } else {
-                    this.toastr.error(res.message);
-                }
+            this.dashboardService.basicInfoForm(this.basicInfoForm.value).subscribe((res) => {
+                this.toastr.success(res.message);
+            },
+            (error) => {
+                this.toastr.error(error.error.message);
             });
             this.submitted = false;
         }
@@ -198,15 +194,11 @@ export class DashboardComponent implements OnInit {
             this.toastr.error(this.response.message);
         }
         else {
-            this.dashboardService.experienceForm(this.experienceForm.value).subscribe((res: any) => {
-                this.response = res.data;
-                console.log(this.response);
-
-                if(res.success == true){
-                    this.toastr.success(res.message);
-                } else {
-                    this.toastr.error(res.message);
-                }
+            this.dashboardService.experienceForm(this.experienceForm.value).subscribe((res) => {
+                this.toastr.success(res.message);
+            },
+            (error) => {
+                this.toastr.error(error.error.message);
             });
             this.submitted = false;
         }
@@ -218,15 +210,11 @@ export class DashboardComponent implements OnInit {
             this.toastr.error(this.response.message);
         }
         else {
-            this.dashboardService.projectsForm(this.proejctForm.value).subscribe((res: any) => {
-                this.response = res.data;
-                console.log(this.response);
-
-                if(res.success == true){
-                    this.toastr.success(res.message);
-                } else {
-                    this.toastr.error(res.message);
-                }
+            this.dashboardService.projectsForm(this.proejctForm.value).subscribe((res) => {
+                this.toastr.success(res.message);
+            },
+            (error) => {
+                this.toastr.error(error.error.message);
             });
             this.submitted = false;
         }
@@ -238,15 +226,11 @@ export class DashboardComponent implements OnInit {
             this.toastr.error(this.response.message);
         }
         else {
-            this.dashboardService.skillsForm(this.skillsForm.value).subscribe((res: any) => {
-                this.response = res.data;
-                console.log(this.response);
-
-                if(res.success == true){
-                    this.toastr.success(res.message);
-                } else {
-                    this.toastr.error(res.message);
-                }
+            this.dashboardService.skillsForm(this.skillsForm.value).subscribe((res) => {
+                this.toastr.success(res.message);
+            },
+            (error) => {
+                this.toastr.error(error.error.message);
             });
             this.submitted = false;
         }
@@ -258,15 +242,11 @@ export class DashboardComponent implements OnInit {
             this.toastr.error(this.response.message);
         }
         else {
-            this.dashboardService.languagesForm(this.languageForm.value).subscribe((res: any) => {
-                this.response = res.data;
-                console.log(this.response);
-
-                if(res.success == true){
-                    this.toastr.success(res.message);
-                } else {
-                    this.toastr.error(res.message);
-                }
+            this.dashboardService.languagesForm(this.languageForm.value).subscribe((res) => {
+                this.toastr.success(res.message);
+            },
+            (error) => {
+                this.toastr.error(error.error.message);
             });
             this.submitted = false;
         }

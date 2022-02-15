@@ -1,72 +1,87 @@
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import config from '../../../config/config';
+
 
 @Injectable({
     providedIn: 'root'
 })
 export class DashboardService {
     host: string = config.host;
+    token: any = JSON.parse(localStorage.getItem('userToken')).token;
+    userId: string = JSON.parse(localStorage.getItem('userToken')).id;
+
+    httpOptions = {
+        headers: new HttpHeaders({
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Headers': 'Authorization, X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Allow-Request-Method',
+            'Authorization': 'Bearer ' + this.token,
+            'Access-Control-Allow-Methods': 'GET,POST,OPTIONS,DELETE,PUT',
+            'Allow': 'GET, POST, OPTIONS, PUT, DELETE'
+        })
+    };
+
     constructor(private http: HttpClient) { }
 
     basicInfoForm(data: any) {
+        let avatar;
+        let email;
+
         let name = data.name;
-        let email = data.email;
-        let phone = Number(data.phone);
-        let summary = data.summary;
         let dob = data.dob;
         let gender = data.gender;
-        let maritalStatus = data.maritalStatus;
+        let marital_status = data.maritalStatus;
         let nationality = data.nationality;
         let cnic = Number(data.cnic);
-        let career = data.career;
-        let experience = Number(data.experience);
         let city = data.city;
         let area = data.area;
-        let expectedSalary = data.expectedSalary;
+        let mobile_number = Number(data.phone);
+        let career_level = data.career;
+        let expected_salary = data.expectedSalary;
+        let summary = data.summary;
+        let experience = data.experience;
 
         let basicInfoData = {
             name,
             email,
-            phone,
+            mobile_number,
             summary,
             dob,
             gender,
-            maritalStatus,
+            marital_status,
             nationality,
             cnic,
-            career,
+            career_level,
             experience,
             city,
             area,
-            expectedSalary
+            expected_salary,
+            userId: this.userId
         };
-        console.log(basicInfoData);
-        console.log(data);
 
-        return this.http.post<any>(`${this.host}/api/user/profile/create`, basicInfoData);
+        return this.http.post<any>(`${this.host}/api/user/profile/create`, basicInfoData, this.httpOptions);
     }
 
     educationForm(data: any) {
-        let degreeTitle = data.degreeTitle;
-        let fieldOfStudy = data.fieldOfStudy;
-        let location = data.location;
-        let institute = data.institute;
-        let completionYear = Number(data.completionYear);
-        let gpa = Number(data.gpa);
+        let degree_title = data.degreeTitle
+        let field_of_study = data.fieldOfStudy
+        let location = data.location
+        let institution = data.institute
+        let completion_year = Number(data.completionYear)
+        let obtained_gpa = Number(data.gpa)
+
 
         let educationData = {
-            degreeTitle,
-            fieldOfStudy,
+            degree_title,
+            field_of_study,
             location,
-            institute,
-            completionYear,
-            gpa
-        }
-        console.log(educationData);
-        console.log(data);
-
-        return this.http.post<any>(`${this.host}/api/user/education/create`, educationData);
+            institution,
+            completion_year,
+            obtained_gpa,
+            userId: this.userId
+        };
+        return this.http.post<any>(`${this.host}/api/user/education/create`, educationData, this.httpOptions);
     }
 
     experienceForm(data: any) {
@@ -91,33 +106,57 @@ export class DashboardService {
             startDate,
             endDate,
             summaryExp,
-            checkbox
+            checkbox,
+            userId: this.userId
         }
         console.log(experienceData);
-        return this.http.post<any>(`${this.host}/api/user/education/create`, experienceData);
+        return this.http.post<any>(`${this.host}/api/user/education/create`, experienceData, this.httpOptions);
     }
 
     projectsForm(data: any) {
-        let projectsData = data;
-        console.log(projectsData);
-        console.log(data);
+        let project_name = data.projectName;
+        let project_url = data.projectUrl;
+        let start_date = data.startDate;
+        let end_date = data.endDate;
+        let currently_ongoing = data.checkbox;
+        let associated_with = data.associated;
+        let description = data.descPrj;
 
-        return this.http.post<any>(`${this.host}/api/user/projects/create`, projectsData);
+        let projectsData = {
+            project_name,
+            project_url,
+            start_date,
+            end_date,
+            currently_ongoing,
+            associated_with,
+            description,
+            userId: this.userId
+        };
+        return this.http.post<any>(`${this.host}/api/user/projects/create`, projectsData, this.httpOptions);
     }
+
     skillsForm(data: any) {
-        var skillsData = data;
-        console.log(skillsData);
-        console.log(data);
-
-        return this.http.post<any>(`${this.host}/api/user/skills/create`, skillsData);
+        let skill_title = data.skill;
+        let skill_proficiency = data.experienceSkill;
+        var skillsData = {
+            skill_title,
+            skill_proficiency,
+            userId: this.userId
+        };
+        return this.http.post<any>(`${this.host}/api/user/skills/create`, skillsData, this.httpOptions);
     }
+
     languagesForm(data: any) {
-        var languagesData = data;
-        console.log(languagesData);
-        console.log(data);
-
-        return this.http.post<any>(`${this.host}/api/user/languages/create`, languagesData);
+        let language_title = data.language;
+        let language_proficiency = data.proficiencyLang;
+        var languagesData = {
+            language_title,
+            language_proficiency,
+            userId: this.userId
+        };
+        return this.http.post<any>(`${this.host}/api/user/languages/create`, languagesData, this.httpOptions);
     }
+
     resumeForm() {
         return this.http.get<any>(`${this.host}/api/auth/signin`);
     }
