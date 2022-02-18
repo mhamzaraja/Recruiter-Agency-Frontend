@@ -2,11 +2,10 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import config from '../../../config/config';
 
-
 @Injectable({
     providedIn: 'root'
 })
-export class DashboardService {
+export class SkillsInfoService {
     host: string = config.host;
     token: any = JSON.parse(localStorage.getItem('userToken')).token;
     userId: string = JSON.parse(localStorage.getItem('userToken')).id;
@@ -24,10 +23,31 @@ export class DashboardService {
 
     constructor(private http: HttpClient) { }
 
-    resumeForm() {
-        return this.http.get<any>(`${this.host}/api/auth/signin`);
+    //skills form
+
+    findAllSkill() {
+        return this.http.get<any>(`${this.host}/api/user/skills/getAll`, this.httpOptions);
     }
 
-    logoutForm() {
+    findSkill(data: any, id: number) {
+        return this.http.get<any>(`${this.host}/api/user/skills/getOne?id=${id}`, this.httpOptions);
+    }
+
+    skillsForm(data: any) {
+
+        let skillsData = {
+            ...data,
+            userId: this.userId
+        };
+        return this.http.post<any>(`${this.host}/api/user/skills/create`, skillsData, this.httpOptions);
+    }
+
+    updateSkill(data: any, id: number) {
+
+        var skillsData = {
+            ...data,
+            userId: this.userId
+        };
+        return this.http.put<any>(`${this.host}/api/user/skills/update?id=${id}`, skillsData, this.httpOptions);
     }
 }

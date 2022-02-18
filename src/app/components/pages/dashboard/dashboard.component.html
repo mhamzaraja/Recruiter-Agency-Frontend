@@ -36,32 +36,37 @@
                 </div>
 
                 <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                    <a class="nav-link active" id="v-pills-basicInfo-tab" data-bs-toggle="pill" href="#v-pills-basicInfo" role="tab" aria-controls="v-pills-basicInfo" aria-selected="true">
+                    <a class="nav-link active" id="v-pills-basicInfo-tab" data-bs-toggle="pill"
+                        href="#v-pills-basicInfo" role="tab" aria-controls="v-pills-basicInfo" aria-selected="true">
                         <i class='bx bx-user'></i>
-                         Basic Info</a>
+                        Basic Info</a>
 
-                    <a class="nav-link" id="v-pills-education-tab" data-bs-toggle="pill" href="#v-pills-education" role="tab" aria-controls="v-pills-education" aria-selected="false">
+                    <a class="nav-link" id="v-pills-education-tab" data-bs-toggle="pill" href="#v-pills-education"
+                        role="tab" aria-controls="v-pills-education" aria-selected="false">
                         <div class="profile-list">
                             <i class='bx bxs-inbox'></i>
                             Education
                         </div>
                     </a>
 
-                    <a class="nav-link" id="v-pills-experience-tab" data-bs-toggle="pill" href="#v-pills-experience" role="tab" aria-controls="v-pills-experience" aria-selected="false">
+                    <a class="nav-link" id="v-pills-experience-tab" data-bs-toggle="pill" href="#v-pills-experience"
+                        role="tab" aria-controls="v-pills-experience" aria-selected="false">
                         <div class="profile-list">
                             <i class='bx bxs-inbox'></i>
                             Experience
                         </div>
                     </a>
 
-                    <a class="nav-link" id="v-pills-projects-tab" data-bs-toggle="pill" href="#v-pills-projects" role="tab" aria-controls="v-pills-projects" aria-selected="false">
+                    <a class="nav-link" id="v-pills-projects-tab" data-bs-toggle="pill" href="#v-pills-projects"
+                        role="tab" aria-controls="v-pills-projects" aria-selected="false">
                         <div class="profile-list">
                             <i class='bx bxs-inbox'></i>
                             Projects
                         </div>
                     </a>
 
-                    <a class="nav-link" id="v-pills-skills-tab" data-bs-toggle="pill" href="#v-pills-skills" role="tab" aria-controls="v-pills-skills" aria-selected="false">
+                    <a class="nav-link" id="v-pills-skills-tab" data-bs-toggle="pill" href="#v-pills-skills" role="tab"
+                        aria-controls="v-pills-skills" aria-selected="false">
                         <div class="profile-list">
                             <i class='bx bxs-inbox'></i>
                             Skills, Languages
@@ -72,7 +77,7 @@
                         <div class="profile-list"><i class='bx bx-note'></i> My Resume</div>
                     </a>
 
-                    <a  routerLink="/login">
+                    <a routerLink="/login">
                         <div class="profile-list"><i class='bx bx-log-out'></i> Logout</div>
                     </a>
                 </div>
@@ -83,7 +88,8 @@
 
                     <!-- Basic Info Form -->
 
-                    <div class="tab-pane fade show active" id="v-pills-basicInfo" role="tabpanel" aria-labelledby="v-pills-basicInfo-tab">
+                    <div class="tab-pane fade show active" id="v-pills-basicInfo" role="tabpanel"
+                        aria-labelledby="v-pills-basicInfo-tab">
                         <div class="profile-content">
                             <form [formGroup]="basicInfoForm">
                                 <div class="profile-content-inner">
@@ -93,7 +99,9 @@
                                         <div class="col-lg-6 col-md-12">
                                             <div class="form-group">
                                                 <label>Full Name:</label>
-                                                <input type="text" class="form-control" placeholder="Tom Henry" formControlName="name" [ngClass]="{ 'is-invalid': submitted && f.name.errors }">
+                                                <input type="text" class="form-control" placeholder="Tom Henry"
+                                                    formControlName="name"
+                                                    [ngClass]="{ 'is-invalid': submitted && f.name.errors }">
                                                 <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
                                                     <div *ngIf="f.name.errors.required">Full Name is required</div>
                                                 </div>
@@ -103,18 +111,22 @@
                                         <div class="col-lg-6 col-md-12">
                                             <div class="form-group">
                                                 <label>Email:</label>
-                                                <input type="email" class="form-control" placeholder="hello@alzo.com" formControlName="email" [ngClass]="{ 'is-invalid': submitted && f.email.errors }">
+                                                <input type="email" class="form-control" placeholder="hello@alzo.com"
+                                                    formControlName="email"
+                                                    [ngClass]="{ 'is-invalid': submitted && f.email.errors }">
                                                 <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
                                                     <div *ngIf="f.email.errors.required">Email is required</div>
                                                     <div *ngIf="f.email.errors.email">Email is invalid</div>
-                                                  </div>
+                                                </div>
                                             </div>
                                         </div>
 
                                         <div class="col-lg-12 col-md-12">
                                             <div class="form-group">
                                                 <label>Summary:</label>
-                                                <textarea type="text" class="form-control" placeholder="" formControlName="summary" [ngClass]="{ 'is-invalid': submitted && f.summary.errors }"></textarea>
+                                                <textarea type="text" class="form-control" placeholder=""
+                                                    formControlName="summary"
+                                                    [ngClass]="{ 'is-invalid': submitted && f.summary.errors }"></textarea>
                                                 <div *ngIf="submitted && f.summary.errors" class="invalid-feedback">
                                                     <div *ngIf="f.summary.errors.required">Summary is required</div>
                                                 </div>
@@ -124,17 +136,21 @@
                                         <div class="col-lg-6 col-md-12">
                                             <div class="form-group">
                                                 <label>Phone:</label>
-                                                <input type="text" class="form-control" placeholder="+123 - 456 - 789" formControlName="phone" [ngClass]="{ 'is-invalid': submitted && f.phone.errors }">
-                                                <div *ngIf="submitted && f.phone.errors" class="invalid-feedback">
-                                                    <div *ngIf="f.phone.errors.required">Phone number is required</div>
-                                                  </div>
+                                                <input type="text" class="form-control" placeholder="+123 - 456 - 789"
+                                                    formControlName="mobile_number"
+                                                    [ngClass]="{ 'is-invalid': submitted && f.mobile_number.errors }">
+                                                <div *ngIf="submitted && f.mobile_number.errors" class="invalid-feedback">
+                                                    <div *ngIf="f.mobile_number.errors.required">Phone number is required</div>
+                                                </div>
                                             </div>
                                         </div>
 
                                         <div class="col-lg-6 col-md-12">
                                             <div class="form-group">
                                                 <label>Date Of Birth:</label>
-                                                <input type="date" class="form-control" placeholder="01/01/1995" formControlName="dob" [ngClass]="{ 'is-invalid': submitted && f.dob.errors }">
+                                                <input type="date" class="form-control" placeholder="01/01/1995"
+                                                    formControlName="dob"
+                                                    [ngClass]="{ 'is-invalid': submitted && f.dob.errors }">
                                                 <div *ngIf="submitted && f.dob.errors" class="invalid-feedback">
                                                     <div *ngIf="f.dob.errors.required">Date of birth is required</div>
                                                 </div>
@@ -143,26 +159,31 @@
                                         <div class="col-lg-6 col-md-12">
                                             <div class="form-group">
                                                 <label class="col-lg-12 col-md-12">Gender</label>
-                                                <select class="form-control form-select" formControlName="gender" [ngClass]="{ 'is-invalid': submitted && f.gender.errors }">
-                                                        <option value="" disabled selected>Please select</option>
-                                                        <option value="male">Male</option>
-                                                        <option value="female">Female</option>
-                                                        <option value="other">Other</option>
+                                                <select class="form-control form-select" formControlName="gender"
+                                                    [ngClass]="{ 'is-invalid': submitted && f.gender.errors }">
+                                                    <option value="" disabled selected>Please select</option>
+                                                    <option value="male">Male</option>
+                                                    <option value="female">Female</option>
+                                                    <option value="other">Other</option>
                                                 </select>
                                                 <div class="invalid-feedback" *ngIf="submitted && f.gender.errors">
                                                     <div *ngIf="f.gender.errors.required">
-                                                      Gender is required
+                                                        Gender is required
                                                     </div>
-                                                  </div>
+                                                </div>
                                             </div>
                                         </div>
 
                                         <div class="col-lg-6 col-md-12">
                                             <div class="form-group">
                                                 <label>Marital Status:</label>
-                                                <input type="text" class="form-control" placeholder="Single/Married" formControlName="maritalStatus" [ngClass]="{ 'is-invalid': submitted && f.maritalStatus.errors }">
-                                                <div *ngIf="submitted && f.maritalStatus.errors" class="invalid-feedback">
-                                                    <div *ngIf="f.maritalStatus.errors.required">Marital Status is required</div>
+                                                <input type="text" class="form-control" placeholder="Single/Married"
+                                                    formControlName="marital_status"
+                                                    [ngClass]="{ 'is-invalid': submitted && f.marital_status.errors }">
+                                                <div *ngIf="submitted && f.marital_status.errors"
+                                                    class="invalid-feedback">
+                                                    <div *ngIf="f.marital_status.errors.required">Marital Status is
+                                                        required</div>
                                                 </div>
                                             </div>
                                         </div>
@@ -170,9 +191,12 @@
                                         <div class="col-lg-6 col-md-12">
                                             <div class="form-group">
                                                 <label>Nationality:</label>
-                                                <input type="text" class="form-control" placeholder="Nationality" formControlName="nationality" [ngClass]="{ 'is-invalid': submitted && f.nationality.errors }">
-                                                <div *ngIf="submitted && f.nationality.errors" class="invalid-feedback" >
-                                                    <div *ngIf="f.nationality.errors.required">Nationality is required</div>
+                                                <input type="text" class="form-control" placeholder="Nationality"
+                                                    formControlName="nationality"
+                                                    [ngClass]="{ 'is-invalid': submitted && f.nationality.errors }">
+                                                <div *ngIf="submitted && f.nationality.errors" class="invalid-feedback">
+                                                    <div *ngIf="f.nationality.errors.required">Nationality is required
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -180,7 +204,9 @@
                                         <div class="col-lg-6 col-md-12">
                                             <div class="form-group">
                                                 <label>CNIC:</label>
-                                                <input type="text" class="form-control" placeholder="*****-*******-*" formControlName="cnic" [ngClass]="{ 'is-invalid': submitted && f.cnic.errors }">
+                                                <input type="text" class="form-control" placeholder="*****-*******-*"
+                                                    formControlName="cnic"
+                                                    [ngClass]="{ 'is-invalid': submitted && f.cnic.errors }">
                                                 <div *ngIf="submitted && f.cnic.errors" class="invalid-feedback">
                                                     <div *ngIf="f.cnic.errors.required">CNIC is required</div>
                                                 </div>
@@ -191,7 +217,8 @@
                                         <div class="col-lg-6 col-md-12">
                                             <div class="form-group">
                                                 <label class="col-lg-12 col-md-12">Career level:</label>
-                                                <select class="form-control form-select" formControlName="career" [ngClass]="{ 'is-invalid': submitted && f.career.errors }">
+                                                <select class="form-control form-select" formControlName="career_level"
+                                                    [ngClass]="{ 'is-invalid': submitted && f.career_level.errors }">
                                                     <option value="" disabled selected>Choose any one</option>
                                                     <option value="1">Intern/Student</option>
                                                     <option value="2">Entry Level</option>
@@ -199,18 +226,19 @@
                                                     <option value="4">Department Head</option>
                                                     <option value="5">GM / CEO / Country Head / President</option>
                                                 </select>
-                                                <div class="invalid-feedback" *ngIf="submitted && f.career.errors">
-                                                    <div *ngIf="f.career.errors.required">
+                                                <div class="invalid-feedback" *ngIf="submitted && f.career_level.errors">
+                                                    <div *ngIf="f.career_level.errors.required">
                                                         Career level is required
                                                     </div>
-                                                  </div>
+                                                </div>
                                             </div>
                                         </div>
 
                                         <div class="col-lg-6 col-md-12">
                                             <div class="form-group">
                                                 <label class="col-lg-12 col-md-12">Experience:</label>
-                                                <select class="form-control form-select" formControlName="experience" [ngClass]="{ 'is-invalid': submitted && f.experience.errors }">
+                                                <select class="form-control form-select" formControlName="experience"
+                                                    [ngClass]="{ 'is-invalid': submitted && f.experience.errors }">
                                                     <option value="" disabled selected>Choose any one</option>
                                                     <option>Fresh</option>
                                                     <option>Less than 1 Year</option>
@@ -256,78 +284,88 @@
                                                     <div *ngIf="f.experience.errors.required">
                                                         Experience is required
                                                     </div>
-                                                  </div>
+                                                </div>
                                             </div>
                                         </div>
 
                                         <div class="col-lg-6 col-md-12">
                                             <div class="form-group">
                                                 <label>City :</label>
-                                                <input type="text" class="form-control" placeholder="City" formControlName="city" [ngClass]="{ 'is-invalid': submitted && f.city.errors }">
+                                                <input type="text" class="form-control" placeholder="City"
+                                                    formControlName="city"
+                                                    [ngClass]="{ 'is-invalid': submitted && f.city.errors }">
                                                 <div class="invalid-feedback" *ngIf="submitted && f.city.errors">
                                                     <div *ngIf="f.city.errors.required">
                                                         City is required
                                                     </div>
-                                                  </div>
+                                                </div>
                                             </div>
                                         </div>
 
                                         <div class="col-lg-6 col-md-12">
                                             <div class="form-group">
                                                 <label>Area :</label>
-                                                <input type="text" class="form-control" placeholder="Area" formControlName="area" [ngClass]="{ 'is-invalid': submitted && f.area.errors }">
+                                                <input type="text" class="form-control" placeholder="Area"
+                                                    formControlName="area"
+                                                    [ngClass]="{ 'is-invalid': submitted && f.area.errors }">
                                                 <div class="invalid-feedback" *ngIf="submitted && f.area.errors">
                                                     <div *ngIf="f.area.errors.required">
                                                         Area is required
                                                     </div>
-                                                  </div>
+                                                </div>
                                             </div>
                                         </div>
 
                                         <div class="col-lg-12 col-md-12">
                                             <div class="form-group">
                                                 <label>Expected Salary:</label>
-                                                <input type="text" class="form-control" placeholder="$1500" formControlName="expectedSalary" [ngClass]="{ 'is-invalid': submitted && f.expectedSalary.errors }">
-                                                <div class="invalid-feedback" *ngIf="submitted && f.expectedSalary.errors">
-                                                    <div *ngIf="f.expectedSalary.errors.required">
+                                                <input type="text" class="form-control" placeholder="$1500"
+                                                    formControlName="expected_salary"
+                                                    [ngClass]="{ 'is-invalid': submitted && f.expected_salary.errors }">
+                                                <div class="invalid-feedback"
+                                                    *ngIf="submitted && f.expected_salary.errors">
+                                                    <div *ngIf="f.expected_salary.errors.required">
                                                         Expected Salary is required
                                                     </div>
-                                                  </div>
+                                                </div>
                                             </div>
                                         </div>
 
                                     </div>
                                 </div>
 
-                                <button (click)="baiscInfoForm()" class="btn dashboard-btn">Save Your Information</button>
+                                <button (click)="baiscInfoForm()" class="btn dashboard-btn">Save Your
+                                    Information</button>
 
 
                             </form>
                         </div>
                     </div>
 
-                     <!-- Education Info Form -->
+                    <!-- Education Info Form -->
 
-                    <div class="tab-pane fade" id="v-pills-education" role="tabpanel" aria-labelledby="v-pills-education-tab">
+                    <div class="tab-pane fade" id="v-pills-education" role="tabpanel"
+                        aria-labelledby="v-pills-education-tab">
                         <div *ngIf="educationInfo.length>0" class="person-details-area resume-area ptb-100">
                             <div class="container">
                                 <div class="row">
                                     <div class="details-item">
                                         <h2>Education</h2>
-                                     <div class="work bottom-item" *ngFor="let edu of educationInfo; let i = index">
-                                     <ul>
-                                      <li>
-                                        <img src="assets/img/home-three/title-img.png" alt="Icon">
-                                        {{edu.institute}}, {{edu.location}}
-                                      </li>
-                                      <button style="float: right;" (click)="toggleEdit(edu, i)"><i class="glyphicon glyphicon-edit"></i>Edit</button>
-                                    </ul>
-                                    <h4>{{edu.degreeTitle}}</h4>
-                                    <p>{{edu.fieldOfStudy}}</p>
-                                    <p>{{edu.completionYear}}</p>
-                                    <p>GPA : {{edu.gpa}}</p>
-                                   </div>
-                                  </div>
+                                        <div class="work bottom-item" *ngFor="let edu of educationInfo; let i = index">
+                                            <ul>
+                                                <li>
+                                                    <img src="assets/img/home-three/title-img.png" alt="Icon">
+                                                    {{edu.institution}}, {{edu.location}}
+                                                </li>
+                                                <button style="float: right;" (click)="editEdu(i)"><i
+                                                        class="glyphicon glyphicon-edit"></i>Edit</button>
+                                            </ul>
+                                            <h4>{{edu.degree_title}}</h4>
+                                            <p>{{edu.field_of_study}}</p>
+                                            <p>{{edu.completion_year}}</p>
+                                            <p>GPA : {{edu.obtained_gpa}}</p>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -343,7 +381,8 @@
                                         <div class="col-lg-6 col-md-12">
                                             <div class="form-group">
                                                 <label>Degree Title:</label>
-                                                <select class="form-control form-select" formControlName="degreeTitle" [ngClass]="{ 'is-invalid': submittedEdu && fedu.degreeTitle.errors }">
+                                                <select class="form-control form-select" formControlName="degree_title"
+                                                    [ngClass]="{ 'is-invalid': submittedEdu && fedu.degree_title.errors }">
                                                     <option value="" disabled selected>Choose any one</option>
                                                     <option value="BA">BA</option>
                                                     <option value="BFA">BFA</option>
@@ -364,8 +403,9 @@
                                                     <option value="LLM">LLM</option>
                                                     <option value="MBA">MBA</option>
                                                 </select>
-                                                <div class="invalid-feedback" *ngIf="submittedEdu && fedu.degreeTitle.errors">
-                                                    <div *ngIf="fedu.degreeTitle.errors.required">
+                                                <div class="invalid-feedback"
+                                                    *ngIf="submittedEdu && fedu.degree_title.errors">
+                                                    <div *ngIf="fedu.degree_title.errors.required">
                                                         Degree title is required
                                                     </div>
                                                 </div>
@@ -375,39 +415,47 @@
                                         <div class="col-lg-6 col-md-12">
                                             <div class="form-group">
                                                 <label>Field of Study:</label>
-                                                <input type="text" class="form-control" formControlName="fieldOfStudy" placeholder="e.g. Biology, Computer Science, Psychology." [ngClass]="{ 'is-invalid': submittedEdu && fedu.fieldOfStudy.errors }">
-                                                <div class="invalid-feedback" *ngIf="submittedEdu && fedu.fieldOfStudy.errors">
-                                                    <div *ngIf="fedu.fieldOfStudy.errors.required">
+                                                <input type="text" class="form-control" formControlName="field_of_study"
+                                                    placeholder="e.g. Biology, Computer Science, Psychology."
+                                                    [ngClass]="{ 'is-invalid': submittedEdu && fedu.field_of_study.errors }">
+                                                <div class="invalid-feedback"
+                                                    *ngIf="submittedEdu && fedu.field_of_study.errors">
+                                                    <div *ngIf="fedu.field_of_study.errors.required">
                                                         Field of study is required
                                                     </div>
-                                                  </div>
+                                                </div>
                                             </div>
                                         </div>
 
                                         <div class="col-lg-6 col-md-12">
                                             <div class="form-group">
                                                 <label>Location:</label>
-                                                <select class="form-control form-select" formControlName="location" [ngClass]="{ 'is-invalid': submittedEdu && fedu.location.errors }">
+                                                <select class="form-control form-select" formControlName="location"
+                                                    [ngClass]="{ 'is-invalid': submittedEdu && fedu.location.errors }">
                                                     <option value="" disabled selected>Choose any one</option>
                                                     <option value="Islamabad">Islamabad</option>
                                                     <option value="Khrachi">Khrachi</option>
                                                     <option value="Lahore">Lahore</option>
                                                     <option value="Rawalpindi">Rawalpindi</option>
                                                 </select>
-                                                <div class="invalid-feedback" *ngIf="submittedEdu && fedu.location.errors">
+                                                <div class="invalid-feedback"
+                                                    *ngIf="submittedEdu && fedu.location.errors">
                                                     <div *ngIf="fedu.location.errors.required">
                                                         Location is required
                                                     </div>
-                                                  </div>
+                                                </div>
                                             </div>
                                         </div>
 
                                         <div class="col-lg-6 col-md-12">
                                             <div class="form-group">
                                                 <label>Institute:</label>
-                                                <input type="text" class="form-control" formControlName="institute" placeholder="Institute" [ngClass]="{ 'is-invalid': submittedEdu && fedu.institute.errors }">
-                                                <div class="invalid-feedback" *ngIf="submittedEdu && fedu.institute.errors">
-                                                    <div *ngIf="fedu.institute.errors.required">
+                                                <input type="text" class="form-control" formControlName="institution"
+                                                    placeholder="institute"
+                                                    [ngClass]="{ 'is-invalid': submittedEdu && fedu.institution.errors }">
+                                                <div class="invalid-feedback"
+                                                    *ngIf="submittedEdu && fedu.institution.errors">
+                                                    <div *ngIf="fedu.institution.errors.required">
                                                         Institute is required
                                                     </div>
                                                 </div>
@@ -417,15 +465,18 @@
                                         <div class="col-lg-6 col-md-12">
                                             <div class="form-group">
                                                 <label>Completion Year:</label>
-                                                <select class="form-control form-select" formControlName="completionYear" [ngClass]="{ 'is-invalid': submittedEdu && fedu.completionYear.errors }">
+                                                <select class="form-control form-select"
+                                                    formControlName="completion_year"
+                                                    [ngClass]="{ 'is-invalid': submittedEdu && fedu.completion_year.errors }">
                                                     <option value="" disabled selected>Select one</option>
                                                     <option value="2022">2022</option>
                                                     <option value="2021">2021</option>
                                                     <option value="2020">2020</option>
                                                     <option value="2019">2019</option>
                                                 </select>
-                                                <div class="invalid-feedback" *ngIf="submittedEdu && fedu.completionYear.errors">
-                                                    <div *ngIf="fedu.completionYear.errors.required">
+                                                <div class="invalid-feedback"
+                                                    *ngIf="submittedEdu && fedu.completion_year.errors">
+                                                    <div *ngIf="fedu.completion_year.errors.required">
                                                         Completion year is required
                                                     </div>
                                                 </div>
@@ -435,15 +486,17 @@
                                         <div class="col-lg-6 col-md-12">
                                             <div class="form-group">
                                                 <label>GPA:</label>
-                                                <select class="form-control form-select" formControlName="gpa" [ngClass]="{ 'is-invalid': submittedEdu && fedu.gpa.errors }">
+                                                <select class="form-control form-select" formControlName="obtained_gpa"
+                                                    [ngClass]="{ 'is-invalid': submittedEdu && fedu.obtained_gpa.errors }">
                                                     <option value="" disabled selected>Out of 4</option>
                                                     <option value="3.5">3.5</option>
                                                     <option value="3.4">3.4</option>
                                                     <option value="3.3">3.3</option>
                                                     <option value="3.2">3.2</option>
                                                 </select>
-                                                <div class="invalid-feedback" *ngIf="submittedEdu && fedu.gpa.errors">
-                                                    <div *ngIf="fedu.gpa.errors.required">
+                                                <div class="invalid-feedback"
+                                                    *ngIf="submittedEdu && fedu.obtained_gpa.errors">
+                                                    <div *ngIf="fedu.obtained_gpa.errors.required">
                                                         GPA is required
                                                     </div>
                                                 </div>
@@ -452,33 +505,42 @@
                                     </div>
                                 </div>
 
-                                <button (click)="educationInfoForm()" class="btn dashboard-btn">Save Your Information</button>
+                                <button (click)="educationInfoForm()" class="btn dashboard-btn" *ngIf="saveEduBtn">
+                                    Save Your Information
+                                </button>
+                                <button (click)="educationUpdateForm()" class="btn dashboard-btn" *ngIf="updateEduBtn">
+                                    Update Your Information
+                                </button>
                             </form>
                         </div>
                     </div>
 
                     <!-- Experience Info Form -->
 
-                    <div class="tab-pane fade" id="v-pills-experience" role="tabpanel" aria-labelledby="v-pills-experience-tab">
+                    <div class="tab-pane fade" id="v-pills-experience" role="tabpanel"
+                        aria-labelledby="v-pills-experience-tab">
                         <div *ngIf="experienceInfo.length>0" class="person-details-area resume-area ptb-100">
                             <div class="container">
                                 <div class="row">
                                     <div class="details-item">
                                         <h2>Experience</h2>
-                                     <div class="work bottom-item" *ngFor="let exp of experienceInfo; let i = index">
-                                     <ul>
-                                      <li>
-                                        <img src="assets/img/home-three/title-img.png" alt="Icon">
-                                        {{exp.jobTitle}}, {{exp.company}}
-                                      </li>
-                                      <button style="float: right;" (click)="toggleEdit(exp, i)">Edit</button>
-                                    </ul>
-                                    <h4>{{exp.industry}}</h4>
-                                    <p><strong>Salary Range:</strong> {{exp.salary}}</p>
-                                    <p>{{exp.startDate | date}} - {{exp.endDate | date}}<span *ngIf="exp.checkbox">Present</span> | {{exp.locationExp}},Pakistan</p>
-                                    <p>{{exp.summaryExp}}</p>
-                                   </div>
-                                  </div>
+                                        <div class="work bottom-item" *ngFor="let exp of experienceInfo; let i = index">
+                                            <ul>
+                                                <li>
+                                                    <img src="assets/img/home-three/title-img.png" alt="Icon">
+                                                    {{exp.jobTitle}}, {{exp.company}}
+                                                </li>
+                                                <button style="float: right;" (click)="editExp(i)">Edit</button>
+                                            </ul>
+                                            <h4>{{exp.industry}}</h4>
+                                            <p><strong>Salary Range:</strong> {{exp.salary}}</p>
+                                            <p>{{exp.startDate | date}} - {{exp.endDate | date}}<span
+                                                    *ngIf="exp.currentlyWorking">Present</span> |
+                                                {{exp.location}},Pakistan
+                                            </p>
+                                            <p>{{exp.description}}</p>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -492,103 +554,122 @@
                                         <div class="col-lg-6 col-md-12">
                                             <div class="form-group">
                                                 <label>Job Title:</label>
-                                                <input type="text" class="form-control" formControlName="jobTitle" placeholder="" [ngClass]="{ 'is-invalid': submittedExp && fexp.jobTitle.errors }">
-                                                <div class="invalid-feedback" *ngIf="submittedExp && fexp.jobTitle.errors">
+                                                <input type="text" class="form-control" formControlName="jobTitle"
+                                                    placeholder=""
+                                                    [ngClass]="{ 'is-invalid': submittedExp && fexp.jobTitle.errors }">
+                                                <div class="invalid-feedback"
+                                                    *ngIf="submittedExp && fexp.jobTitle.errors">
                                                     <div *ngIf="fexp.jobTitle.errors.required">
                                                         Job Title is required
                                                     </div>
-                                                  </div>
+                                                </div>
                                             </div>
                                         </div>
 
                                         <div class="col-lg-6 col-md-12">
                                             <div class="form-group">
                                                 <label>Company:</label>
-                                                <input type="text" class="form-control" formControlName="company" placeholder="" [ngClass]="{ 'is-invalid': submittedExp && fexp.company.errors }">
-                                                <div class="invalid-feedback" *ngIf="submittedExp && fexp.company.errors">
+                                                <input type="text" class="form-control" formControlName="company"
+                                                    placeholder=""
+                                                    [ngClass]="{ 'is-invalid': submittedExp && fexp.company.errors }">
+                                                <div class="invalid-feedback"
+                                                    *ngIf="submittedExp && fexp.company.errors">
                                                     <div *ngIf="fexp.company.errors.required">
                                                         Company is required
                                                     </div>
-                                                  </div>
+                                                </div>
                                             </div>
                                         </div>
 
                                         <div class="col-lg-6 col-md-12">
                                             <div class="form-group">
                                                 <label>Industry:</label>
-                                                <select class="form-control form-select" formControlName="industry" [ngClass]="{ 'is-invalid': submittedExp && fexp.industry.errors }">
+                                                <select class="form-control form-select" formControlName="industry"
+                                                    [ngClass]="{ 'is-invalid': submittedExp && fexp.industry.errors }">
                                                     <option value="" disabled selected>Choose any one</option>
-                                                    <option value="Information Technology">Information Technology</option>
+                                                    <option value="Information Technology">Information Technology
+                                                    </option>
                                                     <option value="Media/Communications">Media/Communications</option>
                                                     <option value="Hospitality">Hospitality</option>
                                                     <option value="Government">Government</option>
                                                 </select>
-                                                <div class="invalid-feedback" *ngIf="submittedExp && fexp.industry.errors">
+                                                <div class="invalid-feedback"
+                                                    *ngIf="submittedExp && fexp.industry.errors">
                                                     <div *ngIf="fexp.industry.errors.required">
                                                         Industry is required
                                                     </div>
-                                                  </div>
+                                                </div>
                                             </div>
                                         </div>
 
                                         <div class="col-lg-6 col-md-12">
                                             <div class="form-group">
                                                 <label>Did you directly manage a team:</label>
-                                                <select class="form-control form-select" formControlName="manageTeam" [ngClass]="{ 'is-invalid': submittedExp && fexp.manageTeam.errors }">
+                                                <select class="form-control form-select" formControlName="manageTeam"
+                                                    [ngClass]="{ 'is-invalid': submittedExp && fexp.manageTeam.errors }">
                                                     <option value="" disabled selected>Choose any one</option>
                                                     <option value="Yes">Yes</option>
                                                     <option value="No">No</option>
                                                 </select>
-                                                <div class="invalid-feedback" *ngIf="submittedExp && fexp.manageTeam.errors">
+                                                <div class="invalid-feedback"
+                                                    *ngIf="submittedExp && fexp.manageTeam.errors">
                                                     <div *ngIf="fexp.manageTeam.errors.required">
                                                         This field is required
                                                     </div>
-                                                  </div>
+                                                </div>
                                             </div>
                                         </div>
 
                                         <div class="col-lg-6 col-md-12">
                                             <div class="form-group">
                                                 <label>Salary:</label>
-                                                <select class="form-control form-select" formControlName="salary" [ngClass]="{ 'is-invalid': submittedExp && fexp.salary.errors }">
+                                                <select class="form-control form-select" formControlName="salary"
+                                                    [ngClass]="{ 'is-invalid': submittedExp && fexp.salary.errors }">
                                                     <option value="" disabled selected>Choose any one</option>
                                                     <option value="5,000 - 5,999">5,000 - 5,999</option>
                                                     <option value="10,000 - 10,999">10,000 - 10,999</option>
                                                     <option value="15,000 - 15,999">15,000 - 15,999</option>
                                                     <option value="20,000 - 24,999">20,000 - 24,999</option>
                                                 </select>
-                                                <div class="invalid-feedback" *ngIf="submittedExp && fexp.salary.errors">
+                                                <div class="invalid-feedback"
+                                                    *ngIf="submittedExp && fexp.salary.errors">
                                                     <div *ngIf="fexp.salary.errors.required">
                                                         Salary is required
                                                     </div>
-                                                  </div>
+                                                </div>
                                             </div>
                                         </div>
 
                                         <div class="col-lg-6 col-md-12">
                                             <div class="form-group">
                                                 <label>Location:</label>
-                                                <select class="form-control form-select" formControlName="locationExp" [ngClass]="{ 'is-invalid': submittedExp && fexp.locationExp.errors }">
+                                                <select class="form-control form-select" formControlName="location"
+                                                    [ngClass]="{ 'is-invalid': submittedExp && fexp.location.errors }">
                                                     <option value="" disabled selected>Choose any one</option>
                                                     <option value="Islamabad">Islamabad</option>
                                                     <option value="Khrachi">Khrachi</option>
                                                     <option value="Lahore">Lahore</option>
                                                     <option value="Rawalpindi">Rawalpindi</option>
                                                 </select>
-                                                <div class="invalid-feedback" *ngIf="submittedExp && fexp.locationExp.errors">
-                                                    <div *ngIf="fexp.locationExp.errors.required">
+                                                <div class="invalid-feedback"
+                                                    *ngIf="submittedExp && fexp.location.errors">
+                                                    <div *ngIf="fexp.location.errors.required">
                                                         Location is required
                                                     </div>
-                                                  </div>
+                                                </div>
                                             </div>
                                         </div>
 
                                         <div class="col-lg-6 col-md-12">
                                             <div class="form-group">
                                                 <label>Start Date:</label>
-                                                <input type="date" class="form-control" placeholder="01/01/1995" formControlName="startDate" [ngClass]="{ 'is-invalid': submittedExp && fexp.startDate.errors }">
-                                                <div *ngIf="submittedExp && fexp.startDate.errors" class="invalid-feedback">
-                                                    <div *ngIf="fexp.startDate.errors.required">Start Date is required</div>
+                                                <input type="date" class="form-control" placeholder="01/01/1995"
+                                                    formControlName="startDate"
+                                                    [ngClass]="{ 'is-invalid': submittedExp && fexp.startDate.errors }">
+                                                <div *ngIf="submittedExp && fexp.startDate.errors"
+                                                    class="invalid-feedback">
+                                                    <div *ngIf="fexp.startDate.errors.required">Start Date is required
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -596,8 +677,11 @@
                                         <div class="col-lg-6 col-md-12">
                                             <div class="form-group">
                                                 <label>End Date:</label>
-                                                <input type="date" class="form-control" placeholder="01/01/1995" formControlName="endDate" [ngClass]="{ 'is-invalid': submittedExp && fexp.endDate.errors }">
-                                                <div *ngIf="submittedExp && fexp.endDate.errors" class="invalid-feedback">
+                                                <input type="date" class="form-control" placeholder="01/01/1995"
+                                                    formControlName="endDate"
+                                                    [ngClass]="{ 'is-invalid': submittedExp && fexp.endDate.errors }">
+                                                <div *ngIf="submittedExp && fexp.endDate.errors"
+                                                    class="invalid-feedback">
                                                     <div *ngIf="fexp.endDate.errors.required">End Date is required</div>
                                                 </div>
                                             </div>
@@ -605,7 +689,8 @@
 
                                         <div class="col-lg-12 col-md-12">
                                             <div class="form-group">
-                                                <input style="margin-right: 2%;" value="Present" type="checkbox" formControlName="checkbox" class="form-check-input" />
+                                                <input style="margin-right: 2%;" value="Present" type="checkbox"
+                                                    formControlName="currentlyWorking" class="form-check-input" />
                                                 <label>Currently Working here</label>
                                             </div>
                                         </div>
@@ -613,9 +698,13 @@
                                         <div class="col-lg-12 col-md-12">
                                             <div class="form-group">
                                                 <label>Summary:</label>
-                                                <textarea type="text" class="form-control" placeholder="" formControlName="summaryExp" [ngClass]="{ 'is-invalid': submittedExp && fexp.summaryExp.errors }"></textarea>
-                                                <div *ngIf="submittedExp && fexp.summaryExp.errors" class="invalid-feedback">
-                                                    <div *ngIf="fexp.summaryExp.errors.required">Summary is required</div>
+                                                <textarea type="text" class="form-control" placeholder=""
+                                                    formControlName="description"
+                                                    [ngClass]="{ 'is-invalid': submittedExp && fexp.description.errors }"></textarea>
+                                                <div *ngIf="submittedExp && fexp.description.errors"
+                                                    class="invalid-feedback">
+                                                    <div *ngIf="fexp.description.errors.required">Summary is required
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -623,33 +712,40 @@
                                     </div>
                                 </div>
 
-                                <button (click)="experienceInfoForm()" class="btn dashboard-btn">Save Your Information</button>
+                                <button (click)="experienceInfoForm()" class="btn dashboard-btn" *ngIf="saveExpBtn">
+                                    Save Your Information
+                                </button>
+                                <button (click)="experienceUpdateForm()" class="btn dashboard-btn" *ngIf="updateExpBtn">
+                                    Update Your Information
+                                </button>
                             </form>
                         </div>
                     </div>
 
                     <!-- Projects Info Form -->
 
-                    <div class="tab-pane fade" id="v-pills-projects" role="tabpanel" aria-labelledby="v-pills-projects-tab">
+                    <div class="tab-pane fade" id="v-pills-projects" role="tabpanel"
+                        aria-labelledby="v-pills-projects-tab">
                         <div *ngIf="projectsInfo.length>0" class="person-details-area resume-area ptb-100">
                             <div class="container">
                                 <div class="row">
                                     <div class="details-item">
                                         <h2>Experience</h2>
-                                     <div class="work bottom-item" *ngFor="let prj of projectsInfo; let i = index">
-                                     <ul>
-                                      <li>
-                                        <img src="assets/img/home-three/title-img.png" alt="Icon">
-                                        <strong>{{prj.projectName}}</strong>
-                                      </li>
-                                      <button style="float: right;" >Edit</button>
-                                    </ul>
-                                    <h6><a href="{{prj.projectUrl}}">{{prj.projectUrl}}</a></h6>
-                                    <p><strong>Associated with:</strong> {{prj.associated}}</p>
-                                    <p>{{prj.descPrj}}</p>
-                                    <p><strong>{{prj.startDate | date}} - {{prj.endDate | date}}<span *ngIf="prj.checkbox">Present</span></strong></p>
-                                   </div>
-                                  </div>
+                                        <div class="work bottom-item" *ngFor="let prj of projectsInfo; let i = index">
+                                            <ul>
+                                                <li>
+                                                    <img src="assets/img/home-three/title-img.png" alt="Icon">
+                                                    <strong>{{prj.projectName}}</strong>
+                                                </li>
+                                                <button style="float: right;">Edit</button>
+                                            </ul>
+                                            <h6><a href="{{prj.projectUrl}}">{{prj.projectUrl}}</a></h6>
+                                            <p><strong>Associated with:</strong> {{prj.associated}}</p>
+                                            <p>{{prj.descPrj}}</p>
+                                            <p><strong>{{prj.startDate | date}} - {{prj.endDate | date}}<span
+                                                        *ngIf="prj.checkbox">Present</span></strong></p>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -663,33 +759,43 @@
                                         <div class="col-lg-6 col-md-12">
                                             <div class="form-group">
                                                 <label>Project Name:</label>
-                                                <input type="text" class="form-control" formControlName="projectName" placeholder="" [ngClass]="{ 'is-invalid': submittedPrj && fprj.projectName.errors }">
-                                                <div class="invalid-feedback" *ngIf="submittedPrj && fprj.projectName.errors">
+                                                <input type="text" class="form-control" formControlName="projectName"
+                                                    placeholder=""
+                                                    [ngClass]="{ 'is-invalid': submittedPrj && fprj.projectName.errors }">
+                                                <div class="invalid-feedback"
+                                                    *ngIf="submittedPrj && fprj.projectName.errors">
                                                     <div *ngIf="fprj.projectName.errors.required">
                                                         Project Name is required
                                                     </div>
-                                                  </div>
+                                                </div>
                                             </div>
                                         </div>
 
                                         <div class="col-lg-6 col-md-12">
                                             <div class="form-group">
                                                 <label>Project URL:</label>
-                                                <input type="text" class="form-control" formControlName="projectUrl" placeholder="" [ngClass]="{ 'is-invalid': submittedPrj && fprj.projectUrl.errors }">
-                                                <div class="invalid-feedback" *ngIf="submittedPrj && fprj.projectUrl.errors">
+                                                <input type="text" class="form-control" formControlName="projectUrl"
+                                                    placeholder=""
+                                                    [ngClass]="{ 'is-invalid': submittedPrj && fprj.projectUrl.errors }">
+                                                <div class="invalid-feedback"
+                                                    *ngIf="submittedPrj && fprj.projectUrl.errors">
                                                     <div *ngIf="fprj.projectUrl.errors.required">
                                                         Project URL is required
                                                     </div>
-                                                  </div>
+                                                </div>
                                             </div>
                                         </div>
 
                                         <div class="col-lg-6 col-md-12">
                                             <div class="form-group">
                                                 <label>Start Date:</label>
-                                                <input type="date" class="form-control" placeholder="01/01/1995" formControlName="startDate" [ngClass]="{ 'is-invalid': submittedPrj && fprj.startDate.errors }">
-                                                <div *ngIf="submittedPrj && fprj.startDate.errors" class="invalid-feedback">
-                                                    <div *ngIf="fprj.startDate.errors.required">Start Date is required</div>
+                                                <input type="date" class="form-control" placeholder="01/01/1995"
+                                                    formControlName="startDate"
+                                                    [ngClass]="{ 'is-invalid': submittedPrj && fprj.startDate.errors }">
+                                                <div *ngIf="submittedPrj && fprj.startDate.errors"
+                                                    class="invalid-feedback">
+                                                    <div *ngIf="fprj.startDate.errors.required">Start Date is required
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -697,8 +803,11 @@
                                         <div class="col-lg-6 col-md-12">
                                             <div class="form-group">
                                                 <label>End Date:</label>
-                                                <input type="date" class="form-control" placeholder="01/01/1995" formControlName="endDate" [ngClass]="{ 'is-invalid': submittedPrj && fprj.endDate.errors }">
-                                                <div *ngIf="submittedPrj && fprj.endDate.errors" class="invalid-feedback">
+                                                <input type="date" class="form-control" placeholder="01/01/1995"
+                                                    formControlName="endDate"
+                                                    [ngClass]="{ 'is-invalid': submittedPrj && fprj.endDate.errors }">
+                                                <div *ngIf="submittedPrj && fprj.endDate.errors"
+                                                    class="invalid-feedback">
                                                     <div *ngIf="fprj.endDate.errors.required">End Date is required</div>
                                                 </div>
                                             </div>
@@ -706,7 +815,8 @@
 
                                         <div class="col-lg-12 col-md-12">
                                             <div class="form-group">
-                                                <input style="margin-right: 2%;" type="checkbox" formControlName="checkbox" class="form-check-input" />
+                                                <input style="margin-right: 2%;" type="checkbox"
+                                                    formControlName="checkbox" class="form-check-input" />
                                                 <label>Currently Ongoing</label>
                                             </div>
                                         </div>
@@ -715,25 +825,31 @@
                                         <div class="col-lg-12 col-md-12">
                                             <div class="form-group">
                                                 <label>Associated with:</label>
-                                                <select class="form-control form-select" formControlName="associated" [ngClass]="{ 'is-invalid': submittedPrj && fprj.associated.errors }">
+                                                <select class="form-control form-select" formControlName="associated"
+                                                    [ngClass]="{ 'is-invalid': submittedPrj && fprj.associated.errors }">
                                                     <option value="" disabled selected>Choose any one</option>
                                                     <option value="Experience">Experience</option>
                                                     <option value="Education">Education</option>
                                                 </select>
-                                                <div class="invalid-feedback" *ngIf="submittedPrj && fprj.associated.errors">
+                                                <div class="invalid-feedback"
+                                                    *ngIf="submittedPrj && fprj.associated.errors">
                                                     <div *ngIf="fprj.associated.errors.required">
                                                         Associated with is required
                                                     </div>
-                                                  </div>
+                                                </div>
                                             </div>
                                         </div>
 
                                         <div class="col-lg-12 col-md-12">
                                             <div class="form-group">
                                                 <label>Description:</label>
-                                                <textarea type="text" class="form-control" placeholder="" formControlName="descPrj" [ngClass]="{ 'is-invalid': submittedPrj && fprj.descPrj.errors }"></textarea>
-                                                <div *ngIf="submittedPrj && fprj.descPrj.errors" class="invalid-feedback">
-                                                    <div *ngIf="fprj.descPrj.errors.required">Description is required</div>
+                                                <textarea type="text" class="form-control" placeholder=""
+                                                    formControlName="descPrj"
+                                                    [ngClass]="{ 'is-invalid': submittedPrj && fprj.descPrj.errors }"></textarea>
+                                                <div *ngIf="submittedPrj && fprj.descPrj.errors"
+                                                    class="invalid-feedback">
+                                                    <div *ngIf="fprj.descPrj.errors.required">Description is required
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -741,7 +857,8 @@
                                     </div>
                                 </div>
 
-                                <button (click)="projectInfoForm()" class="btn dashboard-btn">Save Your Information</button>
+                                <button (click)="projectInfoForm()" class="btn dashboard-btn">Save Your
+                                    Information</button>
                             </form>
                         </div>
                     </div>
@@ -755,15 +872,16 @@
                                     <div class="row">
                                         <div class="details-item">
                                             <h2>Skills</h2>
-                                         <div class="work bottom-item" *ngFor="let skill of skillInfo; let i = index">
-                                         <ul>
-                                          <li style="float: left;">
-                                            <strong>{{skill.skill}}({{skill.experienceSkill}})</strong>
-                                          </li>
-                                          <button style="float: right;" >Edit</button>
-                                        </ul>
-                                       </div>
-                                      </div>
+                                            <div class="work bottom-item"
+                                                *ngFor="let skill of skillInfo; let i = index">
+                                                <ul>
+                                                    <li style="float: left;">
+                                                        <strong>{{skill.skill_title}}({{skill.skill_proficiency}})</strong>
+                                                    </li>
+                                                    <button style="float: right;" (click)="editSkill(i)">Edit</button>
+                                                </ul>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -778,32 +896,28 @@
                                                 <label>Add a new skill:</label>
                                                 <div class="ng-autocomplete custom-class">
                                                     <ng-autocomplete class="custom-classs" #ngAutoCompleteStatic
-                                                                     [data]="skillsData"
-                                                                     formControlName="skill"
-                                                                     [initialValue]=""
-                                                                     [placeholder]="placeholder"
-                                                                     [searchKeyword]="keyword"
-                                                                     historyIdentifier="skillsReactiveList"
-                                                                     [historyHeading]="historyHeading"
-                                                                     historyListMaxNumber="3"
-                                                                     notFoundText="Not found"
-                                                                     [itemTemplate]="itemTemplateStatic"
-                                                                     [notFoundTemplate]="notFoundTemplate"
-                                                                     [ngClass]="{ 'is-invalid': submittedSkill && fskill.skill.errors }">
+                                                        [data]="skillsData" formControlName="skill_title"
+                                                        [initialValue]="" [placeholder]="placeholder"
+                                                        [searchKeyword]="keyword" historyIdentifier="skillsReactiveList"
+                                                        [historyHeading]="historyHeading" historyListMaxNumber="3"
+                                                        notFoundText="Not found" [itemTemplate]="itemTemplateStatic"
+                                                        [notFoundTemplate]="notFoundTemplate"
+                                                        [ngClass]="{ 'is-invalid': submittedSkill && fskill.skill_title.errors }">
                                                     </ng-autocomplete>
 
                                                     <ng-template #itemTemplateStatic let-item>
-                                                      <a [innerHTML]="item"></a>
+                                                        <a [innerHTML]="item"></a>
                                                     </ng-template>
 
                                                     <ng-template #notFoundTemplate let-notFound>
-                                                      <div [innerHTML]="notFound"></div>
+                                                        <div [innerHTML]="notFound"></div>
                                                     </ng-template>
-                                                    <div class="invalid-feedback" *ngIf="submittedSkill && fskill.skill.errors">
-                                                        <div *ngIf="fskill.skill.errors.required">
+                                                    <div class="invalid-feedback"
+                                                        *ngIf="submittedSkill && fskill.skill_title.errors">
+                                                        <div *ngIf="fskill.skill_title.errors.required">
                                                             This field is required
                                                         </div>
-                                                      </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -812,24 +926,32 @@
                                         <div class="col-lg-12 col-md-12">
                                             <div class="form-group">
                                                 <label>Experience with this skill:</label>
-                                                <select class="form-control form-select" formControlName="experienceSkill" [ngClass]="{ 'is-invalid': submittedSkill && fskill.experienceSkill.errors }">
+                                                <select class="form-control form-select"
+                                                    formControlName="skill_proficiency"
+                                                    [ngClass]="{ 'is-invalid': submittedSkill && fskill.skill_proficiency.errors }">
                                                     <option value="" disabled selected>Choose any one</option>
                                                     <option value="Beginner">Beginner</option>
                                                     <option value="Intermediate">Intermediate</option>
                                                     <option value="Expert">Expert</option>
                                                 </select>
-                                                <div class="invalid-feedback" *ngIf="submittedSkill && fskill.experienceSkill.errors">
-                                                    <div *ngIf="fskill.experienceSkill.errors.required">
+                                                <div class="invalid-feedback"
+                                                    *ngIf="submittedSkill && fskill.skill_proficiency.errors">
+                                                    <div *ngIf="fskill.skill_proficiency.errors.required">
                                                         This field is required
                                                     </div>
-                                                  </div>
+                                                </div>
                                             </div>
                                         </div>
 
                                     </div>
                                 </div>
 
-                                <button (click)="skillsInfoForm()" class="btn dashboard-btn">Save Skill</button>
+                                <button (click)="skillsInfoForm()" class="btn dashboard-btn" *ngIf="saveSkillBtn">
+                                    Save Skill
+                                </button>
+                                <button (click)="skillsUpdateForm()" class="btn dashboard-btn" *ngIf="updateSkillBtn">
+                                    Update Your Skill
+                                </button>
                             </form>
 
                             <div *ngIf="languageInfo.length>0" class="person-details-area resume-area ptb-100">
@@ -837,15 +959,16 @@
                                     <div class="row">
                                         <div class="details-item">
                                             <h2>Skills</h2>
-                                         <div class="work bottom-item" *ngFor="let lang of languageInfo; let i = index">
-                                         <ul>
-                                          <li style="float: left;">
-                                            <strong>{{lang.language}}({{lang.proficiencyLang}})</strong>
-                                          </li>
-                                          <button style="float: right;" >Edit</button>
-                                        </ul>
-                                       </div>
-                                      </div>
+                                            <div class="work bottom-item"
+                                                *ngFor="let lang of languageInfo; let i = index">
+                                                <ul>
+                                                    <li style="float: left;">
+                                                        <strong>{{lang.language_title}}({{lang.language_proficiency}})</strong>
+                                                    </li>
+                                                    <button style="float: right;" (click)="editLang(i)">Edit</button>
+                                                </ul>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -859,14 +982,17 @@
                                         <div class="col-lg-12 col-md-12">
                                             <div class="form-group">
                                                 <label>Add a new language:</label>
-                                                <select class="form-control form-select" formControlName="language" [ngClass]="{ 'is-invalid': submittedLanguage && flang.language.errors }">
+                                                <select class="form-control form-select"
+                                                    formControlName="language_title"
+                                                    [ngClass]="{ 'is-invalid': submittedLanguage && flang.language_title.errors }">
                                                     <option value="" disabled selected>Choose Language</option>
                                                     <option value="Urdu">Urdu</option>
                                                     <option value="English">English</option>
                                                     <option value="Arabic">Arabic</option>
                                                 </select>
-                                                <div class="invalid-feedback" *ngIf="submittedLanguage && flang.language.errors">
-                                                    <div *ngIf="flang.language.errors.required">
+                                                <div class="invalid-feedback"
+                                                    *ngIf="submittedLanguage && flang.language_title.errors">
+                                                    <div *ngIf="flang.language_title.errors.required">
                                                         This field is required
                                                     </div>
                                                 </div>
@@ -878,14 +1004,17 @@
                                         <div class="col-lg-12 col-md-12">
                                             <div class="form-group">
                                                 <label>Proficiency with this language:</label>
-                                                <select class="form-control form-select" formControlName="proficiencyLang" [ngClass]="{ 'is-invalid': submittedLanguage && flang.proficiencyLang.errors }">
+                                                <select class="form-control form-select"
+                                                    formControlName="language_proficiency"
+                                                    [ngClass]="{ 'is-invalid': submittedLanguage && flang.language_proficiency.errors }">
                                                     <option value="" disabled selected>Choose any one</option>
                                                     <option value="Beginner">Beginner</option>
                                                     <option value="Intermediate">Intermediate</option>
                                                     <option value="Expert">Expert</option>
                                                 </select>
-                                                <div class="invalid-feedback" *ngIf="submittedLanguage && flang.proficiencyLang.errors">
-                                                    <div *ngIf="flang.proficiencyLang.errors.required">
+                                                <div class="invalid-feedback"
+                                                    *ngIf="submittedLanguage && flang.proficiencyLang.errors">
+                                                    <div *ngIf="flang.language_proficiency.errors.required">
                                                         This field is required
                                                     </div>
                                                 </div>
@@ -895,7 +1024,12 @@
                                     </div>
                                 </div>
 
-                                <button (click)="languageInfoForm()" class="btn dashboard-btn">Save Language</button>
+                                <button (click)="languageInfoForm()" class="btn dashboard-btn" *ngIf="saveLangBtn">
+                                    Save Language
+                                </button>
+                                <button (click)="languageUpdateForm()" class="btn dashboard-btn" *ngIf="updateLangBtn">
+                                    Update Your Skill
+                                </button>
                             </form>
                         </div>
                     </div>
