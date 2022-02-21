@@ -28,39 +28,57 @@ import { TermsConditionsComponent } from './components/pages/terms-conditions/te
 import { TestimonialsComponent } from './components/pages/testimonials/testimonials.component';
 
 const routes: Routes = [
-    {path: '', component: HomeOneComponent},
-    {path: 'home-two', component: HomeTwoComponent},
-    {path: 'home-three', component: HomeThreeComponent},
-    {path: 'login', component: LoginComponent},
-    {path: 'register', component: RegisterComponent},
-    {path: 'employers', component: EmployersComponent},
-    {path: 'employer-details', component: EmployersDetailsComponent},
-    {path: 'dashboard', component: DashboardComponent},
-    {path: 'single-resume', component: ResumeDetailsComponent},
-    {path: 'testimonials', component: TestimonialsComponent},
-    {path: 'pricing', component: PricingComponent},
-    {path: 'faq', component: FaqComponent},
-    {path: 'coming-soon', component: ComingSoonComponent},
-    {path: 'error', component: ErrorComponent},
-    {path: 'privacy-policy', component: PrivacyPolicyComponent},
-    {path: 'terms-conditions', component: TermsConditionsComponent},
-    {path: 'about', component: AboutComponent},
-    {path: 'jobs', component: JobsComponent},
-    {path: 'favourite-jobs', component: FavouriteJobsComponent},
-    {path: 'job-details', component: JobDetailsComponent},
-    {path: 'post-a-job', component: PostAJobComponent},
-    {path: 'candidates', component: CandidatesComponent},
-    {path: 'candidate-details', component: CandidatesDetailsComponent},
-    {path: 'blog', component: BlogComponent},
-    {path: 'blog-details', component: BlogDetailsComponent},
-    {path: 'contact', component: ContactComponent},
+    { path: '', component: HomeOneComponent },
+    { path: 'home-two', component: HomeTwoComponent },
+    { path: 'home-three', component: HomeThreeComponent },
+    { path: 'login', component: LoginComponent },
+    { path: 'register', component: RegisterComponent },
+    { path: 'employers', component: EmployersComponent },
+    { path: 'employer-details', component: EmployersDetailsComponent },
+    // {path: 'dashboard', component: DashboardComponent},
+    { path: 'single-resume', component: ResumeDetailsComponent },
+    { path: 'testimonials', component: TestimonialsComponent },
+    { path: 'pricing', component: PricingComponent },
+    { path: 'faq', component: FaqComponent },
+    { path: 'coming-soon', component: ComingSoonComponent },
+    { path: 'error', component: ErrorComponent },
+    { path: 'privacy-policy', component: PrivacyPolicyComponent },
+    { path: 'terms-conditions', component: TermsConditionsComponent },
+    { path: 'about', component: AboutComponent },
+    { path: 'jobs', component: JobsComponent },
+    { path: 'favourite-jobs', component: FavouriteJobsComponent },
+    { path: 'job-details', component: JobDetailsComponent },
+    { path: 'post-a-job', component: PostAJobComponent },
+    { path: 'candidates', component: CandidatesComponent },
+    { path: 'candidate-details', component: CandidatesDetailsComponent },
+    { path: 'blog', component: BlogComponent },
+    { path: 'blog-details', component: BlogDetailsComponent },
+    { path: 'contact', component: ContactComponent },
+
+    // {
+    //     path: 'dashboard',
+    //     loadChildren: () => import('./components/pages/dashboard/dashboard.module')
+    //     .then(m => m.DashboardModule)
+    // },
+
+    {
+        path: 'dashboard',
+        component: DashboardComponent,
+        children: [
+            {
+                path: '',
+                loadChildren: () => import('./components/pages/dashboard/dashboard.module')
+                .then(m => m.DashboardModule)
+            }
+        ]
+    },
 
 
-    {path: '**', component: ErrorComponent} // This line will remain down from the whole component list
+    { path: '**', component: ErrorComponent } // This line will remain down from the whole component list
 ];
 
 @NgModule({
     imports: [RouterModule.forRoot(routes, { relativeLinkResolution: 'legacy' })],
     exports: [RouterModule]
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

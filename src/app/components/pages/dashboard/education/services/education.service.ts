@@ -1,11 +1,11 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import config from '../../../config/config';
+import config from '../../../../config/config';
 
 @Injectable({
     providedIn: 'root'
 })
-export class EducationInfoService {
+export class EducationService {
     host: string = config.host;
     token: any = JSON.parse(localStorage.getItem('userToken')).token;
     userId: string = JSON.parse(localStorage.getItem('userToken')).id;
@@ -31,19 +31,16 @@ export class EducationInfoService {
 
     findEducation(data: any, id: number) {
         return this.http.get<any>(`${this.host}/api/user/education/getOne?id=${id}`, this.httpOptions);
-
     }
 
     educationForm(data: any) {
         data.completion_year = Number(data.completion_year);
         data.obtained_gpa = Number(data.obtained_gpa);
-        console.log(data);
 
         let educationData = {
             ...data,
             userId: this.userId
         };
-        console.log(educationData);
 
         return this.http.post<any>(`${this.host}/api/user/education/create`, educationData, this.httpOptions);
     }
@@ -53,7 +50,6 @@ export class EducationInfoService {
 
         data.completion_year = Number(data.completion_year);
         data.obtained_gpa = Number(data.obtained_gpa);
-        console.log(data);
 
         let educationData = {
             ...data,
@@ -62,6 +58,11 @@ export class EducationInfoService {
 
 
         return this.http.put<any>(`${this.host}/api/user/education/update?id=${id}`, educationData, this.httpOptions);
+    }
+
+    deleteEducation(i: number){
+        let id = i;
+        return this.http.delete<any>(`${this.host}/api/user/education/delete?id=${id}`, this.httpOptions);
     }
 
 }

@@ -1,11 +1,11 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import config from '../../../config/config';
+import config from '../../../../config/config';
 
 @Injectable({
     providedIn: 'root'
 })
-export class ExperienceInfoService {
+export class ExperienceService {
     host: string = config.host;
     token: any = JSON.parse(localStorage.getItem('userToken')).token;
     userId: string = JSON.parse(localStorage.getItem('userToken')).id;
@@ -40,7 +40,6 @@ export class ExperienceInfoService {
             ...data,
             userId: this.userId
         }
-        console.log(experienceData);
         return this.http.post<any>(`${this.host}/api/user/experience/create`, experienceData, this.httpOptions);
     }
 
@@ -52,9 +51,13 @@ export class ExperienceInfoService {
             ...data,
             userId: this.userId
         }
-        console.log(experienceData);
         return this.http.put<any>(`${this.host}/api/user/experience/update?id=${id}`, experienceData, this.httpOptions);
 
+    }
+
+    deleteExperience(i: number){
+        let id = i;
+        return this.http.delete<any>(`${this.host}/api/user/experience/delete?id=${id}`, this.httpOptions);
     }
 
 }

@@ -1,0 +1,157 @@
+<div class="profile-content">
+    <div *ngIf="skillInfo.length>0" class="person-details-area resume-area ptb-100">
+        <div class="container">
+            <div class="row">
+                <div class="details-item">
+                    <h2>Skills</h2>
+                    <div class="work bottom-item" *ngFor="let skill of skillInfo; let i = index">
+                        <ul>
+                            <li style="float: left;">
+                                <strong>{{skill.skill_title}}({{skill.skill_proficiency}})</strong>
+                            </li>
+                            <button style="float: right;" (click)="editSkill(i)">Edit</button>
+                            <button style="float: right;" (click)="delSkill(i)">Delete</button>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <form style="margin-bottom: 5%;" autocomplete="off" novalidate [formGroup]="skillsForm">
+
+        <div class="profile-content-inner">
+            <h2>Skills</h2>
+
+            <div class="row">
+                <div class="col-lg-12 col-md-12">
+                    <div class="form-group">
+                        <label>Add a new skill:</label>
+                        <div class="ng-autocomplete custom-class">
+                            <ng-autocomplete class="custom-classs" #ngAutoCompleteStatic [data]="skillsData"
+                                formControlName="skill_title" [initialValue]="" [placeholder]="placeholder"
+                                [searchKeyword]="keyword" historyIdentifier="skillsReactiveList"
+                                [historyHeading]="historyHeading" historyListMaxNumber="3" notFoundText="Not found"
+                                [itemTemplate]="itemTemplateStatic" [notFoundTemplate]="notFoundTemplate"
+                                [ngClass]="{ 'is-invalid': submittedSkill && fskill.skill_title.errors }">
+                            </ng-autocomplete>
+
+                            <ng-template #itemTemplateStatic let-item>
+                                <a [innerHTML]="item"></a>
+                            </ng-template>
+
+                            <ng-template #notFoundTemplate let-notFound>
+                                <div [innerHTML]="notFound"></div>
+                            </ng-template>
+                            <div class="invalid-feedback" *ngIf="submittedSkill && fskill.skill_title.errors">
+                                <div *ngIf="fskill.skill_title.errors.required">
+                                    This field is required
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-lg-12 col-md-12">
+                    <div class="form-group">
+                        <label>Experience with this skill:</label>
+                        <select class="form-control form-select" formControlName="skill_proficiency"
+                            [ngClass]="{ 'is-invalid': submittedSkill && fskill.skill_proficiency.errors }">
+                            <option value="" disabled selected>Choose any one</option>
+                            <option value="Beginner">Beginner</option>
+                            <option value="Intermediate">Intermediate</option>
+                            <option value="Expert">Expert</option>
+                        </select>
+                        <div class="invalid-feedback" *ngIf="submittedSkill && fskill.skill_proficiency.errors">
+                            <div *ngIf="fskill.skill_proficiency.errors.required">
+                                This field is required
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <button (click)="skillsInfoForm()" class="btn dashboard-btn" *ngIf="saveSkillBtn">
+            Save Skill
+        </button>
+        <button (click)="skillsUpdateForm()" class="btn dashboard-btn" *ngIf="updateSkillBtn">
+            Update Your Skill
+        </button>
+    </form>
+
+    <div *ngIf="languageInfo.length>0" class="person-details-area resume-area ptb-100">
+        <div class="container">
+            <div class="row">
+                <div class="details-item">
+                    <h2>Language</h2>
+                    <div class="work bottom-item" *ngFor="let lang of languageInfo; let i = index">
+                        <ul>
+                            <li style="float: left;">
+                                <strong>{{lang.language_title}}({{lang.language_proficiency}})</strong>
+                            </li>
+                            <button style="float: right;" (click)="editLang(i)">Edit</button>
+                            <button style="float: right;" (click)="delLang(i)">Delete</button>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <form [formGroup]="languageForm">
+
+        <div class="profile-content-inner">
+            <h2>Languages</h2>
+
+            <div class="row">
+                <div class="col-lg-12 col-md-12">
+                    <div class="form-group">
+                        <label>Add a new language:</label>
+                        <select class="form-control form-select" formControlName="language_title"
+                            [ngClass]="{ 'is-invalid': submittedLanguage && flang.language_title.errors }">
+                            <option value="" disabled selected>Choose Language</option>
+                            <option value="Urdu">Urdu</option>
+                            <option value="English">English</option>
+                            <option value="Arabic">Arabic</option>
+                        </select>
+                        <div class="invalid-feedback" *ngIf="submittedLanguage && flang.language_title.errors">
+                            <div *ngIf="flang.language_title.errors.required">
+                                This field is required
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+
+                <div class="col-lg-12 col-md-12">
+                    <div class="form-group">
+                        <label>Proficiency with this language:</label>
+                        <select class="form-control form-select" formControlName="language_proficiency"
+                            [ngClass]="{ 'is-invalid': submittedLanguage && flang.language_proficiency.errors }">
+                            <option value="" disabled selected>Choose any one</option>
+                            <option value="Beginner">Beginner</option>
+                            <option value="Intermediate">Intermediate</option>
+                            <option value="Expert">Expert</option>
+                        </select>
+                        <div class="invalid-feedback" *ngIf="submittedLanguage && flang.language_proficiency.errors">
+                            <div *ngIf="flang.language_proficiency.errors.required">
+                                This field is required
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <button (click)="languageInfoForm()" class="btn dashboard-btn" *ngIf="saveLangBtn">
+            Save Language
+        </button>
+        <button (click)="languageUpdateForm()" class="btn dashboard-btn" *ngIf="updateLangBtn">
+            Update Your Language
+        </button>
+    </form>
+</div>

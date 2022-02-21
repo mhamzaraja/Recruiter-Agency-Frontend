@@ -1,11 +1,11 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import config from '../../../config/config';
+import config from '../../../../config/config';
 
 @Injectable({
     providedIn: 'root'
 })
-export class SkillsInfoService {
+export class SkillsLanguagesService {
     host: string = config.host;
     token: any = JSON.parse(localStorage.getItem('userToken')).token;
     userId: string = JSON.parse(localStorage.getItem('userToken')).id;
@@ -49,5 +49,39 @@ export class SkillsInfoService {
             userId: this.userId
         };
         return this.http.put<any>(`${this.host}/api/user/skills/update?id=${id}`, skillsData, this.httpOptions);
+    }
+
+    deleteSkill(id: number) {
+        return this.http.delete<any>(`${this.host}/api/user/skills/delete?id=${id}`, this.httpOptions);
+    }
+
+
+    //languages form
+    findAllLanguages() {
+        return this.http.get<any>(`${this.host}/api/user/languages/getAll`, this.httpOptions);
+    }
+
+    findLanguage(data: any, id: number) {
+        return this.http.get<any>(`${this.host}/api/user/languages/getOne?id=${id}`, this.httpOptions);
+    }
+
+    languagesForm(data: any) {
+        var languagesData = {
+            ...data,
+            userId: this.userId
+        };
+        return this.http.post<any>(`${this.host}/api/user/languages/create`, languagesData, this.httpOptions);
+    }
+
+    updateLanguage(data: any, id: number) {
+        var languagesData = {
+            ...data,
+            userId: this.userId
+        };
+        return this.http.put<any>(`${this.host}/api/user/languages/update?id=${id}`, languagesData, this.httpOptions);
+    }
+
+    deleteLanguage(id: number) {
+        return this.http.delete<any>(`${this.host}/api/user/languages/delete?id=${id}`, this.httpOptions);
     }
 }

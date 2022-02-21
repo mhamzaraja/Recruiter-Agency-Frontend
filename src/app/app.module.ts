@@ -40,6 +40,7 @@ import { BlogComponent } from './components/pages/blog/blog.component';
 import { ContactComponent } from './components/pages/contact/contact.component';
 import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+
 import {AutocompleteLibModule} from 'angular-ng-autocomplete';
 
 @NgModule({

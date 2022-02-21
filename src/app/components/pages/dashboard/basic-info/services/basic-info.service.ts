@@ -1,11 +1,11 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import config from '../../../config/config';
+import config from '../../../../config/config';
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
-export class LanguageInfoService {
+export class BasicInfoService {
     host: string = config.host;
     token: any = JSON.parse(localStorage.getItem('userToken')).token;
     userId: string = JSON.parse(localStorage.getItem('userToken')).id;
@@ -21,30 +21,25 @@ export class LanguageInfoService {
         })
     };
 
-  constructor(private http: HttpClient) { }
+    constructor(private http: HttpClient) { }
 
-      //languages form
-      findAllLanguages(){
-        return this.http.get<any>(`${this.host}/api/user/languages/getAll`, this.httpOptions);
-      }
+    findUser(){
 
-      findLanguage(data:any, id:number){
-        return this.http.get<any>(`${this.host}/api/user/languages/getOne?id=${id}`, this.httpOptions);
-      }
-
-      languagesForm(data: any) {
-        var languagesData = {
-            ...data,
-            userId: this.userId
-        };
-        return this.http.post<any>(`${this.host}/api/user/languages/create`, languagesData, this.httpOptions);
+        return this.http.get<any>(`${this.host}/api/user/profile/getOne`, this.httpOptions);
     }
+    //basicInfo form
+    basicInfoForm(data: any) {
+        let avatar;
+        let email;
 
-    updateLanguage(data: any, id: number) {
-        var languagesData = {
+        data.cnic = Number(data.cnic);
+        data.mobile_number = Number(data.mobile_number);
+
+        let basicInfoData = {
             ...data,
             userId: this.userId
         };
-        return this.http.put<any>(`${this.host}/api/user/languages/update?id=${id}`, languagesData, this.httpOptions);
+
+        return this.http.post<any>(`${this.host}/api/user/profile/create`, basicInfoData, this.httpOptions);
     }
 }
