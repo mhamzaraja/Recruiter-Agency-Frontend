@@ -2,17 +2,17 @@
     <div class="container">
         <div class="row">
             <div class="details-item">
-                <h2>Education</h2>
+                <div class="bottom-item">
+                    <h2>Education</h2>
+                </div>
                 <div class="work bottom-item" *ngFor="let edu of educationInfo; let i = index">
                     <ul>
                         <li>
                             <img src="assets/img/home-three/title-img.png" alt="Icon">
                             {{edu.institution}}, {{edu.location}}
                         </li>
-                        <button style="float: right;" (click)="editEdu(i)"><i
-                                class="glyphicon glyphicon-edit"></i>Edit</button>
-                        <button style="float: right;" (click)="delEdu(i)"><i
-                            class="glyphicon glyphicon-edit"></i>Delete</button>
+                        <i class="bx bx-trash bx-sm bx-tada-hover" style="float: right;" (click)="delEdu(i)"></i>
+                        <i class="bx bx-edit bx-sm bx-tada-hover" style="float: right;" (click)="editEdu(i)"></i>
 
                     </ul>
                     <h4>{{edu.degree_title}}</h4>
@@ -25,7 +25,7 @@
     </div>
 </div>
 
-<div class="profile-content">
+<div class="profile-content" id="form">
 
     <form [formGroup]="educationForm">
 

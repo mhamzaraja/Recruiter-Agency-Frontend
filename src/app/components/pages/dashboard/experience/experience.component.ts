@@ -119,7 +119,7 @@ export class ExperienceComponent implements OnInit {
         this.experienceForm.controls.description.setValue(this.experienceInfo[i].description);
     }
 
-    delEdu(i: number) {
+    delExp(i: number) {
         this.expId = this.experienceInfo[i].id;
         this.experienceService.deleteExperience(this.expId).subscribe(
             (res) => {

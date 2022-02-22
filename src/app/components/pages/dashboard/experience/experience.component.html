@@ -3,14 +3,15 @@
         <div class="row">
             <div class="details-item">
                 <h2>Experience</h2>
+
                 <div class="work bottom-item" *ngFor="let exp of experienceInfo; let i = index">
                     <ul>
                         <li>
                             <img src="assets/img/home-three/title-img.png" alt="Icon">
                             {{exp.jobTitle}}, {{exp.company}}
                         </li>
-                        <button style="float: right;" (click)="editExp(i)">Edit</button>
-                        <button style="float: right;" (click)="delEdu(i)">Delete</button>
+                        <i class="bx bx-trash bx-sm bx-tada-hover" style="float: right;" (click)="delExp(i)"></i>
+                        <i class="bx bx-edit bx-sm bx-tada-hover" style="float: right;" (click)="editExp(i)"></i>
                     </ul>
                     <h4>{{exp.industry}}</h4>
                     <p><strong>Salary Range:</strong> {{exp.salary}}</p>

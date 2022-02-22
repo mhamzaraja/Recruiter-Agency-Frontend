@@ -9,8 +9,11 @@
                             <li style="float: left;">
                                 <strong>{{skill.skill_title}}({{skill.skill_proficiency}})</strong>
                             </li>
-                            <button style="float: right;" (click)="editSkill(i)">Edit</button>
-                            <button style="float: right;" (click)="delSkill(i)">Delete</button>
+                            <div>
+                                <i class="bx bx-edit bx-sm bx-tada-hover" style="float: right;"
+                                    (click)="editSkill(i)"></i>
+                            </div>
+                            <i class="bx bx-trash bx-sm bx-tada-hover" style="float: right;" (click)="delSkill(i)"></i>
                         </ul>
                     </div>
                 </div>
@@ -91,8 +94,8 @@
                             <li style="float: left;">
                                 <strong>{{lang.language_title}}({{lang.language_proficiency}})</strong>
                             </li>
-                            <button style="float: right;" (click)="editLang(i)">Edit</button>
-                            <button style="float: right;" (click)="delLang(i)">Delete</button>
+                            <i class="bx bx-trash bx-sm bx-tada-hover" style="float: right;" (click)="delLang(i)"></i>
+                            <i class="bx bx-edit bx-sm bx-tada-hover" style="float: right;" (click)="editLang(i)"></i>
                         </ul>
                     </div>
                 </div>
