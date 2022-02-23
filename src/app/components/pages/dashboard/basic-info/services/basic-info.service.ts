@@ -23,13 +23,16 @@ export class BasicInfoService {
 
     constructor(private http: HttpClient) { }
 
-    findUser(){
+    // userInfo(id: number){
+    //     return this.http.get<any>(`${this.host}/api/user/profile/getOne?id=${id}`, this.httpOptions);
+    // }
 
-        return this.http.get<any>(`${this.host}/api/user/profile/getOne`, this.httpOptions);
+    findUsers(){
+        return this.http.get<any>(`${this.host}/api/user/profile/getAll`, this.httpOptions);
     }
     //basicInfo form
     basicInfoForm(data: any) {
-        let avatar;
+        // let avatar;
         let email;
 
         data.cnic = Number(data.cnic);

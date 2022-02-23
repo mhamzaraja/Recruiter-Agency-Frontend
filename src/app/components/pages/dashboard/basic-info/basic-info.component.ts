@@ -1,9 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl, AbstractControl } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { BasicInfoService } from './services/basic-info.service';
-import { Router } from "@angular/router";
-
 
 @Component({
     selector: 'app-basic-info',
@@ -14,7 +12,13 @@ export class BasicInfoComponent implements OnInit {
     submitted: boolean = false;
     basicInfoForm: FormGroup;
 
+    summary: string = null;
+    name: string = null;
+
     response: any;
+
+    //parent methods
+    @Output() dataFromChild: EventEmitter<any> = new EventEmitter();
 
     constructor(private formBuilder: FormBuilder,
         private toastr: ToastrService,
@@ -39,6 +43,7 @@ export class BasicInfoComponent implements OnInit {
             expected_salary: [null, [Validators.required,]]
 
         });
+        this.getUser();
     }
 
     get f(): { [key: string]: AbstractControl } {
@@ -53,6 +58,7 @@ export class BasicInfoComponent implements OnInit {
         else {
             this.basicInfoService.basicInfoForm(this.basicInfoForm.value).subscribe((res) => {
                 this.toastr.success(res.message);
+                this.getUser();
             },
                 (error) => {
                     this.toastr.error(error.error.message);
@@ -60,21 +66,19 @@ export class BasicInfoComponent implements OnInit {
             this.submitted = false;
         }
     }
-    // getUser(){
-    //     this.submitted = true;
-    //     if (this.basicInfoForm.invalid) {
-    //         this.toastr.error(this.response.message);
-    //     }
-    //     else {
-    //         this.basicInfoService.findUser().subscribe((res) => {
-    //             this.toastr.success(res.message);
-    //         },
-    //             (error) => {
-    //                 this.toastr.error(error.error.message);
-    //             });
-    //         this.submitted = false;
-    //     }
-    // }
+
+    getUser() {
+        this.basicInfoService.findUsers().subscribe(
+            (res) => {
+                this.dataFromChild.emit(res.data);
+                this.summary = res.data[0].profile[0].summary;
+                this.name = res.data[0].profile[0].name;
+                console.log(res.data);
+            },
+            (error) => {
+                this.toastr.error(error.error.message);
+            });
+    }
 
 
 }

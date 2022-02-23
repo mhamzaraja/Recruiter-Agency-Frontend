@@ -25,7 +25,7 @@ export class EducationService {
 
     //education form
 
-    findAllEducations(){
+    findAllEducations() {
         return this.http.get<any>(`${this.host}/api/user/education/getAll`, this.httpOptions);
     }
 
@@ -35,13 +35,12 @@ export class EducationService {
 
     educationForm(data: any) {
         data.completion_year = Number(data.completion_year);
-        data.obtained_gpa = Number(data.obtained_gpa);
+        data.obtained_gpa = parseFloat(data.obtained_gpa);
 
         let educationData = {
             ...data,
             userId: this.userId
         };
-
         return this.http.post<any>(`${this.host}/api/user/education/create`, educationData, this.httpOptions);
     }
 
@@ -49,7 +48,7 @@ export class EducationService {
         let id = i;
 
         data.completion_year = Number(data.completion_year);
-        data.obtained_gpa = Number(data.obtained_gpa);
+        data.obtained_gpa = parseFloat(data.obtained_gpa);
 
         let educationData = {
             ...data,
@@ -60,7 +59,7 @@ export class EducationService {
         return this.http.put<any>(`${this.host}/api/user/education/update?id=${id}`, educationData, this.httpOptions);
     }
 
-    deleteEducation(i: number){
+    deleteEducation(i: number) {
         let id = i;
         return this.http.delete<any>(`${this.host}/api/user/education/delete?id=${id}`, this.httpOptions);
     }

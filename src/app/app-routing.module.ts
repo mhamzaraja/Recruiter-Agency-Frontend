@@ -9,6 +9,8 @@ import { ComingSoonComponent } from './components/pages/coming-soon/coming-soon.
 import { ContactComponent } from './components/pages/contact/contact.component';
 import { DashboardComponent } from './components/pages/dashboard/dashboard.component';
 import { EmployersDetailsComponent } from './components/pages/employers-details/employers-details.component';
+import { EmployersLoginComponent } from './components/pages/employers-login/employers-login.component';
+import { EmployersRegisterComponent } from './components/pages/employers-register/employers-register.component';
 import { EmployersComponent } from './components/pages/employers/employers.component';
 import { ErrorComponent } from './components/pages/error/error.component';
 import { FaqComponent } from './components/pages/faq/faq.component';
@@ -33,6 +35,8 @@ const routes: Routes = [
     { path: 'home-three', component: HomeThreeComponent },
     { path: 'login', component: LoginComponent },
     { path: 'register', component: RegisterComponent },
+    { path: 'employers-login', component: EmployersLoginComponent },
+    { path: 'employers-register', component: EmployersRegisterComponent },
     { path: 'employers', component: EmployersComponent },
     { path: 'employer-details', component: EmployersDetailsComponent },
     // {path: 'dashboard', component: DashboardComponent},

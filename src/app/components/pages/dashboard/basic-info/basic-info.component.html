@@ -1,6 +1,21 @@
 <!-- Basic Info Form -->
 <div class="tab-pane fade show active" id="v-pills-basicInfo" role="tabpanel" aria-labelledby="v-pills-basicInfo-tab">
     <div class="profile-content">
+
+        <div class="person-details-area resume-area ptb-100">
+                <div class="bottom-item">
+                    <h3>
+                        Summary
+                        <i class="bx bx-edit bx-sm bx-tada-hover" style="float: right;"></i>
+                    </h3>
+
+                </div>
+                <div class="bottom-item">
+                    {{summary}}
+                </div>
+        </div>
+
+
         <form [formGroup]="basicInfoForm">
             <div class="profile-content-inner">
                 <h2>Basic Info</h2>

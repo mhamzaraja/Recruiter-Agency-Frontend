@@ -58,4 +58,9 @@ export class DashboardComponent implements OnInit {
             this.submitted = false;
         }
     }
+
+    dataFromChild(data: any){
+        console.log("working");
+        console.log(data);
+    }
 }

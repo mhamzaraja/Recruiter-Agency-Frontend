@@ -32,20 +32,20 @@
                 <div class="profile-item">
                     <img src="assets/img/dashboard1.jpg" alt="Dashboard">
                     <h2>Tom Henry</h2>
-                    <span>Web Developer</span>
+                    <span (dataFromChild)="dataFromChild($event)">Web Developer</span>
                 </div>
 
                 <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
                     <a class="nav-link" id="v-pills-basicInfo-tab" data-bs-toggle="pill" role="tab"
-                        aria-controls="v-pills-basicInfo" aria-selected="true"
-                        routerLink="/dashboard" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
+                        aria-controls="v-pills-basicInfo" aria-selected="true" routerLink="/dashboard"
+                        routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
                         <i class='bx bx-user'></i>
                         Basic Info</a>
 
                     <a class="nav-link" id="v-pills-education-tab" data-bs-toggle="pill" routerLink="education"
                         role="tab" aria-controls="v-pills-education" aria-selected="false" routerLinkActive="active">
                         <div class="profile-list">
-                            <i class='bx bxs-inbox'></i>
+                            <i class="bx bxs-layer"></i>
                             Education
                         </div>
                     </a>
@@ -53,7 +53,7 @@
                     <a class="nav-link" id="v-pills-experience-tab" data-bs-toggle="pill" routerLink="experience"
                         role="tab" aria-controls="v-pills-experience" aria-selected="false" routerLinkActive="active">
                         <div class="profile-list">
-                            <i class='bx bxs-inbox'></i>
+                            <i class="bx bxs-receipt"></i>
                             Experience
                         </div>
                     </a>
@@ -69,7 +69,7 @@
                     <a class="nav-link" id="v-pills-skills-tab" data-bs-toggle="pill" routerLink="skillsLanguages"
                         role="tab" aria-controls="v-pills-skills" aria-selected="false" routerLinkActive="active">
                         <div class="profile-list">
-                            <i class='bx bxs-inbox'></i>
+                            <i class="bx bxs-brain"></i>
                             Skills, Languages
                         </div>
                     </a>

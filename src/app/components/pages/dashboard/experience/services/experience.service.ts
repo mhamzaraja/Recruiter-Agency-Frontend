@@ -33,7 +33,6 @@ export class ExperienceService {
 
     //experience form
     experienceForm(data: any) {
-        data.manageTeam = Boolean(data.manageTeam);
         data.currentlyWorking = Boolean(data.currentlyWorking);
 
         let experienceData = {

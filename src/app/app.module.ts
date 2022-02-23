@@ -42,6 +42,8 @@ import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
 import {AutocompleteLibModule} from 'angular-ng-autocomplete';
+import { EmployersLoginComponent } from './components/pages/employers-login/employers-login.component';
+import { EmployersRegisterComponent } from './components/pages/employers-register/employers-register.component';
 
 @NgModule({
   declarations: [
@@ -77,7 +79,9 @@ import {AutocompleteLibModule} from 'angular-ng-autocomplete';
     CandidatesDetailsComponent,
     BlogDetailsComponent,
     BlogComponent,
-    ContactComponent
+    ContactComponent,
+    EmployersLoginComponent,
+    EmployersRegisterComponent
   ],
   imports: [
     CommonModule,

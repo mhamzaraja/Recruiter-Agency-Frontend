@@ -112,7 +112,6 @@ export class EducationComponent implements OnInit {
         this.educationForm.controls.institution.setValue(this.educationInfo[i].institution);
         this.educationForm.controls.completion_year.setValue(this.educationInfo[i].completion_year);
         this.educationForm.controls.obtained_gpa.setValue(this.educationInfo[i].obtained_gpa);
-
     }
 
     delEdu(i: number) {
