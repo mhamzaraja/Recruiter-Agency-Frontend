@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 import {HttpClientModule} from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeOneComponent } from './components/pages/home-one/home-one.component';
@@ -42,6 +41,8 @@ import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
 import {AutocompleteLibModule} from 'angular-ng-autocomplete';
+import { EmploerDashboardComponent } from './components/pages/employer-dashboard/dashboard.component';
+import { CompanyListComponent } from './components/pages/companyList/companyList.component';
 
 @NgModule({
   declarations: [
@@ -77,7 +78,9 @@ import {AutocompleteLibModule} from 'angular-ng-autocomplete';
     CandidatesDetailsComponent,
     BlogDetailsComponent,
     BlogComponent,
-    ContactComponent
+    ContactComponent,
+    EmploerDashboardComponent,
+    CompanyListComponent,
   ],
   imports: [
     CommonModule,
