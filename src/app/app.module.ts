@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 import {HttpClientModule} from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeOneComponent } from './components/pages/home-one/home-one.component';
@@ -42,6 +41,9 @@ import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
 import {AutocompleteLibModule} from 'angular-ng-autocomplete';
+
+import { EmploerDashboardComponent } from './components/pages/employer-dashboard/dashboard.component';
+import { CompanyListComponent } from './components/pages/companyList/companyList.component';
 import { EmployersLoginComponent } from './components/pages/employers-login/employers-login.component';
 import { EmployersRegisterComponent } from './components/pages/employers-register/employers-register.component';
 
@@ -80,6 +82,8 @@ import { EmployersRegisterComponent } from './components/pages/employers-registe
     BlogDetailsComponent,
     BlogComponent,
     ContactComponent,
+    EmploerDashboardComponent,
+    CompanyListComponent,
     EmployersLoginComponent,
     EmployersRegisterComponent
   ],

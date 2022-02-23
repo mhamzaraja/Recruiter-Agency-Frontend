@@ -1,6 +1,5 @@
 import { Routes } from '@angular/router';
 import { BasicInfoComponent } from './basic-info/basic-info.component';
-import { DashboardComponent } from './dashboard.component';
 import { EducationComponent } from './education/education.component';
 import { ExperienceComponent } from './experience/experience.component';
 import { SkillsLanguagesComponent } from './skills-languages/skills-languages.component';

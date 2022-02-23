@@ -6,8 +6,10 @@ import { BlogComponent } from './components/pages/blog/blog.component';
 import { CandidatesDetailsComponent } from './components/pages/candidates-details/candidates-details.component';
 import { CandidatesComponent } from './components/pages/candidates/candidates.component';
 import { ComingSoonComponent } from './components/pages/coming-soon/coming-soon.component';
+import { CompanyListComponent } from './components/pages/companyList/companyList.component';
 import { ContactComponent } from './components/pages/contact/contact.component';
 import { DashboardComponent } from './components/pages/dashboard/dashboard.component';
+import { EmploerDashboardComponent } from './components/pages/employer-dashboard/dashboard.component';
 import { EmployersDetailsComponent } from './components/pages/employers-details/employers-details.component';
 import { EmployersLoginComponent } from './components/pages/employers-login/employers-login.component';
 import { EmployersRegisterComponent } from './components/pages/employers-register/employers-register.component';
@@ -58,13 +60,6 @@ const routes: Routes = [
     { path: 'blog', component: BlogComponent },
     { path: 'blog-details', component: BlogDetailsComponent },
     { path: 'contact', component: ContactComponent },
-
-    // {
-    //     path: 'dashboard',
-    //     loadChildren: () => import('./components/pages/dashboard/dashboard.module')
-    //     .then(m => m.DashboardModule)
-    // },
-
     {
         path: 'dashboard',
         component: DashboardComponent,
@@ -76,6 +71,23 @@ const routes: Routes = [
             }
         ]
     },
+    {
+        path: 'employer/dashboard',
+        component: EmploerDashboardComponent,
+        children: [
+            {
+                path: '',
+                loadChildren: () => import('./components/pages/employer-dashboard/dashboard.module')
+                .then(m => m.EmploerDashboardModule)
+            }
+        ]
+    },
+
+    { path: 'employer/dashboard/companies', component: CompanyListComponent },
+    { path: 'employer/login', component: EmployersLoginComponent },
+    { path: 'employer/register', component: EmployersRegisterComponent },
+
+    
 
 
     { path: '**', component: ErrorComponent } // This line will remain down from the whole component list
