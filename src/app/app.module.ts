@@ -43,9 +43,12 @@ import { CommonModule } from '@angular/common';
 import {AutocompleteLibModule} from 'angular-ng-autocomplete';
 
 import { EmploerDashboardComponent } from './components/pages/employer-dashboard/dashboard.component';
-import { CompanyListComponent } from './components/pages/companyList/companyList.component';
 import { EmployersLoginComponent } from './components/pages/employers-login/employers-login.component';
 import { EmployersRegisterComponent } from './components/pages/employers-register/employers-register.component';
+import { CompanyListComponent } from './components/pages/companys/companyList/companyList.component';
+import { CompanyCreateComponent } from './components/pages/companys/company-create/company-create.component';
+import { CompanyEditComponent } from './components/pages/companys/company-edit/company-edit.component';
+import { EmployerBasicInfoComponent } from './components/pages/employer-basic-info/employer-basic-info.component';
 
 @NgModule({
   declarations: [
@@ -85,7 +88,11 @@ import { EmployersRegisterComponent } from './components/pages/employers-registe
     EmploerDashboardComponent,
     CompanyListComponent,
     EmployersLoginComponent,
-    EmployersRegisterComponent
+    EmployersRegisterComponent,
+    CompanyCreateComponent,
+    CompanyEditComponent,
+    EmployerBasicInfoComponent
+
   ],
   imports: [
     CommonModule,

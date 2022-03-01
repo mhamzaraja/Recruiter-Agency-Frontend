@@ -1,7 +1,13 @@
-.bx{
+.bx {
     cursor: pointer;
     size: sm;
 }
-.bx-trash{
+
+.bx-trash {
     color: red;
+}
+
+.education-create-button {
+    display: flex;
+    justify-content: space-between;
 }

@@ -2,7 +2,16 @@
     <div class="container">
         <div class="row">
             <div class="details-item">
-                <h2>Experience</h2>
+                <div class="bottom-item">
+                    <div class="experience-create-button">
+                        <div>
+                            <h2>Experience</h2>
+                        </div>
+                        <div>
+                            <a class="cmn-btn">Create <i class='bx bx-plus'></i></a>
+                        </div>
+                    </div>
+                </div>
 
                 <div class="work bottom-item" *ngFor="let exp of experienceInfo; let i = index">
                     <ul>
@@ -25,6 +34,8 @@
         </div>
     </div>
 </div>
+
+
 <div class="profile-content">
     <form [formGroup]="experienceForm">
 

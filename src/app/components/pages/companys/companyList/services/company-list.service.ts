@@ -1,12 +1,11 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import config from '../../../config/config';
-
+import config from '../../../../config/config';
 
 @Injectable({
     providedIn: 'root'
 })
-export class DashboardService {
+export class CompanyListService {
     host: string = config.host;
     token: any = JSON.parse(localStorage.getItem('userToken')).token;
     userId: string = JSON.parse(localStorage.getItem('userToken')).id;
@@ -24,22 +23,26 @@ export class DashboardService {
 
     constructor(private http: HttpClient) { }
 
-    findAllJobs(){
-        return this.http.get<any>(`${this.host}/api/employer/job/getAll`, this.httpOptions);
+    findOneCompany(id: number) {
+        return this.http.get<any>(`${this.host}/api/employer/company/getOne?id=${id}`, this.httpOptions);
     }
 
     findAllCompanys() {
         return this.http.get<any>(`${this.host}/api/employer/company/getAll`, this.httpOptions);
     }
 
-    findEmployerData(){
-        return this.http.get<any>(`${this.host}/api/employer/profile/getAll`, this.httpOptions);
-      }
+    //is_active
+    activation(data: any, id: number) {
+        data.is_default = Boolean(data.is_default);
+        data.is_active = !Boolean(data.is_active);
+        data.office_number = Number(data.office_number);
+        data.mobile_number = Number(data.mobile_number);
 
-    resumeForm() {
-        return this.http.get<any>(`${this.host}/api/auth/signin`);
+        let companyData = {
+            ...data,
+            employerId: this.userId
+        }
+        return this.http.put<any>(`${this.host}/api/employer/company/update?id=${id}`, companyData, this.httpOptions);
     }
 
-    logoutForm() {
-    }
 }

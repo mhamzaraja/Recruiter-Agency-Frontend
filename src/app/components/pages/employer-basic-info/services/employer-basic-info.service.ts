@@ -2,11 +2,10 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import config from '../../../config/config';
 
-
 @Injectable({
-    providedIn: 'root'
+  providedIn: 'root'
 })
-export class DashboardService {
+export class EmployerBasicInfoService {
     host: string = config.host;
     token: any = JSON.parse(localStorage.getItem('userToken')).token;
     userId: string = JSON.parse(localStorage.getItem('userToken')).id;
@@ -22,24 +21,22 @@ export class DashboardService {
         })
     };
 
-    constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) { }
 
-    findAllJobs(){
-        return this.http.get<any>(`${this.host}/api/employer/job/getAll`, this.httpOptions);
+  employerForm(data: any) {
+
+    data.office_number = Number(data.office_number);
+    data.mobile_number = Number(data.mobile_number);
+
+    let emloyerData = {
+        ...data,
+        employerId: this.userId
     }
+    return this.http.post<any>(`${this.host}/api/employer/profile/create`, emloyerData, this.httpOptions);
 
-    findAllCompanys() {
-        return this.http.get<any>(`${this.host}/api/employer/company/getAll`, this.httpOptions);
-    }
+}
 
-    findEmployerData(){
-        return this.http.get<any>(`${this.host}/api/employer/profile/getAll`, this.httpOptions);
-      }
-
-    resumeForm() {
-        return this.http.get<any>(`${this.host}/api/auth/signin`);
-    }
-
-    logoutForm() {
-    }
+  findEmployerData(){
+    return this.http.get<any>(`${this.host}/api/employer/profile/getAll`, this.httpOptions);
+  }
 }

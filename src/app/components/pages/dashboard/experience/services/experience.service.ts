@@ -27,7 +27,7 @@ export class ExperienceService {
         return this.http.get<any>(`${this.host}/api/user/experience/getAll`, this.httpOptions);
     }
 
-    findExperience(data: any, id: number) {
+    findExperience( id: number) {
         return this.http.get<any>(`${this.host}/api/user/experience/getOne?id=${id}`, this.httpOptions);
     }
 
@@ -37,7 +37,7 @@ export class ExperienceService {
 
         let experienceData = {
             ...data,
-            userId: this.userId
+            employerId: this.userId
         }
         return this.http.post<any>(`${this.host}/api/user/experience/create`, experienceData, this.httpOptions);
     }

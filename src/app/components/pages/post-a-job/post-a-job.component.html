@@ -22,145 +22,355 @@
         </div>
     </div>
 </div>
+
+<!-- <div *ngIf="jobPostInfo.length>0" class="person-details-area resume-area ptb-100">
+    <div class="container">
+        <div class="row">
+            <div class="details-item">
+                <div class="bottom-item">
+                    <div class="create-button">
+                        <div>
+                            <h2>Jobs</h2>
+                        </div>
+                        <div>
+                            <a class="cmn-btn">Create <i class='bx bx-plus'></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="work bottom-item" *ngFor="let jobs of jobPostInfo; let i = index">
+                    <h3>
+                        {{jobs.job_title}}
+                    </h3>
+                    <span *ngIf="jobs.is_sponsor">(Sponsered)</span>
+                    <ul>
+                        <li>
+                            <img src="assets/img/home-three/title-img.png" alt="Icon">
+                            {{jobs.company}} | {{jobs.job_location}},Pakistan
+                        </li>
+                        <i class="bx bx-trash bx-sm bx-tada-hover" style="float: right;" (click)="delJob(i)"></i>
+                        <i class="bx bx-edit bx-sm bx-tada-hover" style="float: right;" (click)="editJob(i)"></i>
+                    </ul>
+                    <ul>
+                        <li>
+                            <i class='bx bxs-graduation'></i>
+                            {{jobs.enter_skills}}, {{jobs.minimum_qualification}}, {{jobs.years_of_experience}}
+                        </li>
+                    </ul>
+                    <ul>
+                        <li>
+                            <i class='bx bx-time-five'></i>
+                            {{jobs.job_shift}}, {{jobs.workplace_type}}
+                        </li>
+                    </ul>
+                    <p><strong>Salary Range:</strong> {{jobs.salary_range}}</p>
+                    <p><strong>Posted On:</strong> {{jobs.createdAt | date}}</p>
+                    <span *ngIf="jobs.is_active">
+                        Currently Active
+                    </span>
+                    <p><strong>Description: </strong>{{jobs.job_description}}</p>
+                    <p><strong>Career Level: </strong>{{jobs.required_career_level}}</p>
+                    <p><strong>Positions: </strong>{{jobs.positions_available}}</p>
+                    <p><strong>Gender Requirement: </strong>{{jobs.gender_requirement}}</p>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div> -->
 <!-- End Page Title -->
 
 <!-- Post A Job -->
-<div class="post-job-area ptb-100">
+<div class="dashboard-area ptb-100">
     <div class="container">
-        <form>
-            <div class="post-item">
-                <div class="section-title">
-                    <h2>Post A Job</h2>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet placeat totam laboriosam ut labore aliquid veniam repellendus similique? Id molestiae pariatur molestias, alias quia sint autem nemo architecto facere asperiores.</p>
+
+        <div class="profile-content">
+            <form [formGroup]="jobPostForm">
+
+                <div class="profile-content-inner">
+                    <h2>Post a Job</h2>
+                    <div class="row">
+
+                        <div class="col-lg-6 col-md-12">
+                            <div class="form-group">
+                                <label>Job Title:</label>
+                                <input type="text" class="form-control" formControlName="job_title" placeholder=""
+                                    [ngClass]="{ 'is-invalid': submittedJob && fjob.job_title.errors }">
+                                <div class="invalid-feedback" *ngIf="submittedJob && fjob.job_title.errors">
+                                    <div *ngIf="fjob.job_title.errors.required">
+                                        Job Title is required
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6 col-md-12">
+                            <div class="form-group">
+                                <label>Job Description:</label>
+                                <input type="text" class="form-control" formControlName="job_description" placeholder=""
+                                    [ngClass]="{ 'is-invalid': submittedJob && fjob.job_description.errors }">
+                                <div class="invalid-feedback" *ngIf="submittedJob && fjob.job_description.errors">
+                                    <div *ngIf="fjob.job_description.errors.required">
+                                        Job Description is required
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6 col-md-12">
+                            <div class="form-group">
+                                <label>Skills:</label>
+                                <input type="text" class="form-control" formControlName="enter_skills" placeholder=""
+                                    [ngClass]="{ 'is-invalid': submittedJob && fjob.enter_skills.errors }">
+                                <div class="invalid-feedback" *ngIf="submittedJob && fjob.enter_skills.errors">
+                                    <div *ngIf="fjob.enter_skills.errors.required">
+                                        Job Skills are required
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6 col-md-12">
+                            <div class="form-group">
+                                <label>Company:</label>
+                                <input type="text" class="form-control" formControlName="company" placeholder=""
+                                    [ngClass]="{ 'is-invalid': submittedJob && fjob.company.errors }">
+                                <div class="invalid-feedback" *ngIf="submittedJob && fjob.company.errors">
+                                    <div *ngIf="fjob.company.errors.required">
+                                        Company is required
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6 col-md-12">
+                            <div class="form-group">
+                                <label>Location:</label>
+                                <select class="form-control form-select" formControlName="job_location"
+                                    [ngClass]="{ 'is-invalid': submittedJob && fjob.job_location.errors }">
+                                    <option value="" disabled selected>Choose any one</option>
+                                    <option value="Islamabad">Islamabad</option>
+                                    <option value="Khrachi">Khrachi</option>
+                                    <option value="Lahore">Lahore</option>
+                                    <option value="Rawalpindi">Rawalpindi</option>
+                                </select>
+                                <div class="invalid-feedback" *ngIf="submittedJob && fjob.job_location.errors">
+                                    <div *ngIf="fjob.job_location.errors.required">
+                                        Location is required
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6 col-md-12">
+                            <div class="form-group">
+                                <label>Career Level:</label>
+                                <select class="form-control form-select" formControlName="required_career_level"
+                                    [ngClass]="{ 'is-invalid': submittedJob && fjob.required_career_level.errors }">
+                                    <option value="" disabled selected>Choose any one</option>
+                                    <option value="Senior">Senior</option>
+                                    <option value="Junior">Junior</option>
+                                    <option value="Manager">Manager</option>
+                                    <option value="Lead">Lead</option>
+                                </select>
+                                <div class="invalid-feedback" *ngIf="submittedJob && fjob.required_career_level.errors">
+                                    <div *ngIf="fjob.required_career_level.errors.required">
+                                        Career Level is required
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6 col-md-12">
+                            <div class="form-group">
+                                <label>Salary Range:</label>
+                                <select class="form-control form-select" formControlName="salary_range"
+                                    [ngClass]="{ 'is-invalid': submittedJob && fjob.salary_range.errors }">
+                                    <option value="" disabled selected>Choose any one</option>
+                                    <option value="5,000 - 5,999">5,000 - 5,999</option>
+                                    <option value="10,000 - 10,999">10,000 - 10,999</option>
+                                    <option value="15,000 - 15,999">15,000 - 15,999</option>
+                                    <option value="20,000 - 24,999">20,000 - 24,999</option>
+                                </select>
+                                <div class="invalid-feedback" *ngIf="submittedJob && fjob.salary_range.errors">
+                                    <div *ngIf="fjob.salary_range.errors.required">
+                                        Salary Range is required
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6 col-md-12">
+                            <div class="form-group">
+                                <label>Job Shift:</label>
+                                <select class="form-control form-select" formControlName="job_shift"
+                                    [ngClass]="{ 'is-invalid': submittedJob && fjob.job_shift.errors }">
+                                    <option value="" disabled selected>Choose any one</option>
+                                    <option value="Morning">Morning</option>
+                                    <option value="Evening">Evening</option>
+                                    <option value="Night">Night</option>
+                                </select>
+                                <div class="invalid-feedback" *ngIf="submittedJob && fjob.job_shift.errors">
+                                    <div *ngIf="fjob.job_shift.errors.required">
+                                        Job Shift is required
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6 col-md-12">
+                            <div class="form-group">
+                                <label>Available Positions:</label>
+                                <input type="number" class="form-control" formControlName="positions_available"
+                                    placeholder=""
+                                    [ngClass]="{ 'is-invalid': submittedJob && fjob.positions_available.errors }">
+                                <div class="invalid-feedback" *ngIf="submittedJob && fjob.positions_available.errors">
+                                    <div *ngIf="fjob.positions_available.errors.required">
+                                        Available Positions is required
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6 col-md-12">
+                            <div class="form-group">
+                                <label>Gender Requirement:</label>
+                                <select class="form-control form-select" formControlName="gender_requirement"
+                                    [ngClass]="{ 'is-invalid': submittedJob && fjob.gender_requirement.errors }">
+                                    <option value="" disabled selected>Choose any one</option>
+                                    <option value="Male">Male</option>
+                                    <option value="Female">Female</option>
+                                    <option value="None">None</option>
+                                </select>
+                                <div class="invalid-feedback" *ngIf="submittedJob && fjob.gender_requirement.errors">
+                                    <div *ngIf="fjob.gender_requirement.errors.required">
+                                        Gender Requirement is required
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6 col-md-12">
+                            <div class="form-group">
+                                <label>Minimum Qualification:</label>
+                                <select class="form-control form-select" formControlName="minimum_qualification"
+                                    [ngClass]="{ 'is-invalid': submittedJob && fjob.minimum_qualification.errors }">
+                                    <option value="" disabled selected>Choose any one</option>
+                                    <option value="Certificate">Certificate</option>
+                                    <option value="Diploma">Diploma</option>
+                                    <option value="Bachelor Degree">Bachelor Degree</option>
+                                    <option value="Master Degree">Master Degree</option>
+                                    <option value="No Need">No Need</option>
+                                </select>
+                                <div class="invalid-feedback" *ngIf="submittedJob && fjob.minimum_qualification.errors">
+                                    <div *ngIf="fjob.minimum_qualification.errors.required">
+                                        Minimum Qualification is required
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6 col-md-12">
+                            <div class="form-group">
+                                <label>Workplace Type:</label>
+                                <select class="form-control form-select" formControlName="workplace_type"
+                                    [ngClass]="{ 'is-invalid': submittedJob && fjob.workplace_type.errors }">
+                                    <option value="" disabled selected>Choose any one</option>
+                                    <option value="Onsite">Onsite</option>
+                                    <option value="Remote">Remote</option>
+                                    <option value="Hybrid">Hybrid</option>
+                                </select>
+                                <div class="invalid-feedback" *ngIf="submittedJob && fjob.workplace_type.errors">
+                                    <div *ngIf="fjob.workplace_type.errors.required">
+                                        Workplace Type is required
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6 col-md-12">
+                            <div class="form-group">
+                                <label class="col-lg-12 col-md-12">Experience:</label>
+                                <select class="form-control form-select" formControlName="years_of_experience"
+                                    [ngClass]="{ 'is-invalid': submittedJob && fjob.years_of_experience.errors }">
+                                    <option value="" disabled selected>Choose any one</option>
+                                    <option>Fresh</option>
+                                    <option>Less than 1 Year</option>
+                                    <option>1 Year of experience</option>
+                                    <option>2 Years of experience</option>
+                                    <option>3 Years of experience</option>
+                                    <option>4 Years of experience</option>
+                                    <option>5 Years of experience</option>
+                                    <option>6 Years of experience</option>
+                                    <option>7 Years of experience</option>
+                                    <option>8 Years of experience</option>
+                                    <option>9 Years of experience</option>
+                                    <option>10 Years of experience</option>
+                                    <option>11 Years of experience</option>
+                                    <option>12 Years of experience</option>
+                                    <option>13 Years of experience</option>
+                                    <option>14 Years of experience</option>
+                                    <option>15 Years of experience</option>
+                                    <option>16 Years of experience</option>
+                                    <option>17 Years of experience</option>
+                                    <option>18 Years of experience</option>
+                                    <option>19 Years of experience</option>
+                                    <option>20 Years of experience</option>
+                                    <option>21 Years of experience</option>
+                                    <option>22 Years of experience</option>
+                                    <option>23 Years of experience</option>
+                                    <option>24 Years of experience</option>
+                                    <option>25 Years of experience</option>
+                                    <option>26 Years of experience</option>
+                                    <option>27 Years of experience</option>
+                                    <option>28 Years of experience</option>
+                                    <option>29 Years of experience</option>
+                                    <option>30 Years of experience</option>
+                                    <option>31 Years of experience</option>
+                                    <option>32 Years of experience</option>
+                                    <option>33 Years of experience</option>
+                                    <option>34 Years of experience</option>
+                                    <option>35 Years of experience</option>
+                                    <option>More than 35 Years of experience</option>
+
+                                </select>
+                                <div class="invalid-feedback" *ngIf="submittedJob && fjob.years_of_experience.errors">
+                                    <div *ngIf="fjob.years_of_experience.errors.required">
+                                        Experience is required
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-12 col-md-12">
+                            <div class="form-group">
+                                <input style="margin-right: 2%;" value="Active" type="checkbox"
+                                    formControlName="is_active" class="form-check-input" />
+                                <label>Active</label>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-12 col-md-12">
+                            <div class="form-group">
+                                <input style="margin-right: 2%;" value="Sponsered" type="checkbox"
+                                    formControlName="is_sponsor" class="form-check-input" />
+                                <label>Sponser</label>
+                            </div>
+                        </div>
+                        <button (click)="jobPostInfoForm()" class="btn dashboard-btn" *ngIf="saveJobBtn">
+                            Save Your Information
+                        </button>
+                        <button (click)="jobUpdateInfoForm()" class="btn dashboard-btn" *ngIf="updateJobBtn">
+                            Update Your Information
+                        </button>
+                    </div>
                 </div>
-
-                <div class="row">
-                    <div class="col-lg-6 col-md-12">
-                        <div class="form-group">
-                            <label>First Name:</label>
-                            <input type="text" class="form-control" placeholder="Tom">
-                        </div>
-                    </div>
-
-                    <div class="col-lg-6 col-md-12">
-                        <div class="form-group">
-                            <label>Last Name:</label>
-                            <input type="text" class="form-control" placeholder="Henry">
-                        </div>
-                    </div>
-
-                    <div class="col-lg-6 col-md-12">
-                        <div class="form-group">
-                            <label>Email:</label>
-                            <input type="email" class="form-control" placeholder="example@gmail.com">
-                        </div>
-                    </div>
-
-                    <div class="col-lg-6 col-md-12">
-                        <div class="form-group">
-                            <label>Phone:</label>
-                            <input type="text" class="form-control" placeholder="+123-456-789">
-                        </div>
-                    </div>
-
-                    <div class="col-lg-6 col-md-12">
-                        <div class="form-group">
-                            <label>Name Of  Company:</label>
-                            <select>
-                                <option>Orbit Inc.</option>
-                                <option>Another option</option>
-                                <option>A option</option>
-                                <option>Potato</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-6 col-md-12">
-                        <div class="form-group">
-                            <label>Job Title:</label>
-                            <input type="text" class="form-control" placeholder="Web Developer">
-                        </div>
-                    </div>
-
-                    <div class="col-lg-6 col-md-12">
-                        <div class="form-group">
-                            <label>Job Type:</label>
-                            <select>
-                                <option>Full Time</option>
-                                <option>Part Time</option>
-                                <option>Internship</option>
-                                <option>Freelancing</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-6 col-md-12">
-                        <div class="form-group">
-                            <label>Job Category:</label>
-                            <select>
-                                <option>Digital & Creative</option>
-                                <option>Sales & Marketing</option>
-                                <option>Marketing & PR</option>
-                                <option>IT Contractor</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-6 col-md-12">
-                        <div class="form-group">
-                            <label>Job Salary:</label>
-                            <select>
-                                <option>500$ - 1000$</option>
-                                <option>1000$ - 1500$</option>
-                                <option>1500$ - 2000$</option>
-                                <option>2000$ - 2500$</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-6 col-md-12">
-                        <div class="form-group">
-                            <label>Job Experience:</label>
-                            <select>
-                                <option>0 - 1</option>
-                                <option>1 - 2</option>
-                                <option>2 - 3</option>
-                                <option>3 - 4</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-6 col-md-12">
-                        <div class="form-group">
-                            <label>Job Qualification:</label>
-                            <select>
-                                <option>Certificate</option>
-                                <option>Diploma</option>
-                                <option>Bachelor Degree</option>
-                                <option>Master Degree</option>
-                                <option>No Need</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-6 col-md-12">
-                        <div class="form-group">
-                            <label>Job Level:</label>
-                            <select>
-                                <option>Senior</option>
-                                <option>Junior</option>
-                                <option>Manager</option>
-                                <option>Lead</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-
-                <button type="submit" class="btn">Post A Job</button>
-            </div>
-        </form>
+            </form>
+        </div>
     </div>
 </div>
+
 <!-- End Post A Job -->
 
 <!-- Footer -->

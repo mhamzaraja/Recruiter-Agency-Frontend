@@ -11,12 +11,14 @@ import { Router } from "@angular/router";
 })
 export class EmploerDashboardComponent implements OnInit {
 
+    public jobPostInfo = [];
+    public companyInfo: any;
+    public UserInfo: any;
+    public lastCompany: any;
     submitted: boolean = false;
-    submittedPrj: boolean = false;
+    jobsPosted: number;
 
     proejctForm: FormGroup;
-
-    public projectsInfo = [];
 
     response: any;
     public placeholder: string = '';
@@ -28,34 +30,46 @@ export class EmploerDashboardComponent implements OnInit {
     ) { }
 
     ngOnInit(): void {
-
-        this.proejctForm = this.formBuilder.group({
-            projectName: [null, [Validators.required]],
-            projectUrl: [null, [Validators.required]],
-            startDate: [null, [Validators.required]],
-            endDate: [null, [Validators.required]],
-            checkbox: false,
-            associated: ["", [Validators.required]],
-            descPrj: [null, [Validators.required]],
-        })
-
-        this.proejctForm.get('checkbox').valueChanges.subscribe(value => {
-            value ? this.proejctForm.get('endDate').disable() : this.proejctForm.get('endDate').enable();
-        })
+        this.getAllCompanysData();
+        this.getAllJobsData();
+        this.getUserData();
     }
 
     get fprj(): { [key: string]: AbstractControl } {
         return this.proejctForm.controls;
     }
 
-    projectInfoForm() {
-        this.submittedPrj = true;
-        if (this.proejctForm.invalid) {
-            this.toastr.error(this.response.message);
-        }
-        else {
+    getAllJobsData() {
+        this.dashboardService.findAllJobs().subscribe(
+            (res) => {
+                this.jobPostInfo = res.data;
+                this.jobsPosted = this.jobPostInfo.length;
+            },
+            (error) => {
+                this.toastr.error(error.error.message);
+            });
+    }
 
-            this.submitted = false;
-        }
+    getAllCompanysData() {
+        this.dashboardService.findAllCompanys().subscribe(
+            (res) => {
+                this.companyInfo = res.data;
+                this.lastCompany = res.data.reverse()[0];
+            },
+            (error) => {
+                this.toastr.error(error.error.message);
+            });
+    }
+
+    getUserData() {
+        this.dashboardService.findEmployerData().subscribe(
+            (res) => {
+                this.UserInfo = res.data[0];
+
+                console.log(this.UserInfo);
+            },
+            (error) => {
+                this.toastr.error(error.error.message);
+            });
     }
 }

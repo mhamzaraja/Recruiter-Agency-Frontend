@@ -1,0 +1,74 @@
+<!-- Navbar -->
+<app-navbar-style-three class="employer-navbar"></app-navbar-style-three>
+<!-- End Navbar -->
+
+<!-- Page Title -->
+<div class="page-title-area">
+    <div class="d-table">
+        <div class="d-table-cell">
+            <div class="container">
+                <div class="title-item">
+                    <h2>CompaniesList</h2>
+                    <ul>
+                        <li>
+                            <img src="assets/img/home-three/title-img-two.png" alt="Image">
+                            <a routerLink="/employer/dashboard">Dashboard</a>
+                        </li>
+                        <li><span>/</span></li>
+                        <li>Companies</li>
+                    </ul>
+                    <a class="cmn-btn" [routerLink]="['create']">Create <i class='bx bx-plus'></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Page Title -->
+<div *ngIf="companyInfo.length==0" class="person-details-area resume-area ptb-100">
+    <div class="d-table">
+        <div class="d-table-cell">
+            <div class="container">
+                <h2>No Companies Found</h2>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="companyInfo.length>0" class="person-details-area resume-area ptb-100">
+    <div class="container">
+        <div class="row">
+            <div class="bottom-item">
+                <div class="work bottom-item" *ngFor="let comp of companyInfo; let i = index">
+                    <div class="employer-item">
+                        <a>
+                            <img src="assets/img/home-one/job1.png" alt="Employer">
+                            <h3 style="text-transform:capitalize">{{comp.company_name}}
+                                <i class="bx bx-edit bx-sm bx-tada-hover px-2" [routerLink]="['edit/', i+1]"></i>
+                            </h3>
+                            <p>{{comp.company_description}}</p>
+
+
+                                <span class="span-one" *ngIf="compActive" (click)="activate(i)">
+                                    Activate Company
+                                </span>
+                                <span class="span-one" *ngIf="compDeactive" (click)="deactivate(i)">
+                                    Deactivate Company
+                                </span>
+
+                            <span class="span-two" *ngIf="compDeactive">
+                                Activated
+                            </span>
+                            <span class="span-two four" *ngIf="compActive">
+                                Deactivated
+                            </span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Footer -->
+<app-footer-style-two></app-footer-style-two>
+<!-- End Footer -->

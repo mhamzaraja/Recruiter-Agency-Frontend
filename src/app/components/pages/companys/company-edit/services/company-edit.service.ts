@@ -5,7 +5,7 @@ import config from '../../../../config/config';
 @Injectable({
     providedIn: 'root'
 })
-export class BasicInfoService {
+export class CompanyEditService {
     host: string = config.host;
     token: any = JSON.parse(localStorage.getItem('userToken')).token;
     userId: string = JSON.parse(localStorage.getItem('userToken')).id;
@@ -23,23 +23,21 @@ export class BasicInfoService {
 
     constructor(private http: HttpClient) { }
 
-    findUser(){
-
-        return this.http.get<any>(`${this.host}/api/user/profile/getOne`, this.httpOptions);
+    findOneCompany(id: number){
+        return this.http.get<any>(`${this.host}/api/employer/company/getOne?id=${id}`, this.httpOptions);
     }
-    //basicInfo form
-    basicInfoForm(data: any) {
-        let avatar;
-        let email;
+    companyUpdateForm(data: any, id: number) {
 
-        data.cnic = Number(data.cnic);
+        data.is_default = Boolean(data.is_default);
+        data.is_active = Boolean(data.is_active);
+        data.office_number = Number(data.office_number);
         data.mobile_number = Number(data.mobile_number);
 
-        let basicInfoData = {
+        let companyData = {
             ...data,
-            userId: this.userId
-        };
+            employerId: this.userId
+        }
+        return this.http.put<any>(`${this.host}/api/employer/company/update?id=${id}`, companyData, this.httpOptions);
 
-        return this.http.post<any>(`${this.host}/api/user/profile/create`, basicInfoData, this.httpOptions);
     }
 }

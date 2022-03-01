@@ -69,7 +69,7 @@ export class ExperienceComponent implements OnInit {
                 (error) => {
                     this.toastr.error(error.error.message);
                 });
-            this.submitted = false;
+            this.submittedExp = false;
         }
     }
 

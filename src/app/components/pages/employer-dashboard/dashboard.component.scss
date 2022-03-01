@@ -1,17 +1,16 @@
-.emploer-dasboard-content{
+.emploer-dasboard-content {
     padding-top: 150px;
-
 }
 
-
-.force-scroll{
+.force-scroll {
     overflow-y: scroll;
-
-height: 200px;
+    height: 200px;
 }
+
 .ng-autocomplete {
     width: 100%;
 }
+
 .autocomplete-container .input-container input {
     border-radius: 5px !important;
     height: 50px !important;
@@ -22,18 +21,23 @@ height: 200px;
     margin-bottom: 20px;
     border-bottom: 1.5px solid #221668;
 }
+
 .ptb-100 {
     padding-top: 50px !important;
 }
 
+.widget-area{
+    padding-top: 30px;
+}
 
-
-.blog-details-area .details-item .details-date .date-inner span:before{
+.blog-details-area .details-item .details-date .date-inner span:before {
     display: none !important;
 }
+
 .blog-details-area .details-item .details-date .date-inner span {
     padding-left: 0px !important;
 }
+
 .blog-details-area .details-item .details-date .date-inner {
     padding: 15px 20px 15px 20px !important;
     text-align: center;

@@ -6,9 +6,12 @@ import { BlogComponent } from './components/pages/blog/blog.component';
 import { CandidatesDetailsComponent } from './components/pages/candidates-details/candidates-details.component';
 import { CandidatesComponent } from './components/pages/candidates/candidates.component';
 import { ComingSoonComponent } from './components/pages/coming-soon/coming-soon.component';
-import { CompanyListComponent } from './components/pages/companyList/companyList.component';
+import { CompanyCreateComponent } from './components/pages/companys/company-create/company-create.component';
+import { CompanyEditComponent } from './components/pages/companys/company-edit/company-edit.component';
+import { CompanyListComponent } from './components/pages/companys/companyList/companyList.component';
 import { ContactComponent } from './components/pages/contact/contact.component';
 import { DashboardComponent } from './components/pages/dashboard/dashboard.component';
+import { EmployerBasicInfoComponent } from './components/pages/employer-basic-info/employer-basic-info.component';
 import { EmploerDashboardComponent } from './components/pages/employer-dashboard/dashboard.component';
 import { EmployersDetailsComponent } from './components/pages/employers-details/employers-details.component';
 import { EmployersLoginComponent } from './components/pages/employers-login/employers-login.component';
@@ -83,11 +86,15 @@ const routes: Routes = [
         ]
     },
 
+    { path: 'employer/dashboard/profile/create', component: EmployerBasicInfoComponent },
     { path: 'employer/dashboard/companies', component: CompanyListComponent },
     { path: 'employer/login', component: EmployersLoginComponent },
     { path: 'employer/register', component: EmployersRegisterComponent },
+    { path: 'employer/dashboard/companies/create', component: CompanyCreateComponent },
+    { path: 'employer/dashboard/companies/edit/:id', component: CompanyEditComponent },
 
-    
+
+
 
 
     { path: '**', component: ErrorComponent } // This line will remain down from the whole component list

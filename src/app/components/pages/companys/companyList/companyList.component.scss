@@ -3,11 +3,14 @@
     justify-content: space-between;
 }
 
-.bx{
+.span-one, .span-two, .cmn-btn{
     cursor: pointer;
-    size: sm;
-}
-.bx-trash{
-    color: red;
 }
 
+.cmn-btn{
+    margin: 20px;
+}
+
+.span-one{
+    color: #5f5656;
+}
