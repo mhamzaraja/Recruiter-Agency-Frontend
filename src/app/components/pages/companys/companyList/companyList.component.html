@@ -41,11 +41,11 @@
                 <div class="work bottom-item" *ngFor="let comp of companyInfo; let i = index">
                     <div class="employer-item">
                         <a>
-                            <img src="assets/img/home-one/job1.png" alt="Employer">
+                            <img class="comp-pointer" src="assets/img/home-one/job1.png" alt="Employer" [routerLink]="['/company/employee/', i+1]">
                             <h3 style="text-transform:capitalize">{{comp.company_name}}
                                 <i class="bx bx-edit bx-sm bx-tada-hover px-2" [routerLink]="['edit/', i+1]"></i>
                             </h3>
-                            <p>{{comp.company_description}}</p>
+                            <p class="comp-pointer" [routerLink]="['/company/employee/', i+1]">{{comp.company_description}}</p>
 
 
                                 <span class="span-one" *ngIf="compActive" (click)="activate(i)">

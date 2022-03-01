@@ -13,6 +13,7 @@ import { ContactComponent } from './components/pages/contact/contact.component';
 import { DashboardComponent } from './components/pages/dashboard/dashboard.component';
 import { EmployerBasicInfoComponent } from './components/pages/employer-basic-info/employer-basic-info.component';
 import { EmploerDashboardComponent } from './components/pages/employer-dashboard/dashboard.component';
+import { EmployerEmployee } from './components/pages/employer-employee/employerEmployee.component';
 import { EmployersDetailsComponent } from './components/pages/employers-details/employers-details.component';
 import { EmployersLoginComponent } from './components/pages/employers-login/employers-login.component';
 import { EmployersRegisterComponent } from './components/pages/employers-register/employers-register.component';
@@ -92,6 +93,8 @@ const routes: Routes = [
     { path: 'employer/register', component: EmployersRegisterComponent },
     { path: 'employer/dashboard/companies/create', component: CompanyCreateComponent },
     { path: 'employer/dashboard/companies/edit/:id', component: CompanyEditComponent },
+
+    { path: 'company/employee/:id', component: EmployerEmployee },
 
 
 
