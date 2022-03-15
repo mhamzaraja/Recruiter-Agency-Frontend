@@ -84,6 +84,7 @@ export class ExperienceComponent implements OnInit {
             this.experienceService.updateExperience(data, this.expId).subscribe(
                 (res) => {
                     this.toastr.success(res.message);
+                    this.getAllExperience();
                 },
                 (error) => {
                     this.toastr.error(error.error.message);

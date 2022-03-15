@@ -60,7 +60,9 @@ export class EmployerBasicInfoComponent implements OnInit {
     getEmployerData() {
         this.employerBasicInfoService.findEmployerData().subscribe(
             (res) => {
-                this.employerInfo = res.data;
+                this.employerInfo = res.data[0];
+                this.editEmp();
+                console.log("employerInfo:", this.employerInfo);
             },
             (error) => {
                 this.toastr.error(error.error.message);
@@ -68,13 +70,13 @@ export class EmployerBasicInfoComponent implements OnInit {
     }
 
 
-    // editEmp() {
-    //     this.employerForm.controls.full_name.setValue(this.employerInfo.full_name);
-    //     this.employerForm.controls.job_designation.setValue(this.employerInfo.job_designation);
-    //     this.employerForm.controls.gender.setValue(this.employerInfo.gender);
-    //     this.employerForm.controls.dob.setValue(this.employerInfo.dob);
-    //     this.employerForm.controls.office_number.setValue(this.employerInfo.office_number);
-    //     this.employerForm.controls.mobile_number.setValue(this.employerInfo.mobile_number);
-    // }
+    editEmp() {
+        this.employerForm.controls.full_name.setValue(this.employerInfo.full_name);
+        this.employerForm.controls.job_designation.setValue(this.employerInfo.job_designation);
+        this.employerForm.controls.gender.setValue(this.employerInfo.gender);
+        this.employerForm.controls.dob.setValue(this.employerInfo.dob);
+        this.employerForm.controls.office_number.setValue(this.employerInfo.office_number);
+        this.employerForm.controls.mobile_number.setValue(this.employerInfo.mobile_number);
+    }
 
 }

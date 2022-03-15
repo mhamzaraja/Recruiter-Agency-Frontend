@@ -8,14 +8,14 @@
         <div class="d-table-cell">
             <div class="container">
                 <div class="title-item">
-                    <h2>Company Profile</h2>
+                    <h2>Employer's Profile</h2>
                     <ul>
                         <li>
                             <img src="assets/img/home-three/title-img-two.png" alt="Image">
-                            <a routerLink="/employer/dashboard">Dashboard</a>
+                            <a routerLink="/employer/dashboard/:id">Dashboard</a>
                         </li>
                         <li><span>/</span></li>
-                        <li>Create Company Profile</li>
+                        <li>Employer's Profile</li>
                     </ul>
                 </div>
             </div>
@@ -31,7 +31,7 @@
         <div class="row">
             <div class="details-item">
                 <div class="bottom-item">
-                    <div class="company-create-button">
+                    <div class="create-button">
                         <div>
                             <h2>Companies</h2>
                         </div>
@@ -189,7 +189,7 @@
                 </div>
 
                 <button (click)="employerInfoForm()" class="btn dashboard-btn">
-                    Save Your Information
+                    Update Your Information
                 </button>
             </form>
         </div>

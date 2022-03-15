@@ -50,6 +50,7 @@ import { CompanyCreateComponent } from './components/pages/companys/company-crea
 import { CompanyEditComponent } from './components/pages/companys/company-edit/company-edit.component';
 import { EmployerBasicInfoComponent } from './components/pages/employer-basic-info/employer-basic-info.component';
 import { EmployerEmployee } from './components/pages/employer-employee/employerEmployee.component';
+import { AdminDashboardComponent } from './components/pages/admin-dashboard/admin-dashboard.component';
 
 @NgModule({
   declarations: [
@@ -93,7 +94,8 @@ import { EmployerEmployee } from './components/pages/employer-employee/employerE
     CompanyCreateComponent,
     CompanyEditComponent,
     EmployerBasicInfoComponent,
-    EmployerEmployee
+    EmployerEmployee,
+    AdminDashboardComponent
   ],
   imports: [
     CommonModule,

@@ -1,0 +1,84 @@
+<!-- Navbar -->
+<app-navbar-style-three></app-navbar-style-three>
+<!-- End Navbar -->
+
+<!-- Page Title -->
+<div class="page-title-area">
+    <div class="d-table">
+        <div class="d-table-cell">
+            <div class="container">
+                <div class="title-item">
+                    <h2>Admin Panel</h2>
+                    <ul>
+                        <li>
+                            <img src="assets/img/home-three/title-img-two.png" alt="Image">
+                            <a routerLink="/">Home</a>
+                        </li>
+                        <li><span>/</span></li>
+                        <li>Admin Panel</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Page Title -->
+
+<!-- Dashboard -->
+<div class="dashboard-area ptb-100">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-lg-4 col-md-12">
+                <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                    <a class="nav-link" id="v-pills-basicInfo-tab" data-bs-toggle="pill" role="tab"
+                        aria-controls="v-pills-basicInfo" aria-selected="true" routerLink="/admin"
+                        routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
+                        <div class="profile-list">
+                            <i class='bx bx-user'></i>
+                            Professionals
+                        </div>
+                    </a>
+
+                    <a class="nav-link" id="v-pills-experience-tab" data-bs-toggle="pill" routerLink="candidates"
+                        role="tab" aria-controls="v-pills-experience" aria-selected="false" routerLinkActive="active">
+                        <div class="profile-list">
+                            <i class="bx bxs-receipt"></i>
+                            Candidates
+                        </div>
+                    </a>
+
+                    <a class="nav-link" id="v-pills-education-tab" data-bs-toggle="pill" routerLink="jobs" role="tab"
+                        aria-controls="v-pills-education" aria-selected="false" routerLinkActive="active">
+                        <div class="profile-list">
+                            <i class="bx bxs-layer"></i>
+                            Jobs
+                        </div>
+                    </a>
+
+                    <a class="nav-link" id="v-pills-projects-tab" data-bs-toggle="pill" routerLink="resumes" role="tab"
+                        aria-controls="v-pills-projects" aria-selected="false" routerLinkActive="active">
+                        <div class="profile-list">
+                            <i class='bx bxs-inbox'></i>
+                            Resume
+                        </div>
+                    </a>
+
+                    <a routerLink="/login">
+                        <div class="profile-list"><i class='bx bx-log-out'></i> Logout</div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-lg-8 col-md-12">
+                <router-outlet></router-outlet>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!-- End Dashboard -->
+
+<!-- Footer -->
+<app-footer-style-two></app-footer-style-two>
+<!-- End Footer -->

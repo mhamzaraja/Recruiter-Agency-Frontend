@@ -33,7 +33,6 @@ export class BasicInfoService {
     //basicInfo form
     basicInfoForm(data: any) {
         // let avatar;
-        let email;
 
         data.cnic = Number(data.cnic);
         data.mobile_number = Number(data.mobile_number);

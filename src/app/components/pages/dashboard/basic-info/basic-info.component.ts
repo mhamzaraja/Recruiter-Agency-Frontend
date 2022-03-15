@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl, AbstractControl } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { BasicInfoService } from './services/basic-info.service';
@@ -12,13 +12,10 @@ export class BasicInfoComponent implements OnInit {
     submitted: boolean = false;
     basicInfoForm: FormGroup;
 
-    summary: string = null;
-    name: string = null;
+    public basicInfo: any;
+
 
     response: any;
-
-    //parent methods
-    @Output() dataFromChild: EventEmitter<any> = new EventEmitter();
 
     constructor(private formBuilder: FormBuilder,
         private toastr: ToastrService,
@@ -70,15 +67,16 @@ export class BasicInfoComponent implements OnInit {
     getUser() {
         this.basicInfoService.findUsers().subscribe(
             (res) => {
-                this.dataFromChild.emit(res.data);
-                this.summary = res.data[0].profile[0].summary;
-                this.name = res.data[0].profile[0].name;
-                console.log(res.data);
+
+                this.basicInfo = res.data[0].profile[0];
             },
             (error) => {
                 this.toastr.error(error.error.message);
             });
     }
 
-
+    isEmpty(obj : any){
+        console.log(obj);
+        return Object.keys(obj).length != 0;
+    }
 }

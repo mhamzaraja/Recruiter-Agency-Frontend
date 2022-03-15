@@ -4159,6 +4159,25 @@ button {
         }
     }
 }
+
+tbody{
+    cursor: pointer;
+}
+
+.create-button{
+    display: flex;
+    justify-content: space-between;
+}
+
+
+.bx {
+    cursor: pointer;
+}
+
+.bx-trash {
+    color: red;
+}
+
 .cmn-btn {
     background-color: $pink-color;
     color: $white-color;
@@ -4171,6 +4190,7 @@ button {
     line-height: 50px;
     display: inline-block;
     position: relative;
+    cursor: pointer;
 
     i {
         display: inline-block;

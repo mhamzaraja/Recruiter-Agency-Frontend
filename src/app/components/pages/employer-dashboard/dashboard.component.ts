@@ -65,8 +65,6 @@ export class EmploerDashboardComponent implements OnInit {
         this.dashboardService.findEmployerData().subscribe(
             (res) => {
                 this.UserInfo = res.data[0];
-
-                console.log(this.UserInfo);
             },
             (error) => {
                 this.toastr.error(error.error.message);

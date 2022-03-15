@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AboutComponent } from './components/pages/about/about.component';
+import { AdminDashboardComponent } from './components/pages/admin-dashboard/admin-dashboard.component';
+import { AdminModule } from './components/pages/admin-dashboard/admin.module';
 import { BlogDetailsComponent } from './components/pages/blog-details/blog-details.component';
 import { BlogComponent } from './components/pages/blog/blog.component';
 import { CandidatesDetailsComponent } from './components/pages/candidates-details/candidates-details.component';
@@ -57,15 +59,25 @@ const routes: Routes = [
     { path: 'about', component: AboutComponent },
     { path: 'jobs', component: JobsComponent },
     { path: 'favourite-jobs', component: FavouriteJobsComponent },
-    { path: 'job-details', component: JobDetailsComponent },
     { path: 'post-a-job', component: PostAJobComponent },
-    { path: 'candidates', component: CandidatesComponent },
-    { path: 'candidate-details', component: CandidatesDetailsComponent },
     { path: 'blog', component: BlogComponent },
     { path: 'blog-details', component: BlogDetailsComponent },
     { path: 'contact', component: ContactComponent },
+
     {
-        path: 'dashboard',
+        path: 'admin',
+        component: AdminDashboardComponent,
+        children: [
+            {
+                path: '',
+                loadChildren: () => import('./components/pages/admin-dashboard/admin.module')
+                .then(m => m.AdminModule)
+            }
+        ]
+    },
+
+    {
+        path: 'dashboard/:id',
         component: DashboardComponent,
         children: [
             {
@@ -75,8 +87,9 @@ const routes: Routes = [
             }
         ]
     },
+
     {
-        path: 'employer/dashboard',
+        path: 'employer/dashboard/:id',
         component: EmploerDashboardComponent,
         children: [
             {
@@ -87,7 +100,12 @@ const routes: Routes = [
         ]
     },
 
-    { path: 'employer/dashboard/profile/create', component: EmployerBasicInfoComponent },
+    { path: 'candidates', component: CandidatesComponent },
+    { path: 'candidate-details/:id', component: CandidatesDetailsComponent },
+
+    { path: 'job-details/:id', component: JobDetailsComponent },
+
+    { path: 'employer/dashboard/:id/profile/create', component: EmployerBasicInfoComponent },
     { path: 'employer/dashboard/companies', component: CompanyListComponent },
     { path: 'employer/login', component: EmployersLoginComponent },
     { path: 'employer/register', component: EmployersRegisterComponent },

@@ -1,0 +1,197 @@
+<div class="profile-content">
+    <h2>Profiles</h2>
+</div>
+<div class="banner-content">
+    <div class="banner-form-area" *ngIf="userInfo.length>0">
+        <div class="row">
+            <div class="row-items">
+
+                <div class="col-ad-id-4">
+                    <div class="form-group">
+                        <div class="form-control"><strong>ID</strong>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-ad-4">
+                    <div class="form-group">
+                        <div class="form-control"><strong>Name</strong>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-ad-4">
+                    <div class="form-group">
+                        <div class="form-control"><strong>Posted By</strong>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-ad-4">
+                    <div class="form-group">
+                        <div class="form-control"><strong>Created on</strong>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-ad-4">
+                    <div class="form-group">
+                        <div class="form-control"><strong>Modified on</strong>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-ad-4">
+                    <div class="form-group">
+                        <div class="form-control"><strong>Actions</strong>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-ad-4">
+                    <div class="form-group">
+                        <div class="form-control"><strong>View</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div *ngFor="let user of profile; let i = index">
+            <div class="row">
+                <div class="row-items">
+
+                    <div class="col-ad-id-4">
+                        <div class="form-group">
+                            <div class="form-control">{{user.id}}</div>
+                        </div>
+                    </div>
+                    <div class="col-ad-4">
+                        <div class="form-group">
+                            <div class="form-control">{{user.name}}</div>
+                        </div>
+                    </div>
+                    <div class="col-ad-4">
+                        <div class="form-group">
+                            <div class="form-control">Posted By</div>
+                        </div>
+                    </div>
+                    <div class="col-ad-4">
+                        <div class="form-group">
+                            <div class="form-control">
+                                {{user.createdAt | date}} at
+                                {{user.createdAt | date:'shortTime'}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-ad-4">
+                        <div class="form-group">
+                            <div class="form-control">
+                                {{user.updatedAt | date}} at
+                                {{user.updatedAt | date:'shortTime'}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-ad-4">
+                        <div class="form-group">
+                            <div class="form-control">
+                                <i class="bx bx-edit bx-sm bx-tada-hover"></i>
+                                <i class="bx bx-trash bx-sm bx-tada-hover"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-ad-4">
+                        <div class="form-group">
+                            <div class="form-control">
+                                <div class="goto-btn">
+                                    <i class='bx bx-right-top-arrow-circle bx-sm bx-fade-right-hover'
+                                        [routerLink]="['/candidate-details', i+1]"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- <span class="span-one">asdsd</span>
+                <span class="span-two">sdsads</span> -->
+            <!-- <div class="row">
+
+                <div class="col-lg-4 col-md-12">
+                    <i class='bx bx-chevron-right'></i>
+                </div>
+
+                <div class="col-lg-8 col-md-12">
+                    <div class="job-area-list">
+                        <div class="job-list-right">
+                            <div class="job-list-all">
+                                <h6>education</h6>
+
+                                <ul class="job-cmn-cat" *ngFor="let edu of education; let i = index;">
+                                    <li>
+                                        <div class="form-check">
+                                            <div>Education</div>
+                                        </div>
+                                    </li>
+                                </ul>
+
+                                <div class="location-list cmn-padding">
+                                    <h6>experience</h6>
+
+                                    <ul class="job-cmn-cat" *ngFor="let exp of experience; let i = index;">
+                                        <li>
+                                            <div class="form-check">
+                                                <div>experience</div>
+                                            </div>
+                                        </li>
+                                    </ul>
+
+                                </div>
+
+                                <div class="location-list cmn-padding">
+                                    <h6>Projects</h6>
+
+                                    <ul class="job-cmn-cat" *ngFor="let prj of projects; let i = index;">
+                                        <li>
+                                            <div class="form-check">
+                                                <div>projects</div>
+                                            </div>
+                                        </li>
+                                    </ul>
+
+                                </div>
+
+                                <div class="location-list cmn-padding">
+                                    <h6>Skills</h6>
+
+                                    <ul class="job-cmn-cat" *ngFor="let skill of skills; let i = index;">
+                                        <li>
+                                            <div class="form-check">
+                                                <div>skills</div>
+                                            </div>
+                                        </li>
+                                    </ul>
+
+                                </div>
+
+                                <div class="location-list cmn-padding">
+                                    <h6>Languages</h6>
+
+                                    <ul class="job-cmn-cat" *ngFor="let lang of languages; let i = index;">
+                                        <li>
+                                            <div class="form-check">
+                                                <div>languages</div>
+                                            </div>
+                                        </li>
+                                    </ul>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div> -->
+        </div>
+
+    </div>
+
+    <div *ngIf="userInfo.length==0">
+        <h2>No Users Found</h2>
+    </div>
+
+</div>

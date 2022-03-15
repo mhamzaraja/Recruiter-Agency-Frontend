@@ -9,12 +9,11 @@
             <div class="col-lg-4 col-md-12">
                 <div class="profile-item">
                     <img src="assets/img/dashboard1.jpg" alt="Dashboard">
-                    <h2>{{UserInfo?.full_name}}</h2>
+                    <h2>
+                        {{UserInfo?.full_name}}
+                        <i class='bx bx-edit bx-sm bx-tada-hover' routerLink="profile/create"></i>
+                    </h2>
                     <span>{{UserInfo?.job_designation}}</span>
-                    <a class="cmn-btn" routerLink="profile/create">
-                        Create
-                        <i class='bx bx-plus'></i>
-                    </a>
                 </div>
 
                 <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
@@ -92,19 +91,13 @@
 
                     <div *ngIf="jobPostInfo.length>0" class="person-details-area resume-area ptb-100">
                         <div class="container">
-                            <div class="employer-item" *ngFor="let jobs of jobPostInfo; let i = index">
+                            <div class="employer-item" *ngFor="let jobs of jobPostInfo;">
                                 <a routerLink="/job-details">
                                     <img src="assets/img/home-one/job1.png" alt="Employer">
                                     <h3>{{jobs.job_title}}</h3>
                                     <ul>
                                         <li><i class="flaticon-send"></i> {{jobs.job_location}},
                                             Pakistan</li>
-                                        <li><i class='bx bxs-star checked'></i></li>
-                                        <li><i class='bx bxs-star checked'></i></li>
-                                        <li><i class='bx bxs-star checked'></i></li>
-                                        <li><i class='bx bxs-star checked'></i></li>
-                                        <li><i class='bx bxs-star checked'></i></li>
-                                        <li><span>12 Ratings</span></li>
                                     </ul>
                                     <p>{{jobs.job_description}}</p>
                                     <span class="span-one">{{jobs.workplace_type}}</span>
@@ -113,6 +106,7 @@
                             </div>
                         </div>
                     </div>
+
                 </div>
             </div>
         </div>

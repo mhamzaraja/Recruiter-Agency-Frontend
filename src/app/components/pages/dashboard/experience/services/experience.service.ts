@@ -37,13 +37,12 @@ export class ExperienceService {
 
         let experienceData = {
             ...data,
-            employerId: this.userId
+            userId: this.userId
         }
         return this.http.post<any>(`${this.host}/api/user/experience/create`, experienceData, this.httpOptions);
     }
 
     updateExperience(data: any, id: number) {
-        data.manageTeam = Boolean(data.manageTeam);
         data.currentlyWorking = Boolean(data.currentlyWorking);
 
         let experienceData = {

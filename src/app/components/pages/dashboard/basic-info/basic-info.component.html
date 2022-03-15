@@ -2,8 +2,9 @@
 <div class="tab-pane fade show active" id="v-pills-basicInfo" role="tabpanel" aria-labelledby="v-pills-basicInfo-tab">
     <div class="profile-content">
 
+        <!-- <div class="bottom-item" *ngIf="isEmpty(basicInfo?.summary);"> -->
         <div class="bottom-item">
-            <div class="basic-info-button">
+            <div class="create-button">
                 <div>
                     <h3>Summary</h3>
                 </div>
@@ -11,7 +12,7 @@
                     <a class="cmn-btn">Edit<i class='bx bxs-edit-alt'></i></a>
                 </div>
             </div>
-            {{summary}}
+            {{basicInfo?.summary}}
         </div>
 
         <form [formGroup]="basicInfoForm">

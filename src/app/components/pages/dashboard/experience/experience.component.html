@@ -3,7 +3,7 @@
         <div class="row">
             <div class="details-item">
                 <div class="bottom-item">
-                    <div class="experience-create-button">
+                    <div class="create-button">
                         <div>
                             <h2>Experience</h2>
                         </div>
@@ -24,8 +24,10 @@
                     </ul>
                     <h4>{{exp.industry}}</h4>
                     <p><strong>Salary Range:</strong> {{exp.salary}}</p>
-                    <p>{{exp.startDate | date}} - {{exp.endDate | date}}<span
-                            *ngIf="exp.currentlyWorking">Present</span> |
+                    <p>{{exp.startDate | date}} - <span *ngIf="!exp.currentlyWorking">
+                            {{exp.endDate | date}}
+                        </span>
+                        <span *ngIf="exp.currentlyWorking">Present</span> |
                         {{exp.location}},Pakistan
                     </p>
                     <p>{{exp.description}}</p>

@@ -39,7 +39,7 @@ export class LoginComponent implements OnInit {
 
                 if(res.success == true){
                     localStorage.setItem('userToken', JSON.stringify(res.data))
-                    this.router.navigate(['/dashboard']);
+                    this.router.navigate(['/dashboard/:id']);
                 } else {
                     this.toastr.error(res.message);
                 }
