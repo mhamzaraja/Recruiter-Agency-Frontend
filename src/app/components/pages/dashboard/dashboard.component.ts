@@ -63,4 +63,9 @@ export class DashboardComponent implements OnInit {
         console.log("working");
         console.log(data);
     }
+
+    onLogout(event: Event){
+        event.preventDefault();
+        this.dashboardService.logout();
+    }
 }

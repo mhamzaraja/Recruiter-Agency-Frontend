@@ -24,15 +24,15 @@ export class JobsService {
     constructor(private http: HttpClient) { }
 
     findAllJobsData() {
-        return this.http.get<any>(`${this.host}/api/jobs/list/getAll`, this.httpOptions);
+        return this.http.get<any>(`${this.host}/api/admin/jobs/list/getAll`, this.httpOptions);
     }
 
     findAllEmployersData() {
-        return this.http.get<any>(`${this.host}/api/employer/profile/getAll`, this.httpOptions);
+        return this.http.get<any>(`${this.host}/api/admin/employer/profile/getAll`, this.httpOptions);
     }
 
     findEmployerDataById(id: number) {
-        return this.http.get<any>(`${this.host}/api/employer/profile/getOne?id=${id}`, this.httpOptions);
+        return this.http.get<any>(`${this.host}/api/admin/employer/profile/getOne?id=${id}`, this.httpOptions);
     }
 
     deleteJob(id: number){

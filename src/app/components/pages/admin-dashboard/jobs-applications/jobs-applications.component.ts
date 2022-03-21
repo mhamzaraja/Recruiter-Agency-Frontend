@@ -11,8 +11,10 @@ import { ToastrService } from 'ngx-toastr';
 export class JobsApplicationsComponent implements OnInit {
 
     jobId: number = this.route.snapshot.params.id;
+    applicationInfo = [];
     jobTitle = [];
     candidateProfile = [];
+    candCount: number;
 
     constructor(private route: ActivatedRoute,
         private jobsApplicationsService: JobsApplicationsService,
@@ -36,10 +38,15 @@ export class JobsApplicationsComponent implements OnInit {
     getCandidatesOfJob(){
         this.jobsApplicationsService.findCandidatesOfJob(this.jobId).subscribe(
             (res) => {
-                this.jobTitle = res.data[0].post_a_job.job_title;
+                this.applicationInfo = res.data;
+                // job title
+                this.jobTitle = this.applicationInfo[0].post_a_job.job_title;
 
-                this.candidateProfile = res.data;
-                console.log("candidateProfile", this.candidateProfile);
+                // candidate profile
+                this.candidateProfile = this.applicationInfo[0].candidate_profile;
+                this.candCount = this.candidateProfile.length;
+
+                console.log("profile: ", this.applicationInfo.length);
 
             },
             (error) => {

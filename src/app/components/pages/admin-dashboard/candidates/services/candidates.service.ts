@@ -24,11 +24,11 @@ export class CandidatesService {
     constructor(private http: HttpClient) { }
 
     findAllCandidatesData() {
-        return this.http.get<any>(`${this.host}/api/user/profile/getAll`, this.httpOptions);
+        return this.http.get<any>(`${this.host}/api/admin/user/profile/getAll`, this.httpOptions);
     }
 
-    deleteCandidate(id: number) {
-        // return this.http.delete<any>(`${this.host}/api/employer/profile/delete?id=${id}`, this.httpOptions);
-        return this.http.get<any>(`${this.host}/api/user/profile/getAll`, this.httpOptions);
-    }
+    // deleteCandidate(id: number) {
+    //     // return this.http.delete<any>(`${this.host}/api/employer/profile/delete?id=${id}`, this.httpOptions);
+    //     return this.http.get<any>(`${this.host}/api/user/profile/getAll`, this.httpOptions);
+    // }
 }

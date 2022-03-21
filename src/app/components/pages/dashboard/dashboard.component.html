@@ -78,8 +78,8 @@
                         <div class="profile-list"><i class='bx bx-note'></i> My Resume</div>
                     </a>
 
-                    <a routerLink="/login">
-                        <div class="profile-list"><i class='bx bx-log-out'></i> Logout</div>
+                    <a class="nav-link-logout">
+                        <div class="profile-list" (click)="onLogout($event)"><i class='bx bx-log-out'></i> Logout</div>
                     </a>
                 </div>
             </div>

@@ -24,7 +24,7 @@ export class JobsApplicationsService {
     constructor(private http: HttpClient) { }
 
     findJobDataById(id: number) {
-        return this.http.get<any>(`${this.host}/api/employer/job/getOne?id=${id}`, this.httpOptions);
+        return this.http.get<any>(`${this.host}/api/admin/jobs/list/getOne?id=${id}`, this.httpOptions);
     }
 
     findCandidatesOfJob(id: number) {

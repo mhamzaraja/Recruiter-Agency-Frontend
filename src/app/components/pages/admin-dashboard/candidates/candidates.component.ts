@@ -35,16 +35,16 @@ export class CandidatesComponent implements OnInit {
     }
 
     delCand(i: number) {
-        let candId = this.candidatesInfo[i].id;
-        console.log(candId);
-        this.candidatesService.deleteCandidate(candId).subscribe(
-            (res) => {
-                if (res.success == true) {
-                    this.toastr.success(res.message);
-                    this.getAllCandidatesData();
-                } else {
-                    this.toastr.error(res.error.message);
-                }
-            });
+        // let candId = this.candidatesInfo[i].id;
+        console.log("delete isnt active");
+        // this.candidatesService.deleteCandidate(candId).subscribe(
+        //     (res) => {
+        //         if (res.success == true) {
+        //             this.toastr.success(res.message);
+        //             this.getAllCandidatesData();
+        //         } else {
+        //             this.toastr.error(res.error.message);
+        //         }
+        //     });
     }
 }

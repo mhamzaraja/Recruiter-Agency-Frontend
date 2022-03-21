@@ -1,11 +1,11 @@
-<div class="profile-content">
+<div class="profile-content" *ngIf="applicationInfo.length>0">
     <h2>Candidates that applied on {{jobTitle}}</h2>
 </div>
 
 <!-- Showing -->
-<div class="job-showing-area pt-100" *ngIf="candidateProfile.length>0">
+<div class="job-showing-area pt-100" *ngIf="applicationInfo.length>0">
     <div class="container">
-        <h4>Showing 1 - 1 of 2 results</h4>
+        <!-- <h4>Showing 1 - 1 of 2 results</h4> -->
         <!-- <div class="showing">
 
         </div> -->
@@ -14,14 +14,14 @@
 <!-- End Showing -->
 
 <!-- Candidate -->
-<div class="candidate-area pb-100" *ngIf="candidateProfile.length>0">
+<div class="candidate-area pb-100" *ngIf="applicationInfo.length>0">
     <div class="container">
         <div class="row">
-            <div class="col-lg-6 col-md-12">
+            <div class="col-lg-6 col-md-12" *ngFor="let cand of applicationInfo; let i = index;">
                 <div class="candidate-item two">
-                    <div *ngFor="let cand of candidateProfile; let i = index;">
+                    <div >
                         <div class="left">
-                            <h3><a routerLink="/candidate-details"></a></h3>
+                            <h3><a [routerLink]="['/candidate-details', i+1]">{{cand.candidate_profile.name}}</a></h3>
                             <div>
                                 <span>
                                     <span>
@@ -30,17 +30,21 @@
                                 </span>
                             </div>
                             <ul class="experience">
-                                <li>Experience: <span></span></li>
-                                <li>Expected Salary: <span>RS. </span></li>
-                                <li><i class="flaticon-send"></i> </li>
+                                <li>Experience: {{cand.candidate_profile.experience}}<span></span></li>
+                                <li>Expected Salary: <span>RS. {{cand.candidate_profile.expected_salary}}</span></li>
+                                <li><i class="flaticon-send"></i>
+                                    {{cand.candidate_profile.area}},
+                                    {{cand.candidate_profile.city}}
+                                </li>
                             </ul>
-                            <div >
+                            <div>
                                 <ul>
                                     <li></li>
                                 </ul>
                             </div>
                             <div class="cmn-link">
-                                <a [routerLink]="['/candidate-details']"><i class="flaticon-right-arrow one"></i> View Profile
+                                <a [routerLink]="['/candidate-details', i+1]"><i class="flaticon-right-arrow one"></i>
+                                    View Profile
                                     <i class="flaticon-right-arrow two"></i></a>
                             </div>
                         </div>
@@ -54,15 +58,14 @@
             <ul>
                 <li><a routerLink="/candidates">Prev</a></li>
                 <li><a routerLink="/candidates">1</a></li>
-                <li><a routerLink="/candidates">2</a></li>
-                <li><a routerLink="/candidates">3</a></li>
                 <li><a routerLink="/candidates">Next</a></li>
             </ul>
         </div>
+
     </div>
 </div>
 
-<div class="candidate-area pb-100" *ngIf="candidateProfile.length==0">
-    <h2>No candidate applied for this job</h2>
+<div class="candidate-area pb-100" *ngIf="applicationInfo.length==0">
+    <h2>No candidate has applied for this job</h2>
 </div>
 <!-- End Candidate -->

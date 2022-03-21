@@ -15,12 +15,16 @@ import { ProfessionalsComponent } from './professionals/professionals.component'
 import { ProfessionalsService } from './professionals/services/professionals.service';
 import { JobsApplicationsService } from './jobs-applications/services/jobs-applications.service';
 
+// paginaton ngx
+import { NgxPaginationModule } from 'ngx-pagination';
+
 @NgModule({
     imports: [
         CommonModule,
         FormsModule,
         ReactiveFormsModule,
         AutocompleteLibModule,
+        NgxPaginationModule,
         RouterModule.forChild(AdminRoutes)
     ],
     declarations: [

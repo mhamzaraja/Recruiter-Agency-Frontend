@@ -35,7 +35,7 @@
                         aria-controls="v-pills-basicInfo" aria-selected="true" routerLink="/admin"
                         routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
                         <div class="profile-list">
-                            <i class='bx bx-user'></i>
+                            <i class='bx bx-buildings'></i>
                             Professionals
                         </div>
                     </a>
@@ -43,7 +43,7 @@
                     <a class="nav-link" id="v-pills-experience-tab" data-bs-toggle="pill" routerLink="candidates"
                         role="tab" aria-controls="v-pills-experience" aria-selected="false" routerLinkActive="active">
                         <div class="profile-list">
-                            <i class="bx bxs-receipt"></i>
+                            <i class='bx bx-group'></i>
                             Candidates
                         </div>
                     </a>
@@ -51,7 +51,7 @@
                     <a class="nav-link" id="v-pills-education-tab" data-bs-toggle="pill" routerLink="jobs" role="tab"
                         aria-controls="v-pills-education" aria-selected="false" routerLinkActive="active">
                         <div class="profile-list">
-                            <i class="bx bxs-layer"></i>
+                            <i class='bx bx-briefcase'></i>
                             Jobs
                         </div>
                     </a>
@@ -59,13 +59,13 @@
                     <a class="nav-link" id="v-pills-projects-tab" data-bs-toggle="pill" routerLink="resumes" role="tab"
                         aria-controls="v-pills-projects" aria-selected="false" routerLinkActive="active">
                         <div class="profile-list">
-                            <i class='bx bxs-inbox'></i>
+                            <i class='bx bx-spreadsheet'></i>
                             Resume
                         </div>
                     </a>
 
-                    <a routerLink="/login">
-                        <div class="profile-list"><i class='bx bx-log-out'></i> Logout</div>
+                    <a class="nav-link-logout">
+                        <div class="profile-list" (click)="onLogout($event)"><i class='bx bx-log-out'></i> Logout</div>
                     </a>
                 </div>
             </div>
