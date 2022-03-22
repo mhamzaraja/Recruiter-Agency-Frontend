@@ -25,7 +25,8 @@ export class EmployersRegisterComponent implements OnInit {
             username: [null, Validators.required],
             email: [null, [Validators.required, Validators.email]],
             password: ["", [Validators.required, Validators.minLength(6), Validators.maxLength(40)]],
-            confirmPassword: ["", [Validators.required,]]
+            confirmPassword: ["", [Validators.required,]],
+            role_id: 2
         },
             {
                 validator: this.confirmPasswordValidator("password", "confirmPassword")

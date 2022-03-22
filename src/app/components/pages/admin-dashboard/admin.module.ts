@@ -5,6 +5,8 @@ import { FormBuilder, FormsModule } from "@angular/forms";
 import { ReactiveFormsModule } from '@angular/forms';
 import { AutocompleteLibModule } from 'angular-ng-autocomplete';
 import { AdminRoutes } from './admin.routing';
+
+// components
 import { JobsComponent } from './jobs/jobs.component';
 import { ResumeComponent } from './resume/resume.component';
 import { JobsService } from './jobs/services/jobs.service';

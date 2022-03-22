@@ -2,20 +2,18 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AboutComponent } from './components/pages/about/about.component';
 import { AdminDashboardComponent } from './components/pages/admin-dashboard/admin-dashboard.component';
-import { AdminModule } from './components/pages/admin-dashboard/admin.module';
+import { AdminLoginComponent } from './components/pages/admin-login/admin-login.component';
+import { AdminRegisterComponent } from './components/pages/admin-register/admin-register.component';
 import { BlogDetailsComponent } from './components/pages/blog-details/blog-details.component';
 import { BlogComponent } from './components/pages/blog/blog.component';
 import { CandidatesDetailsComponent } from './components/pages/candidates-details/candidates-details.component';
 import { CandidatesComponent } from './components/pages/candidates/candidates.component';
 import { ComingSoonComponent } from './components/pages/coming-soon/coming-soon.component';
-import { CompanyCreateComponent } from './components/pages/companys/company-create/company-create.component';
-import { CompanyEditComponent } from './components/pages/companys/company-edit/company-edit.component';
-import { CompanyListComponent } from './components/pages/companys/companyList/companyList.component';
+import { CompaniesComponent } from './components/pages/companies/companies.component';
 import { ContactComponent } from './components/pages/contact/contact.component';
 import { DashboardComponent } from './components/pages/dashboard/dashboard.component';
 import { EmployerBasicInfoComponent } from './components/pages/employer-basic-info/employer-basic-info.component';
 import { EmploerDashboardComponent } from './components/pages/employer-dashboard/dashboard.component';
-import { EmployerEmployee } from './components/pages/employer-employee/employerEmployee.component';
 import { EmployersDetailsComponent } from './components/pages/employers-details/employers-details.component';
 import { EmployersLoginComponent } from './components/pages/employers-login/employers-login.component';
 import { EmployersRegisterComponent } from './components/pages/employers-register/employers-register.component';
@@ -89,6 +87,17 @@ const routes: Routes = [
     },
 
     {
+        path: 'companies',
+        component: CompaniesComponent,
+        children: [
+            {
+                path: '',
+                loadChildren: () => import('./components/pages/companies/company.module')
+                .then(m => m.CompanyModule)
+            }
+        ]
+    },
+    {
         path: 'employer/dashboard/:id',
         component: EmploerDashboardComponent,
         children: [
@@ -106,17 +115,12 @@ const routes: Routes = [
     { path: 'job-details/:id', component: JobDetailsComponent },
 
     { path: 'employer/dashboard/:id/profile/create', component: EmployerBasicInfoComponent },
-    { path: 'employer/dashboard/companies', component: CompanyListComponent },
     { path: 'employer/login', component: EmployersLoginComponent },
     { path: 'employer/register', component: EmployersRegisterComponent },
-    { path: 'employer/dashboard/companies/create', component: CompanyCreateComponent },
-    { path: 'employer/dashboard/companies/edit/:id', component: CompanyEditComponent },
 
-    { path: 'company/employee/:id', component: EmployerEmployee },
-
-
-
-
+    // ADMIN
+    { path: 'admin/login', component: AdminLoginComponent },
+    { path: 'admin/register', component: AdminRegisterComponent },
 
     { path: '**', component: ErrorComponent } // This line will remain down from the whole component list
 ];

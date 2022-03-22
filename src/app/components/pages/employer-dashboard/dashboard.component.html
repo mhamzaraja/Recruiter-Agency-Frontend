@@ -6,14 +6,14 @@
 <div class="dashboard-area emploer-dasboard-content">
     <div class="container">
         <div class="row">
-            <div class="col-lg-4 col-md-12">
+            <div class="col-lg-4 col-md-12" *ngFor="let emp of employerInfo;">
                 <div class="profile-item">
                     <img src="assets/img/dashboard1.jpg" alt="Dashboard">
                     <h2>
-                        {{UserInfo?.full_name}}
+                        {{emp.full_name}}
                         <i class='bx bx-edit bx-sm bx-tada-hover' routerLink="profile/create"></i>
                     </h2>
-                    <span>{{UserInfo?.job_designation}}</span>
+                    <span>{{emp.job_designation}}</span>
                 </div>
 
                 <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
@@ -24,30 +24,10 @@
                                     style="float: right;cursor: pointer;"></i>
                                 <img src="assets/img/home-one/job4.png" alt="Owner">
 
-                                <h3>Reichert-Wiza</h3>
+                                <h3 [routerLink]="['companies/:id']">Reichert-Wiza</h3>
                                 <i class="flaticon-send"></i>
                                 <span>Kansas City, US</span>
                             </div>
-
-                            <!-- <div class="information widget-item">
-                                <ul>
-                                    <li>
-                                        <img src="assets/img/job-details-icon.png" alt="Details">
-                                        <h4>Phone</h4>
-                                        <a href="tel:+34561232349987">+3456 123 234 9987</a>
-                                    </li>
-                                    <li>
-                                        <img src="assets/img/job-details-icon.png" alt="Details">
-                                        <h4>Email</h4>
-                                        <a href="mailto:hello@alzo.com">hello@alzo.com</a>
-                                    </li>
-                                    <li>
-                                        <img src="assets/img/job-details-icon.png" alt="Details">
-                                        <h4>Location</h4>
-                                        <a href="#" target="_blank">www.alzothemes.com</a>
-                                    </li>
-                                </ul>
-                            </div> -->
                         </div>
                     </div>
                 </div>
@@ -91,8 +71,8 @@
 
                     <div *ngIf="jobPostInfo.length>0" class="person-details-area resume-area ptb-100">
                         <div class="container">
-                            <div class="employer-item" *ngFor="let jobs of jobPostInfo;">
-                                <a routerLink="/job-details">
+                            <div class="employer-item" *ngFor="let jobs of jobPostInfo; let i = index">
+                                <a [routerLink]="['/job-details', i+1]">
                                     <img src="assets/img/home-one/job1.png" alt="Employer">
                                     <h3>{{jobs.job_title}}</h3>
                                     <ul>

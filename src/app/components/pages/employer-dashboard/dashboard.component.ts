@@ -13,7 +13,7 @@ export class EmploerDashboardComponent implements OnInit {
 
     public jobPostInfo = [];
     public companyInfo: any;
-    public UserInfo: any;
+    public employerInfo: [];
     public lastCompany: any;
     submitted: boolean = false;
     jobsPosted: number;
@@ -64,7 +64,8 @@ export class EmploerDashboardComponent implements OnInit {
     getUserData() {
         this.dashboardService.findEmployerData().subscribe(
             (res) => {
-                this.UserInfo = res.data[0];
+                this.employerInfo = res.data;
+                console.log("employerInfo", this.employerInfo);
             },
             (error) => {
                 this.toastr.error(error.error.message);

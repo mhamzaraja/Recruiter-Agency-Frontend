@@ -50,8 +50,10 @@ import { CompanyListComponent } from './components/pages/companys/companyList/co
 import { CompanyCreateComponent } from './components/pages/companys/company-create/company-create.component';
 import { CompanyEditComponent } from './components/pages/companys/company-edit/company-edit.component';
 import { EmployerBasicInfoComponent } from './components/pages/employer-basic-info/employer-basic-info.component';
-import { EmployerEmployee } from './components/pages/employer-employee/employerEmployee.component';
 import { AdminDashboardComponent } from './components/pages/admin-dashboard/admin-dashboard.component';
+import { CompaniesComponent } from './components/pages/companies/companies.component';
+import { AdminRegisterComponent } from './components/pages/admin-register/admin-register.component';
+import { AdminLoginComponent } from './components/pages/admin-login/admin-login.component';
 
 @NgModule({
   declarations: [
@@ -95,8 +97,10 @@ import { AdminDashboardComponent } from './components/pages/admin-dashboard/admi
     CompanyCreateComponent,
     CompanyEditComponent,
     EmployerBasicInfoComponent,
-    EmployerEmployee,
-    AdminDashboardComponent
+    AdminDashboardComponent,
+    CompaniesComponent,
+    AdminRegisterComponent,
+    AdminLoginComponent
   ],
   imports: [
     CommonModule,

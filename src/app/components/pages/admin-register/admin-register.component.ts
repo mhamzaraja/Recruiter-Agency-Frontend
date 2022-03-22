@@ -1,19 +1,20 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, FormControl, AbstractControl } from '@angular/forms';
-import { RegisterService } from './services/register.service';
+import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
+import { AdminRegisterService } from './services/admin-register.service';
 
 @Component({
-    selector: 'app-register',
-    templateUrl: './register.component.html',
-    styleUrls: ['./register.component.scss']
+  selector: 'app-admin-register',
+  templateUrl: './admin-register.component.html',
+  styleUrls: ['./admin-register.component.scss']
 })
-export class RegisterComponent implements OnInit {
+export class AdminRegisterComponent implements OnInit {
+
     submitted: boolean = false;
     form: FormGroup
 
     constructor(private formBuilder: FormBuilder,
-        private registerService: RegisterService,
+        private adminRegisterService: AdminRegisterService,
         private toastr: ToastrService
     ) {
 
@@ -25,7 +26,7 @@ export class RegisterComponent implements OnInit {
             email: [null, [Validators.required, Validators.email]],
             password: ["", [Validators.required, Validators.minLength(6), Validators.maxLength(40)]],
             confirmPassword: ["", [Validators.required,]],
-            role_id: 1
+            role_id: 3
         },
             {
                 validator: this.confirmPasswordValidator("password", "confirmPassword")
@@ -39,7 +40,7 @@ export class RegisterComponent implements OnInit {
     signUpForm() {
         this.submitted = true;
         if (this.form.valid) {
-            this.registerService.signup(this.form.value).subscribe(
+            this.adminRegisterService.signup(this.form.value).subscribe(
                 (res) => {
                     this.toastr.success(res.message);
                 },
