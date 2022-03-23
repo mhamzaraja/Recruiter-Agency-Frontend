@@ -6,7 +6,7 @@ import { FacilitiesComponent } from './facilities/facilities.component';
 export const CompanyRoutes: Routes = [
 
     {
-        path: 'employees',
+        path: '',
         component: EmployeesComponent,
         data: {
             title: 'Employees'

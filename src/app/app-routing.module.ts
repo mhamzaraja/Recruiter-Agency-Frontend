@@ -10,6 +10,7 @@ import { CandidatesDetailsComponent } from './components/pages/candidates-detail
 import { CandidatesComponent } from './components/pages/candidates/candidates.component';
 import { ComingSoonComponent } from './components/pages/coming-soon/coming-soon.component';
 import { CompaniesComponent } from './components/pages/companies/companies.component';
+import { CompanyCreateComponent } from './components/pages/companys/company-create/company-create.component';
 import { ContactComponent } from './components/pages/contact/contact.component';
 import { DashboardComponent } from './components/pages/dashboard/dashboard.component';
 import { EmployerBasicInfoComponent } from './components/pages/employer-basic-info/employer-basic-info.component';
@@ -97,6 +98,8 @@ const routes: Routes = [
             }
         ]
     },
+    { path: 'companies/create', component: CompanyCreateComponent },
+
     {
         path: 'employer/dashboard/:id',
         component: EmploerDashboardComponent,
