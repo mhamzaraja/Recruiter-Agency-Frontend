@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { JobsService } from "./services/jobs.service";
 
@@ -14,7 +15,8 @@ export class JobsComponent implements OnInit {
 
 
     constructor(private jobsService: JobsService,
-        private toastr: ToastrService
+        private toastr: ToastrService,
+        private router: Router
     ) { }
 
     ngOnInit(): void {
@@ -33,6 +35,7 @@ export class JobsComponent implements OnInit {
                 }
             },
             (error) => {
+                if(error.status == 401) this.router.navigate(['/login']);
                 this.toastr.error(error.error.message);
             });
     }
@@ -51,6 +54,7 @@ export class JobsComponent implements OnInit {
                 }
             },
             (error) => {
+                if(error.status == 401) this.router.navigate(['/login']);
                 this.toastr.error(error.error.message);
             });
     }
@@ -63,6 +67,7 @@ export class JobsComponent implements OnInit {
                 this.getAllJobsData();
             },
             (error) => {
+                if(error.status == 401) this.router.navigate(['/login']);
                 this.toastr.error(error.error.message);
             });
     }

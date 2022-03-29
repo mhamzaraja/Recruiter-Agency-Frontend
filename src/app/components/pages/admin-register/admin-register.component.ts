@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { AdminRegisterService } from './services/admin-register.service';
 
@@ -15,7 +16,8 @@ export class AdminRegisterComponent implements OnInit {
 
     constructor(private formBuilder: FormBuilder,
         private adminRegisterService: AdminRegisterService,
-        private toastr: ToastrService
+        private toastr: ToastrService,
+        private router: Router
     ) {
 
     }
@@ -45,7 +47,8 @@ export class AdminRegisterComponent implements OnInit {
                     this.toastr.success(res.message);
                 },
                 (error) => {
-                    this.toastr.error(error.error.message);
+                    if(error.status == 401) this.router.navigate(['/login']);
+                this.toastr.error(error.error.message);
                 }
             )
             this.submitted = false;

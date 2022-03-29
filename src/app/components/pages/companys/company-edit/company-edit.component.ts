@@ -19,6 +19,7 @@ export class CompanyEditComponent implements OnInit {
         private formBuilder: FormBuilder,
         private companyEditService: CompanyEditService,
         private toastr: ToastrService,
+        private router: Router
     ) { }
 
     ngOnInit(): void {
@@ -59,6 +60,7 @@ export class CompanyEditComponent implements OnInit {
                 this.editComp(this.companyId);
             },
             (error) => {
+                if(error.status == 401) this.router.navigate(['/login']);
                 this.toastr.error(error.error.message);
             });
     }
@@ -76,7 +78,8 @@ export class CompanyEditComponent implements OnInit {
                     this.getCompanysDataById(id);
                 },
                 (error) => {
-                    this.toastr.error(error.error.message);
+                    if(error.status == 401) this.router.navigate(['/login']);
+                this.toastr.error(error.error.message);
                 });
             this.submittedComp = false;
         }

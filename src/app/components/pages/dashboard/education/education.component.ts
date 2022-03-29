@@ -97,6 +97,7 @@ export class EducationComponent implements OnInit {
                 this.educationInfo = res.data;
             },
             (error) => {
+                if(error.status == 401) this.router.navigate(['/login']);
                 this.toastr.error(error.error.message);
             });
     }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { JobsApplicationsService } from "./services/jobs-applications.service";
 import { ToastrService } from 'ngx-toastr';
 
@@ -18,7 +18,8 @@ export class JobsApplicationsComponent implements OnInit {
 
     constructor(private route: ActivatedRoute,
         private jobsApplicationsService: JobsApplicationsService,
-        private toastr: ToastrService
+        private toastr: ToastrService,
+        private router: Router
         ) { }
 
     ngOnInit(): void {
@@ -31,7 +32,8 @@ export class JobsApplicationsComponent implements OnInit {
     //             this.jobTitle = res.data.job_title;
     //         },
     //         (error) => {
-    //             this.toastr.error(error.error.message);
+    //             if(error.status == 401) this.router.navigate(['/login']);
+                // this.toastr.error(error.error.message);
     //         });
     // }
 
@@ -50,6 +52,7 @@ export class JobsApplicationsComponent implements OnInit {
 
             },
             (error) => {
+                if(error.status == 401) this.router.navigate(['/login']);
                 this.toastr.error(error.error.message);
             });
     }

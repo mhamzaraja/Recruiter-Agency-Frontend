@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { CamdidatesDetailsService } from "./services/camdidates-details.service";
 
@@ -24,7 +24,8 @@ export class CandidatesDetailsComponent implements OnInit {
     constructor(
         private camdidatesDetailsService: CamdidatesDetailsService,
         private toastr: ToastrService,
-        private route: ActivatedRoute
+        private route: ActivatedRoute,
+        private router: Router
     ) { }
 
     ngOnInit(): void {
@@ -42,6 +43,7 @@ export class CandidatesDetailsComponent implements OnInit {
                 // console.log("candExperience: " , this.candExperience[0].jobTitle);
             },
             (error) => {
+                if(error.status == 401) this.router.navigate(['/login']);
                 this.toastr.error(error.error.message);
             });
     }

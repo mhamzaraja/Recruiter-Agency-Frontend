@@ -1,5 +1,6 @@
 import { Component, OnInit} from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl, AbstractControl } from '@angular/forms';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { BasicInfoService } from './services/basic-info.service';
 
@@ -19,6 +20,7 @@ export class BasicInfoComponent implements OnInit {
 
     constructor(private formBuilder: FormBuilder,
         private toastr: ToastrService,
+        private router: Router,
         private basicInfoService: BasicInfoService
     ) { }
 
@@ -58,7 +60,8 @@ export class BasicInfoComponent implements OnInit {
                 this.getUser();
             },
                 (error) => {
-                    this.toastr.error(error.error.message);
+                    if(error.status == 401) this.router.navigate(['/login']);
+                this.toastr.error(error.error.message);
                 });
             this.submitted = false;
         }
@@ -71,6 +74,7 @@ export class BasicInfoComponent implements OnInit {
                 this.basicInfo = res.data[0].profile[0];
             },
             (error) => {
+                if(error.status == 401) this.router.navigate(['/login']);
                 this.toastr.error(error.error.message);
             });
     }

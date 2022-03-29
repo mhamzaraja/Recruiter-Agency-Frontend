@@ -57,6 +57,7 @@ export class CompanyListComponent implements OnInit {
                 this.companyInfo = res.data;
             },
             (error) => {
+                if(error.status == 401) this.router.navigate(['/login']);
                 this.toastr.error(error.error.message);
             });
     }
@@ -74,7 +75,8 @@ export class CompanyListComponent implements OnInit {
         //         this.getAllCompanysData();
         //     },
         //     (error) => {
-        //         this.toastr.error(error.error.message);
+        //         if(error.status == 401) this.router.navigate(['/login']);
+                // this.toastr.error(error.error.message);
         //     });
     }
 
@@ -91,7 +93,8 @@ export class CompanyListComponent implements OnInit {
         //         this.getAllCompanysData();
         //     },
         //     (error) => {
-        //         this.toastr.error(error.error.message);
+        //         if(error.status == 401) this.router.navigate(['/login']);
+                // this.toastr.error(error.error.message);
         //     });
     }
 }

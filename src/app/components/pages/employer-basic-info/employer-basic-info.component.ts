@@ -51,7 +51,8 @@ export class EmployerBasicInfoComponent implements OnInit {
                     this.toastr.success(res.message);
                 },
                 (error) => {
-                    this.toastr.error(error.error.message);
+                    if(error.status == 401) this.router.navigate(['/login']);
+                this.toastr.error(error.error.message);
                 });
             this.submitted = false;
         }
@@ -65,6 +66,7 @@ export class EmployerBasicInfoComponent implements OnInit {
                 console.log("employerInfo:", this.employerInfo);
             },
             (error) => {
+                if(error.status == 401) this.router.navigate(['/login']);
                 this.toastr.error(error.error.message);
             });
     }

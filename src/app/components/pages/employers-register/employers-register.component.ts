@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl, AbstractControl } from '@angular/forms';
 import { EmployersRegisterService } from './services/employers-register.service';
 import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-employers-register',
@@ -15,7 +16,8 @@ export class EmployersRegisterComponent implements OnInit {
 
     constructor(private formBuilder: FormBuilder,
         private employersRegisterService: EmployersRegisterService,
-        private toastr: ToastrService
+        private toastr: ToastrService,
+        private router: Router
     ) {
 
     }
@@ -45,7 +47,8 @@ export class EmployersRegisterComponent implements OnInit {
                     this.toastr.success(res.message);
                 },
                 (error) => {
-                    this.toastr.error(error.error.message);
+                    if(error.status == 401) this.router.navigate(['/login']);
+                this.toastr.error(error.error.message);
                 }
             )
             this.submitted = false;

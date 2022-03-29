@@ -46,6 +46,7 @@ export class EmploerDashboardComponent implements OnInit {
                 this.jobsPosted = this.jobPostInfo.length;
             },
             (error) => {
+                if(error.status == 401) this.router.navigate(['/login']);
                 this.toastr.error(error.error.message);
             });
     }
@@ -57,6 +58,7 @@ export class EmploerDashboardComponent implements OnInit {
                 this.lastCompany = res.data.reverse()[0];
             },
             (error) => {
+                if(error.status == 401) this.router.navigate(['/login']);
                 this.toastr.error(error.error.message);
             });
     }
@@ -68,6 +70,7 @@ export class EmploerDashboardComponent implements OnInit {
                 console.log("employerInfo", this.employerInfo);
             },
             (error) => {
+                if(error.status == 401) this.router.navigate(['/login']);
                 this.toastr.error(error.error.message);
             });
     }

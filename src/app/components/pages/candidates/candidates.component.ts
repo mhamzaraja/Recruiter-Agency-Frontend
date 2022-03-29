@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { CandidatesService } from "./services/candidates.service";
 
@@ -17,6 +17,7 @@ export class CandidatesComponent implements OnInit {
 
     constructor(
         private toastr: ToastrService,
+        private router: Router,
         private route: ActivatedRoute,
         private candidatesService: CandidatesService
     ) { }
@@ -34,6 +35,7 @@ export class CandidatesComponent implements OnInit {
                 console.log("candExperience: ", this.candExperience);
             },
             (error) => {
+                if(error.status == 401) this.router.navigate(['/login']);
                 this.toastr.error(error.error.message);
             });
     }

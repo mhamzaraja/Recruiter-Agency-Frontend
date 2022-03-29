@@ -45,7 +45,8 @@ export class EmployersLoginComponent implements OnInit {
                 }
             },
                 (error) => {
-                    this.toastr.error(error.error.message);
+                    if(error.status == 401) this.router.navigate(['/login']);
+                this.toastr.error(error.error.message);
                 }
             );
             this.submitted = false;

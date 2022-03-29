@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { FormGroup, FormBuilder, Validators, FormControl, AbstractControl } from '@angular/forms';
 import { ExperienceService } from './services/experience.service';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-experience',
@@ -25,6 +26,7 @@ export class ExperienceComponent implements OnInit {
 
     constructor(private formBuilder: FormBuilder,
         private toastr: ToastrService,
+        private router: Router,
         private experienceService: ExperienceService
     ) { }
 
@@ -67,7 +69,8 @@ export class ExperienceComponent implements OnInit {
                     this.getAllExperience();
                 },
                 (error) => {
-                    this.toastr.error(error.error.message);
+                    if(error.status == 401) this.router.navigate(['/login']);
+                this.toastr.error(error.error.message);
                 });
             this.submittedExp = false;
         }
@@ -87,7 +90,8 @@ export class ExperienceComponent implements OnInit {
                     this.getAllExperience();
                 },
                 (error) => {
-                    this.toastr.error(error.error.message);
+                    if(error.status == 401) this.router.navigate(['/login']);
+                this.toastr.error(error.error.message);
                 });
             this.submitted = false;
         }
@@ -99,6 +103,7 @@ export class ExperienceComponent implements OnInit {
                 this.experienceInfo = res.data;
             },
             (error) => {
+                if(error.status == 401) this.router.navigate(['/login']);
                 this.toastr.error(error.error.message);
             });
     }

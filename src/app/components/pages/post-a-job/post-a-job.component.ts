@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { FormGroup, FormBuilder, Validators, FormControl, AbstractControl } from '@angular/forms';
 import { PostAJobService } from './services/post-a-job.service';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-post-a-job',
@@ -23,6 +24,7 @@ export class PostAJobComponent implements OnInit {
 
     constructor(private formBuilder: FormBuilder,
         private toastr: ToastrService,
+        private router: Router,
         private postAJobService: PostAJobService
     ) { }
 
@@ -61,7 +63,8 @@ export class PostAJobComponent implements OnInit {
                     this.toastr.success(res.message);
                 },
                 (error) => {
-                    this.toastr.error(error.error.message);
+                    if(error.status == 401) this.router.navigate(['/login']);
+                this.toastr.error(error.error.message);
                 });
             this.submittedJob = false;
         }
@@ -79,7 +82,8 @@ export class PostAJobComponent implements OnInit {
                     this.toastr.success(res.message);
                 },
                 (error) => {
-                    this.toastr.error(error.error.message);
+                    if(error.status == 401) this.router.navigate(['/login']);
+                this.toastr.error(error.error.message);
                 });
             this.submittedJob = false;
         }

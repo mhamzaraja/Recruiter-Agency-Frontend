@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { ResumeService } from './services/resume.service';
 
@@ -14,7 +15,8 @@ export class ResumeComponent implements OnInit {
     profileCount: number;
 
     constructor(private resumeService: ResumeService,
-        private toastr: ToastrService
+        private toastr: ToastrService,
+        private router: Router
         ) { }
 
     ngOnInit(): void {
@@ -37,6 +39,7 @@ export class ResumeComponent implements OnInit {
                 // }
             },
             (error) => {
+                if(error.status == 401) this.router.navigate(['/login']);
                 this.toastr.error(error.error.message);
             });
     }

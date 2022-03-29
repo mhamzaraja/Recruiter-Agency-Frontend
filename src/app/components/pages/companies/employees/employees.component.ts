@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { EmployeesService } from './services/employees.service';
 
@@ -11,7 +12,8 @@ export class EmployeesComponent implements OnInit {
 
     employersInfo = [];
     constructor(private employeesService: EmployeesService,
-        private toastr: ToastrService
+        private toastr: ToastrService,
+        private router: Router
     ) { }
 
     ngOnInit(): void {
@@ -29,6 +31,7 @@ export class EmployeesComponent implements OnInit {
                 // }
             },
             (error) => {
+                if(error.status == 401) this.router.navigate(['/login']);
                 this.toastr.error(error.error.message);
             });
     }

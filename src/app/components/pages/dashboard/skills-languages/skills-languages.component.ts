@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { FormGroup, FormBuilder, Validators, FormControl, AbstractControl } from '@angular/forms';
 import { SkillsLanguagesService } from './services/skills-languages.service';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-skills-languages',
@@ -72,6 +73,7 @@ export class SkillsLanguagesComponent implements OnInit {
 
     constructor(private formBuilder: FormBuilder,
         private toastr: ToastrService,
+        private router: Router,
         private skillsLanguagesService: SkillsLanguagesService
     ) { }
 
@@ -113,7 +115,8 @@ export class SkillsLanguagesComponent implements OnInit {
                     this.getAllSkills();
                 },
                 (error) => {
-                    this.toastr.error(error.error.message);
+                    if(error.status == 401) this.router.navigate(['/login']);
+                this.toastr.error(error.error.message);
                 });
             this.submitted = false;
         }
@@ -134,7 +137,8 @@ export class SkillsLanguagesComponent implements OnInit {
                     this.getAllSkills();
                 },
                 (error) => {
-                    this.toastr.error(error.error.message);
+                    if(error.status == 401) this.router.navigate(['/login']);
+                this.toastr.error(error.error.message);
                 });
             this.submitted = false;
         }
@@ -147,6 +151,7 @@ export class SkillsLanguagesComponent implements OnInit {
                 console.log(this.skillInfo);
             },
             (error) => {
+                if(error.status == 401) this.router.navigate(['/login']);
                 this.toastr.error(error.error.message);
             });
     }
@@ -169,6 +174,7 @@ export class SkillsLanguagesComponent implements OnInit {
                 this.getAllSkills();
             },
             (error) => {
+                if(error.status == 401) this.router.navigate(['/login']);
                 this.toastr.error(error.error.message);
             });
     }
@@ -187,7 +193,8 @@ export class SkillsLanguagesComponent implements OnInit {
                     this.getAllLanguages();
                 },
                 (error) => {
-                    this.toastr.error(error.error.message);
+                    if(error.status == 401) this.router.navigate(['/login']);
+                this.toastr.error(error.error.message);
                 });
             this.submitted = false;
         }
@@ -207,7 +214,8 @@ export class SkillsLanguagesComponent implements OnInit {
                     this.toastr.success(res.message);
                 },
                 (error) => {
-                    this.toastr.error(error.error.message);
+                    if(error.status == 401) this.router.navigate(['/login']);
+                this.toastr.error(error.error.message);
                 });
             this.submitted = false;
         }
@@ -218,6 +226,7 @@ export class SkillsLanguagesComponent implements OnInit {
                 this.languageInfo = res.data;
             },
             (error) => {
+                if(error.status == 401) this.router.navigate(['/login']);
                 this.toastr.error(error.error.message);
             });
     }
@@ -239,6 +248,7 @@ export class SkillsLanguagesComponent implements OnInit {
                 this.getAllLanguages();
             },
             (error) => {
+                if(error.status == 401) this.router.navigate(['/login']);
                 this.toastr.error(error.error.message);
             });
     }
