@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import config from '../../../config/config';
+import userToken from "../../../config/userToken";
 
 
 @Injectable({
@@ -8,8 +9,8 @@ import config from '../../../config/config';
 })
 export class DashboardService {
     host: string = config.host;
-    token: any = JSON.parse(localStorage.getItem('userToken')).token;
-    userId: string = JSON.parse(localStorage.getItem('userToken')).id;
+    token: any = userToken.token;
+    userId: string = userToken.id;
 
     httpOptions = {
         headers: new HttpHeaders({
