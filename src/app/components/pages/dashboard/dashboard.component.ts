@@ -11,18 +11,10 @@ import { Router } from "@angular/router";
 })
 export class DashboardComponent implements OnInit {
 
-    submitted: boolean = false;
-    submittedPrj: boolean = false;
-
-    proejctForm: FormGroup;
-
-    public projectsInfo = [];
-
     candidateInfo = [];
     userId: number;
     name: string;
 
-    response: any;
     public placeholder: string = '';
 
     constructor(private formBuilder: FormBuilder,
@@ -32,26 +24,7 @@ export class DashboardComponent implements OnInit {
     ) { }
 
     ngOnInit(): void {
-
-        this.proejctForm = this.formBuilder.group({
-            projectName: [null, [Validators.required]],
-            projectUrl: [null, [Validators.required]],
-            startDate: [null, [Validators.required]],
-            endDate: [null, [Validators.required]],
-            checkbox: false,
-            associated: ["", [Validators.required]],
-            descPrj: [null, [Validators.required]],
-        })
-
-        this.proejctForm.get('checkbox').valueChanges.subscribe(value => {
-            value ? this.proejctForm.get('endDate').disable() : this.proejctForm.get('endDate').enable();
-        })
-
         this.getUser();
-    }
-
-    get fprj(): { [key: string]: AbstractControl } {
-        return this.proejctForm.controls;
     }
 
     getUser() {
@@ -65,22 +38,6 @@ export class DashboardComponent implements OnInit {
                 if (error.status == 401) this.router.navigate(['/login']);
                 this.toastr.error(error.error.message);
             });
-    }
-
-    projectInfoForm() {
-        this.submittedPrj = true;
-        if (this.proejctForm.invalid) {
-            this.toastr.error(this.response.message);
-        }
-        else {
-
-            this.submitted = false;
-        }
-    }
-
-    dataFromChild(data: any){
-        console.log("working");
-        console.log(data);
     }
 
     onLogout(event: Event){
