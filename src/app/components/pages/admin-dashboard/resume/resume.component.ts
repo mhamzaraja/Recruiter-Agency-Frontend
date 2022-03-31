@@ -32,8 +32,6 @@ export class ResumeComponent implements OnInit {
 
                 // profile
                 this.profile = this.resumeInfo[0].profile;
-                console.log("resumeInfo: ", this.resumeInfo);
-                console.log("profile: ", this.profile);
                 // for (let keys in this.employersInfo) {
                 //     eId = this.employersInfo[keys].employerId;
                 // }

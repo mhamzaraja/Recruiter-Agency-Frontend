@@ -47,9 +47,6 @@ export class JobsApplicationsComponent implements OnInit {
                 // candidate profile
                 this.candidateProfile = this.applicationInfo[0].candidate_profile;
                 this.candCount = this.candidateProfile.length;
-
-                console.log("profile: ", this.applicationInfo.length);
-
             },
             (error) => {
                 if(error.status == 401) this.router.navigate(['/login']);

@@ -1,19 +1,71 @@
+<div class="person-details-area resume-area ptb-100">
+    <div class="container">
+        <div class="row">
+            <div class="details-item">
+                <div class="bottom-item">
+                    <div class="create-button">
+                        <div>
+                            <h2>Summary</h2>
+                        </div>
+                        <div>
+                            <a class="cmn-btn" (click)="editInfo()">Edit<i class='bx bxs-edit-alt'></i></a>
+                        </div>
+                    </div>
+
+                    <div style="margin-top: 15px;">
+                        <div *ngIf="name === undefined  && summary === undefined || summary === null">
+                            <p> Hi i have not updated my information yet...</p>
+                        </div>
+                        <div *ngIf="name !== undefined && summary === undefined">
+                            <p> Hi, my name is {{name}} and i'm from {{city}}</p>
+                        </div>
+                        <div *ngIf="summary !== undefined || summary !== null">
+                            <p> {{summary}} </p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- <div class="job-details-area ptb-100">
+    <div class="container">
+        <div class="row">
+            <div class="details-item">
+
+                <div class="details-inner">
+                    <div class="create-button">
+                        <div>
+                            <h3>Summary</h3>
+                        </div>
+                        <div>
+                            <a class="cmn-btn" (click)="editInfo()">Edit<i class='bx bxs-edit-alt'></i></a>
+                        </div>
+                    </div>
+
+                    <div *ngIf="name === undefined  && summary === undefined || summary === null">
+                        <p> Hi i have not updated my information yet...</p>
+                    </div>
+                    <div *ngIf="name !== undefined && summary === undefined">
+                        <p> Hi, my name is {{name}} and i'm from {{city}}</p>
+                    </div>
+                    <div *ngIf="summary !== undefined || summary !== null">
+                        <p> {{summary}} </p>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div> -->
+
 <!-- Basic Info Form -->
 <div class="tab-pane fade show active" id="v-pills-basicInfo" role="tabpanel" aria-labelledby="v-pills-basicInfo-tab">
     <div class="profile-content">
-
-        <!-- <div class="bottom-item" *ngIf="isEmpty(basicInfo?.summary);"> -->
-        <div class="bottom-item">
-            <div class="create-button">
-                <div>
-                    <h3>Summary</h3>
-                </div>
-                <div>
-                    <a class="cmn-btn">Edit<i class='bx bxs-edit-alt'></i></a>
-                </div>
-            </div>
-            {{basicInfo?.summary}}
-        </div>
 
         <form [formGroup]="basicInfoForm">
             <div class="profile-content-inner">
@@ -251,8 +303,6 @@
 
             <button (click)="baiscInfoForm()" class="btn dashboard-btn">Save Your
                 Information</button>
-
-
         </form>
     </div>
 </div>

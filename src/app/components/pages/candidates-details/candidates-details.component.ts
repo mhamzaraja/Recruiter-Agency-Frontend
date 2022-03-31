@@ -40,7 +40,6 @@ export class CandidatesDetailsComponent implements OnInit {
                 this.candExperience = res.data[2].experience;
                 this.candSkills = res.data[4].skills;
                 this.candLanguages = res.data[5].languages;
-                // console.log("candExperience: " , this.candExperience[0].jobTitle);
             },
             (error) => {
                 if(error.status == 401) this.router.navigate(['/login']);
@@ -51,7 +50,6 @@ export class CandidatesDetailsComponent implements OnInit {
     currentWork(currentlyWorking: boolean, i: number) {
         if (currentlyWorking) {
             this.currentWorkValue = this.candExperience[i].jobTitle;
-            console.log(this.candExperience[i].jobTitle);
         }
         else {
             return this.currentWorkValue;

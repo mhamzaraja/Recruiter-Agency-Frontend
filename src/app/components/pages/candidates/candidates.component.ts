@@ -32,7 +32,6 @@ export class CandidatesComponent implements OnInit {
                 this.candidatsInfo = res.data[0].profile;
                 this.candExperience = res.data[2].experience;
                 this.candSkills = res.data[4].skills;
-                console.log("candExperience: ", this.candExperience);
             },
             (error) => {
                 if(error.status == 401) this.router.navigate(['/login']);

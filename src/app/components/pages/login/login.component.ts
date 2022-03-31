@@ -37,16 +37,16 @@ export class LoginComponent implements OnInit {
             this.loginServices.login(this.form.value).subscribe((res) => {
                 const now = new Date();
 
-                if(res.success == true){
-                    localStorage.setItem('userToken', JSON.stringify(res.data))
-                    this.router.navigate(['/dashboard/:id']);
+                if (res.success == true) {
+                    localStorage.setItem('userToken', JSON.stringify(res.data));
+                    this.router.navigate(['/dashboard', res.data.id]);
                 } else {
                     this.toastr.error(res.message);
                 }
             },
                 (error) => {
-                    if(error.status == 401) this.router.navigate(['/login']);
-                this.toastr.error(error.error.message);
+                    if (error.status == 401) this.router.navigate(['/login']);
+                    this.toastr.error(error.error.message);
                 }
             );
             this.submitted = false;
@@ -57,7 +57,8 @@ export class LoginComponent implements OnInit {
         let userToken = JSON.parse(localStorage.getItem('userToken'));
 
         if (!userToken) {
-            return 0;
+            this.router.navigate(['/login']);
+            this.toastr.error("Please sign in");
         } else {
             return userToken.token;
         }

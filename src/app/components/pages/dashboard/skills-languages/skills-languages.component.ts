@@ -167,7 +167,6 @@ export class SkillsLanguagesComponent implements OnInit {
 
     delSkill(i: number) {
         this.skillId = this.skillInfo[i].id;
-        console.log(this.skillId);
         this.skillsLanguagesService.deleteSkill(this.skillId).subscribe(
             (res) => {
                 this.toastr.success(res.message);
@@ -251,5 +250,16 @@ export class SkillsLanguagesComponent implements OnInit {
                 if(error.status == 401) this.router.navigate(['/login']);
                 this.toastr.error(error.error.message);
             });
+    }
+
+    resetSkill(){
+        this.saveSkillBtn = true;
+        this.updateSkillBtn = false;
+        this.skillsForm.reset();
+    }
+    resetLang(){
+        this.saveLangBtn = true;
+        this.updateLangBtn = false;
+        this.languageForm.reset();
     }
 }

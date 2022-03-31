@@ -76,7 +76,6 @@ export class EducationComponent implements OnInit {
             this.toastr.error(this.response.message);
         }
         else {
-            console.log(data, this.eduId);
             this.educationService.updateEducation(data, this.eduId).subscribe(
                 (res) => {
                     if (res.success == true) {
@@ -126,6 +125,12 @@ export class EducationComponent implements OnInit {
                     this.toastr.error(res.error.message);
                 }
             });
+    }
+
+    clearEdu(){
+        this.saveEduBtn = true;
+        this.updateEduBtn = false;
+        this.educationForm.reset();
     }
 
 }

@@ -26,7 +26,6 @@ export class CandidatesComponent implements OnInit {
         this.candidatesService.findAllCandidatesData().subscribe(
             (res) => {
                 this.candidatesInfo = res.data[0].profile;
-                console.log(this.candidatesInfo);
                 // for (let keys in this.employersInfo) {
                 //     eId = this.employersInfo[keys].employerId;
                 // }

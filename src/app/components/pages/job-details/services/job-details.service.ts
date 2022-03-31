@@ -34,7 +34,6 @@ export class JobDetailsService {
 
     applicationForm(application_status: string, jobId: number) {
         jobId = Number(jobId);
-        console.log(jobId);
         let applicationData = {
             application_status
         }

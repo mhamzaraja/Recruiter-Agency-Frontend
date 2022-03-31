@@ -2,6 +2,7 @@ import { Routes } from '@angular/router';
 import { BasicInfoComponent } from './basic-info/basic-info.component';
 import { EducationComponent } from './education/education.component';
 import { ExperienceComponent } from './experience/experience.component';
+import { ProjectComponent } from './project/project.component';
 import { SkillsLanguagesComponent } from './skills-languages/skills-languages.component';
 
 export const DashboardRoutes: Routes = [
@@ -26,8 +27,14 @@ export const DashboardRoutes: Routes = [
         data: {
             title: 'Experience'
         }
-    }
-    ,
+    },
+    {
+        path: 'projects',
+        component: ProjectComponent,
+        data: {
+            title: 'Projects'
+        }
+    },
     {
         path: 'skillsLanguages',
         component: SkillsLanguagesComponent,

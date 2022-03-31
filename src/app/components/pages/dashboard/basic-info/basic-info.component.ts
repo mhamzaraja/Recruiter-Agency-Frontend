@@ -1,4 +1,4 @@
-import { Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl, AbstractControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
@@ -13,7 +13,10 @@ export class BasicInfoComponent implements OnInit {
     submitted: boolean = false;
     basicInfoForm: FormGroup;
 
-    public basicInfo: any;
+    public basicInfo = [];
+    summary: string;
+    name: string;
+    city: string;
 
 
     response: any;
@@ -55,13 +58,14 @@ export class BasicInfoComponent implements OnInit {
             this.toastr.error(this.response.message);
         }
         else {
-            this.basicInfoService.basicInfoForm(this.basicInfoForm.value).subscribe((res) => {
-                this.toastr.success(res.message);
-                this.getUser();
-            },
+            this.basicInfoService.basicInfoForm(this.basicInfoForm.value).subscribe(
+                (res) => {
+                    this.toastr.success(res.message);
+                    this.getUser();
+                },
                 (error) => {
-                    if(error.status == 401) this.router.navigate(['/login']);
-                this.toastr.error(error.error.message);
+                    if (error.status == 401) this.router.navigate(['/login']);
+                    this.toastr.error(error.error.message);
                 });
             this.submitted = false;
         }
@@ -70,17 +74,39 @@ export class BasicInfoComponent implements OnInit {
     getUser() {
         this.basicInfoService.findUsers().subscribe(
             (res) => {
-
-                this.basicInfo = res.data[0].profile[0];
+                this.basicInfo = res.data[0].profile;
+                this.summary = this.basicInfo[0].summary;
+                this.name = this.basicInfo[0].name;
+                this.city = this.basicInfo[0].city;
             },
             (error) => {
-                if(error.status == 401) this.router.navigate(['/login']);
+                if (error.status == 401) this.router.navigate(['/login']);
                 this.toastr.error(error.error.message);
             });
     }
 
-    isEmpty(obj : any){
+    isEmpty(obj: any) {
         console.log(obj);
         return Object.keys(obj).length != 0;
+    }
+
+    editInfo(){
+        let i = 0;
+        this.basicInfoForm.controls.name.setValue(this.basicInfo[i].name);
+        this.basicInfoForm.controls.email.setValue(this.basicInfo[i].email);
+        this.basicInfoForm.controls.mobile_number.setValue(this.basicInfo[i].mobile_number);
+        this.basicInfoForm.controls.summary.setValue(this.basicInfo[i].summary);
+        this.basicInfoForm.controls.dob.setValue(this.basicInfo[i].dob);
+        this.basicInfoForm.controls.gender.setValue(this.basicInfo[i].gender);
+        this.basicInfoForm.controls.marital_status.setValue(this.basicInfo[i].marital_status);
+        this.basicInfoForm.controls.nationality.setValue(this.basicInfo[i].nationality);
+        this.basicInfoForm.controls.cnic.setValue(this.basicInfo[i].cnic);
+        this.basicInfoForm.controls.career_level.setValue(this.basicInfo[i].career_level);
+        this.basicInfoForm.controls.experience.setValue(this.basicInfo[i].experience);
+        this.basicInfoForm.controls.city.setValue(this.basicInfo[i].city);
+        this.basicInfoForm.controls.area.setValue(this.basicInfo[i].area);
+        this.basicInfoForm.controls.expected_salary.setValue(this.basicInfo[i].expected_salary);
+
+        this.getUser();
     }
 }

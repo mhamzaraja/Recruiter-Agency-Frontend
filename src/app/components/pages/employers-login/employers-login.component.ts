@@ -39,7 +39,7 @@ export class EmployersLoginComponent implements OnInit {
 
                 if (res.success == true) {
                     localStorage.setItem('userToken', JSON.stringify(res.data))
-                    this.router.navigate(['/employer/dashboard/:id']);
+                    this.router.navigate(['/employer/dashboard', res.data.id]);
                 } else {
                     this.toastr.error(res.message);
                 }

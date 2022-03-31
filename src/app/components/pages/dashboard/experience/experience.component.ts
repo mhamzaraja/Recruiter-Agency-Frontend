@@ -138,4 +138,10 @@ export class ExperienceComponent implements OnInit {
             });
     }
 
+    resetExp(){
+        this.saveExpBtn = true;
+        this.updateExpBtn = false;
+        this.experienceForm.reset();
+    }
+
 }

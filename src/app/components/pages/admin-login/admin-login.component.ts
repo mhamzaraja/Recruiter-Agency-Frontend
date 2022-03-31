@@ -5,9 +5,9 @@ import { ToastrService } from 'ngx-toastr';
 import { AdminLoginService } from './services/admin-login.service';
 
 @Component({
-  selector: 'app-admin-login',
-  templateUrl: './admin-login.component.html',
-  styleUrls: ['./admin-login.component.scss']
+    selector: 'app-admin-login',
+    templateUrl: './admin-login.component.html',
+    styleUrls: ['./admin-login.component.scss']
 })
 export class AdminLoginComponent implements OnInit {
 
@@ -34,19 +34,18 @@ export class AdminLoginComponent implements OnInit {
     logInForm() {
         this.submitted = true;
         if (this.form.valid) {
-            this.adminLoginService.login(this.form.value).subscribe((res) => {
-                const now = new Date();
-
-                if (res.success == true) {
-                    localStorage.setItem('userToken', JSON.stringify(res.data))
-                    this.router.navigate(['/admin']);
-                } else {
-                    this.toastr.error(res.message);
-                }
-            },
+            this.adminLoginService.login(this.form.value).subscribe(
+                (res) => {
+                    if (res.success == true) {
+                        localStorage.setItem('userToken', JSON.stringify(res.data))
+                        this.router.navigate(['/admin', res.data.id]);
+                    } else {
+                        this.toastr.error(res.message);
+                    }
+                },
                 (error) => {
-                    if(error.status == 401) this.router.navigate(['/login']);
-                this.toastr.error(error.error.message);
+                    // if (error.status == 401) this.router.navigate(['/login']);
+                    this.toastr.error(error.error.message);
                 }
             );
             this.submitted = false;

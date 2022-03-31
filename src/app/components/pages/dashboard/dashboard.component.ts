@@ -18,6 +18,10 @@ export class DashboardComponent implements OnInit {
 
     public projectsInfo = [];
 
+    candidateInfo = [];
+    userId: number;
+    name: string;
+
     response: any;
     public placeholder: string = '';
 
@@ -42,10 +46,25 @@ export class DashboardComponent implements OnInit {
         this.proejctForm.get('checkbox').valueChanges.subscribe(value => {
             value ? this.proejctForm.get('endDate').disable() : this.proejctForm.get('endDate').enable();
         })
+
+        this.getUser();
     }
 
     get fprj(): { [key: string]: AbstractControl } {
         return this.proejctForm.controls;
+    }
+
+    getUser() {
+        this.dashboardService.findUsers().subscribe(
+            (res) => {
+                this.candidateInfo = res.data[0].profile;
+                this.userId = this.candidateInfo[0].userId;
+                this.name = this.candidateInfo[0].name;
+            },
+            (error) => {
+                if (error.status == 401) this.router.navigate(['/login']);
+                this.toastr.error(error.error.message);
+            });
     }
 
     projectInfoForm() {

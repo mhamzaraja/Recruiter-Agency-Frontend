@@ -13,6 +13,8 @@ import {AutocompleteLibModule} from 'angular-ng-autocomplete';
 import { SkillsLanguagesComponent } from './skills-languages/skills-languages.component';
 import { DashboardRoutes } from './dashboard.routing';
 import { SkillsLanguagesService } from './skills-languages/services/skills-languages.service';
+import { ProjectComponent } from './project/project.component';
+import { ProjectService } from './project/services/project.service';
 
 @NgModule({
     imports: [
@@ -26,13 +28,15 @@ import { SkillsLanguagesService } from './skills-languages/services/skills-langu
         BasicInfoComponent,
         EducationComponent,
         ExperienceComponent,
-        SkillsLanguagesComponent
+        SkillsLanguagesComponent,
+        ProjectComponent
     ],
     providers:[
         FormBuilder,
         BasicInfoService,
         EducationService,
         ExperienceService,
+        ProjectService,
         SkillsLanguagesService
     ]
 })

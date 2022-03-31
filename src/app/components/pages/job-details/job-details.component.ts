@@ -44,7 +44,7 @@ export class JobDetailsComponent implements OnInit {
                 }
             },
             (error) => {
-                if(error.status == 401) this.router.navigate(['/login']);
+                if (error.status == 401) this.router.navigate(['/login']);
                 this.toastr.error(error.error.message);
             });
     }
@@ -56,12 +56,12 @@ export class JobDetailsComponent implements OnInit {
                 this.toastr.success(res.message);
             },
             (error) => {
-                if(!error.error.created){
+                if (!error.error.created) {
                     this.toastr.warning(error.error.message);
                     console.log(error.error.created);
                 } else {
-                    if(error.status == 401) this.router.navigate(['/login']);
-                this.toastr.error(error.error.message);
+                    if (error.status == 401) this.router.navigate(['/login']);
+                    this.toastr.error(error.error.message);
                 }
             });
     }
@@ -70,14 +70,10 @@ export class JobDetailsComponent implements OnInit {
         this.jobDetailsService.findApplicationById(this.id).subscribe(
             (res) => {
                 this.candidateInfo = res.data;
-                if (!this.candidateInfo) {
-                    console.log(this.candidateInfo);
-                }else {
-                    console.log(this.candidateInfo);
-                }
+                console.log("Candidate Application: ", this.candidateInfo);
             },
             (error) => {
-                if(error.status == 401) this.router.navigate(['/login']);
+                if (error.status == 401) this.router.navigate(['/login']);
                 this.toastr.error(error.error.message);
             });
     }

@@ -27,8 +27,8 @@ export class DashboardService {
     constructor(private http: HttpClient,
         private router: Router) { }
 
-    resumeForm() {
-        return this.http.get<any>(`${this.host}/api/auth/signin`);
+    findUsers() {
+        return this.http.get<any>(`${this.host}/api/user/profile/getAll`, this.httpOptions);
     }
 
     logout() {

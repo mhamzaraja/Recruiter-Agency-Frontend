@@ -63,7 +63,6 @@ export class EmployerBasicInfoComponent implements OnInit {
             (res) => {
                 this.employerInfo = res.data[0];
                 this.editEmp();
-                console.log("employerInfo:", this.employerInfo);
             },
             (error) => {
                 if(error.status == 401) this.router.navigate(['/login']);

@@ -67,7 +67,6 @@ export class EmploerDashboardComponent implements OnInit {
         this.dashboardService.findEmployerData().subscribe(
             (res) => {
                 this.employerInfo = res.data;
-                console.log("employerInfo", this.employerInfo);
             },
             (error) => {
                 if(error.status == 401) this.router.navigate(['/login']);

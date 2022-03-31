@@ -64,7 +64,7 @@ const routes: Routes = [
     { path: 'contact', component: ContactComponent },
 
     {
-        path: 'admin',
+        path: 'admin/:id',
         component: AdminDashboardComponent,
         children: [
             {
