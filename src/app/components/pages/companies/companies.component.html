@@ -24,6 +24,36 @@
 </div>
 <!-- End Page Title -->
 
+<div class="tabbable-line">
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <li class="nav-item" role="presentation">
+            <a class="nav-link col" aria-selected="true" routerLink="/companies" routerLinkActive="active"
+                        [routerLinkActiveOptions]="{exact:true}">
+                        <i class='bx bx-group'></i>
+                        Employees Info
+                    </a>
+        </li>
+        <li class="nav-item" role="presentation">
+            <a class="nav-link col" routerLink="daily-tasks" aria-selected="false" routerLinkActive="active">
+                <i class='bx bx-task'></i>
+                Daily tasks of employees
+            </a>
+        </li>
+        <li class="nav-item" role="presentation">
+            <a class="nav-link col" routerLink="facilities" aria-selected="false" routerLinkActive="active">
+                <i class='bx bx-coffee'></i>
+                Facilities provided in company
+            </a>
+        </li>
+    </ul>
+    <div class="tab-content" id="myTabContent">
+        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">aaa
+        </div>
+        <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">bbb</div>
+        <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">ccc</div>
+    </div>
+</div>
+
 <!-- tabs start -->
 <div class="dashboard-area ptb-100">
     <div class="container">

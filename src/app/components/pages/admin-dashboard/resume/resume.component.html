@@ -16,7 +16,7 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let emp of profile; let i = index" [routerLink]="['/dashboard', emp.id]">
+        <tr *ngFor="let emp of profile; let i = index" [routerLink]="['/candidate-details', emp.id]">
             <th scope="row">{{emp.id}}</th>
             <td>{{emp.name}}</td>
             <td>{{emp.city}}</td>

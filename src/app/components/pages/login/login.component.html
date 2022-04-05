@@ -13,14 +13,14 @@
                 <div class="user-content">
                     <div class="top">
                         <h2>Login</h2>
-                        
+
                         <form [formGroup]="form">
                             <div class="form-group">
                                 <input type="email" class="form-control" placeholder="Email" formControlName="email" [ngClass]="{ 'is-invalid': submitted && f.email.errors }">
                                 <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
                                     <div *ngIf="f.email.errors.required">Email is required</div>
                                     <div *ngIf="f.email.errors.email">Email is invalid</div>
-                                </div>     
+                                </div>
                             </div>
 
                             <div class="form-group">
@@ -38,10 +38,10 @@
 
                             <button (click)="logInForm()" type="submit" class="btn">Login Here</button>
                         </form>
-                        <div class="create-account"> 
+                        <div class="create-account">
                             <span class="account-direction">Create an account? <a style="font-weight: 600; color: #fe4a55;" routerLink="/register">Sign Up</a></span>
                         </div>
-                        
+
                     </div>
 
                     <div class="end">
