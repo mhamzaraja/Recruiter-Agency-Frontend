@@ -19,14 +19,16 @@
         <div class="row">
             <div class="col-lg-6 col-md-12" *ngFor="let cand of applicationInfo; let i = index;">
                 <div class="candidate-item two">
-                    <div >
+                    <div>
                         <div class="left">
                             <h3><a [routerLink]="['/candidate-details', i+1]">{{cand.candidate_profile.name}}</a></h3>
                             <div>
-                                <span>
-                                    <span>
-
+                                <span class="app-status">
+                                    <span class="span-two two">
+                                        {{cand.application_status}}
                                     </span>
+                                    <i class='bx bxs-check-circle bx-sm bx-tada-hover' (click)="approveAppl(i)"></i>
+                                    <i class="bx bx-trash bx-sm bx-tada-hover" (click)="deleteAppl(i)"></i>
                                 </span>
                             </div>
                             <ul class="experience">

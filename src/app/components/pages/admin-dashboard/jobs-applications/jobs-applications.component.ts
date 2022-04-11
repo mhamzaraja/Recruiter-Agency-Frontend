@@ -20,7 +20,7 @@ export class JobsApplicationsComponent implements OnInit {
         private jobsApplicationsService: JobsApplicationsService,
         private toastr: ToastrService,
         private router: Router
-        ) { }
+    ) { }
 
     ngOnInit(): void {
         this.getCandidatesOfJob();
@@ -33,11 +33,11 @@ export class JobsApplicationsComponent implements OnInit {
     //         },
     //         (error) => {
     //             if(error.status == 401) this.router.navigate(['/login']);
-                // this.toastr.error(error.error.message);
+    // this.toastr.error(error.error.message);
     //         });
     // }
 
-    getCandidatesOfJob(){
+    getCandidatesOfJob() {
         this.jobsApplicationsService.findCandidatesOfJob(this.jobId).subscribe(
             (res) => {
                 this.applicationInfo = res.data;
@@ -49,9 +49,33 @@ export class JobsApplicationsComponent implements OnInit {
                 this.candCount = this.candidateProfile.length;
             },
             (error) => {
-                if(error.status == 401) this.router.navigate(['/login']);
+                if (error.status == 401) this.router.navigate(['/login']);
                 this.toastr.error(error.error.message);
             });
+    }
+
+    deleteAppl(i: number) {
+        // this.eduId = this.educationInfo[i].id;
+        // this.educationService.deleteEducation(this.eduId).subscribe(
+        //     (res) => {
+        //         if (res.success == true) {
+        //             this.toastr.success(res.message);
+        //             this.getAllEducations()
+        //         } else {
+        //             this.toastr.error(res.error.message);
+        //         }
+        //     });
+    }
+    approveAppl(i: number) {
+        // this.jobsApplicationsService.updateEducation(data, this.eduId).subscribe(
+        //     (res) => {
+        //         if (res.success == true) {
+        //             this.toastr.success(res.message);
+        //             this.getCandidatesOfJob()
+        //         } else {
+        //             this.toastr.error(res.error.message);
+        //         }
+        //     });
     }
 
 }
