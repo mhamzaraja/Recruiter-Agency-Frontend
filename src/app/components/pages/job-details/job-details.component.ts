@@ -14,7 +14,9 @@ export class JobDetailsComponent implements OnInit {
     public jobPostsInfo: any;
     public candidateInfo: any;      // from user application
     public objLength: number;
-    public applied: boolean;
+
+    public applied: number;
+    isAuth: boolean = true;
 
     counter = 0;
 
@@ -73,7 +75,11 @@ export class JobDetailsComponent implements OnInit {
             },
             (error) => {
                 if (error.status == 401) this.router.navigate(['/login']);
-                this.toastr.error(error.error.message);
+                if (error.status == 403) this.isAuth = false
+                if (error.status == 500){
+                    this.toastr.info("No candidate has applied on this job yet!");
+                    this.applied = 0;
+                }
             });
     }
 

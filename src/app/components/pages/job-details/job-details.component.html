@@ -166,18 +166,16 @@
                                 making this the first true.</p>
                         </div>
 
-                        <div class="details-inner">
-                            <h3>Our Vision</h3>
+                        <div class="details-inner" *ngIf="isAuth">
+                            <h3>Candidates that applied on this job</h3>
                             <div class="candidate-area pb-100">
                                 <div class="container">
                                     <div class="row">
-                                        <div class="col-lg-6 col-md-12"
-                                            >
+                                        <div class="col-lg-6 col-md-12">
                                             <div class="candidate-item two">
                                                 <div>
                                                     <div class="left">
-                                                        <h3><a
-                                                                [routerLink]="['/candidate-details']"></a>
+                                                        <h3><a [routerLink]="['/candidate-details']"></a>
                                                         </h3>
                                                         <div>
                                                             <span class="app-status">
@@ -194,9 +192,10 @@
                                                         </div>
                                                         <ul class="experience">
                                                             <li>Experience:
-                                                                <span></span></li>
+                                                                <span></span>
+                                                            </li>
                                                             <li>Expected Salary: <span>RS.
-                                                                    </span>
+                                                                </span>
                                                             </li>
                                                             <li><i class="flaticon-send"></i>
 

@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 })
 export class JobsComponent implements OnInit {
 
-    public jobPostsInfo: any;
+    jobPostsInfo = [];
 
     constructor(
         private jobsService: JobsService,
@@ -26,11 +26,10 @@ export class JobsComponent implements OnInit {
     getAllJobs() {
         this.jobsService.findAllJobs().subscribe(
             (res) => {
-
                 this.jobPostsInfo = res.data;
             },
             (error) => {
-                if(error.status == 401) this.router.navigate(['/login']);
+                if (error.status == 401) this.router.navigate(['/login']);
                 this.toastr.error(error.error.message);
             });
     }

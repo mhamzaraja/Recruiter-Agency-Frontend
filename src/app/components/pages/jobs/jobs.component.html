@@ -49,19 +49,26 @@
                     </li>
                 </ul>
 
-                <div class="employer-item" *ngFor="let job of jobPostsInfo; let i = index;">
-                    <a [routerLink]="['/job-details', i+1]">
-                        <img src="assets/img/home-one/job1.png" alt="Employer">
-                        <h3>{{job?.job_title}}</h3>
-                        <ul>
-                            <li><i class="flaticon-send"></i> {{job?.job_location}}, Pakistan</li>
-                            <li>{{job?.createdAt | date}}</li>
-                        </ul>
-                        <p>{{job?.job_description}}</p>
-                        <span class="span-one">{{job?.required_career_level}}</span>
-                        <span class="span-two">{{job?.workplace_type}}</span>
+                <div *ngIf="jobPostsInfo.length > 0">
 
-                    </a>
+                    <div class="employer-item" *ngFor="let job of jobPostsInfo;">
+                        <a [routerLink]="['/job-details', job.id]">
+                            <img src="assets/img/home-one/job1.png" alt="Employer">
+                            <h3>{{job.job_title}}</h3>
+                            <ul>
+                                <li><i class="flaticon-send"></i> {{job.job_location}}, Pakistan</li>
+                                <li>{{job.createdAt | date}}</li>
+                            </ul>
+                            <p>{{job.job_description}}</p>
+                            <span class="span-one">{{job.required_career_level}}</span>
+                            <span class="span-two">{{job.workplace_type}}</span>
+
+                        </a>
+                    </div>
+                </div>
+
+                <div *ngIf="jobPostsInfo.length <= 0">
+                    <h3>No Job Posted Yet!</h3>
                 </div>
 
                 <!-- <span class="span-two">FULL TIME</span>

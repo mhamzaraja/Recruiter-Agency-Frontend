@@ -54,7 +54,9 @@ export class JobsApplicationsComponent implements OnInit {
             },
             (error) => {
                 if (error.status == 401) this.router.navigate(['/login']);
-                this.toastr.error(error.error.message);
+                if (error.status == 500){
+                    this.toastr.info("No candidate has applied on this job yet!");
+                }
             });
     }
 
