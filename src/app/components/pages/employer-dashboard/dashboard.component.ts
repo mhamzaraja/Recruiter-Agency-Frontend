@@ -13,10 +13,16 @@ export class EmploerDashboardComponent implements OnInit {
 
     public jobPostInfo = [];
     public companyInfo: any;
-    public employerInfo: [];
+    public employerInfo = [];
     public lastCompany: any;
     submitted: boolean = false;
     jobsPosted: number;
+
+    empId: number;
+    fullNAme : string;
+    designation: string;
+
+    jobId: number;
 
     proejctForm: FormGroup;
 
@@ -44,6 +50,7 @@ export class EmploerDashboardComponent implements OnInit {
             (res) => {
                 this.jobPostInfo = res.data;
                 this.jobsPosted = this.jobPostInfo.length;
+                this.jobId = this.jobPostInfo[0].id;
             },
             (error) => {
                 if(error.status == 401) this.router.navigate(['/login']);
@@ -67,6 +74,10 @@ export class EmploerDashboardComponent implements OnInit {
         this.dashboardService.findEmployerData().subscribe(
             (res) => {
                 this.employerInfo = res.data;
+
+                this.empId = this.employerInfo[0].id;
+                this.fullNAme = this.employerInfo[0].full_name;
+                this.designation = this.employerInfo[0].job_designation;
             },
             (error) => {
                 if(error.status == 401) this.router.navigate(['/login']);

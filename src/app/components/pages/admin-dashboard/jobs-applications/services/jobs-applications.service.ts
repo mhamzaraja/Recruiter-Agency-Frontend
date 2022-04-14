@@ -28,8 +28,18 @@ export class JobsApplicationsService {
         return this.http.get<any>(`${this.host}/api/admin/jobs/list/getOne?id=${id}`, this.httpOptions);
     }
 
-    findCandidatesOfJob(id: number) {
+    findCandidatesData(id: number) {
         return this.http.get<any>(`${this.host}/api/job/application/getOne?id=${id}`, this.httpOptions);
+    }
+
+    updateStatus(id: number, data: any){
+        data.application_status = "approved";
+        let applicationData = {
+            ...data,
+            userId: this.userId
+        };
+
+        return this.http.put<any>(`${this.host}/api/job/application/update?id=${id}`, applicationData, this.httpOptions);
     }
 
 }

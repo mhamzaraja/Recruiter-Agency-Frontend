@@ -165,6 +165,75 @@
                                 Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary,
                                 making this the first true.</p>
                         </div>
+
+                        <div class="details-inner">
+                            <h3>Our Vision</h3>
+                            <div class="candidate-area pb-100">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-lg-6 col-md-12"
+                                            >
+                                            <div class="candidate-item two">
+                                                <div>
+                                                    <div class="left">
+                                                        <h3><a
+                                                                [routerLink]="['/candidate-details']"></a>
+                                                        </h3>
+                                                        <div>
+                                                            <span class="app-status">
+                                                                <span class="span-two two">
+
+                                                                </span>
+
+                                                                <i class='bx bxs-check-circle bx-sm bx-tada-hover'
+                                                                    (click)="approve(i)"></i>
+                                                                <i class="bx bx-trash bx-sm bx-tada-hover"
+                                                                    (click)="deleteApp(i)"></i>
+
+                                                            </span>
+                                                        </div>
+                                                        <ul class="experience">
+                                                            <li>Experience:
+                                                                <span></span></li>
+                                                            <li>Expected Salary: <span>RS.
+                                                                    </span>
+                                                            </li>
+                                                            <li><i class="flaticon-send"></i>
+
+                                                            </li>
+                                                        </ul>
+                                                        <div>
+                                                            <ul>
+                                                                <li></li>
+                                                            </ul>
+                                                        </div>
+                                                        <div class="cmn-link">
+                                                            <a [routerLink]="['/candidate-details']"><i
+                                                                    class="flaticon-right-arrow one"></i>
+                                                                View Profile
+                                                                <i class="flaticon-right-arrow two"></i></a>
+                                                        </div>
+                                                    </div>
+                                                    <!-- <img src="assets/img/candidate1.jpg" alt="Candidate"> -->
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="pagination-area">
+                                        <ul>
+                                            <li><a routerLink="/candidates">Prev</a></li>
+                                            <li><a routerLink="/candidates">1</a></li>
+                                            <li><a routerLink="/candidates">Next</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- <div class="candidate-area pb-100">
+                                <h2>No candidate has applied for this job</h2>
+                            </div> -->
+                        </div>
                     </div>
                 </div>
 
@@ -323,7 +392,7 @@
 <div class="job-details-area ptb-100" *ngIf="objLength==0">
     <div class="container">
         <div class="row">
-           <h2> No Job was Found</h2>
+            <h2> No Job was Found</h2>
         </div>
     </div>
 </div>

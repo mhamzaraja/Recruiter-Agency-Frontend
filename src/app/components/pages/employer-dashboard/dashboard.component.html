@@ -6,14 +6,14 @@
 <div class="dashboard-area emploer-dasboard-content">
     <div class="container">
         <div class="row">
-            <div class="col-lg-4 col-md-12" *ngFor="let emp of employerInfo;">
+            <div class="col-lg-4 col-md-12">
                 <div class="profile-item">
                     <img src="assets/img/dashboard1.jpg" alt="Dashboard">
                     <h2>
-                        {{emp.full_name}}
+                        {{fullNAme}}
                         <i class='bx bx-edit bx-sm bx-tada-hover' routerLink="profile/create"></i>
                     </h2>
-                    <span>{{emp.job_designation}}</span>
+                    <span>{{designation}}</span>
                 </div>
 
                 <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
@@ -71,8 +71,8 @@
 
                     <div *ngIf="jobPostInfo.length>0" class="person-details-area resume-area ptb-100">
                         <div class="container">
-                            <div class="employer-item" *ngFor="let jobs of jobPostInfo; let i = index">
-                                <a [routerLink]="['/job-details', i+1]">
+                            <div class="employer-item" *ngFor="let jobs of jobPostInfo;">
+                                <a [routerLink]="['/job-details', jobId]">
                                     <img src="assets/img/home-one/job1.png" alt="Employer">
                                     <h3>{{jobs.job_title}}</h3>
                                     <ul>

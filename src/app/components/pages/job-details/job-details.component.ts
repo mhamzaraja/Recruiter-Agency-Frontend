@@ -9,7 +9,7 @@ import { JobDetailsService } from "./services/job-details.service";
     styleUrls: ['./job-details.component.scss']
 })
 export class JobDetailsComponent implements OnInit {
-    id: number = this.route.snapshot.params.id;
+    jobId: number = this.route.snapshot.params.id;
 
     public jobPostsInfo: any;
     public candidateInfo: any;      // from user application
@@ -34,7 +34,7 @@ export class JobDetailsComponent implements OnInit {
     }
 
     getJobById() {
-        this.jobDetailsService.findJobById(this.id).subscribe(
+        this.jobDetailsService.findJobById(this.jobId).subscribe(
             (res) => {
                 this.jobPostsInfo = res.data;
                 if (this.jobPostsInfo != null && this.jobPostsInfo != undefined) {
@@ -50,8 +50,7 @@ export class JobDetailsComponent implements OnInit {
     }
 
     jobApplication() {
-        console.log("component: ", this.data, this.id);
-        this.jobDetailsService.applicationForm(this.data, this.id).subscribe(
+        this.jobDetailsService.applicationForm(this.data, this.jobId).subscribe(
             (res) => {
                 this.toastr.success(res.message);
             },
@@ -67,7 +66,7 @@ export class JobDetailsComponent implements OnInit {
     }
 
     getApplicationById() {
-        this.jobDetailsService.findApplicationById(this.id).subscribe(
+        this.jobDetailsService.findApplicationById(this.jobId).subscribe(
             (res) => {
                 this.candidateInfo = res.data;
                 console.log("Candidate Application: ", this.candidateInfo);
@@ -76,5 +75,9 @@ export class JobDetailsComponent implements OnInit {
                 if (error.status == 401) this.router.navigate(['/login']);
                 this.toastr.error(error.error.message);
             });
+    }
+
+    getCandidates(){
+
     }
 }
