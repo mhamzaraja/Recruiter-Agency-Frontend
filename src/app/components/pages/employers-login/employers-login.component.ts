@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators, FormControl, AbstractControl } from
 import { ToastrService } from 'ngx-toastr';
 import { EmployersLoginService } from './services/employers-login.service';
 import { Router } from "@angular/router";
+import userToken from "../../config/userToken";
 
 @Component({
     selector: 'app-employers-login',
@@ -10,6 +11,7 @@ import { Router } from "@angular/router";
     styleUrls: ['./employers-login.component.scss']
 })
 export class EmployersLoginComponent implements OnInit {
+    userId: number = userToken.id;
 
     submitted: boolean = false;
     form: FormGroup;
@@ -39,7 +41,7 @@ export class EmployersLoginComponent implements OnInit {
 
                 if (res.success == true) {
                     localStorage.setItem('userToken', JSON.stringify(res.data))
-                    this.router.navigate(['/employer/dashboard', res.data.id]);
+                    this.router.navigate(['/employer/dashboard', this.userId]);
                 } else {
                     this.toastr.error(res.message);
                 }

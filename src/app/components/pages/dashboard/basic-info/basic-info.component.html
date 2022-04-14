@@ -11,15 +11,8 @@
                             <a class="cmn-btn" (click)="editInfo()">Edit<i class='bx bxs-edit-alt'></i></a>
                         </div>
                     </div>
-
                     <div style="margin-top: 15px;">
-                        <div *ngIf="name === undefined  && summary === undefined || summary === null">
-                            <p> Hi i have not updated my information yet...</p>
-                        </div>
-                        <div *ngIf="name !== undefined && summary === undefined">
-                            <p> Hi, my name is {{name}} and i'm from {{city}}</p>
-                        </div>
-                        <div *ngIf="summary !== undefined || summary !== null">
+                        <div>
                             <p> {{summary}} </p>
                         </div>
                     </div>

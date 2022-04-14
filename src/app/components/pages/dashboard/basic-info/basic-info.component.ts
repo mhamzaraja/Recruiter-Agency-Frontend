@@ -15,9 +15,6 @@ export class BasicInfoComponent implements OnInit {
 
     public basicInfo = [];
     summary: string;
-    name: string;
-    city: string;
-
 
     response: any;
 
@@ -75,9 +72,12 @@ export class BasicInfoComponent implements OnInit {
         this.basicInfoService.findUsers().subscribe(
             (res) => {
                 this.basicInfo = res.data[0].profile;
-                this.summary = this.basicInfo[0].summary;
-                this.name = this.basicInfo[0].name;
-                this.city = this.basicInfo[0].city;
+
+                if (this.basicInfo.length > 0) {
+                    this.summary = this.basicInfo[0].summary;
+                } else {
+                    this.summary = "Hi i have not updated my information yet!"
+                }
             },
             (error) => {
                 if (error.status == 401) this.router.navigate(['/login']);

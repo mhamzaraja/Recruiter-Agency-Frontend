@@ -3,6 +3,7 @@ import { ToastrService } from 'ngx-toastr';
 import { FormGroup, FormBuilder, Validators, FormControl, AbstractControl } from '@angular/forms';
 import { DashboardService } from './services/dashboard.service';
 import { Router } from "@angular/router";
+import userToken from "../../config/userToken";
 
 @Component({
     selector: 'app-dashboard',
@@ -12,8 +13,9 @@ import { Router } from "@angular/router";
 export class DashboardComponent implements OnInit {
 
     candidateInfo = [];
-    userId: number;
+    userId: number = userToken.id;
     name: string;
+    designation: string;
 
     public placeholder: string = '';
 
@@ -30,9 +32,19 @@ export class DashboardComponent implements OnInit {
     getUser() {
         this.dashboardService.findUsers().subscribe(
             (res) => {
-                this.candidateInfo = res.data[0].profile;
-                this.userId = this.candidateInfo[0].userId;
-                this.name = this.candidateInfo[0].name;
+                this.candidateInfo = res.data;
+
+                if (this.candidateInfo[0].profile.length > 0) {
+                    this.name = this.candidateInfo[0].profile[0].name;
+                } else{
+                    this.name = "User";
+                }
+
+                if (this.candidateInfo[2].experience.length > 0) {
+                    this.designation = this.candidateInfo[2].experience.reverse()[0].jobTitle;
+                } else{
+                    this.designation = "Job Designation";
+                }
             },
             (error) => {
                 if (error.status == 401) this.router.navigate(['/login']);
@@ -40,7 +52,7 @@ export class DashboardComponent implements OnInit {
             });
     }
 
-    onLogout(event: Event){
+    onLogout(event: Event) {
         event.preventDefault();
         this.dashboardService.logout();
     }
