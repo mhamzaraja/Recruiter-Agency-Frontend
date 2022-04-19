@@ -39,4 +39,24 @@ export class JobDetailsService {
         }
         return this.http.post<any>(`${this.host}/api/job/application/create?jobId=${jobId}`, applicationData,  this.httpOptions);
     }
+
+    updateStatus(id: number, data: any){
+        data.application_status = "Approved";
+        let applicationData = {
+            ...data,
+            userId: this.userId
+        };
+
+        return this.http.put<any>(`${this.host}/api/job/application/update?id=${id}`, applicationData, this.httpOptions);
+    }
+
+    rejectStatus(id: number, data: any){
+        data.application_status = "Rejected";
+        let applicationData = {
+            ...data,
+            userId: this.userId
+        };
+
+        return this.http.put<any>(`${this.host}/api/job/application/update?id=${id}`, applicationData, this.httpOptions);
+    }
 }

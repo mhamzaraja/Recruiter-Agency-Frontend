@@ -21,17 +21,19 @@
                 <div class="candidate-item two">
                     <div>
                         <div class="left">
-                            <h3><a [routerLink]="['/candidate-details', i+1]">{{cand.candidate_profile.name}}</a></h3>
-                            <div>
-                                <span class="app-status">
-                                    <span class="span-two two">
-                                        {{cand.application_status}}
+                            <div class="create-button">
+                                <div class="col">
+                                    <h3><a [routerLink]="['/candidate-details', cand.candidate_profile.userId ]">{{cand.candidate_profile.name}}</a></h3>
+                                </div>
+                                <div class="col-md-auto">
+                                    <span class="app-status">
+                                        <span class="span-two two">
+                                            {{cand.application_status}}
+                                        </span>
+                                        <i class='bx bxs-check-circle bx-sm bx-tada-hover' (click)="approve(i)"></i>
+                                        <i class="bx bxs-x-circle bx-sm bx-tada-hover" (click)="reject(i)"></i>
                                     </span>
-
-                                    <i class='bx bxs-check-circle bx-sm bx-tada-hover' (click)="approve(i)"></i>
-                                    <i class="bx bx-trash bx-sm bx-tada-hover" (click)="deleteApp(i)"></i>
-
-                                </span>
+                                </div>
                             </div>
                             <ul class="experience">
                                 <li>Experience: {{cand.candidate_profile.experience}}<span></span></li>

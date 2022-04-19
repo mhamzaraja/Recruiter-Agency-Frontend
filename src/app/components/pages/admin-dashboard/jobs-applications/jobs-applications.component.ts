@@ -16,7 +16,6 @@ export class JobsApplicationsComponent implements OnInit {
     candidateProfile = [];
     candCount: number;
 
-    status: string;
     className: string = "span-two two";
 
     constructor(private route: ActivatedRoute,
@@ -60,19 +59,6 @@ export class JobsApplicationsComponent implements OnInit {
             });
     }
 
-    deleteApp(i: number) {
-        // this.eduId = this.educationInfo[i].id;
-        // this.educationService.deleteEducation(this.eduId).subscribe(
-        //     (res) => {
-        //         if (res.success == true) {
-        //             this.toastr.success(res.message);
-        //             this.getAllEducations()
-        //         } else {
-        //             this.toastr.error(res.error.message);
-        //         }
-        //     });
-    }
-
     approve(i: number) {
         let data = this.applicationInfo[i];
         let id = this.applicationInfo[i].id;
@@ -83,7 +69,21 @@ export class JobsApplicationsComponent implements OnInit {
                     this.toastr.success(res.message);
                     this.getCandidatesOfJob()
 
-                    this.status = this.applicationInfo[i].application_status
+                } else {
+                    this.toastr.error(res.error.message);
+                }
+            });
+    }
+
+    reject(i: number) {
+        let data = this.applicationInfo[i];
+        let id = this.applicationInfo[i].id;
+
+        this.jobsApplicationsService.rejectStatus(id, data).subscribe(
+            (res) => {
+                if (res.success == true) {
+                    this.toastr.success(res.message);
+                    this.getCandidatesOfJob()
 
                 } else {
                     this.toastr.error(res.error.message);

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { JobDetailsService } from "./services/job-details.service";
+import userToken from "../../config/userToken";
 
 @Component({
     selector: 'app-job-details',
@@ -10,13 +11,14 @@ import { JobDetailsService } from "./services/job-details.service";
 })
 export class JobDetailsComponent implements OnInit {
     jobId: number = this.route.snapshot.params.id;
+    role: string = userToken.role;
 
     public jobPostsInfo: any;
-    public candidateInfo: any;      // from user application
+    public applicationInfo: any;      // from user application
     public objLength: number;
 
     public applied: number;
-    isAuth: boolean = true;
+    isEmp: boolean = false;
 
     counter = 0;
 
@@ -30,9 +32,9 @@ export class JobDetailsComponent implements OnInit {
     ) { }
 
     ngOnInit(): void {
-        this.getApplicationById();
+        this.verify();
+        if(this.isEmp === true) this.getApplicationById();
         this.getJobById();
-
     }
 
     getJobById() {
@@ -68,14 +70,24 @@ export class JobDetailsComponent implements OnInit {
     }
 
     getApplicationById() {
+        let applicationData = [];
         this.jobDetailsService.findApplicationById(this.jobId).subscribe(
             (res) => {
-                this.candidateInfo = res.data;
-                console.log("Candidate Application: ", this.candidateInfo);
+                this.applicationInfo = res.data.filter((x)=> x.application_status === "Approved");
+
+                console.log("Application info: ", this.applicationInfo);
+                // this.applied = applicationData.length;
+                // for(var i in applicationData){
+                //     if (applicationData[i].application_status == "Approved") {
+                //         this.applicationInfo = applicationData[i];
+                //     }
+                //     // console.log("Application data: ", applicationData[i]);
+                // }
             },
             (error) => {
                 if (error.status == 401) this.router.navigate(['/login']);
-                if (error.status == 403) this.isAuth = false
+                this.toastr.error(error.error.message);
+                if (error.status == 403) this.toastr.info("403!");
                 if (error.status == 500){
                     this.toastr.info("No candidate has applied on this job yet!");
                     this.applied = 0;
@@ -83,7 +95,43 @@ export class JobDetailsComponent implements OnInit {
             });
     }
 
-    getCandidates(){
+    // approve(i: number) {
+    //     let data = this.applicationInfo[i];
+    //     let id = this.applicationInfo[i].id;
 
+    //     this.jobDetailsService.updateStatus(id, data).subscribe(
+    //         (res) => {
+    //             if (res.success == true) {
+    //                 this.toastr.success(res.message);
+    //                 this.getApplicationById()
+
+    //             } else {
+    //                 this.toastr.error(res.error.message);
+    //             }
+    //         });
+    // }
+
+    schedule(i: number){
+
+    }
+
+    reject(i: number) {
+        let data = this.applicationInfo[i];
+        let id = this.applicationInfo[i].id;
+
+        this.jobDetailsService.rejectStatus(id, data).subscribe(
+            (res) => {
+                if (res.success == true) {
+                    this.toastr.success(res.message);
+                    this.getApplicationById()
+
+                } else {
+                    this.toastr.error(res.error.message);
+                }
+            });
+    }
+
+    verify(){
+        if(this.role === "ROLE_EMPLOYER") this.isEmp = true;
     }
 }

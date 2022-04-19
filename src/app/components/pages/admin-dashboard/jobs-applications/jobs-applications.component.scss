@@ -1,17 +1,21 @@
-.candidate-item .left span{
+.candidate-item .left .app-status span{
     color: #fff;
 }
 
+.candidate-item .left {
+    max-width: 100%;
+}
+
 .app-status{
-    top: 25px;
-    right: 25px;
-    display: inline-block;
-    position: absolute;
     text-align: center;
 }
 
 .bxs-check-circle{
     color: #21a212;
+}
+
+.bxs-x-circle{
+    color: #e20000;
 }
 
 .span-two {

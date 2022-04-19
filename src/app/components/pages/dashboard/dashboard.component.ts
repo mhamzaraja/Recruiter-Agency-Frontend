@@ -54,6 +54,13 @@ export class DashboardComponent implements OnInit {
 
     onLogout(event: Event) {
         event.preventDefault();
-        this.dashboardService.logout();
+        this.dashboardService.logout().subscribe(
+            (res) => {
+                this.toastr.success(res.message);
+            },
+            (error) => {
+                this.toastr.error(error.error.message);
+            }
+        )
     }
 }

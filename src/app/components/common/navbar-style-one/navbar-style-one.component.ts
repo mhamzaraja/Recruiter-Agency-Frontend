@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import userToken from "../../config/userToken";
+import { NavbarService } from '../services/navbar.service';
 
 @Component({
     selector: 'app-navbar-style-one',
@@ -11,7 +12,9 @@ export class NavbarStyleOneComponent implements OnInit {
     token: any = userToken.token;
     isToken: boolean = false;
 
-    constructor(private router: Router) { }
+    constructor(private navbarService: NavbarService,
+        private toastr: ToastrService
+        ) { }
 
     ngOnInit(): void {
         this.getToken();
@@ -23,8 +26,14 @@ export class NavbarStyleOneComponent implements OnInit {
 
     onLogout(event: Event) {
         event.preventDefault();
-        localStorage.removeItem('userToken');
-        this.router.navigate(['/login']);
+        this.navbarService.logout().subscribe(
+            (res) => {
+                this.toastr.success(res.message);
+            },
+            (error) => {
+                this.toastr.error(error.error.message);
+            }
+        )
     }
 
 }
