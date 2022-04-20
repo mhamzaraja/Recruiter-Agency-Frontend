@@ -1,4 +1,5 @@
-.candidate-item .left .app-status span {
+
+.candidate-item .left span {
     color: #fff;
 }
 
@@ -6,8 +7,21 @@
     max-width: 100%;
 }
 
-.app-status{
+.padder{
+    padding: 1rem 1rem;
+}
+
+.city{
+    padding-top: 1rem;
+}
+
+
+.create-button span{
     text-align: center;
+}
+
+.bx-x{
+    font-size: 36px;
 }
 
 .bxs-x-circle{

@@ -4642,6 +4642,10 @@ tbody,
     cursor: pointer;
 }
 
+.bxs-check-circle{
+    color: #21a212;
+}
+
 .create-button {
     display: flex;
     justify-content: space-between;
@@ -8177,3 +8181,6 @@ span.account-direction {
 select {
     display: block !important;
 }
+
+/* Importing Bootstrap SCSS file. */
+// @import '~bootstrap/scss/bootstrap';

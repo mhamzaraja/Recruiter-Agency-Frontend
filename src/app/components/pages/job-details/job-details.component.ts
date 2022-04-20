@@ -3,6 +3,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { JobDetailsService } from "./services/job-details.service";
 import userToken from "../../config/userToken";
+import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
     selector: 'app-job-details',
@@ -22,20 +24,60 @@ export class JobDetailsComponent implements OnInit {
 
     counter = 0;
 
+    closeResult = 'Pending';
+
     data: string = "Under Review";
+
+    scheduleInterview: FormGroup;
+    submittedSch: boolean = false;
+    city = ["a city"];
+
+    time = { hour: 13, minute: 30 };
+    meridian = true;
 
     constructor(
         private jobDetailsService: JobDetailsService,
         private toastr: ToastrService,
         private route: ActivatedRoute,
-        private router: Router
+        private router: Router,
+        private formBuilder: FormBuilder,
+        private modalService: NgbModal
     ) { }
 
     ngOnInit(): void {
+        this.scheduleInterview = this.formBuilder.group({
+
+            date: [null, [Validators.required]],
+            time: [null, [Validators.required]],
+            // comments: ["", [Validators.required]],
+        })
+
         this.verify();
-        if(this.isEmp === true) this.getApplicationById();
+        if (this.isEmp === true) this.getApplicationById();
         this.getJobById();
     }
+
+    get fsch(): { [key: string]: AbstractControl } {
+        return this.scheduleInterview.controls;
+    }
+
+    openTime(content) {
+        this.modalService.open(content);
+    }
+
+    openSchedule(content) {
+        this.modalService.open(content);
+    }
+
+    // private getDismissReason(reason: any): string {
+    //     if (reason === ModalDismissReasons.ESC) {
+    //         return 'by pressing ESC';
+    //     } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+    //         return 'by clicking on a backdrop';
+    //     } else {
+    //         return `with: ${reason}`;
+    //     }
+    // }
 
     getJobById() {
         this.jobDetailsService.findJobById(this.jobId).subscribe(
@@ -73,7 +115,7 @@ export class JobDetailsComponent implements OnInit {
         let applicationData = [];
         this.jobDetailsService.findApplicationById(this.jobId).subscribe(
             (res) => {
-                this.applicationInfo = res.data.filter((x)=> x.application_status === "Approved");
+                this.applicationInfo = res.data.filter((x) => x.application_status === "Approved");
 
                 console.log("Application info: ", this.applicationInfo);
                 // this.applied = applicationData.length;
@@ -88,7 +130,7 @@ export class JobDetailsComponent implements OnInit {
                 if (error.status == 401) this.router.navigate(['/login']);
                 this.toastr.error(error.error.message);
                 if (error.status == 403) this.toastr.info("403!");
-                if (error.status == 500){
+                if (error.status == 500) {
                     this.toastr.info("No candidate has applied on this job yet!");
                     this.applied = 0;
                 }
@@ -111,7 +153,7 @@ export class JobDetailsComponent implements OnInit {
     //         });
     // }
 
-    schedule(i: number){
+    schedule(i: number) {
 
     }
 
@@ -131,7 +173,7 @@ export class JobDetailsComponent implements OnInit {
             });
     }
 
-    verify(){
-        if(this.role === "ROLE_EMPLOYER") this.isEmp = true;
+    verify() {
+        if (this.role === "ROLE_EMPLOYER") this.isEmp = true;
     }
 }

@@ -54,6 +54,7 @@ import { AdminDashboardComponent } from './components/pages/admin-dashboard/admi
 import { CompaniesComponent } from './components/pages/companies/companies.component';
 import { AdminRegisterComponent } from './components/pages/admin-register/admin-register.component';
 import { AdminLoginComponent } from './components/pages/admin-login/admin-login.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -112,6 +113,7 @@ import { AdminLoginComponent } from './components/pages/admin-login/admin-login.
     AutocompleteLibModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]
