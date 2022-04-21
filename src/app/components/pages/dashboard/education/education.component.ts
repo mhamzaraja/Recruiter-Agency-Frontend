@@ -65,7 +65,6 @@ export class EducationComponent implements OnInit {
                 });
             this.submitted = false;
         }
-
     }
 
     educationUpdateForm() {

@@ -3,8 +3,11 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { JobDetailsService } from "./services/job-details.service";
 import userToken from "../../config/userToken";
-import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ScheduleInterviewService } from './services/schedule-interview.service';
+import cities from '../../data/data';
+
 
 @Component({
     selector: 'app-job-details',
@@ -30,10 +33,11 @@ export class JobDetailsComponent implements OnInit {
 
     scheduleInterview: FormGroup;
     submittedSch: boolean = false;
-    city = ["a city"];
+    city = cities.cities;
 
     time = { hour: 13, minute: 30 };
     meridian = true;
+    timeString: string;
 
     constructor(
         private jobDetailsService: JobDetailsService,
@@ -41,16 +45,21 @@ export class JobDetailsComponent implements OnInit {
         private route: ActivatedRoute,
         private router: Router,
         private formBuilder: FormBuilder,
-        private modalService: NgbModal
+        private modalService: NgbModal,
+        private scheduleInterviewService: ScheduleInterviewService
     ) { }
 
     ngOnInit(): void {
         this.scheduleInterview = this.formBuilder.group({
 
             date: [null, [Validators.required]],
-            time: [null, [Validators.required]],
+            timeField: [null, [Validators.required]],
+            address: [null, [Validators.required]],
+            city: [null, [Validators.required]],
+            comments: [null, [Validators.required]],
+            status: ["Scheduled"],
             // comments: ["", [Validators.required]],
-        })
+        });
 
         this.verify();
         if (this.isEmp === true) this.getApplicationById();
@@ -59,6 +68,15 @@ export class JobDetailsComponent implements OnInit {
 
     get fsch(): { [key: string]: AbstractControl } {
         return this.scheduleInterview.controls;
+    }
+
+    toggleMeridian() {
+        this.meridian = !this.meridian;
+    }
+
+    ontimeChange(value: {hour: string, minute: string}){
+        this.timeString = `${value.hour}:${value.minute}`;
+        this.scheduleInterview.controls.timeField.setValue(this.timeString + " (PST)");
     }
 
     openTime(content) {
@@ -78,6 +96,29 @@ export class JobDetailsComponent implements OnInit {
     //         return `with: ${reason}`;
     //     }
     // }
+
+    scheduleInterForm(){
+        this.submittedSch = true;
+        if (this.scheduleInterview.invalid) {
+            this.toastr.error("Please fill form correctly!");
+        }
+        else {
+            console.log("interview data; ", this.scheduleInterview.value);
+            this.modalService.dismissAll();
+            this.closeResult = "Scheduled"
+
+            // this.scheduleInterviewService.scheduleInterview(this.scheduleInterview.value).subscribe(
+            //     (res) => {
+            //         // this.getAllEducations();
+            //         if (res.success == true) {
+            //             this.toastr.success(res.message);
+            //         } else {
+            //             this.toastr.error(res.message);
+            //         }
+            //     });
+            // this.submittedSch = false;
+        }
+    }
 
     getJobById() {
         this.jobDetailsService.findJobById(this.jobId).subscribe(
