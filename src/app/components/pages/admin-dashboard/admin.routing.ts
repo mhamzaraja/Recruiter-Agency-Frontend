@@ -4,6 +4,7 @@ import { ResumeComponent } from './resume/resume.component';
 import { ProfessionalsComponent } from './professionals/professionals.component';
 import { CandidatesComponent } from './candidates/candidates.component';
 import { JobsApplicationsComponent } from './jobs-applications/jobs-applications.component';
+import { InteriewsComponent } from './interiews/interiews.component';
 
 export const AdminRoutes: Routes = [
 
@@ -41,6 +42,13 @@ export const AdminRoutes: Routes = [
         component: JobsApplicationsComponent,
         data: {
             title: 'Applications Controls'
+        }
+    },
+    {
+        path: 'interviews',
+        component: InteriewsComponent,
+        data: {
+            title: 'Interviews'
         }
     }
 

@@ -105,7 +105,8 @@ export class JobDetailsComponent implements OnInit {
         else {
             console.log("interview data; ", this.scheduleInterview.value);
             this.modalService.dismissAll();
-            this.closeResult = "Scheduled"
+            this.closeResult = "Scheduled";
+            this.toastr.success("Sucessfully scheduled for the interview!");
 
             // this.scheduleInterviewService.scheduleInterview(this.scheduleInterview.value).subscribe(
             //     (res) => {

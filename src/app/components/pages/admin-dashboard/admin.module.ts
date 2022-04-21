@@ -19,6 +19,8 @@ import { JobsApplicationsService } from './jobs-applications/services/jobs-appli
 
 // paginaton ngx
 import { NgxPaginationModule } from 'ngx-pagination';
+import { InteriewsComponent } from './interiews/interiews.component';
+import { InterviewsService } from './interiews/services/interviews.service';
 
 @NgModule({
     imports: [
@@ -35,13 +37,15 @@ import { NgxPaginationModule } from 'ngx-pagination';
         JobsApplicationsComponent,
         CandidatesComponent,
         ProfessionalsComponent,
+        InteriewsComponent,
     ],
     providers: [
         FormBuilder,
         JobsService,
         ResumeService,
         ProfessionalsService,
-        JobsApplicationsService
+        JobsApplicationsService,
+        InterviewsService
     ]
 })
 export class AdminModule { }

@@ -16,17 +16,17 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let emp of candidatesInfo; let i = index" [routerLink]="['/dashboard', emp.id]">
-            <th scope="row">{{emp.id}}</th>
-            <td>{{emp.name}}</td>
-            <td>{{emp.city}}</td>
+        <tr *ngFor="let cand of candidatesInfo; let i = index" [routerLink]="['/dashboard', cand.id]">
+            <th scope="row">{{cand.id}}</th>
+            <td>{{cand.name}}</td>
+            <td>{{cand.city}}</td>
             <td>
-                {{emp.createdAt | date}} at
-                {{emp.createdAt | date:'shortTime'}}
+                {{cand.createdAt | date}} at
+                {{cand.createdAt | date:'shortTime'}}
             </td>
             <td>
-                {{emp.updatedAt | date}} at
-                {{emp.updatedAt | date:'shortTime'}}
+                {{cand.updatedAt | date}} at
+                {{cand.updatedAt | date:'shortTime'}}
             </td>
             <td>status</td>
             <td
