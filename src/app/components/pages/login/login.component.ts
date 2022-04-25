@@ -37,18 +37,19 @@ export class LoginComponent implements OnInit {
     logInForm() {
         this.submitted = true;
         if (this.form.valid) {
-            this.loginServices.login(this.form.value).subscribe((res) => {
-                const now = new Date();
+            this.loginServices.login(this.form.value).subscribe(
+                (res) => {
+                    const now = new Date();
 
-                if (res.success == true) {
-                    localStorage.setItem('userToken', JSON.stringify(res.data));
-                    this.router.navigate(['/dashboard', this.userId]);
-                } else {
-                    this.toastr.error(res.message);
-                }
-            },
+                    if (res.success == true) {
+                        localStorage.setItem('userToken', JSON.stringify(res.data));
+                        this.router.navigate(['candidate/dashboard', res.data.id]);
+                    } else {
+                        this.toastr.error(res.message);
+                    }
+                },
                 (error) => {
-                    if (error.status == 401) this.router.navigate(['/login']);
+                    //if (error.status == 401) this.router.navigate(['/login']);
                     this.toastr.error(error.error.message);
                 }
             );

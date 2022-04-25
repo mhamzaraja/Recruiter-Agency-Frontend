@@ -77,7 +77,7 @@ export class ProjectComponent implements OnInit {
                 console.log("project data: ", this.projectsInfo);
             },
             (error) => {
-                if (error.status == 401) this.router.navigate(['/login']);
+                //if (error.status == 401) this.router.navigate(['/login']);
                 this.toastr.error(error.error.message);
             });
     }
@@ -96,7 +96,7 @@ export class ProjectComponent implements OnInit {
                     this.getAllProjects();
                 },
                 (error) => {
-                    if(error.status == 401) this.router.navigate(['/login']);
+                    //if (error.status == 401) this.router.navigate(['/login']);
                 this.toastr.error(error.error.message);
                 });
             this.submitted = false;
@@ -111,7 +111,7 @@ export class ProjectComponent implements OnInit {
                 this.getAllProjects()
             },
             (error) => {
-                if (error.status == 401) this.router.navigate(['/login']);
+                //if (error.status == 401) this.router.navigate(['/login']);
                 this.toastr.error(error.error.message);
             });
     }

@@ -31,7 +31,7 @@ export class CandidatesComponent implements OnInit {
                 // }
             },
             (error) => {
-                if(error.status == 401) this.router.navigate(['/login']);
+                //if (error.status == 401) this.router.navigate(['/login']);
                 this.toastr.error(error.error.message);
             });
     }

@@ -29,7 +29,7 @@ export class JobsComponent implements OnInit {
                 this.jobPostsInfo = res.data;
             },
             (error) => {
-                if (error.status == 401) this.router.navigate(['/login']);
+                //if (error.status == 401) this.router.navigate(['/login']);
                 this.toastr.error(error.error.message);
             });
     }

@@ -61,7 +61,7 @@ export class BasicInfoComponent implements OnInit {
                     this.getUser();
                 },
                 (error) => {
-                    if (error.status == 401) this.router.navigate(['/login']);
+                    //if (error.status == 401) this.router.navigate(['/login']);
                     this.toastr.error(error.error.message);
                 });
             this.submitted = false;
@@ -80,7 +80,7 @@ export class BasicInfoComponent implements OnInit {
                 }
             },
             (error) => {
-                if (error.status == 401) this.router.navigate(['/login']);
+                //if (error.status == 401) this.router.navigate(['/login']);
                 this.toastr.error(error.error.message);
             });
     }

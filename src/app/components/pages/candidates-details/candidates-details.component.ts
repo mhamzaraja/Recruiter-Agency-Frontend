@@ -42,7 +42,7 @@ export class CandidatesDetailsComponent implements OnInit {
                 this.candLanguages = res.data[5].languages;
             },
             (error) => {
-                if(error.status == 401) this.router.navigate(['/login']);
+                //if (error.status == 401) this.router.navigate(['/login']);
                 this.toastr.error(error.error.message);
             });
     }

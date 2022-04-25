@@ -63,7 +63,7 @@ export class PostAJobComponent implements OnInit {
                     this.toastr.success(res.message);
                 },
                 (error) => {
-                    if(error.status == 401) this.router.navigate(['/login']);
+                    //if (error.status == 401) this.router.navigate(['/login']);
                 this.toastr.error(error.error.message);
                 });
             this.submittedJob = false;
@@ -82,7 +82,7 @@ export class PostAJobComponent implements OnInit {
                     this.toastr.success(res.message);
                 },
                 (error) => {
-                    if(error.status == 401) this.router.navigate(['/login']);
+                    //if (error.status == 401) this.router.navigate(['/login']);
                 this.toastr.error(error.error.message);
                 });
             this.submittedJob = false;

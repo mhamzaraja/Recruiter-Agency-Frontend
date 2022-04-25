@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { AuthGuard } from './components/guards/auth.guard';
+import { RoleGuardGuard } from './components/guards/role-guard.guard';
 import { AboutComponent } from './components/pages/about/about.component';
 import { AdminDashboardComponent } from './components/pages/admin-dashboard/admin-dashboard.component';
 import { AdminLoginComponent } from './components/pages/admin-login/admin-login.component';
@@ -42,47 +44,120 @@ const routes: Routes = [
     { path: 'home-three', component: HomeThreeComponent },
     { path: 'login', component: LoginComponent },
     { path: 'register', component: RegisterComponent },
+    { path: 'jobs', component: JobsComponent },
+    { path: 'privacy-policy', component: PrivacyPolicyComponent },
+    { path: 'about', component: AboutComponent },
+    { path: 'contact', component: ContactComponent },
+    { path: 'terms-conditions', component: TermsConditionsComponent },
     { path: 'employers-login', component: EmployersLoginComponent },
     { path: 'employers-register', component: EmployersRegisterComponent },
-    { path: 'employers', component: EmployersComponent },
-    { path: 'employer-details', component: EmployersDetailsComponent },
-    // {path: 'dashboard', component: DashboardComponent},
-    { path: 'single-resume', component: ResumeDetailsComponent },
-    { path: 'testimonials', component: TestimonialsComponent },
-    { path: 'pricing', component: PricingComponent },
-    { path: 'faq', component: FaqComponent },
-    { path: 'coming-soon', component: ComingSoonComponent },
-    { path: 'error', component: ErrorComponent },
-    { path: 'privacy-policy', component: PrivacyPolicyComponent },
-    { path: 'terms-conditions', component: TermsConditionsComponent },
-    { path: 'about', component: AboutComponent },
-    { path: 'jobs', component: JobsComponent },
-    { path: 'favourite-jobs', component: FavouriteJobsComponent },
-    { path: 'post-a-job', component: PostAJobComponent },
-    { path: 'blog', component: BlogComponent },
-    { path: 'blog-details', component: BlogDetailsComponent },
-    { path: 'contact', component: ContactComponent },
+
 
     {
-        path: 'admin/:id',
+        path: 'employers',
+        canActivate: [AuthGuard],
+        component: EmployersComponent
+    },
+    {
+        path: 'testimonials',
+        canActivate: [AuthGuard],
+        component: TestimonialsComponent
+    },
+    {
+        path: 'faq',
+        component: FaqComponent
+    },
+    {
+        path: 'blog',
+        canActivate: [AuthGuard],
+        component: BlogComponent
+    },
+    {
+        path: 'blog-details',
+        canActivate: [AuthGuard],
+        component: BlogDetailsComponent
+    },
+    {
+        path: 'coming-soon',
+        canActivate: [AuthGuard],
+        component: ComingSoonComponent
+    },
+    {
+        path: 'error',
+        canActivate: [AuthGuard],
+        component: ErrorComponent
+    },
+
+
+    {
+        path: 'employer-details',
+        canActivate: [AuthGuard, RoleGuardGuard],
+        data: {
+            expectedRoles: ['']
+        },
+        component: EmployersDetailsComponent
+    },
+    {
+        path: 'single-resume',
+        canActivate: [AuthGuard, RoleGuardGuard],
+        data: {
+            expectedRoles: ['']
+        },
+        component: ResumeDetailsComponent
+    },
+    {
+        path: 'post-a-job',
+        canActivate: [AuthGuard, RoleGuardGuard],
+        data: {
+            expectedRoles: ['ROLE_EMPLOYER']
+        },
+        component: PostAJobComponent
+    },
+    {
+        path: 'pricing',
+        canActivate: [AuthGuard, RoleGuardGuard],
+        data: {
+            expectedRoles: ['ROLE_EMPLOYER']
+        },
+        component: PricingComponent
+    },
+    {
+        path: 'favourite-jobs',
+        canActivate: [AuthGuard, RoleGuardGuard],
+        data: {
+            expectedRoles: ['ROLE_CANDIDATE']
+        },
+        component: FavouriteJobsComponent
+    },
+
+    {
+        path: 'admin/dashboard/:id',
         component: AdminDashboardComponent,
+        canActivate: [AuthGuard, RoleGuardGuard],
+        data: {
+            expectedRoles: ['ROLE_SUPER_USER']
+        },
         children: [
             {
                 path: '',
                 loadChildren: () => import('./components/pages/admin-dashboard/admin.module')
-                .then(m => m.AdminModule)
+                    .then(m => m.AdminModule)
             }
         ]
     },
 
     {
-        path: 'dashboard/:id',
+        path: 'candidate/dashboard/:id',
         component: DashboardComponent,
+        canActivate: [AuthGuard, RoleGuardGuard],
+        data: {
+            expectedRoles: ['ROLE_CANDIDATE']
+        },
         children: [
             {
                 path: '',
                 loadChildren: () => import('./components/pages/dashboard/dashboard.module')
-                .then(m => m.DashboardModule)
+                    .then(m => m.DashboardModule)
             }
         ]
     },
@@ -90,34 +165,73 @@ const routes: Routes = [
     {
         path: 'companies',
         component: CompaniesComponent,
+        canActivate: [AuthGuard, RoleGuardGuard],
+        data: {
+            expectedRoles: ['']
+        },
         children: [
             {
                 path: '',
                 loadChildren: () => import('./components/pages/companies/company.module')
-                .then(m => m.CompanyModule)
+                    .then(m => m.CompanyModule)
             }
         ]
     },
-    { path: 'companies/create', component: CompanyCreateComponent },
 
     {
         path: 'employer/dashboard/:id',
         component: EmploerDashboardComponent,
+        canActivate: [AuthGuard, RoleGuardGuard],
+        data: {
+            expectedRoles: ['ROLE_EMPLOYER']
+        },
         children: [
             {
                 path: '',
                 loadChildren: () => import('./components/pages/employer-dashboard/dashboard.module')
-                .then(m => m.EmploerDashboardModule)
+                    .then(m => m.EmploerDashboardModule)
             }
         ]
     },
 
-    { path: 'candidates', component: CandidatesComponent },
-    { path: 'candidate-details/:id', component: CandidatesDetailsComponent },
+    {
+        path: 'employer/dashboard/:id/profile/create',
+        canActivate: [AuthGuard, RoleGuardGuard],
+        data: {
+            expectedRoles: ['ROLE_EMPLOYER']
+        },
+        component: EmployerBasicInfoComponent
+    },
 
-    { path: 'job-details/:id', component: JobDetailsComponent },
+    {
+        path: 'candidates',
+        component: CandidatesComponent,
+        canActivate: [AuthGuard, RoleGuardGuard],
+        data: {
+            expectedRoles: ["ROLE_SUPER_USER", "ROLE_CANDIDATE", "ROLE_EMPLOYER"]
+        },
+    },
+    {
+        path: 'candidate-details/:id',
+        component: CandidatesDetailsComponent,
+        canActivate: [AuthGuard, RoleGuardGuard],
+        data: {
+            expectedRoles: ["ROLE_SUPER_USER", "ROLE_CANDIDATE", "ROLE_EMPLOYER"]
+        },
+    },
 
-    { path: 'employer/dashboard/:id/profile/create', component: EmployerBasicInfoComponent },
+    {
+        path: 'job-details/:id',
+        canActivate: [AuthGuard, RoleGuardGuard],
+        data: {
+            expectedRoles: ["ROLE_SUPER_USER", "ROLE_CANDIDATE", "ROLE_EMPLOYER"]
+        },
+        component: JobDetailsComponent
+    },
+
+
+    { path: 'companies/create', component: CompanyCreateComponent },
+
     { path: 'employer/login', component: EmployersLoginComponent },
     { path: 'employer/register', component: EmployersRegisterComponent },
 

@@ -60,7 +60,7 @@ export class CompanyEditComponent implements OnInit {
                 this.editComp(this.companyId);
             },
             (error) => {
-                if(error.status == 401) this.router.navigate(['/login']);
+                //if (error.status == 401) this.router.navigate(['/login']);
                 this.toastr.error(error.error.message);
             });
     }
@@ -78,7 +78,7 @@ export class CompanyEditComponent implements OnInit {
                     this.getCompanysDataById(id);
                 },
                 (error) => {
-                    if(error.status == 401) this.router.navigate(['/login']);
+                    //if (error.status == 401) this.router.navigate(['/login']);
                 this.toastr.error(error.error.message);
                 });
             this.submittedComp = false;

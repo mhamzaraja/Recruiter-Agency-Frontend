@@ -111,7 +111,7 @@
                     </ul>
 
                     <div class="side-nav three">
-                        <a class="login-left" *ngIf="!isToken"><i class="flaticon-enter"></i> Login/Register</a>
+                        <a class="login-left" routerLink="/login" *ngIf="!isToken"><i class="flaticon-enter"></i> Login/Register</a>
                         <a class="login-left" *ngIf="isToken" (click)="onLogout($event)"><i class="flaticon-enter"></i> Logout</a>
 
                         <a class="job-right" routerLink="/employer/login">Employer <i class='bx bx-plus'></i></a>

@@ -24,6 +24,7 @@ export class JobDetailsComponent implements OnInit {
 
     public applied: number;
     isEmp: boolean = false;
+    isCand: boolean = false;
 
     counter = 0;
 
@@ -61,7 +62,8 @@ export class JobDetailsComponent implements OnInit {
             // comments: ["", [Validators.required]],
         });
 
-        this.verify();
+        this.isEmployer();
+        this.isCandidate();
         if (this.isEmp === true) this.getApplicationById();
         this.getJobById();
     }
@@ -132,7 +134,7 @@ export class JobDetailsComponent implements OnInit {
                 }
             },
             (error) => {
-                if (error.status == 401) this.router.navigate(['/login']);
+                //if (error.status == 401) this.router.navigate(['/login']);
                 this.toastr.error(error.error.message);
             });
     }
@@ -147,7 +149,7 @@ export class JobDetailsComponent implements OnInit {
                     this.toastr.warning(error.error.message);
                     console.log(error.error.created);
                 } else {
-                    if (error.status == 401) this.router.navigate(['/login']);
+                    //if (error.status == 401) this.router.navigate(['/login']);
                     this.toastr.error(error.error.message);
                 }
             });
@@ -169,7 +171,7 @@ export class JobDetailsComponent implements OnInit {
                 // }
             },
             (error) => {
-                if (error.status == 401) this.router.navigate(['/login']);
+                //if (error.status == 401) this.router.navigate(['/login']);
                 this.toastr.error(error.error.message);
                 if (error.status == 403) this.toastr.info("403!");
                 if (error.status == 500) {
@@ -215,7 +217,11 @@ export class JobDetailsComponent implements OnInit {
             });
     }
 
-    verify() {
+    isEmployer() {
         if (this.role === "ROLE_EMPLOYER") this.isEmp = true;
+    }
+
+    isCandidate(){
+        if (this.role === "ROLE_CANDIDATE") this.isCand = true;
     }
 }

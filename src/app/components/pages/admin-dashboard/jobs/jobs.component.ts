@@ -35,7 +35,7 @@ export class JobsComponent implements OnInit {
                 }
             },
             (error) => {
-                if(error.status == 401) this.router.navigate(['/login']);
+                //if (error.status == 401) this.router.navigate(['/login']);
                 this.toastr.error(error.error.message);
             });
     }
@@ -54,7 +54,7 @@ export class JobsComponent implements OnInit {
                 }
             },
             (error) => {
-                if(error.status == 401) this.router.navigate(['/login']);
+                //if (error.status == 401) this.router.navigate(['/login']);
                 this.toastr.error(error.error.message);
             });
     }
@@ -67,7 +67,7 @@ export class JobsComponent implements OnInit {
                 this.getAllJobsData();
             },
             (error) => {
-                if(error.status == 401) this.router.navigate(['/login']);
+                //if (error.status == 401) this.router.navigate(['/login']);
                 this.toastr.error(error.error.message);
             });
     }

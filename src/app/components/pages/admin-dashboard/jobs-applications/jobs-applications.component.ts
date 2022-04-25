@@ -34,7 +34,7 @@ export class JobsApplicationsComponent implements OnInit {
     //             this.jobTitle = res.data.job_title;
     //         },
     //         (error) => {
-    //             if(error.status == 401) this.router.navigate(['/login']);
+    //             //if (error.status == 401) this.router.navigate(['/login']);
     // this.toastr.error(error.error.message);
     //         });
     // }
@@ -52,7 +52,7 @@ export class JobsApplicationsComponent implements OnInit {
                 this.candCount = this.candidateProfile.length;
             },
             (error) => {
-                if (error.status == 401) this.router.navigate(['/login']);
+                //if (error.status == 401) this.router.navigate(['/login']);
                 if (error.status == 500){
                     this.toastr.info("No candidate has applied on this job yet!");
                 }

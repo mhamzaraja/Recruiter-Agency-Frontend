@@ -69,7 +69,7 @@ export class ExperienceComponent implements OnInit {
                     this.getAllExperience();
                 },
                 (error) => {
-                    if(error.status == 401) this.router.navigate(['/login']);
+                    //if (error.status == 401) this.router.navigate(['/login']);
                 this.toastr.error(error.error.message);
                 });
             this.submittedExp = false;
@@ -90,7 +90,7 @@ export class ExperienceComponent implements OnInit {
                     this.getAllExperience();
                 },
                 (error) => {
-                    if(error.status == 401) this.router.navigate(['/login']);
+                    //if (error.status == 401) this.router.navigate(['/login']);
                 this.toastr.error(error.error.message);
                 });
             this.submitted = false;
@@ -103,7 +103,7 @@ export class ExperienceComponent implements OnInit {
                 this.experienceInfo = res.data;
             },
             (error) => {
-                if(error.status == 401) this.router.navigate(['/login']);
+                //if (error.status == 401) this.router.navigate(['/login']);
                 this.toastr.error(error.error.message);
             });
     }

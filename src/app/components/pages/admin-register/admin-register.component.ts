@@ -47,7 +47,7 @@ export class AdminRegisterComponent implements OnInit {
                     this.toastr.success(res.message);
                 },
                 (error) => {
-                    if(error.status == 401) this.router.navigate(['/login']);
+                    //if (error.status == 401) this.router.navigate(['/login']);
                 this.toastr.error(error.error.message);
                 }
             )
