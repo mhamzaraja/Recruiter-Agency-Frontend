@@ -30,6 +30,7 @@ export class ScheduleInterviewService {
         let schInterData = {
             ...data
         }
-        return this.http.post<any>(`${this.host}/api/job/application/create`, schInterData, this.httpOptions);
+        console.log("sch inter: ", schInterData);
+        return this.http.post<any>(`${this.host}/api/job/interview/create`, schInterData, this.httpOptions);
     }
 }

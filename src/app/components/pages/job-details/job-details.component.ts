@@ -58,7 +58,7 @@ export class JobDetailsComponent implements OnInit {
             address: [null, [Validators.required]],
             city: [null, [Validators.required]],
             comments: [null, [Validators.required]],
-            status: ["Scheduled"],
+            status: ["Requested"],
             // comments: ["", [Validators.required]],
         });
 
@@ -76,7 +76,7 @@ export class JobDetailsComponent implements OnInit {
         this.meridian = !this.meridian;
     }
 
-    ontimeChange(value: {hour: string, minute: string}){
+    ontimeChange(value: { hour: string, minute: string }) {
         this.timeString = `${value.hour}:${value.minute}`;
         this.scheduleInterview.controls.timeField.setValue(this.timeString + " (PST)");
     }
@@ -99,27 +99,25 @@ export class JobDetailsComponent implements OnInit {
     //     }
     // }
 
-    scheduleInterForm(){
+    scheduleInterForm() {
         this.submittedSch = true;
         if (this.scheduleInterview.invalid) {
             this.toastr.error("Please fill form correctly!");
         }
         else {
-            console.log("interview data; ", this.scheduleInterview.value);
+            // console.log("interview data; ", this.scheduleInterview.value);
             this.modalService.dismissAll();
             this.closeResult = "Scheduled";
-            this.toastr.success("Sucessfully scheduled for the interview!");
+            // this.toastr.success("Sucessfully scheduled for the interview!");
 
-            // this.scheduleInterviewService.scheduleInterview(this.scheduleInterview.value).subscribe(
-            //     (res) => {
-            //         // this.getAllEducations();
-            //         if (res.success == true) {
-            //             this.toastr.success(res.message);
-            //         } else {
-            //             this.toastr.error(res.message);
-            //         }
-            //     });
-            // this.submittedSch = false;
+            this.scheduleInterviewService.scheduleInterview(this.scheduleInterview.value).subscribe(
+                (res) => {
+                    this.toastr.success(res.message);
+                },
+                (error) => {
+                    this.toastr.error(error.error.message);
+                });
+            this.submittedSch = false;
         }
     }
 
@@ -147,7 +145,7 @@ export class JobDetailsComponent implements OnInit {
             (error) => {
                 if (!error.error.created) {
                     this.toastr.warning(error.error.message);
-                    console.log(error.error.created);
+                    // console.log(error.error.created);
                 } else {
                     //if (error.status == 401) this.router.navigate(['/login']);
                     this.toastr.error(error.error.message);
@@ -161,7 +159,7 @@ export class JobDetailsComponent implements OnInit {
             (res) => {
                 this.applicationInfo = res.data.filter((x) => x.application_status === "Approved");
 
-                console.log("Application info: ", this.applicationInfo);
+                // console.log("Application info: ", this.applicationInfo);
                 // this.applied = applicationData.length;
                 // for(var i in applicationData){
                 //     if (applicationData[i].application_status == "Approved") {
@@ -221,7 +219,7 @@ export class JobDetailsComponent implements OnInit {
         if (this.role === "ROLE_EMPLOYER") this.isEmp = true;
     }
 
-    isCandidate(){
+    isCandidate() {
         if (this.role === "ROLE_CANDIDATE") this.isCand = true;
     }
 }

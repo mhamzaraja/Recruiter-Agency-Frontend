@@ -21,6 +21,7 @@ import { JobsApplicationsService } from './jobs-applications/services/jobs-appli
 import { NgxPaginationModule } from 'ngx-pagination';
 import { InteriewsComponent } from './interiews/interiews.component';
 import { InterviewsService } from './interiews/services/interviews.service';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
     imports: [
@@ -29,7 +30,8 @@ import { InterviewsService } from './interiews/services/interviews.service';
         ReactiveFormsModule,
         AutocompleteLibModule,
         NgxPaginationModule,
-        RouterModule.forChild(AdminRoutes)
+        RouterModule.forChild(AdminRoutes),
+        NgbModule
     ],
     declarations: [
         JobsComponent,
