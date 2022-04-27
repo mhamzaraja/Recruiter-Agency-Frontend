@@ -16,10 +16,11 @@ import cities from '../../data/data';
 })
 export class JobDetailsComponent implements OnInit {
     jobId: number = this.route.snapshot.params.id;
+    userId: string = userToken.id;
     role: string = userToken.role;
 
     public jobPostsInfo: any;
-    public applicationInfo: any;      // from user application
+    public applicationInfo = [];      // from user application
     public objLength: number;
 
     public applied: number;
@@ -157,16 +158,11 @@ export class JobDetailsComponent implements OnInit {
         let applicationData = [];
         this.jobDetailsService.findApplicationById(this.jobId).subscribe(
             (res) => {
-                this.applicationInfo = res.data.filter((x) => x.application_status === "Approved");
+                this.applicationInfo = res.data.filter(
+                    (x) => x.application_status === "Approved" &&
+                    x.post_a_job.employerId === this.userId);
 
-                // console.log("Application info: ", this.applicationInfo);
-                // this.applied = applicationData.length;
-                // for(var i in applicationData){
-                //     if (applicationData[i].application_status == "Approved") {
-                //         this.applicationInfo = applicationData[i];
-                //     }
-                //     // console.log("Application data: ", applicationData[i]);
-                // }
+                    console.log("inter: ", this.applicationInfo)
             },
             (error) => {
                 //if (error.status == 401) this.router.navigate(['/login']);

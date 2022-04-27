@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
+import { InterviewsService } from './services/interviews.service';
 
 @Component({
     selector: 'app-interiews',
@@ -13,6 +14,7 @@ export class InteriewsComponent implements OnInit {
 
     scheduleInterview: FormGroup;
     submittedSch: boolean = false;
+    interviewInfo = [];
 
     time = { hour: 13, minute: 30 };
     meridian = true;
@@ -23,6 +25,7 @@ export class InteriewsComponent implements OnInit {
         private router: Router,
         private formBuilder: FormBuilder,
         private modalService: NgbModal,
+        private interviewsService: InterviewsService
     ) { }
 
     ngOnInit(): void {
@@ -36,6 +39,8 @@ export class InteriewsComponent implements OnInit {
             // status: ["Approved"],
             // comments: ["", [Validators.required]],
         });
+
+        this.getScheduleData();
     }
 
     get fsch(): { [key: string]: AbstractControl } {
@@ -53,6 +58,27 @@ export class InteriewsComponent implements OnInit {
     ontimeChange(value: { hour: string, minute: string }) {
         this.timeString = `${value.hour}:${value.minute}`;
         this.scheduleInterview.controls.timeField.setValue(this.timeString + " (PST)");
+    }
+
+    getScheduleData(){
+        this.interviewsService.findAllInterviewsData().subscribe(
+            (res) => {
+                this.interviewInfo = res.data;
+
+                console.log("interview data: ", this.interviewInfo );
+
+                // for (let keys in this.employersInfo) {
+                //     if (this.employersInfo[keys].employerId == eId) {
+                //         this.employer_name = this.employersInfo[keys].full_name;
+                //     } else {
+                //         this.employer_name = ["Job Is not associated with any employer"];
+                //     }
+                // }
+            },
+            (error) => {
+                //if (error.status == 401) this.router.navigate(['/login']);
+                this.toastr.error(error.error.message);
+            });
     }
 
 }

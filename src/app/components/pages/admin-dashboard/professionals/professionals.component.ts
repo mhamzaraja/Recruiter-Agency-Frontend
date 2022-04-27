@@ -26,7 +26,7 @@ export class ProfessionalsComponent implements OnInit {
         this.professionalsService.findAllEmployersData().subscribe(
             (res) => {
                 this.employersInfo = res.data;
-                console.log(this.employersInfo);
+                // console.log(this.employersInfo);
                 // for (let keys in this.employersInfo) {
                 //     eId = this.employersInfo[keys].employerId;
                 // }
