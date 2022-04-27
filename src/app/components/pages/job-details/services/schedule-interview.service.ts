@@ -25,10 +25,12 @@ export class ScheduleInterviewService {
 
     constructor(private http: HttpClient) { }
 
-    scheduleInterview(data) {
+    scheduleInterview(data, jobId: number) {
 
         let schInterData = {
-            ...data
+            ...data,
+            jobId,
+            userId: this.userId
         }
         console.log("sch inter: ", schInterData);
         return this.http.post<any>(`${this.host}/api/job/interview/create`, schInterData, this.httpOptions);

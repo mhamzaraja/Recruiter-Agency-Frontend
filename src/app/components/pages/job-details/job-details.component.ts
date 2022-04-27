@@ -106,12 +106,10 @@ export class JobDetailsComponent implements OnInit {
             this.toastr.error("Please fill form correctly!");
         }
         else {
-            // console.log("interview data; ", this.scheduleInterview.value);
             this.modalService.dismissAll();
             this.closeResult = "Scheduled";
-            // this.toastr.success("Sucessfully scheduled for the interview!");
 
-            this.scheduleInterviewService.scheduleInterview(this.scheduleInterview.value).subscribe(
+            this.scheduleInterviewService.scheduleInterview(this.scheduleInterview.value, this.jobId).subscribe(
                 (res) => {
                     this.toastr.success(res.message);
                 },
@@ -161,6 +159,7 @@ export class JobDetailsComponent implements OnInit {
                 this.applicationInfo = res.data.filter(
                     (x) => x.application_status === "Approved" &&
                     x.post_a_job.employerId === this.userId);
+                    this.applied = this.applicationInfo.length;
 
                     console.log("inter: ", this.applicationInfo)
             },
