@@ -1,0 +1,152 @@
+<div *ngIf="projectsInfo.length>0" class="person-details-area resume-area ptb-100">
+    <div class="container">
+        <div class="row">
+            <div class="details-item">
+                <div class="bottom-item">
+                    <div class="create-button">
+                        <div>
+                            <h2>Projects</h2>
+                        </div>
+                        <div>
+                            <a class="cmn-btn" (click)="clearPrj()">Create <i class='bx bx-plus'></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="work bottom-item" *ngFor="let prj of projectsInfo; let i = index">
+                    <ul>
+                        <li>
+                            <img src="assets/img/home-three/title-img.png" alt="Icon">
+                            {{prj.project_url}}
+                        </li>
+                        <i class="bx bx-trash bx-sm bx-tada-hover" style="float: right;" (click)="delPrj(i)"></i>
+                        <i class="bx bx-edit bx-sm bx-tada-hover" style="float: right;" (click)="editPrj(i)"></i>
+
+                    </ul>
+                    <h4>{{prj.project_name}}</h4>
+                    <p>{{prj.associated_with}}</p>
+                    <p>{{prj.start_date | date}} -
+                        <span *ngIf="!prj.currently_ongoing">
+                            {{prj.end_date | date}}
+                        </span>
+                        <span *ngIf="prj.currently_ongoing">Present</span>
+                    <p>{{prj.description}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="profile-content" id="form">
+
+    <form [formGroup]="proejctForm">
+
+        <div class="profile-content-inner">
+            <h2>Projects</h2>
+
+            <div class="row">
+
+                <div class="col-lg-6 col-md-12">
+                    <div class="form-group">
+                        <label>Project Name:</label>
+                        <input type="text" class="form-control" formControlName="project_name"
+                            placeholder="e.g. Web Apps, Computer Games, Interior Design."
+                            [ngClass]="{ 'is-invalid': submittedPrj && fprj.project_name.errors }">
+                        <div class="invalid-feedback" *ngIf="submittedPrj && fprj.project_name.errors">
+                            <div *ngIf="fprj.project_name.errors.required">
+                                Project Name is required
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6 col-md-12">
+                    <div class="form-group">
+                        <label>Project URL:</label>
+                        <input type="text" class="form-control" formControlName="project_url"
+                            placeholder="e.g. YourWebsite.com"
+                            [ngClass]="{ 'is-invalid': submittedPrj && fprj.project_url.errors }">
+                        <div class="invalid-feedback" *ngIf="submittedPrj && fprj.project_url.errors">
+                            <div *ngIf="fprj.project_url.errors.required">
+                                Project URL is required
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6 col-md-12">
+                    <div class="form-group">
+                        <label>Start Date:</label>
+                        <input type="date" class="form-control" placeholder="01/01/1995" formControlName="start_date"
+                            [ngClass]="{ 'is-invalid': submittedPrj && fprj.start_date.errors }">
+                        <div *ngIf="submittedPrj && fprj.start_date.errors" class="invalid-feedback">
+                            <div *ngIf="fprj.start_date.errors.required">Start Date is required
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6 col-md-12">
+                    <div class="form-group">
+                        <label>End Date:</label>
+                        <input type="date" class="form-control" placeholder="01/01/1995" formControlName="end_date"
+                            [ngClass]="{ 'is-invalid': submittedPrj && fprj.end_date.errors }">
+                        <div *ngIf="submittedPrj && fprj.end_date.errors" class="invalid-feedback">
+                            <div *ngIf="fprj.end_date.errors.required">End Date is required</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-12 col-md-12">
+                    <div class="form-group">
+                        <input style="margin-right: 2%;" value="Present" type="checkbox"
+                            formControlName="currently_ongoing" class="form-check-input" />
+                        <label>Currently Working on it</label>
+                    </div>
+                </div>
+
+                <div class="col-lg-6 col-md-12">
+                    <div class="form-group">
+                        <label>Associated with:</label>
+                        <select class="form-control form-select" formControlName="associated_with"
+                            [ngClass]="{ 'is-invalid': submittedPrj && fprj.associated_with.errors }">
+                            <option value="" disabled selected>Choose any one</option>
+                            <option value="Information Technology">Information Technology
+                            </option>
+                            <option value="Media/Communications">Media/Communications</option>
+                            <option value="Hospitality">Hospitality</option>
+                            <option value="Government">Government</option>
+                        </select>
+                        <div class="invalid-feedback" *ngIf="submittedPrj && fprj.associated_with.errors">
+                            <div *ngIf="fprj.associated_with.errors.required">
+                                Associated industry is required
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6 col-md-12">
+                    <div class="form-group">
+                        <label>Project Descripion:</label>
+                        <input type="text" class="form-control" formControlName="description"
+                            placeholder="e.g. Web Apps, Computer Games, Interior Design."
+                            [ngClass]="{ 'is-invalid': submittedPrj && fprj.description.errors }">
+                        <div class="invalid-feedback" *ngIf="submittedPrj && fprj.description.errors">
+                            <div *ngIf="fprj.description.errors.required">
+                                Project Descripion is required
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+
+        <button (click)="projectInfoForm()" class="btn dashboard-btn" *ngIf="savePrjBtn">
+            Save Your Information
+        </button>
+        <button (click)="projectUpdateForm()" class="btn dashboard-btn" *ngIf="updatePrjBtn">
+            Update Your Information
+        </button>
+    </form>
+</div>

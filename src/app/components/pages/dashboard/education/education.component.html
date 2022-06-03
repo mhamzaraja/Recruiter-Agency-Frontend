@@ -1,0 +1,169 @@
+<div *ngIf="educationInfo.length>0" class="person-details-area resume-area ptb-100">
+    <div class="container">
+        <div class="row">
+            <div class="details-item">
+                <div class="bottom-item">
+                    <div class="create-button">
+                        <div>
+                            <h2>Education</h2>
+                        </div>
+                        <div>
+                            <a class="cmn-btn" (click)="clearEdu()">Create <i class='bx bx-plus'></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="work bottom-item" *ngFor="let edu of educationInfo; let i = index">
+                    <ul>
+                        <li>
+                            <img src="assets/img/home-three/title-img.png" alt="Icon">
+                            {{edu.institution}}, {{edu.location}}
+                        </li>
+                        <i class="bx bx-trash bx-sm bx-tada-hover" style="float: right;" (click)="delEdu(i)"></i>
+                        <i class="bx bx-edit bx-sm bx-tada-hover" style="float: right;" (click)="editEdu(i)"></i>
+
+                    </ul>
+                    <h4>{{edu.degree_title}}</h4>
+                    <p>{{edu.field_of_study}}</p>
+                    <p>{{edu.completion_year}}</p>
+                    <p>GPA : {{edu.obtained_gpa}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="profile-content" id="form">
+
+    <form [formGroup]="educationForm">
+
+        <div class="profile-content-inner">
+            <h2>Education</h2>
+
+            <div class="row">
+                <div class="col-lg-6 col-md-12">
+                    <div class="form-group">
+                        <label>Degree Title:</label>
+                        <select class="form-control form-select" formControlName="degree_title"
+                            [ngClass]="{ 'is-invalid': submittedEdu && fedu.degree_title.errors }">
+                            <option value="" disabled selected>Choose any one</option>
+                            <option value="BA">BA</option>
+                            <option value="BFA">BFA</option>
+                            <option value="BBA">BBA</option>
+                            <option value="BS">BS</option>
+                            <option value="BSc">BSc</option>
+                            <option value="BEd">BEd</option>
+                            <option value="BCom">BCom</option>
+                            <option value="BDS">BDS</option>
+                            <option value="LLB">LLB</option>
+                            <option value="DNS">DNS</option>
+                            <option value="DVM">DVM</option>
+                            <option value="DPT">DPT</option>
+                            <option value="MA">MA</option>
+                            <option value="MS">MS</option>
+                            <option value="MSc">MSc</option>
+                            <option value="MEd">MEd</option>
+                            <option value="LLM">LLM</option>
+                            <option value="MBA">MBA</option>
+                        </select>
+                        <div class="invalid-feedback" *ngIf="submittedEdu && fedu.degree_title.errors">
+                            <div *ngIf="fedu.degree_title.errors.required">
+                                Degree title is required
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6 col-md-12">
+                    <div class="form-group">
+                        <label>Field of Study:</label>
+                        <input type="text" class="form-control" formControlName="field_of_study"
+                            placeholder="e.g. Biology, Computer Science, Psychology."
+                            [ngClass]="{ 'is-invalid': submittedEdu && fedu.field_of_study.errors }">
+                        <div class="invalid-feedback" *ngIf="submittedEdu && fedu.field_of_study.errors">
+                            <div *ngIf="fedu.field_of_study.errors.required">
+                                Field of study is required
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6 col-md-12">
+                    <div class="form-group">
+                        <label>Location:</label>
+                        <select class="form-control form-select" formControlName="location"
+                            [ngClass]="{ 'is-invalid': submittedEdu && fedu.location.errors }">
+                            <option value="" disabled selected>Choose any one</option>
+                            <option value="Islamabad">Islamabad</option>
+                            <option value="Khrachi">Khrachi</option>
+                            <option value="Lahore">Lahore</option>
+                            <option value="Rawalpindi">Rawalpindi</option>
+                        </select>
+                        <div class="invalid-feedback" *ngIf="submittedEdu && fedu.location.errors">
+                            <div *ngIf="fedu.location.errors.required">
+                                Location is required
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6 col-md-12">
+                    <div class="form-group">
+                        <label>Institute:</label>
+                        <input type="text" class="form-control" formControlName="institution" placeholder="institute"
+                            [ngClass]="{ 'is-invalid': submittedEdu && fedu.institution.errors }">
+                        <div class="invalid-feedback" *ngIf="submittedEdu && fedu.institution.errors">
+                            <div *ngIf="fedu.institution.errors.required">
+                                Institute is required
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6 col-md-12">
+                    <div class="form-group">
+                        <label>Completion Year:</label>
+                        <select class="form-control form-select" formControlName="completion_year"
+                            [ngClass]="{ 'is-invalid': submittedEdu && fedu.completion_year.errors }">
+                            <option value="" disabled selected>Select one</option>
+                            <option value="2022">2022</option>
+                            <option value="2021">2021</option>
+                            <option value="2020">2020</option>
+                            <option value="2019">2019</option>
+                        </select>
+                        <div class="invalid-feedback" *ngIf="submittedEdu && fedu.completion_year.errors">
+                            <div *ngIf="fedu.completion_year.errors.required">
+                                Completion year is required
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6 col-md-12">
+                    <div class="form-group">
+                        <label>GPA:</label>
+                        <select class="form-control form-select" formControlName="obtained_gpa"
+                            [ngClass]="{ 'is-invalid': submittedEdu && fedu.obtained_gpa.errors }">
+                            <option value="" disabled selected>Out of 4</option>
+                            <option value="3.5">3.5</option>
+                            <option value="3.4">3.4</option>
+                            <option value="3.3">3.3</option>
+                            <option value="3.2">3.2</option>
+                        </select>
+                        <div class="invalid-feedback" *ngIf="submittedEdu && fedu.obtained_gpa.errors">
+                            <div *ngIf="fedu.obtained_gpa.errors.required">
+                                GPA is required
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <button (click)="educationInfoForm()" class="btn dashboard-btn" *ngIf="saveEduBtn">
+            Save Your Information
+        </button>
+        <button (click)="educationUpdateForm()" class="btn dashboard-btn" *ngIf="updateEduBtn">
+            Update Your Information
+        </button>
+    </form>
+</div>
