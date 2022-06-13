@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { EmployeesService } from './services/employees.service';
@@ -8,7 +8,7 @@ import { EmployeesService } from './services/employees.service';
     templateUrl: './employees.component.html',
     styleUrls: ['./employees.component.scss']
 })
-export class EmployeesComponent implements OnInit {
+export class EmployeesComponent implements OnInit, OnDestroy {
 
     employersInfo = [];
     constructor(private employeesService: EmployeesService,
@@ -36,5 +36,8 @@ export class EmployeesComponent implements OnInit {
             });
     }
 
+    ngOnDestroy(): void {
+
+    }
 
 }

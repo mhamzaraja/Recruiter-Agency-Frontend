@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
@@ -9,7 +9,7 @@ import { ProjectService } from './services/project.service';
     templateUrl: './project.component.html',
     styleUrls: ['./project.component.scss']
 })
-export class ProjectComponent implements OnInit {
+export class ProjectComponent implements OnInit, OnDestroy {
     submitted: boolean = false;
     submittedPrj: boolean = false;
 
@@ -134,6 +134,10 @@ export class ProjectComponent implements OnInit {
         this.savePrjBtn = true;
         this.updatePrjBtn = false;
         this.proejctForm.reset();
+    }
+
+    ngOnDestroy(): void {
+
     }
 
 }

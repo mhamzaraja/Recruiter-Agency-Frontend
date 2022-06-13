@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -10,7 +10,7 @@ import { InterviewsService } from './services/interviews.service';
     templateUrl: './interiews.component.html',
     styleUrls: ['./interiews.component.scss']
 })
-export class InteriewsComponent implements OnInit {
+export class InteriewsComponent implements OnInit, OnDestroy {
 
     scheduleInterview: FormGroup;
     submittedSch: boolean = false;
@@ -57,7 +57,7 @@ export class InteriewsComponent implements OnInit {
 
     ontimeChange(value: { hour: string, minute: string }) {
         this.timeString = `${value.hour}:${value.minute}`;
-        this.scheduleInterview.controls.timeField.setValue(this.timeString + " (PST)");
+        this.scheduleInterview.controls.timeField.setValue(`${this.timeString} (UST)`);
     }
 
     getScheduleData(){
@@ -79,6 +79,10 @@ export class InteriewsComponent implements OnInit {
                 //if (error.status == 401) this.router.navigate(['/login']);
                 this.toastr.error(error.error.message);
             });
+    }
+
+    ngOnDestroy(): void {
+
     }
 
 }

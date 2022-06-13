@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { JobsService } from "./services/jobs.service";
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
     templateUrl: './jobs.component.html',
     styleUrls: ['./jobs.component.scss']
 })
-export class JobsComponent implements OnInit {
+export class JobsComponent implements OnInit, OnDestroy {
 
     jobPostsInfo = [];
 
@@ -32,6 +32,10 @@ export class JobsComponent implements OnInit {
                 //if (error.status == 401) this.router.navigate(['/login']);
                 this.toastr.error(error.error.message);
             });
+    }
+
+    ngOnDestroy(): void {
+
     }
 
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { JobDetailsService } from "./services/job-details.service";
@@ -6,7 +6,10 @@ import userToken from "../../config/userToken";
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ScheduleInterviewService } from './services/schedule-interview.service';
+import { NgbDate, NgbCalendar, NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
+import * as moment from 'moment';
 import cities from '../../data/data';
+import { formatDate } from '@angular/common';
 
 
 @Component({
@@ -14,7 +17,7 @@ import cities from '../../data/data';
     templateUrl: './job-details.component.html',
     styleUrls: ['./job-details.component.scss']
 })
-export class JobDetailsComponent implements OnInit {
+export class JobDetailsComponent implements OnInit, OnDestroy {
     jobId: number = this.route.snapshot.params.id;
     userId: string = userToken.id;
     role: string = userToken.role;
@@ -37,9 +40,18 @@ export class JobDetailsComponent implements OnInit {
     submittedSch: boolean = false;
     city = cities.cities;
 
-    time = { hour: 13, minute: 30 };
+    sTime = { hour: 13, minute: 30 };
+    eTime = { hour: 13, minute: 30 };
     meridian = true;
     timeString: string;
+
+    hoveredDate: NgbDate | null = null;
+
+    fromDate: NgbDate | null;
+    toDate: NgbDate | null;
+
+    convStrDatetime;
+    convEndDatetime;
 
     constructor(
         private jobDetailsService: JobDetailsService,
@@ -48,18 +60,27 @@ export class JobDetailsComponent implements OnInit {
         private router: Router,
         private formBuilder: FormBuilder,
         private modalService: NgbModal,
-        private scheduleInterviewService: ScheduleInterviewService
-    ) { }
+        private scheduleInterviewService: ScheduleInterviewService,
+
+        private calendar: NgbCalendar, public formatter: NgbDateParserFormatter) {
+        this.fromDate = calendar.getToday();
+        this.toDate = calendar.getNext(calendar.getToday(), 'd', 10);
+    }
 
     ngOnInit(): void {
         this.scheduleInterview = this.formBuilder.group({
 
-            date: [null, [Validators.required]],
-            timeField: [null, [Validators.required]],
-            address: [null, [Validators.required]],
+            startDate: [null, [Validators.required]],
+            endDate: [null, [Validators.required]],
+            startTime: [null, [Validators.required]],
+            endTime: [null, [Validators.required]],
+            location: [null, [Validators.required]],
             city: [null, [Validators.required]],
             comments: [null, [Validators.required]],
             status: ["Requested"],
+            userTimezone: [null, [Validators.required]],
+            utcTimezone: [null, [Validators.required]]
+
             // comments: ["", [Validators.required]],
         });
 
@@ -77,9 +98,57 @@ export class JobDetailsComponent implements OnInit {
         this.meridian = !this.meridian;
     }
 
-    ontimeChange(value: { hour: string, minute: string }) {
-        this.timeString = `${value.hour}:${value.minute}`;
-        this.scheduleInterview.controls.timeField.setValue(this.timeString + " (PST)");
+    onSTimeChange(value: { hour: string, minute: string }) {
+        let stringDate = this.dateTimeConverter(value.hour, value.minute);
+
+        this.convStrDatetime = this.caliTimeCnv(stringDate);
+
+        console.log( "str... ",this.convStrDatetime);
+
+        let timeStr = moment(stringDate).format("hh:mm a");
+        this.scheduleInterview.controls.startTime.setValue(timeStr);
+    }
+
+    onETimeChange(value: { hour: string, minute: string }) {
+        let stringDate = this.dateTimeConverter(value.hour, value.minute);
+
+        this.convEndDatetime = this.caliTimeCnv(stringDate);
+        console.log("end: ", this.convEndDatetime );
+
+        let timeStr = moment(stringDate).format("hh:mm a");
+        this.scheduleInterview.controls.endTime.setValue(timeStr);
+    }
+
+    caliTimeCnv(dateStr){
+        let convertor = dateStr.toLocaleString(
+            "en-US",
+            {
+                timeZone: "America/Los_Angeles",
+                timeZoneName: "long",
+                hour12: true,
+                weekday: 'short', year: 'numeric', month: 'short', day: '2-digit',
+                hour: '2-digit', minute: '2-digit'
+            });
+        return convertor;
+    }
+
+    dateTimeConverter(hour: string, minute: string) {
+        let mm = String(this.fromDate.month);
+        let dd = String(this.fromDate.day);
+        let hh = String(hour);
+        let min = String(minute);
+
+        if (this.fromDate.month.toString().length == 1) mm = "0" + this.fromDate.month;
+
+        if (this.fromDate.day.toString().length == 1) dd = "0" + this.fromDate.day;
+
+        if (hour.toString().length == 1) hh = "0" + hour;
+        if (minute.toString().length == 1) min = "0" + hour;
+
+        let stringDate = new Date(`${this.fromDate.year}-${mm}-${dd}T${hh}:${min}:00`);
+
+        return stringDate;
+
     }
 
     openTime(content) {
@@ -158,10 +227,10 @@ export class JobDetailsComponent implements OnInit {
             (res) => {
                 this.applicationInfo = res.data.filter(
                     (x) => x.application_status === "Approved" &&
-                    x.post_a_job.employerId === this.userId);
-                    this.applied = this.applicationInfo.length;
+                        x.post_a_job.employerId === this.userId);
+                this.applied = this.applicationInfo.length;
 
-                    console.log("inter: ", this.applicationInfo)
+                console.log("inter: ", this.applicationInfo)
             },
             (error) => {
                 //if (error.status == 401) this.router.navigate(['/login']);
@@ -216,5 +285,39 @@ export class JobDetailsComponent implements OnInit {
 
     isCandidate() {
         if (this.role === "ROLE_CANDIDATE") this.isCand = true;
+    }
+
+    //date picker
+
+    onDateSelection(date: NgbDate) {
+        if (!this.fromDate && !this.toDate) {
+            this.fromDate = date;
+        } else if (this.fromDate && !this.toDate && date && date.after(this.fromDate)) {
+            this.toDate = date;
+        } else {
+            this.toDate = null;
+            this.fromDate = date;
+        }
+    }
+
+    isHovered(date: NgbDate) {
+        return this.fromDate && !this.toDate && this.hoveredDate && date.after(this.fromDate) &&
+            date.before(this.hoveredDate);
+    }
+
+    isInside(date: NgbDate) { return this.toDate && date.after(this.fromDate) && date.before(this.toDate); }
+
+    isRange(date: NgbDate) {
+        return date.equals(this.fromDate) || (this.toDate && date.equals(this.toDate)) || this.isInside(date) ||
+            this.isHovered(date);
+    }
+
+    validateInput(currentValue: NgbDate | null, input: string): NgbDate | null {
+        const parsed = this.formatter.parse(input);
+        return parsed && this.calendar.isValid(NgbDate.from(parsed)) ? NgbDate.from(parsed) : currentValue;
+    }
+
+    ngOnDestroy(): void {
+
     }
 }

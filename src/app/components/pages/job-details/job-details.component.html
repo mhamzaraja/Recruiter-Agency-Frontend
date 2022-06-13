@@ -169,272 +169,414 @@
                         </div>
 
                         <div *ngIf="applicationInfo.length > 0">
-                        <div class="details-inner" *ngIf="isEmp">
-                            <h3>Candidates that applied on this job</h3>
-                            <div class="candidate-area pb-100">
-                                <div class="container">
-                                    <div class="row">
-                                        <div class="col-lg-6 col-md-12"
-                                            *ngFor="let cand of applicationInfo; let i = index">
-                                            <div class="candidate-item two">
-                                                <div>
-                                                    <div class="left">
-                                                        <div class="create-button">
-                                                            <div class="col">
-                                                                <h3><a
-                                                                        [routerLink]="['/candidate-details', cand.candidate_profile.userId ]">{{cand.candidate_profile.name}}</a>
-                                                                </h3>
-                                                            </div>
-                                                            <div class="col-md-auto">
-                                                                <span>
-                                                                    <ng-template #content let-modal>
-                                                                        <div class="container">
-                                                                            <div class="row padder">
-                                                                                <form [formGroup]="scheduleInterview">
-                                                                                    <div class="create-button">
-                                                                                        <div>
-                                                                                            <h4>Schedule
-                                                                                                Interview
-                                                                                            </h4>
+                            <div class="details-inner" *ngIf="isEmp">
+                                <h3>Candidates that applied on this job</h3>
+                                <div class="candidate-area pb-100">
+                                    <div class="container">
+                                        <div class="row">
+                                            <div class="col-lg-6 col-md-12"
+                                                *ngFor="let cand of applicationInfo; let i = index">
+                                                <div class="candidate-item two">
+                                                    <div>
+                                                        <div class="left">
+                                                            <div class="create-button">
+                                                                <div class="col">
+                                                                    <h3><a
+                                                                            [routerLink]="['/candidate-details', cand.candidate_profile.userId ]">{{cand.candidate_profile.name}}</a>
+                                                                    </h3>
+                                                                </div>
+                                                                <div class="col-md-auto">
+                                                                    <span>
+                                                                        <ng-template #content let-modal>
+                                                                            <div class="container">
+                                                                                <div class="row padder">
+                                                                                    <form
+                                                                                        [formGroup]="scheduleInterview">
+                                                                                        <div class="create-button">
+                                                                                            <div>
+                                                                                                <h4>Interview
+                                                                                                    Availablity</h4>
+                                                                                            </div>
+                                                                                            <div>
+                                                                                                <a
+                                                                                                    (click)="modal.dismiss()">
+                                                                                                    <i
+                                                                                                        class='bx bx-x'></i>
+                                                                                                </a>
+                                                                                            </div>
                                                                                         </div>
-                                                                                        <div>
-                                                                                            <a
-                                                                                                (click)="modal.dismiss()">
-                                                                                                <i class='bx bx-x'></i>
-                                                                                            </a>
-                                                                                        </div>
-                                                                                    </div>
 
-                                                                                    <div class="col-lg-12 col-md-12">
-                                                                                        <div class="row padder">
+                                                                                        <div
+                                                                                            class="border border-light rounded">
+                                                                                            <!-- date row 1 -->
                                                                                             <div
-                                                                                                class="col-lg-6 col-md-12">
-                                                                                                <div
-                                                                                                    class="form-group aaa">
-                                                                                                    <label>Select
-                                                                                                        a
-                                                                                                        date:</label>
-                                                                                                    <input type="date"
-                                                                                                        class="form-control"
-                                                                                                        placeholder="Date of the interview"
-                                                                                                        formControlName="date"
-                                                                                                        [ngClass]="{ 'is-invalid': submittedSch && fsch.date.errors }">
-                                                                                                    <div *ngIf="submittedSch && fsch.date.errors"
-                                                                                                        class="invalid-feedback">
+                                                                                                class="col-lg-12 col-md-12">
+
+                                                                                                <div class="row padder">
+
+                                                                                                    <div
+                                                                                                        class="col-lg-6 col-md-12">
+                                                                                                        <label>From
+                                                                                                            date:
+                                                                                                        </label>
                                                                                                         <div
-                                                                                                            *ngIf="fsch.date.errors.required">
-                                                                                                            Date
-                                                                                                            is
-                                                                                                            required
+                                                                                                            class="dp-hidden position-absolute">
+                                                                                                            <div
+                                                                                                                class="input-group">
+                                                                                                                <input
+                                                                                                                    name="datepicker"
+                                                                                                                    class="form-control"
+                                                                                                                    ngbDatepicker
+                                                                                                                    #datepicker="ngbDatepicker"
+                                                                                                                    [autoClose]="'outside'"
+                                                                                                                    (dateSelect)="onDateSelection($event)"
+                                                                                                                    [displayMonths]="2"
+                                                                                                                    [dayTemplate]="t"
+                                                                                                                    outsideDays="hidden"
+                                                                                                                    [startDate]="fromDate!"
+                                                                                                                    tabindex="-1">
+
+                                                                                                                <ng-template
+                                                                                                                    #t
+                                                                                                                    let-date
+                                                                                                                    let-focused="focused">
+                                                                                                                    <span
+                                                                                                                        class="custom-day"
+                                                                                                                        [class.focused]="focused"
+                                                                                                                        [class.range]="isRange(date)"
+                                                                                                                        [class.faded]="isHovered(date) || isInside(date)"
+                                                                                                                        (mouseenter)="hoveredDate = date"
+                                                                                                                        (mouseleave)="hoveredDate = null">
+                                                                                                                        {{
+                                                                                                                        date.day
+                                                                                                                        }}
+                                                                                                                    </span>
+
+                                                                                                                </ng-template>
+
+                                                                                                            </div>
                                                                                                         </div>
+
+                                                                                                        <div
+                                                                                                            class="input-group">
+                                                                                                            <input
+                                                                                                                #dpFromDate
+                                                                                                                class="form-control"
+                                                                                                                placeholder="yyyy-mm-dd"
+                                                                                                                name="dpFromDate"
+                                                                                                                [value]="formatter.format(fromDate)"
+                                                                                                                (input)="fromDate = validateInput(fromDate, dpFromDate.value)">
+                                                                                                            <button
+                                                                                                                class="btn btn-outline-secondary calendar"
+                                                                                                                (click)="datepicker.toggle()"
+                                                                                                                type="button"><i
+                                                                                                                    class='bx bx-calendar'></i></button>
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                    <div
+                                                                                                        class="col-lg-6 col-md-12">
+                                                                                                        <label>To date:
+                                                                                                        </label>
+                                                                                                        <div
+                                                                                                            class="input-group">
+                                                                                                            <input
+                                                                                                                #dpToDate
+                                                                                                                class="form-control"
+                                                                                                                placeholder="yyyy-mm-dd"
+                                                                                                                name="dpToDate"
+                                                                                                                [value]="formatter.format(toDate)"
+                                                                                                                (input)="toDate = validateInput(toDate, dpToDate.value)">
+                                                                                                            <button
+                                                                                                                class="btn btn-outline-secondary calendar"
+                                                                                                                (click)="datepicker.toggle()"
+                                                                                                                type="button"><i
+                                                                                                                    class='bx bx-calendar'></i></button>
+                                                                                                        </div>
+
                                                                                                     </div>
                                                                                                 </div>
 
                                                                                             </div>
 
+                                                                                            <!-- date row 2 -->
+
                                                                                             <div
-                                                                                                class="col-lg-6 col-md-12">
-                                                                                                <div class="form-group">
-                                                                                                    <label>Select
-                                                                                                        a
-                                                                                                        time:</label>
-                                                                                                    <input type="text"
-                                                                                                        class="form-control"
-                                                                                                        placeholder="Time of the interview"
-                                                                                                        formControlName="timeField"
-                                                                                                        [ngClass]="{ 'is-invalid': submittedSch && fsch.timeField.errors }"
-                                                                                                        (click)="openTime(timeContent)">
-                                                                                                    <div *ngIf="submittedSch && fsch.timeField.errors"
-                                                                                                        class="invalid-feedback">
+                                                                                                class="col-lg-12 col-md-12">
+                                                                                                <div class="row padder">
+                                                                                                    <div
+                                                                                                        class="col-lg-6 col-md-12">
+                                                                                                        <label>From
+                                                                                                            Time:
+                                                                                                        </label>
                                                                                                         <div
-                                                                                                            *ngIf="fsch.timeField.errors.required">
-                                                                                                            time
-                                                                                                            is
-                                                                                                            required
+                                                                                                            class="form-group">
+                                                                                                            <input
+                                                                                                                type="text"
+                                                                                                                class="form-control"
+                                                                                                                placeholder="Start time"
+                                                                                                                formControlName="startTime"
+                                                                                                                [ngClass]="{ 'is-invalid': submittedSch && fsch.timeField.errors }"
+                                                                                                                (click)="openTime(startTimeContent)">
+                                                                                                                <small id="emailHelp" class="form-text text-muted">{{convStrDatetime}}</small>
+
+                                                                                                            <div *ngIf="submittedSch && fsch.timeField.errors"
+                                                                                                                class="invalid-feedback">
+                                                                                                                <div
+                                                                                                                    *ngIf="fsch.timeField.errors.required">
+                                                                                                                    time
+                                                                                                                    is
+                                                                                                                    required
+                                                                                                                </div>
+                                                                                                            </div>
+                                                                                                        </div>
+
+                                                                                                    </div>
+
+                                                                                                    <div
+                                                                                                        class="col-lg-6 col-md-12">
+                                                                                                        <label>To Time:
+                                                                                                        </label>
+                                                                                                        <div
+                                                                                                            class="form-group">
+                                                                                                            <input
+                                                                                                                type="text"
+                                                                                                                class="form-control"
+                                                                                                                placeholder="End time"
+                                                                                                                formControlName="endTime"
+                                                                                                                [ngClass]="{ 'is-invalid': submittedSch && fsch.timeField.errors }"
+                                                                                                                (click)="openTime(endTimeContent)">
+                                                                                                                <small id="emailHelp" class="form-text text-muted">{{convEndDatetime}}</small>
+                                                                                                            <div *ngIf="submittedSch && fsch.timeField.errors"
+                                                                                                                class="invalid-feedback">
+                                                                                                                <div
+                                                                                                                    *ngIf="fsch.timeField.errors.required">
+                                                                                                                    time
+                                                                                                                    is
+                                                                                                                    required
+                                                                                                                </div>
+                                                                                                            </div>
                                                                                                         </div>
                                                                                                     </div>
+
                                                                                                 </div>
+
                                                                                             </div>
+
 
                                                                                         </div>
 
-                                                                                    </div>
-
-                                                                                    <div class="col-lg-12 col-md-12">
-                                                                                        <div class="row padder">
-                                                                                            <div
-                                                                                                class="col-lg-6 col-md-12">
-                                                                                                <div class="form-group">
-                                                                                                    <label>Address:</label>
-                                                                                                    <input type="text"
-                                                                                                        class="form-control"
-                                                                                                        placeholder="Office Address"
-                                                                                                        formControlName="address"
-                                                                                                        [ngClass]="{ 'is-invalid': submittedSch && fsch.address.errors }">
-                                                                                                    <div *ngIf="submittedSch && fsch.address.errors"
-                                                                                                        class="invalid-feedback">
-                                                                                                        <div
-                                                                                                            *ngIf="fsch.address.errors.required">
-                                                                                                            Address
-                                                                                                            is
-                                                                                                            required
-                                                                                                        </div>
-                                                                                                    </div>
-                                                                                                </div>
-                                                                                            </div>
-
-                                                                                            <div
-                                                                                                class="col-lg-6 col-md-12">
-                                                                                                <div class="form-group">
-                                                                                                    <label>City:</label>
-                                                                                                    <select
-                                                                                                        class="form-control form-select"
-                                                                                                        formControlName="city"
-                                                                                                        [ngClass]="{ 'is-invalid': submittedSch && fsch.city.errors }">
-                                                                                                        <option
-                                                                                                            value="null"
-                                                                                                            disabled
-                                                                                                            selected>
-                                                                                                            Choose
-                                                                                                            any
-                                                                                                            one
-                                                                                                        </option>
-                                                                                                        <option
-                                                                                                            *ngFor="let c of city"
-                                                                                                            [value]="c">
-                                                                                                            {{c}}
-                                                                                                        </option>
-                                                                                                    </select>
-                                                                                                    <div class="invalid-feedback"
-                                                                                                        *ngIf="submittedSch && fsch.city.errors">
-                                                                                                        <div
-                                                                                                            *ngIf="fsch.city.errors.required">
-                                                                                                            City
-                                                                                                            is
-                                                                                                            required
-                                                                                                        </div>
-                                                                                                    </div>
-                                                                                                </div>
-                                                                                            </div>
-                                                                                        </div>
-
-                                                                                    </div>
-
-                                                                                    <div class="row padder">
                                                                                         <div
                                                                                             class="col-lg-12 col-md-12">
-
-                                                                                            <div class="form-group">
-                                                                                                <label>Addional
-                                                                                                    comments:</label>
-                                                                                                <textarea type="text"
-                                                                                                    class="form-control"
-                                                                                                    placeholder="e.g. Thanks for your interest in our company."
-                                                                                                    formControlName="comments"
-                                                                                                    [ngClass]="{ 'is-invalid': submittedSch && fsch.comments.errors }"></textarea>
-                                                                                                <div *ngIf="submittedSch && fsch.comments.errors"
-                                                                                                    class="invalid-feedback">
+                                                                                            <div class="row padder">
+                                                                                                <div
+                                                                                                    class="col-lg-6 col-md-12">
                                                                                                     <div
-                                                                                                        *ngIf="fsch.comments.errors.required">
-                                                                                                        Please add a
-                                                                                                        comment
+                                                                                                        class="form-group">
+                                                                                                        <label>Address:</label>
+                                                                                                        <input
+                                                                                                            type="text"
+                                                                                                            class="form-control"
+                                                                                                            placeholder="Office Address"
+                                                                                                            formControlName="location"
+                                                                                                            [ngClass]="{ 'is-invalid': submittedSch && fsch.location.errors }">
+                                                                                                        <div *ngIf="submittedSch && fsch.location.errors"
+                                                                                                            class="invalid-feedback">
+                                                                                                            <div
+                                                                                                                *ngIf="fsch.location.errors.required">
+                                                                                                                Address
+                                                                                                                is
+                                                                                                                required
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                </div>
+
+                                                                                                <div
+                                                                                                    class="col-lg-6 col-md-12">
+                                                                                                    <div
+                                                                                                        class="form-group">
+                                                                                                        <label>City:</label>
+                                                                                                        <select
+                                                                                                            class="form-control form-select"
+                                                                                                            formControlName="city"
+                                                                                                            [ngClass]="{ 'is-invalid': submittedSch && fsch.city.errors }">
+                                                                                                            <option
+                                                                                                                value="null"
+                                                                                                                disabled
+                                                                                                                selected>
+                                                                                                                Choose
+                                                                                                                any
+                                                                                                                one
+                                                                                                            </option>
+                                                                                                            <option
+                                                                                                                *ngFor="let c of city"
+                                                                                                                [value]="c">
+                                                                                                                {{c}}
+                                                                                                            </option>
+                                                                                                        </select>
+                                                                                                        <div class="invalid-feedback"
+                                                                                                            *ngIf="submittedSch && fsch.city.errors">
+                                                                                                            <div
+                                                                                                                *ngIf="fsch.city.errors.required">
+                                                                                                                City
+                                                                                                                is
+                                                                                                                required
+                                                                                                            </div>
+                                                                                                        </div>
                                                                                                     </div>
                                                                                                 </div>
                                                                                             </div>
 
                                                                                         </div>
-                                                                                    </div>
 
-                                                                                    <div class="modal-footer">
-                                                                                        <a type="button" class="cmn-btn"
-                                                                                            (click)="scheduleInterForm()">
-                                                                                            Schedule <i
-                                                                                                class='flaticon-verify'></i>
-                                                                                        </a>
-                                                                                    </div>
-                                                                                </form>
 
-                                                                            </div>
-                                                                        </div>
-                                                                    </ng-template>
+                                                                                        <div class="row padder">
+                                                                                            <div
+                                                                                                class="col-lg-12 col-md-12">
 
-                                                                    <ng-template #timeContent let-modal>
-                                                                        <div class="container">
+                                                                                                <div class="form-group">
+                                                                                                    <label>Addional
+                                                                                                        comments:</label>
+                                                                                                    <textarea
+                                                                                                        type="text"
+                                                                                                        class="form-control"
+                                                                                                        placeholder="e.g. Thanks for your interest in our company."
+                                                                                                        formControlName="comments"
+                                                                                                        [ngClass]="{ 'is-invalid': submittedSch && fsch.comments.errors }"></textarea>
+                                                                                                    <div *ngIf="submittedSch && fsch.comments.errors"
+                                                                                                        class="invalid-feedback">
+                                                                                                        <div
+                                                                                                            *ngIf="fsch.comments.errors.required">
+                                                                                                            Please add a
+                                                                                                            comment
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                </div>
 
-                                                                            <div
-                                                                                class="col-lg-12 col-md-12 timeContent">
-                                                                                <div class="row padder">
+                                                                                            </div>
+                                                                                        </div>
 
-                                                                                    <div class="col-lg-8">
+                                                                                        <div class="modal-footer">
+                                                                                            <a type="button"
+                                                                                                class="cmn-btn"
+                                                                                                (click)="scheduleInterForm()">
+                                                                                                Schedule <i
+                                                                                                    class='flaticon-verify'></i>
+                                                                                            </a>
+                                                                                        </div>
+                                                                                    </form>
 
-                                                                                        <ngb-timepicker
-                                                                                            [(ngModel)]="time"
-                                                                                            size="small"
-                                                                                            [meridian]="meridian">
-                                                                                        </ngb-timepicker>
-                                                                                    </div>
-                                                                                    <div class="col-lg-4">
-                                                                                        <a class="cmn-btn"
-                                                                                            (click)="ontimeChange(time)"
-                                                                                            (click)="modal.close()">
-                                                                                            OK
-                                                                                        </a>
-                                                                                    </div>
-                                                                                    <!-- <pre>Selected time: {{time | json}}</pre> -->
                                                                                 </div>
                                                                             </div>
+                                                                        </ng-template>
 
-                                                                        </div>
-                                                                    </ng-template>
+                                                                        <ng-template #startTimeContent let-modal>
+                                                                            <div class="container">
 
-                                                                    <span class="span-two">
-                                                                        <div>{{ closeResult }}</div>
+                                                                                <div
+                                                                                    class="col-lg-12 col-md-12 timeContent">
+                                                                                    <div class="row padder">
+
+                                                                                        <div class="col-lg-8">
+
+                                                                                            <ngb-timepicker
+                                                                                                [(ngModel)]="sTime"
+                                                                                                size="small"
+                                                                                                [meridian]="meridian">
+                                                                                            </ngb-timepicker>
+                                                                                        </div>
+                                                                                        <div class="col-lg-4">
+                                                                                            <a class="cmn-btn"
+                                                                                                (click)="onSTimeChange(sTime)"
+                                                                                                (click)="modal.close()">
+                                                                                                OK
+                                                                                            </a>
+                                                                                        </div>
+                                                                                        <!-- <pre>Selected time: {{time | json}}</pre> -->
+                                                                                    </div>
+                                                                                </div>
+
+                                                                            </div>
+                                                                        </ng-template>
+
+                                                                        <ng-template #endTimeContent let-modal>
+                                                                            <div class="container">
+
+                                                                                <div
+                                                                                    class="col-lg-12 col-md-12 timeContent">
+                                                                                    <div class="row padder">
+
+                                                                                        <div class="col-lg-8">
+
+                                                                                            <ngb-timepicker
+                                                                                                [(ngModel)]="eTime"
+                                                                                                size="small"
+                                                                                                [meridian]="meridian">
+                                                                                            </ngb-timepicker>
+                                                                                        </div>
+                                                                                        <div class="col-lg-4">
+                                                                                            <a class="cmn-btn"
+                                                                                                (click)="onETimeChange(eTime)"
+                                                                                                (click)="modal.close()">
+                                                                                                OK
+                                                                                            </a>
+                                                                                        </div>
+                                                                                        <!-- <pre>Selected time: {{time | json}}</pre> -->
+                                                                                    </div>
+                                                                                </div>
+
+                                                                            </div>
+                                                                        </ng-template>
+
+                                                                        <span class="span-two">
+                                                                            <div>{{ closeResult }}</div>
+                                                                        </span>
+                                                                        <i class='bx bxs-calendar bx-sm bx-tada-hover'
+                                                                            (click)="openSchedule(content)"></i>
+                                                                        <i class="bx bxs-x-circle bx-sm bx-tada-hover"
+                                                                            (click)="reject(i)"></i>
                                                                     </span>
-                                                                    <i class='bx bxs-calendar bx-sm bx-tada-hover'
-                                                                        (click)="openSchedule(content)"></i>
-                                                                    <i class="bx bxs-x-circle bx-sm bx-tada-hover"
-                                                                        (click)="reject(i)"></i>
-                                                                </span>
+                                                                </div>
+                                                            </div>
+                                                            <ul class="experience">
+                                                                <li>Experience:
+                                                                    {{cand.candidate_profile.experience}}<span></span>
+                                                                </li>
+                                                                <li>Expected Salary: <span>RS.
+                                                                        {{cand.candidate_profile.expected_salary}}</span>
+                                                                </li>
+                                                                <li><i class="flaticon-send"></i>
+                                                                    {{cand.candidate_profile.area}},
+                                                                    {{cand.candidate_profile.city}}
+                                                                </li>
+                                                            </ul>
+                                                            <div>
+                                                                <ul>
+                                                                    <li></li>
+                                                                </ul>
+                                                            </div>
+                                                            <div class="cmn-link">
+                                                                <a
+                                                                    [routerLink]="['/candidate-details', cand.candidate_profile.userId]"><i
+                                                                        class="flaticon-right-arrow one"></i>
+                                                                    View Profile
+                                                                    <i class="flaticon-right-arrow two"></i></a>
                                                             </div>
                                                         </div>
-                                                        <ul class="experience">
-                                                            <li>Experience:
-                                                                {{cand.candidate_profile.experience}}<span></span></li>
-                                                            <li>Expected Salary: <span>RS.
-                                                                    {{cand.candidate_profile.expected_salary}}</span>
-                                                            </li>
-                                                            <li><i class="flaticon-send"></i>
-                                                                {{cand.candidate_profile.area}},
-                                                                {{cand.candidate_profile.city}}
-                                                            </li>
-                                                        </ul>
-                                                        <div>
-                                                            <ul>
-                                                                <li></li>
-                                                            </ul>
-                                                        </div>
-                                                        <div class="cmn-link">
-                                                            <a
-                                                                [routerLink]="['/candidate-details', cand.candidate_profile.userId]"><i
-                                                                    class="flaticon-right-arrow one"></i>
-                                                                View Profile
-                                                                <i class="flaticon-right-arrow two"></i></a>
-                                                        </div>
+                                                        <!-- <img src="assets/img/candidate1.jpg" alt="Candidate"> -->
                                                     </div>
-                                                    <!-- <img src="assets/img/candidate1.jpg" alt="Candidate"> -->
                                                 </div>
                                             </div>
                                         </div>
+
                                     </div>
-
                                 </div>
-                            </div>
 
-                            <!-- <div class="candidate-area pb-100">
+                                <!-- <div class="candidate-area pb-100">
                                 <h2>No candidate has applied for this job</h2>
                             </div> -->
+                            </div>
                         </div>
-                    </div>
                     </div>
                 </div>
 

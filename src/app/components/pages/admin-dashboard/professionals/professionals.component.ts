@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { ProfessionalsService } from "./services/professionals.service";
@@ -8,7 +8,7 @@ import { ProfessionalsService } from "./services/professionals.service";
     templateUrl: './professionals.component.html',
     styleUrls: ['./professionals.component.scss']
 })
-export class ProfessionalsComponent implements OnInit {
+export class ProfessionalsComponent implements OnInit, OnDestroy {
 
     employersInfo = []
 
@@ -50,6 +50,10 @@ export class ProfessionalsComponent implements OnInit {
         //             this.toastr.error(res.error.message);
         //         }
         //     });
+    }
+
+    ngOnDestroy(): void {
+
     }
 
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
@@ -9,7 +9,7 @@ import { CamdidatesDetailsService } from "./services/camdidates-details.service"
     templateUrl: './candidates-details.component.html',
     styleUrls: ['./candidates-details.component.scss']
 })
-export class CandidatesDetailsComponent implements OnInit {
+export class CandidatesDetailsComponent implements OnInit , OnDestroy{
 
     id: number = this.route.snapshot.params.id;;
     public candBasicInfo: any;
@@ -54,6 +54,10 @@ export class CandidatesDetailsComponent implements OnInit {
         else {
             return this.currentWorkValue;
         }
+    }
+
+    ngOnDestroy(): void {
+
     }
 
 }

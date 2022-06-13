@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl, AbstractControl } from '@angular/forms';
 import { RegisterService } from './services/register.service';
 import { ToastrService } from 'ngx-toastr';
@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
     templateUrl: './register.component.html',
     styleUrls: ['./register.component.scss']
 })
-export class RegisterComponent implements OnInit {
+export class RegisterComponent implements OnInit, OnDestroy{
     submitted: boolean = false;
     form: FormGroup
 
@@ -70,6 +70,10 @@ export class RegisterComponent implements OnInit {
                 matchingControl.setErrors(null);
             }
         };
+    }
+
+    ngOnDestroy(): void {
+
     }
 
 }

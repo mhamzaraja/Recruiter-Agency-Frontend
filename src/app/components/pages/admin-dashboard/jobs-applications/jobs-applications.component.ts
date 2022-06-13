@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { JobsApplicationsService } from "./services/jobs-applications.service";
 import { ToastrService } from 'ngx-toastr';
@@ -8,7 +8,7 @@ import { ToastrService } from 'ngx-toastr';
     templateUrl: './jobs-applications.component.html',
     styleUrls: ['./jobs-applications.component.scss']
 })
-export class JobsApplicationsComponent implements OnInit {
+export class JobsApplicationsComponent implements OnInit, OnDestroy {
 
     jobId: number = this.route.snapshot.params.id;
     applicationInfo = [];
@@ -100,6 +100,10 @@ export class JobsApplicationsComponent implements OnInit {
     //       }
     //     return null
     //   }
+
+    ngOnDestroy(): void {
+
+    }
 
 }
 

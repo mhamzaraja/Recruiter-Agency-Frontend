@@ -72,7 +72,7 @@
                     <div *ngIf="jobPostInfo.length>0" class="person-details-area resume-area ptb-100">
                         <div class="container">
                             <div class="employer-item" *ngFor="let jobs of jobPostInfo;">
-                                <a [routerLink]="['/job-details', jobId]">
+                                <a [routerLink]="['/job-details', jobs.id]">
                                     <img src="assets/img/home-one/job1.png" alt="Employer">
                                     <h3>{{jobs.job_title}}</h3>
                                     <ul>
