@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { FormGroup, FormBuilder, Validators, FormControl, AbstractControl } from '@angular/forms';
 import { PostAJobService } from './services/post-a-job.service';
@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
     templateUrl: './post-a-job.component.html',
     styleUrls: ['./post-a-job.component.scss']
 })
-export class PostAJobComponent implements OnInit {
+export class PostAJobComponent implements OnInit, OnDestroy {
 
     submittedJob: boolean = false;
 
@@ -123,5 +123,9 @@ export class PostAJobComponent implements OnInit {
     //             }
     //         });
     // }
+
+    ngOnDestroy(): void {
+
+    }
 
 }

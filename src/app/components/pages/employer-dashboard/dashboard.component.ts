@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { FormGroup, FormBuilder, Validators, FormControl, AbstractControl } from '@angular/forms';
 import { DashboardService } from './services/dashboard.service';
@@ -9,7 +9,7 @@ import { Router } from "@angular/router";
     templateUrl: './dashboard.component.html',
     styleUrls: ['./dashboard.component.scss']
 })
-export class EmploerDashboardComponent implements OnInit {
+export class EmploerDashboardComponent implements OnInit, OnDestroy {
 
     public jobPostInfo = [];
     public companyInfo: any;
@@ -19,7 +19,7 @@ export class EmploerDashboardComponent implements OnInit {
     jobsPosted: number;
 
     empId: number;
-    fullNAme : string;
+    fullNAme: string;
     designation: string;
 
     jobId: number;
@@ -50,7 +50,7 @@ export class EmploerDashboardComponent implements OnInit {
             (res) => {
                 this.jobPostInfo = res.data;
                 this.jobsPosted = this.jobPostInfo.length;
-                this.jobId = this.jobPostInfo[0].id;
+                console.log(this.jobPostInfo);
             },
             (error) => {
                 //if (error.status == 401) this.router.navigate(['/login']);
@@ -83,5 +83,9 @@ export class EmploerDashboardComponent implements OnInit {
                 //if (error.status == 401) this.router.navigate(['/login']);
                 this.toastr.error(error.error.message);
             });
+    }
+
+    ngOnDestroy(): void {
+
     }
 }

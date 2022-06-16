@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { JobsService } from "./services/jobs.service";
@@ -8,7 +8,7 @@ import { JobsService } from "./services/jobs.service";
     templateUrl: './jobs.component.html',
     styleUrls: ['./jobs.component.scss', '../admin-dashboard.component.scss']
 })
-export class JobsComponent implements OnInit {
+export class JobsComponent implements OnInit, OnDestroy {
     jobsInfo = [];
     employersInfo = [];
     employer_name = [];
@@ -70,6 +70,10 @@ export class JobsComponent implements OnInit {
                 //if (error.status == 401) this.router.navigate(['/login']);
                 this.toastr.error(error.error.message);
             });
+    }
+
+    ngOnDestroy(): void {
+
     }
 
 }

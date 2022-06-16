@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { FormGroup, FormBuilder, Validators, FormControl, AbstractControl } from '@angular/forms';
 import { CompanyCreateService } from './services/company-create.service'
@@ -9,7 +9,7 @@ import { Router } from "@angular/router";
     templateUrl: './company-create.component.html',
     styleUrls: ['./company-create.component.scss']
 })
-export class CompanyCreateComponent implements OnInit {
+export class CompanyCreateComponent implements OnInit, OnDestroy {
 
     submittedComp: boolean = false;
     companyForm: FormGroup;
@@ -95,6 +95,10 @@ export class CompanyCreateComponent implements OnInit {
                     this.toastr.error(res.error.message);
                 }
             });
+    }
+
+    ngOnDestroy(): void {
+
     }
 
     // createButton(){

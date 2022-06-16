@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { CandidatesService } from "./services/candidates.service";
@@ -8,7 +8,7 @@ import { CandidatesService } from "./services/candidates.service";
     templateUrl: './candidates.component.html',
     styleUrls: ['./candidates.component.scss']
 })
-export class CandidatesComponent implements OnInit {
+export class CandidatesComponent implements OnInit, OnDestroy {
 
     candidatesInfo = []
 
@@ -48,5 +48,9 @@ export class CandidatesComponent implements OnInit {
         //             this.toastr.error(res.error.message);
         //         }
         //     });
+    }
+
+    ngOnDestroy() {
+        // if(this.getAllCandidatesData) this.getAllCandidatesData.unsubscribe();
     }
 }

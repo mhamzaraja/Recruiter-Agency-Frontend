@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { FormGroup, FormBuilder, Validators, FormControl, AbstractControl } from '@angular/forms';
 import { DashboardService } from './services/dashboard.service';
@@ -10,7 +10,7 @@ import userToken from "../../config/userToken";
     templateUrl: './dashboard.component.html',
     styleUrls: ['./dashboard.component.scss']
 })
-export class DashboardComponent implements OnInit {
+export class DashboardComponent implements OnInit, OnDestroy {
 
     candidateInfo = [];
     userId: number = userToken.id;
@@ -62,5 +62,9 @@ export class DashboardComponent implements OnInit {
                 this.toastr.error(error.error.message);
             }
         )
+    }
+
+    ngOnDestroy(): void {
+
     }
 }

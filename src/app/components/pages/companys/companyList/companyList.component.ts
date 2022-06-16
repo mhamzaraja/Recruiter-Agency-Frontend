@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl, AbstractControl } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { CompanyListService } from "./services/company-list.service";
@@ -9,7 +9,7 @@ import { Router } from "@angular/router";
     templateUrl: './companyList.component.html',
     styleUrls: ['./companyList.component.scss'],
 })
-export class CompanyListComponent implements OnInit {
+export class CompanyListComponent implements OnInit, OnDestroy {
 
     submittedComp: boolean = false;
     companyForm: FormGroup;
@@ -96,5 +96,9 @@ export class CompanyListComponent implements OnInit {
         //         //if (error.status == 401) this.router.navigate(['/login']);
                 // this.toastr.error(error.error.message);
         //     });
+    }
+
+    ngOnDestroy(): void {
+
     }
 }

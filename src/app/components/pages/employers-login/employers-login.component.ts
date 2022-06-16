@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl, AbstractControl } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { EmployersLoginService } from './services/employers-login.service';
@@ -10,7 +10,7 @@ import userToken from "../../config/userToken";
     templateUrl: './employers-login.component.html',
     styleUrls: ['./employers-login.component.scss']
 })
-export class EmployersLoginComponent implements OnInit {
+export class EmployersLoginComponent implements OnInit, OnDestroy {
     userId: number = userToken.id;
 
     submitted: boolean = false;
@@ -63,6 +63,10 @@ export class EmployersLoginComponent implements OnInit {
         } else {
             return userToken.token;
         }
+    }
+
+    ngOnDestroy(): void {
+
     }
 
 }

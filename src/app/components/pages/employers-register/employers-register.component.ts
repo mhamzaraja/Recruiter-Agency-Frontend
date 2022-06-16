@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl, AbstractControl } from '@angular/forms';
 import { EmployersRegisterService } from './services/employers-register.service';
 import { ToastrService } from 'ngx-toastr';
@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
     templateUrl: './employers-register.component.html',
     styleUrls: ['./employers-register.component.scss']
 })
-export class EmployersRegisterComponent implements OnInit {
+export class EmployersRegisterComponent implements OnInit, OnDestroy {
 
     submitted: boolean = false;
     form: FormGroup
@@ -73,4 +73,7 @@ export class EmployersRegisterComponent implements OnInit {
         };
     }
 
+    ngOnDestroy(): void {
+
+    }
 }

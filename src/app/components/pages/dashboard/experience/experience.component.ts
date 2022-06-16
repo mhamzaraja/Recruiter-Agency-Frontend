@@ -1,15 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { FormGroup, FormBuilder, Validators, FormControl, AbstractControl } from '@angular/forms';
 import { ExperienceService } from './services/experience.service';
 import { Router } from '@angular/router';
+import data from '../../../data/data';
 
 @Component({
     selector: 'app-experience',
     templateUrl: './experience.component.html',
     styleUrls: ['./experience.component.scss']
 })
-export class ExperienceComponent implements OnInit {
+export class ExperienceComponent implements OnInit, OnDestroy {
 
     submitted: boolean = false;
     submittedExp: boolean = false;
@@ -22,6 +23,9 @@ export class ExperienceComponent implements OnInit {
     expId: number = null;
     saveExpBtn: boolean = true;
     updateExpBtn: boolean = false;
+
+    city = data.cities;
+
 
 
     constructor(private formBuilder: FormBuilder,
@@ -142,6 +146,10 @@ export class ExperienceComponent implements OnInit {
         this.saveExpBtn = true;
         this.updateExpBtn = false;
         this.experienceForm.reset();
+    }
+
+    ngOnDestroy(): void {
+
     }
 
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
@@ -9,7 +9,7 @@ import { AdminRegisterService } from './services/admin-register.service';
   templateUrl: './admin-register.component.html',
   styleUrls: ['./admin-register.component.scss']
 })
-export class AdminRegisterComponent implements OnInit {
+export class AdminRegisterComponent implements OnInit, OnDestroy {
 
     submitted: boolean = false;
     form: FormGroup
@@ -73,4 +73,7 @@ export class AdminRegisterComponent implements OnInit {
         };
     }
 
+    ngOnDestroy(): void {
+
+    }
 }

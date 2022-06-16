@@ -1,15 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { FormGroup, FormBuilder, Validators, FormControl, AbstractControl } from '@angular/forms';
 import { SkillsLanguagesService } from './services/skills-languages.service';
 import { Router } from '@angular/router';
+import data from '../../../data/data';
 
 @Component({
     selector: 'app-skills-languages',
     templateUrl: './skills-languages.component.html',
     styleUrls: ['./skills-languages.component.scss']
 })
-export class SkillsLanguagesComponent implements OnInit {
+export class SkillsLanguagesComponent implements OnInit, OnDestroy {
 
     submitted: boolean = false;
     submittedSkill: boolean = false;
@@ -34,42 +35,9 @@ export class SkillsLanguagesComponent implements OnInit {
     public keyword = 'skill';
     public historyHeading: string = 'Recently selected';
 
-    public skillsData = ['Acceptance testing', 'Animation development', 'Application support', 'Asset management', 'Audit', 'Availability management',
-    'Benefits management', 'Business administration', 'Business intelligence', 'Business modelling',
-    'Business process improvement', 'Business situation analysis', 'Capacity management',
-    'Certification scheme operation', 'Change control', 'Competency assessment',
-    'Configuration management', 'Consultancy', 'Content authoring','Content publishing',
-    'Continuity management', 'Contract management', 'Customer service support', 'Data engineering',
-    'Data management', 'Data modelling and design', 'Data science', 'Data visualisation',
-    'Database administration', 'Database design', 'Demand management', 'Digital forensics',
-    'Emerging technology monitoring', 'Employee experience', 'Enterprise and business architecture',
-    'Facilities management', 'Feasibility assessment', 'Financial management', 'Governance',
-    'Hardware design', 'High-performance computing', 'Incident management', 'Information assurance',
-    'Information management', 'Information security', 'Information systems coordination', 'Innovation',
-    'Investment appraisal', 'IT infrastructure', 'Knowledge management',
-    'Learning and development management', 'Learning delivery', 'Learning design and development',
-    'Machine learning', 'Marketing', 'Measurement', 'Methods and tools', 'Network design',
-    'Network support', 'Numerical analysis', 'Organisation design and implementation',
-    'Organisational capability development', 'Organisational change management',
-    'Organisational facilitation', 'Penetration testing', 'Performance management',
-    'Personal data protection', 'Portfolio management', 'Portfolio, programme and project support',
-    'Problem management', 'Product management', 'Professional development', 'Programme management',
-    'Programming/software development', 'Project management', 'Quality assurance',
-    'Quality management', 'Radio frequency engineering', 'Real-time/embedded systems development',
-    'Release and deployment', 'Requirements definition and management', 'Research', 'Resourcing',
-    'Risk management', 'Safety assessment', 'Safety engineering', 'Sales support',
-    'Scientific modelling', 'Security operations', 'Selling', 'Service acceptance',
-    'Service catalogue management', 'Service level management', 'Software configuration',
-    'Software design', 'Solution architecture', 'Sourcing', 'Specialist advice',
-    'Stakeholder relationship management', 'Storage management', 'Strategic planning',
-    'Subject formation', 'Supplier management', 'Sustainability', 'System software',
-    'Systems and software life cycle engineering', 'Systems design', 'Systems development management',
-    'Systems installation and removal', 'Systems integration and build', 'Teaching',
-    'Technology service management', 'Testing', 'Threat intelligence', 'User experience analysis',
-    'User experience design', 'User experience evaluation', 'User research', 'Vulnerability assessment',
-    'Vulnerability research', 'Workforce planning'];
-    public langData = ['Abkhaz','Afar','Afrikaans','Akan','Albanian','Amharic','Arabic','Aragonese','Armenian','Assamese','Avaric','Avestan','Aymara','Azerbaijani','Bambara','Bashkir','Basque','Belarusian','Bengali','Bihari','Bislama','Bosnian','Breton','Bulgarian','Burmese','Catalan; Valencian','Chamorro','Chechen','Chichewa; Chewa; Nyanja','Chinese','Chuvash','Cornish','Corsican','Cree','Croatian','Czech','Danish','Divehi; Dhivehi; Maldivian;','Dutch','English','Esperanto','Estonian','Ewe','Faroese','Fijian','Finnish','French','Fula; Fulah; Pulaar; Pular','Galician','Georgian','German','Greek, Modern','Guaraní','Gujarati','Haitian; Haitian Creole','Hausa','Hebrew','Hebrew','Herero','Hindi','Hiri Motu','Hungarian','Interlingua','Indonesian','Interlingue','Irish','Igbo','Inupiaq','Ido','Icelandic','Italian','Inuktitut','Japanese','Javanese','Kalaallisut, Greenlandic','Kannada','Kanuri','Kashmiri','Kazakh','Khmer','Kikuyu, Gikuyu','Kinyarwanda','Kirghiz, Kyrgyz','Komi','Kongo','Korean','Kurdish','Kwanyama, Kuanyama','Latin','Luxembourgish, Letzeburgesch','Luganda','Limburgish, Limburgan, Limburger','Lingala','Lao','Lithuanian','Luba-Katanga','Latvian','Manx','Macedonian','Malagasy','Malay','Malayalam','Maltese','Māori','Marathi (Marāṭhī)','Marshallese','Mongolian','Nauru','Navajo, Navaho','Norwegian Bokmål','North Ndebele','Nepali','Ndonga','Norwegian Nynorsk','Norwegian','Nuosu','South Ndebele','Occitan','Ojibwe, Ojibwa','Old Church Slavonic, Church Slavic, Church Slavonic, Ol','Oromo','Oriya','Ossetian, Ossetic','Panjabi, Punjabi','Pāli','Persian','Polish','Pashto, Pushto','Portuguese','Quechua','Romansh','Kirundi','Romanian, Moldavian, Moldovan','Russian','Sanskrit (Saṁskṛta)','Sardinian','Sindhi','Northern Sami','Samoan','Sango','Serbian','Scottish Gaelic; Gaelic','Shona','Sinhala, Sinhalese','Slovak','Slovene','Somali','Southern Sotho','Spanish; Castilian','Sundanese','Swahili','Swati','Swedish','Tamil','Telugu','Tajik','Thai','Tigrinya','Tibetan Standard, Tibetan, Central','Turkmen','Tagalog','Tswana','Tonga (Tonga Islands)','Turkish','Tsonga','Tatar','Twi','Tahitian','Uighur, Uyghur','Ukrainian','Urdu','Uzbek','Venda','Vietnamese','Volapük','Walloon','Welsh','Wolof','Western Frisian','Xhosa','Yiddish','Yoruba','Zhuang, Chuang'];
-    public proficiency = ['Beginner', 'Intermediate', 'Expert',];
+    public skillsData = data.skillsData;
+    public langData = data.langData;
+    public proficiency = data.proficiency;
 
     constructor(private formBuilder: FormBuilder,
         private toastr: ToastrService,
@@ -261,5 +229,9 @@ export class SkillsLanguagesComponent implements OnInit {
         this.saveLangBtn = true;
         this.updateLangBtn = false;
         this.languageForm.reset();
+    }
+
+    ngOnDestroy(): void {
+
     }
 }

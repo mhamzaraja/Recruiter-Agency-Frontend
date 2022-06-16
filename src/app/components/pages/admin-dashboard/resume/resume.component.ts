@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { ResumeService } from './services/resume.service';
@@ -8,7 +8,7 @@ import { ResumeService } from './services/resume.service';
     templateUrl: './resume.component.html',
     styleUrls: ['./resume.component.scss', '../admin-dashboard.component.scss']
 })
-export class ResumeComponent implements OnInit {
+export class ResumeComponent implements OnInit, OnDestroy {
 
     resumeInfo = [];
     profile = [];
@@ -54,6 +54,10 @@ export class ResumeComponent implements OnInit {
         //             this.toastr.error(res.error.message);
         //         }
         //     });
+    }
+
+    ngOnDestroy(): void {
+
     }
 
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { FormGroup, FormBuilder, Validators, FormControl, AbstractControl } from '@angular/forms';
 import { CompanyEditService } from './services/company-edit.service'
@@ -9,7 +9,7 @@ import { ActivatedRoute, Router } from '@angular/router';
     templateUrl: './company-edit.component.html',
     styleUrls: ['./company-edit.component.scss']
 })
-export class CompanyEditComponent implements OnInit {
+export class CompanyEditComponent implements OnInit, OnDestroy {
     companyId: number = this.route.snapshot.params.id;
     submittedComp: boolean = false;
     companyForm: FormGroup;
@@ -110,4 +110,7 @@ export class CompanyEditComponent implements OnInit {
 
     }
 
+    ngOnDestroy(): void {
+
+    }
 }

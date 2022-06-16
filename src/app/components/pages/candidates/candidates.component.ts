@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { CandidatesService } from "./services/candidates.service";
@@ -8,7 +8,7 @@ import { CandidatesService } from "./services/candidates.service";
     templateUrl: './candidates.component.html',
     styleUrls: ['./candidates.component.scss']
 })
-export class CandidatesComponent implements OnInit {
+export class CandidatesComponent implements OnInit, OnDestroy {
 
     candidatsInfo = []
     // public candidatsInfo: any;
@@ -48,6 +48,10 @@ export class CandidatesComponent implements OnInit {
         else {
             return currentWorkValue;
         }
+    }
+
+    ngOnDestroy(): void {
+
     }
 
 }

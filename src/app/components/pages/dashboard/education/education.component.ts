@@ -1,19 +1,21 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { EducationService } from './services/education.service';
 import { FormGroup, FormBuilder, Validators, FormControl, AbstractControl } from '@angular/forms';
 import { Router } from "@angular/router";
+import data from '../../../data/data';
 
 @Component({
     selector: 'app-education',
     templateUrl: './education.component.html',
     styleUrls: ['./education.component.scss']
 })
-export class EducationComponent implements OnInit {
+export class EducationComponent implements OnInit, OnDestroy {
     submitted: boolean = false;
     submittedEdu: boolean = false;
     educationForm: FormGroup;
     public educationInfo = [];
+    city = data.cities;
 
     response: any;
 
@@ -130,6 +132,10 @@ export class EducationComponent implements OnInit {
         this.saveEduBtn = true;
         this.updateEduBtn = false;
         this.educationForm.reset();
+    }
+
+    ngOnDestroy(): void {
+
     }
 
 }

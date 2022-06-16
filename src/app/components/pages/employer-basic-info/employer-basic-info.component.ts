@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { FormGroup, FormBuilder, Validators, FormControl, AbstractControl } from '@angular/forms';
 import { EmployerBasicInfoService } from './services/employer-basic-info.service'
@@ -9,7 +9,7 @@ import { Router } from "@angular/router";
     templateUrl: './employer-basic-info.component.html',
     styleUrls: ['./employer-basic-info.component.scss']
 })
-export class EmployerBasicInfoComponent implements OnInit {
+export class EmployerBasicInfoComponent implements OnInit, OnDestroy {
     submitted: boolean = false;
     employerForm: FormGroup;
     public employerInfo: any;
@@ -78,6 +78,10 @@ export class EmployerBasicInfoComponent implements OnInit {
         this.employerForm.controls.dob.setValue(this.employerInfo.dob);
         this.employerForm.controls.office_number.setValue(this.employerInfo.office_number);
         this.employerForm.controls.mobile_number.setValue(this.employerInfo.mobile_number);
+    }
+
+    ngOnDestroy(): void {
+
     }
 
 }
