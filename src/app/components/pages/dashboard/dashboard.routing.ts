@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { ResumeDetailsComponent } from '../resume-details/resume-details.component';
 import { BasicInfoComponent } from './basic-info/basic-info.component';
 import { EducationComponent } from './education/education.component';
 import { ExperienceComponent } from './experience/experience.component';
@@ -40,6 +41,13 @@ export const DashboardRoutes: Routes = [
         component: SkillsLanguagesComponent,
         data: {
             title: 'Skills and Languages'
+        }
+    },
+    {
+        path: 'single-resume',
+        component: ResumeDetailsComponent,
+        data: {
+            title: 'My Resume'
         }
     }
 
