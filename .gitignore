@@ -45,3 +45,9 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+
+#Newly Added
+SSH key             
+SSH key.pub         
+package-lock.json   
+package.json 

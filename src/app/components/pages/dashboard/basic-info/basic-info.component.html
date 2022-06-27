@@ -1,22 +1,68 @@
-<div class="person-details-area resume-area ptb-100">
+<div *ngIf="basicInfo.length > 0" class="person-details-area resume-area ptb-100">
     <div class="container">
         <div class="row">
             <div class="details-item">
                 <div class="bottom-item">
                     <div class="create-button">
                         <div>
-                            <h2>Summary</h2>
+                            <h2 style="color: red">Basic Information</h2>
                         </div>
                         <div>
-                            <a class="cmn-btn" (click)="editInfo()">Edit<i class='bx bxs-edit-alt'></i></a>
+                            <a class="cmn-btn" (click)="editInfo()">Edit<i
+                                    class="bx bx-edit bx-sm bx-tada-hover"></i></a>
+                            <!-- <i class="bx bx-edit bx-sm bx-tada-hover" style="float: right;" (click)="editInfo(i)"></i> -->
                         </div>
                     </div>
-                    <div style="margin-top: 15px;">
-                        <div>
-                            <p> {{summary}} </p>
+                </div>
+                <div class="work bottom-item" *ngFor="let info of basicInfo; let i = index">
+                    <ul>
+                        <h3>About Me:</h3>
+                        <p>{{ info.summary }}</p>
+                    </ul>
+                    <h4>Details:</h4>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col">
+                                <p><strong>Email: </strong> {{ info.email }}</p>
+                                <p>
+                                    <strong>Phone no: </strong>
+                                    {{ info.mobile_number }}
+                                </p>
+                                <p>
+                                    <strong>Date of Birth: </strong>
+                                    {{ info.dob }}
+                                </p>
+                                <p>
+                                    <strong>Gender: </strong> {{ info.gender }}
+                                </p>
+                                <p>
+                                    <strong>Marital Status: </strong>
+                                    {{ info.marital_status }}
+                                </p>
+                                <p>
+                                    <strong>Nationality: </strong>
+                                    {{ info.nationality }}
+                                </p>
+                            </div>
+                            <div class="col">
+                                <p><strong>CNIC: </strong> {{ info.cnic }}</p>
+                                <p>
+                                    <strong>Career Level: </strong>
+                                    {{ info.career_level }}
+                                </p>
+                                <p>
+                                    <strong>Experience: </strong>
+                                    {{ info.experience }}
+                                </p>
+                                <p><strong>City: </strong> {{ info.city }}</p>
+                                <p><strong>Area: </strong> {{ info.area }}</p>
+                                <p>
+                                    <strong>Expected Salary: </strong>
+                                    {{ info.expected_salary }}
+                                </p>
+                            </div>
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>
