@@ -5,7 +5,7 @@
                 <div class="bottom-item">
                     <div class="create-button">
                         <div>
-                            <h2 style="color: red">Basic Information</h2>
+                            <h2>Basic Information</h2>
                         </div>
                         <div>
                             <a class="cmn-btn" (click)="editInfo()">Edit<i
@@ -16,11 +16,19 @@
                 </div>
                 <div class="work bottom-item" *ngFor="let info of basicInfo; let i = index">
                     <ul>
-                        <h3>About Me:</h3>
-                        <p>{{ info.summary }}</p>
+                        <li>
+                            <h3> <img src="assets/img/home-three/title-img.png" alt="Icon">
+                                Summary</h3>
+                            {{ info.summary }}
+                        </li>
                     </ul>
-                    <h4>Details:</h4>
+                    <!-- <h4>Details:</h4> -->
                     <div class="container">
+                        <ul>
+                            <li>
+                                <h3> <img src="assets/img/home-three/title-img.png" alt="Icon">
+                                    Details</h3>                            </li>
+                        </ul>
                         <div class="row">
                             <div class="col">
                                 <p><strong>Email: </strong> {{ info.email }}</p>
@@ -68,6 +76,7 @@
         </div>
     </div>
 </div>
+
 
 
 <!-- <div class="job-details-area ptb-100">
