@@ -264,6 +264,7 @@ button {
 .side-nav {
     a {
         display: inline-block;
+        text-decoration: none;
     }
 
     .login-left {
@@ -4668,6 +4669,7 @@ a {
     line-height: 50px;
     display: inline-block;
     position: relative;
+    text-decoration: none;
     cursor: pointer;
 
     i {

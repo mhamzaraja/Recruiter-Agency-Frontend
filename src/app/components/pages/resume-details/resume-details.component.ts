@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { ResumeService } from './services/resume.service';
+import jsPDF from 'jspdf';
+import html2canvas from 'html2canvas';
 
 @Component({
     selector: 'app-resume-details',
@@ -8,6 +10,7 @@ import { ResumeService } from './services/resume.service';
     styleUrls: ['./resume-details.component.scss'],
 })
 export class ResumeDetailsComponent implements OnInit {
+    @ViewChild('htmlData') htmlData!: ElementRef; //CV download
     public educationInfo = [];
     public experienceInfo = [];
     public basicInfo: [];
@@ -20,7 +23,7 @@ export class ResumeDetailsComponent implements OnInit {
     constructor(
         private resumeService: ResumeService,
         private toastr: ToastrService
-    ) {}
+    ) { }
 
     ngOnInit(): void {
         this.getAllEducations();
@@ -106,13 +109,30 @@ export class ResumeDetailsComponent implements OnInit {
 
     //languages
     getAllLanguages() {
-      this.resumeService.findAllLanguages().subscribe(
-          (res) => {
-              this.languageInfo = res.data;
-          },
-          (error) => {
-              //if (error.status == 401) this.router.navigate(['/login']);
-              this.toastr.error(error.error.message);
-          });
-  }
+        this.resumeService.findAllLanguages().subscribe(
+            (res) => {
+                this.languageInfo = res.data;
+            },
+            (error) => {
+                //if (error.status == 401) this.router.navigate(['/login']);
+                this.toastr.error(error.error.message);
+            });
+    }
+
+    //Download CV
+    public openPDF(): void {
+        // window.print()
+        let DATA: any = document.getElementById('htmlData');
+        document.getElementById('noScreen').style.opacity = '1';
+        html2canvas(DATA).then((canvas) => {
+            let fileWidth = 120;
+            let fileHeight = (canvas.height * fileWidth) / canvas.width;
+            const FILEURI = canvas.toDataURL('image/png');
+            let PDF = new jsPDF('p', 'mm', 'a4');
+            let position = 0;
+            PDF.addImage(FILEURI, 'PNG', 0, position, fileWidth, fileHeight);
+            document.getElementById('noScreen').style.opacity = '0';
+            PDF.save('Resume.pdf');
+        });
+    }
 }

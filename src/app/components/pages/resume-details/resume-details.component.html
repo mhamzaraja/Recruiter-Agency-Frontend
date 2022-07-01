@@ -26,19 +26,18 @@
     </div>
 </div> -->
 <!-- End Page Title -->
-
 <!-- Resume -->
-<div class="person-details-area resume-area ptb-100">
+
+<div class="person-details-area resume-area ptb-100" id="htmlData">
     <div class="container">
         <div class="row">
-            <div class="col-lg-4 col-md-12">
+            <div id="noScreen" class=" col-lg-4 col-md-12">
                 <div class="widget-area" *ngFor="let info of basicInfo; let i = index">
                     <div class="resume-profile">
                         <img src="assets/img/dashboard1.jpg" alt="Dashboard" />
                         <h2>{{ info.name }}</h2>
                         <span>{{ designation }}</span>
                     </div>
-
                     <div class="information widget-item" *ngFor="let info of basicInfo; let i = index">
                         <h3>Overview</h3>
                         <ul>
@@ -46,6 +45,11 @@
                                 <img src="assets/img/job-details-icon.png" alt="Details" />
                                 <h4>Contact:</h4>
                                 <span>{{ info.mobile_number }}</span>
+                            </li>
+                            <li>
+                                <img src="assets/img/job-details-icon.png" alt="Details" />
+                                <h4>Email:</h4>
+                                <span>{{ info.email }}</span>
                             </li>
                             <li>
                                 <img src="assets/img/job-details-icon.png" alt="Details" />
@@ -96,7 +100,6 @@
                     </div>
                 </div>
             </div>
-
             <div class="col-lg-8 col-md-12">
                 <div class="details-item">
                     <div class="profile" *ngFor="let info of basicInfo">
@@ -105,7 +108,6 @@
                     </div>
                     <!-- Work Experience -->
                     <h2>Work Experience</h2>
-
                     <div class="work bottom-item" *ngFor="let exp of experienceInfo; let i = index">
                         <div class="row">
                             <div class="col-1">
@@ -142,121 +144,111 @@
                             </div>
                         </div>
                     </div>
-
                     <!-- Education Service -->
-                    <div>
-                        <h2>Education</h2>
-                        <div class="work bottom-item" *ngFor="let edu of educationInfo; let i = index">
-                            <div class="row">
-                                <div class="col-1">
-                                    <h3 style="color: red">
-                                        <strong> {{ i + 1 }}</strong>
-                                    </h3>
-                                </div>
-                                <div class="col-11">
-                                    <ul>
-                                        <li>
-                                            <i class="bx bxs-institution"></i>
-                                            <strong> Instituition : </strong>{{ edu.institution }} ,
-                                            <i class="bx bxs-edit-location"></i>
-                                            <strong> Location : </strong>{{ edu.location }}
-                                        </li>
-                                    </ul>
-                                    <h4>
-                                        Degree Title : {{ edu.degree_title }}
-                                    </h4>
-                                    <p>
-                                        Field of Study :
-                                        {{ edu.field_of_study }}
-                                    </p>
-                                    <p>
-                                        Completion year :
-                                        {{ edu.completion_year }}
-                                    </p>
-                                    <p>CGPA/Grade : {{ edu.obtained_gpa }}</p>
-                                </div>
+
+                    <h2>Education</h2>
+                    <div class="work bottom-item" *ngFor="let edu of educationInfo; let i = index">
+                        <div class="row">
+                            <div class="col-1">
+                                <h3 style="color: red">
+                                    <strong> {{ i + 1 }}</strong>
+                                </h3>
+                            </div>
+                            <div class="col-11">
+                                <ul>
+                                    <li>
+                                        <i class="bx bxs-institution"></i>
+                                        <strong> Instituition : </strong>{{ edu.institution }} ,
+                                        <i class="bx bxs-edit-location"></i>
+                                        <strong> Location : </strong>{{ edu.location }}
+                                    </li>
+                                </ul>
+                                <h4>
+                                    Degree Title : {{ edu.degree_title }}
+                                </h4>
+                                <p>
+                                    Field of Study :
+                                    {{ edu.field_of_study }}
+                                </p>
+                                <p>
+                                    Completion year :
+                                    {{ edu.completion_year }}
+                                </p>
+                                <p>CGPA/Grade : {{ edu.obtained_gpa }}</p>
                             </div>
                         </div>
                     </div>
+
                     <!-- Skills -->
-                    <div>
-                        <h2>Skills</h2>
 
-                        <div class="work bottom-item" *ngFor="let skill of skillInfo; let i = index">
-                            <div class="row">
-                                <div class="col-1">
-                                    <h3 style="color: red">
-                                        <strong>{{ i + 1 }}</strong>
-                                    </h3>
-                                </div>
-
-                                <div class="col-11">
-                                    <h4>
-                                        <strong> {{ skill.skill_title}}</strong>
-                                        &nbsp; &nbsp; &nbsp;
-                                        <span>({{skill.skill_proficiency}}</span>
-                                    </h4>
-                                </div>
+                    <h2>Skills</h2>
+                    <div class="work bottom-item" *ngFor="let skill of skillInfo; let i = index">
+                        <div class="row">
+                            <div class="col-1">
+                                <h3 style="color: red">
+                                    <strong>{{ i + 1 }}</strong>
+                                </h3>
+                            </div>
+                            <div class="col-11">
+                                <h4>
+                                    <strong> {{ skill.skill_title}}</strong>
+                                    &nbsp; &nbsp; &nbsp;
+                                    <span>({{skill.skill_proficiency}}</span>
+                                </h4>
                             </div>
                         </div>
                     </div>
+
                     <!-- Languages -->
-                    <div>
-                        <h2>Languages</h2>
 
-                        <div class="work bottom-item" *ngFor="let lang of languageInfo; let i = index">
-                            <div class="row">
-                                <div class="col-1">
-                                    <h3 style="color: red">
-                                        <strong>{{ i + 1 }}</strong>
-                                    </h3>
-                                </div>
-
-                                <div class="col-11">
-                                    <h4>
-                                        <strong> {{ lang.language_title }}</strong>
-                                        &nbsp; &nbsp; &nbsp;
-                                        <span>({{lang.language_proficiency}})</span>
-                                    </h4>
-
-                                </div>
+                    <h2>Languages</h2>
+                    <div class="work bottom-item" *ngFor="let lang of languageInfo; let i = index">
+                        <div class="row">
+                            <div class="col-1">
+                                <h3 style="color: red">
+                                    <strong>{{ i + 1 }}</strong>
+                                </h3>
+                            </div>
+                            <div class="col-11">
+                                <h4>
+                                    <strong> {{ lang.language_title }}</strong>
+                                    &nbsp; &nbsp; &nbsp;
+                                    <span>({{lang.language_proficiency}})</span>
+                                </h4>
                             </div>
                         </div>
                     </div>
+
                     <!-- Projects -->
-                    <div>
-                        <h2>My Projects</h2>
-
-                        <div class="work bottom-item" *ngFor="let prj of projectsInfo; let i = index">
-                            <div class="row">
-                                <div class="col-1">
-                                    <h3 style="color: red">
-                                        <strong>{{ i + 1 }}</strong>
-                                    </h3>
-                                </div>
-
-                                <div class="col-11">
-                                    <h4>
-                                        <strong>Project URL: </strong>
-                                        {{ prj.project_url }}
-                                    </h4>
-                                    <h4>
-                                        <strong>Project Name: </strong>{{ prj.project_name }}
-                                    </h4>
-                                    <h4>
-                                        <strong>Associated With: </strong>
-                                        {{ prj.associated_with }}
-                                    </h4>
-                                    <p>
-                                        {{ prj.start_date | date }} -
-                                        <span *ngIf="!prj.currently_ongoing">
-                                            {{ prj.end_date | date }}
-                                        </span>
-                                        <span *ngIf="prj.currently_ongoing">Present</span>
-                                        |
-                                        {{ prj.description }}
-                                    </p>
-                                </div>
+                    <h2>My Projects</h2>
+                    <div class="work bottom-item" *ngFor="let prj of projectsInfo; let i = index">
+                        <div class="row">
+                            <div class="col-1">
+                                <h3 style="color: red">
+                                    <strong>{{ i + 1 }}</strong>
+                                </h3>
+                            </div>
+                            <div class="col-11">
+                                <h4>
+                                    <strong>Project URL: </strong>
+                                    {{ prj.project_url }}
+                                </h4>
+                                <h4>
+                                    <strong>Project Name: </strong>{{ prj.project_name }}
+                                </h4>
+                                <h4>
+                                    <strong>Associated With: </strong>
+                                    {{ prj.associated_with }}
+                                </h4>
+                                <p>
+                                    {{ prj.start_date | date }} -
+                                    <span *ngIf="!prj.currently_ongoing">
+                                        {{ prj.end_date | date }}
+                                    </span>
+                                    <span *ngIf="prj.currently_ongoing">Present</span>
+                                    |
+                                    {{ prj.description }}
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -264,8 +256,14 @@
             </div>
         </div>
     </div>
+  
     <!-- End Resume -->
     <!-- Footer -->
-    <app-footer-style-two></app-footer-style-two>
+    <!-- <app-footer-style-two></app-footer-style-two> -->
     <!-- End Footer -->
+</div>
+<div class="widget-area col-lg-4 float-end">
+    <div class="download">
+        <a media="print" (click)="openPDF()">Download CV</a>
+    </div>
 </div>
