@@ -8,7 +8,7 @@
                             <h2>Experience</h2>
                         </div>
                         <div>
-                            <a class="cmn-btn" (click)="resetExp()">Create <i class='bx bx-plus'></i></a>
+                            <a class="cmn-btn" (click)="resetExp()">{{(boolVar ? 'Create' : 'Hide Form')}} <i class='bx bx-plus'></i></a>
                         </div>
                     </div>
                 </div>
@@ -39,7 +39,7 @@
 
 
 <div class="profile-content">
-    <form [formGroup]="experienceForm">
+    <form [formGroup]="experienceForm" [hidden]="!openform">
 
         <div class="profile-content-inner">
             <h2>Experience</h2>

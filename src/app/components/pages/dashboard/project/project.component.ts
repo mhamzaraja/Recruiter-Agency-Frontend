@@ -12,16 +12,14 @@ import { ProjectService } from './services/project.service';
 export class ProjectComponent implements OnInit, OnDestroy {
     submitted: boolean = false;
     submittedPrj: boolean = false;
-
     savePrjBtn: boolean = true;
     updatePrjBtn: boolean = false;
     prjId: number;
-
     proejctForm: FormGroup;
-
     public projectsInfo = [];
-
     response: any;
+    openform=false;
+    boolVar=true;
 
     constructor(private formBuilder: FormBuilder,
         private toastr: ToastrService,
@@ -117,10 +115,11 @@ export class ProjectComponent implements OnInit, OnDestroy {
     }
 
     editPrj(i: number) {
+        this.openform=!this.openform;
+        this.boolVar=!this.boolVar;
         this.savePrjBtn = false;
         this.updatePrjBtn = true;
         this.prjId = this.projectsInfo[i].id;
-
         this.proejctForm.controls.project_name.setValue(this.projectsInfo[i].project_name);
         this.proejctForm.controls.project_url.setValue(this.projectsInfo[i].project_url);
         this.proejctForm.controls.start_date.setValue(this.projectsInfo[i].start_date);
@@ -131,6 +130,8 @@ export class ProjectComponent implements OnInit, OnDestroy {
     }
 
     clearPrj() {
+        this.openform=!this.openform;
+        this.boolVar=!this.boolVar;
         this.savePrjBtn = true;
         this.updatePrjBtn = false;
         this.proejctForm.reset();

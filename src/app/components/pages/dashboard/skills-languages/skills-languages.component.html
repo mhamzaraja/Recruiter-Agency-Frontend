@@ -10,7 +10,7 @@
                                 <h2>Skills</h2>
                             </div>
                             <div>
-                                <a class="cmn-btn" (click)="resetSkill()">Create <i class='bx bx-plus'></i></a>
+                                <a class="cmn-btn" (click)="resetSkill()">{{(boolVar ? 'Create' : 'Hide Form')}} <i class='bx bx-plus'></i></a>
                             </div>
                         </div>
                     </div>
@@ -33,7 +33,7 @@
             </div>
         </div>
     </div>
-    <form style="margin-bottom: 5%;" autocomplete="off" novalidate [formGroup]="skillsForm">
+    <form style="margin-bottom: 5%;" autocomplete="off" novalidate [formGroup]="skillsForm" [hidden]="!openForm">
 
         <div class="profile-content-inner">
             <h2>Skills</h2>
@@ -111,7 +111,7 @@
                                 <h2>Languages</h2>
                             </div>
                             <div>
-                                <a class="cmn-btn" (click)="resetLang()">Create <i class='bx bx-plus'></i></a>
+                                <a class="cmn-btn" (click)="resetLang()">{{(boolVar1 ? 'Create' : 'Hide Form')}} <i class='bx bx-plus'></i></a>
                             </div>
                         </div>
                     </div>
@@ -135,7 +135,7 @@
         </div>
     </div>
 
-    <form style="margin-bottom: 5%;" autocomplete="off" novalidate [formGroup]="languageForm">
+    <form style="margin-bottom: 5%;" autocomplete="off" novalidate [formGroup]="languageForm" [hidden]="!openform">
 
         <div class="profile-content-inner">
             <h2>Languages</h2>

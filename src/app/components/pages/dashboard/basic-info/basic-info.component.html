@@ -8,7 +8,7 @@
                             <h2>Basic Information</h2>
                         </div>
                         <div>
-                            <a class="cmn-btn" (click)="editInfo()">Edit<i
+                            <a media="print" class="cmn-btn" (click)="editInfo()">{{(boolVar ? 'Edit' : 'Hide Form')}}<i
                                     class="bx bx-edit bx-sm bx-tada-hover"></i></a>
                             <!-- <i class="bx bx-edit bx-sm bx-tada-hover" style="float: right;" (click)="editInfo(i)"></i> -->
                         </div>
@@ -115,7 +115,7 @@
 <div class="tab-pane fade show active" id="v-pills-basicInfo" role="tabpanel" aria-labelledby="v-pills-basicInfo-tab">
     <div class="profile-content">
 
-        <form [formGroup]="basicInfoForm">
+        <form [formGroup]="basicInfoForm" id="noScreen" [hidden]="!openform">
             <div class="profile-content-inner">
                 <h2>Basic Info</h2>
 

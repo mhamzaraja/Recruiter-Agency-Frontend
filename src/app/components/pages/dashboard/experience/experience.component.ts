@@ -14,17 +14,15 @@ export class ExperienceComponent implements OnInit, OnDestroy {
 
     submitted: boolean = false;
     submittedExp: boolean = false;
-
     experienceForm: FormGroup;
     public experienceInfo = [];
-
     response: any;
-
     expId: number = null;
     saveExpBtn: boolean = true;
     updateExpBtn: boolean = false;
-
     city = data.cities;
+    openform=false;
+    boolVar=true
 
 
 
@@ -113,6 +111,8 @@ export class ExperienceComponent implements OnInit, OnDestroy {
     }
 
     editExp(i: number) {
+        this.openform=!this.openform;
+        this.boolVar=!this.boolVar;
         this.saveExpBtn = false;
         this.updateExpBtn = true;
         this.expId = this.experienceInfo[i].id;
@@ -143,6 +143,8 @@ export class ExperienceComponent implements OnInit, OnDestroy {
     }
 
     resetExp(){
+        this.openform=!this.openform;
+        this.boolVar=!this.boolVar;
         this.saveExpBtn = true;
         this.updateExpBtn = false;
         this.experienceForm.reset();

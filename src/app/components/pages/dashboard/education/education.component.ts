@@ -16,13 +16,12 @@ export class EducationComponent implements OnInit, OnDestroy {
     educationForm: FormGroup;
     public educationInfo = [];
     city = data.cities;
-
     response: any;
-
     eduId: number = null;
     saveEduBtn: boolean = true;
     updateEduBtn: boolean = false;
-
+    openform=false;
+    boolVar=true
     constructor(private formBuilder: FormBuilder,
         private toastr: ToastrService,
         private educationService: EducationService,
@@ -103,10 +102,11 @@ export class EducationComponent implements OnInit, OnDestroy {
     }
 
     editEdu(i: number) {
+        this.openform=!this.openform;
+        this.boolVar=!this.boolVar;
         this.saveEduBtn = false;
         this.updateEduBtn = true;
         this.eduId = this.educationInfo[i].id;
-
         this.educationForm.controls.degree_title.setValue(this.educationInfo[i].degree_title);
         this.educationForm.controls.field_of_study.setValue(this.educationInfo[i].field_of_study);
         this.educationForm.controls.location.setValue(this.educationInfo[i].location);
@@ -129,6 +129,8 @@ export class EducationComponent implements OnInit, OnDestroy {
     }
 
     clearEdu(){
+        this.openform=!this.openform;
+        this.boolVar=!this.boolVar;
         this.saveEduBtn = true;
         this.updateEduBtn = false;
         this.educationForm.reset();

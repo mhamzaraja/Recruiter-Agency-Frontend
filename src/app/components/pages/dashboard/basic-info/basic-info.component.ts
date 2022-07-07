@@ -12,11 +12,12 @@ import { BasicInfoService } from './services/basic-info.service';
 export class BasicInfoComponent implements OnInit, OnDestroy {
     submitted: boolean = false;
     basicInfoForm: FormGroup;
-
     public basicInfo = [];
     summary: string;
-
     response: any;
+    openform=false;
+    boolVar=true;
+
 
     constructor(private formBuilder: FormBuilder,
         private toastr: ToastrService,
@@ -90,7 +91,9 @@ export class BasicInfoComponent implements OnInit, OnDestroy {
         return Object.keys(obj).length != 0;
     }
 
-    editInfo(){
+    editInfo() {
+        this.openform=!this.openform;
+        this.boolVar=!this.boolVar;
         let i = 0;
         this.basicInfoForm.controls.name.setValue(this.basicInfo[i].name);
         this.basicInfoForm.controls.email.setValue(this.basicInfo[i].email);

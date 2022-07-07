@@ -8,7 +8,7 @@
                             <h2>Projects</h2>
                         </div>
                         <div>
-                            <a class="cmn-btn" (click)="clearPrj()">Create <i class='bx bx-plus'></i></a>
+                            <a class="cmn-btn" (click)="clearPrj()">{{(boolVar ? 'Create' : 'Hide Form')}}<i class='bx bx-plus'></i></a>
                         </div>
                     </div>
                 </div>
@@ -38,7 +38,7 @@
 
 <div class="profile-content" id="form">
 
-    <form [formGroup]="proejctForm">
+    <form [formGroup]="proejctForm" [hidden]="!openform">
 
         <div class="profile-content-inner">
             <h2>Projects</h2>

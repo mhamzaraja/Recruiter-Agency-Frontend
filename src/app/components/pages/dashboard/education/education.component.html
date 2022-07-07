@@ -8,7 +8,7 @@
                             <h2>Education</h2>
                         </div>
                         <div>
-                            <a class="cmn-btn" (click)="clearEdu()">Create <i class='bx bx-plus'></i></a>
+                            <a class="cmn-btn" (click)="clearEdu()" >{{(boolVar ? 'Create' : 'Hide Form')}}<i class='bx bx-plus'></i></a>
                         </div>
                     </div>
                 </div>
@@ -34,7 +34,7 @@
 
 <div class="profile-content" id="form">
 
-    <form [formGroup]="educationForm">
+    <form [formGroup]="educationForm" [hidden]="!openform">
 
         <div class="profile-content-inner">
             <h2>Education</h2>

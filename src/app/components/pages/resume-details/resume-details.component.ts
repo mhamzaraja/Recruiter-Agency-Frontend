@@ -123,15 +123,15 @@ export class ResumeDetailsComponent implements OnInit {
     public openPDF(): void {
         // window.print()
         let DATA: any = document.getElementById('htmlData');
-        document.getElementById('noScreen').style.opacity = '1';
+        // document.getElementById('noScreen').style.opacity = '1';
         html2canvas(DATA).then((canvas) => {
-            let fileWidth = 120;
+            let fileWidth = 100;
             let fileHeight = (canvas.height * fileWidth) / canvas.width;
             const FILEURI = canvas.toDataURL('image/png');
             let PDF = new jsPDF('p', 'mm', 'a4');
             let position = 0;
             PDF.addImage(FILEURI, 'PNG', 0, position, fileWidth, fileHeight);
-            document.getElementById('noScreen').style.opacity = '0';
+            // document.getElementById('noScreen').style.opacity = '0';
             PDF.save('Resume.pdf');
         });
     }

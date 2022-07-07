@@ -15,29 +15,28 @@ export class SkillsLanguagesComponent implements OnInit, OnDestroy {
     submitted: boolean = false;
     submittedSkill: boolean = false;
     submittedLanguage: boolean = false;
-
     skillsForm: FormGroup;
     languageForm: FormGroup;
     public skillInfo = [];
     public languageInfo = [];
-
     skillId: number = null;
     langId: number = null;
-
     saveSkillBtn: boolean = true;
     updateSkillBtn: boolean = false;
     saveLangBtn: boolean = true;
     updateLangBtn: boolean = false;
-
     response: any;
     public placeholder: string = '';
-
     public keyword = 'skill';
     public historyHeading: string = 'Recently selected';
-
     public skillsData = data.skillsData;
     public langData = data.langData;
     public proficiency = data.proficiency;
+    openform=false;
+    openForm=false;
+    boolVar=true;
+    boolVar1=true;
+
 
     constructor(private formBuilder: FormBuilder,
         private toastr: ToastrService,
@@ -125,6 +124,8 @@ export class SkillsLanguagesComponent implements OnInit, OnDestroy {
     }
 
     editSkill(i: number) {
+        this.openForm=!this.openForm;
+        this.boolVar=!this.boolVar;
         this.saveSkillBtn = false;
         this.updateSkillBtn = true;
         this.skillId = this.skillInfo[i].id;
@@ -199,6 +200,8 @@ export class SkillsLanguagesComponent implements OnInit, OnDestroy {
     }
 
     editLang(i: number) {
+        this.openform=!this.openform;
+        this.boolVar1=!this.boolVar1;
         this.saveLangBtn = false;
         this.updateLangBtn = true;
         this.langId = this.languageInfo[i].id;
@@ -221,11 +224,15 @@ export class SkillsLanguagesComponent implements OnInit, OnDestroy {
     }
 
     resetSkill(){
+        this.openForm=!this.openForm;
+        this.boolVar=!this.boolVar;
         this.saveSkillBtn = true;
         this.updateSkillBtn = false;
         this.skillsForm.reset();
     }
     resetLang(){
+        this.openform=!this.openform;
+        this.boolVar1=!this.boolVar1;
         this.saveLangBtn = true;
         this.updateLangBtn = false;
         this.languageForm.reset();
