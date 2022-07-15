@@ -13,19 +13,42 @@
                     </div>
                 </div>
                 <div class="work bottom-item" *ngFor="let edu of educationInfo; let i = index">
-                    <ul>
-                        <li>
-                            <img src="assets/img/home-three/title-img.png" alt="Icon">
-                            {{edu.institution}}, {{edu.location}}
-                        </li>
-                        <i class="bx bx-trash bx-sm bx-tada-hover" style="float: right;" (click)="delEdu(i)"></i>
-                        <i class="bx bx-edit bx-sm bx-tada-hover" style="float: right;" (click)="editEdu(i)"></i>
-
-                    </ul>
-                    <h4>{{edu.degree_title}}</h4>
-                    <p>{{edu.field_of_study}}</p>
-                    <p>{{edu.completion_year}}</p>
-                    <p>GPA : {{edu.obtained_gpa}}</p>
+                    <i class="bx bx-trash bx-sm bx-tada-hover" style="float: right;" (click)="delEdu(i)"></i>
+                    <i class="bx bx-edit bx-sm bx-tada-hover" style="float: right;" (click)="editEdu(i)"></i>
+                    <table class="table">
+                        <tbody>  
+                            <tr>
+                                <td scope="row" ><i class='bx bxs-graduation' ></i></td>
+                                <td scope="row" >Degree Title :</td>
+                                <td >{{edu.degree_title}}</td>
+                            </tr>
+                            <tr>
+                                <td scope="row" ><i class='bx bx-book-open' ></i></td>
+                                <td scope="row" >Field of Study :</td>
+                                <td >{{edu.field_of_study}}</td>
+                            </tr>
+                            <tr>
+                                <td scope="row" ><i class='bx bx-calendar' ></i></td>
+                                <td scope="row" >Year of Completion :</td>
+                                <td >{{edu.completion_year}}</td>
+                            </tr>
+                            <tr>
+                                <td scope="row" ><i class='bx bxs-institution' ></i></td>
+                                <td scope="row" >Instituition :</td>
+                                <td >{{edu.institution}}</td>
+                            </tr>
+                            <tr>
+                                <td scope="row" ><i class='bx bxs-edit-location' ></i></td>
+                                <td scope="row" >Location :</td>
+                                <td >{{edu.location}}</td>
+                            </tr>
+                            <tr>
+                                <td scope="row" ><i class='bx bxs-calculator' ></i></td>
+                                <td scope="row" >Obtained GPA :</td>
+                                <td >{{edu.obtained_gpa}}</td>
+                            </tr>   
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>

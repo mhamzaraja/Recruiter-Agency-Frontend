@@ -1,5 +1,4 @@
-<div class="profile-content">
-    <div *ngIf="skillInfo.length>0" class="person-details-area resume-area ptb-100">
+<div *ngIf="skillInfo.length>0" class="person-details-area resume-area ptb-100">
         <div class="container">
             <div class="row">
                 <div class="details-item">
@@ -10,13 +9,14 @@
                                 <h2>Skills</h2>
                             </div>
                             <div>
-                                <a class="cmn-btn" (click)="resetSkill()">{{(boolVar ? 'Create' : 'Hide Form')}} <i class='bx bx-plus'></i></a>
+                                <a class="cmn-btn" (click)="resetSkill()">{{(boolVar ? 'Create' : 'Hide Form')}} <i
+                                        class='bx bx-plus'></i></a>
                             </div>
                         </div>
                     </div>
 
                     <div class="work bottom-item" *ngFor="let skill of skillInfo; let i = index">
-                        <ul>
+                        <!-- <ul>
                             <li style="float: left;">
                                 <strong>
                                     {{skill.skill_title}}
@@ -25,9 +25,24 @@
                                     ({{skill.skill_proficiency}})
                                 </span>
                             </li>
-                            <i class="bx bx-trash bx-sm bx-tada-hover" style="float: right;" (click)="delSkill(i)"></i>
-                            <i class="bx bx-edit bx-sm bx-tada-hover" style="float: right;" (click)="editSkill(i)"></i>
-                        </ul>
+
+                        </ul> -->
+                        <i class="bx bx-trash bx-sm bx-tada-hover" style="float: right;" (click)="delSkill(i)"></i>
+                        <i class="bx bx-edit bx-sm bx-tada-hover" style="float: right;" (click)="editSkill(i)"></i>
+                        <table class="table">
+                            <tbody>
+                                <tr>
+                                    <td scope="row"><i class='bx bx-file-blank'></i></td>
+                                    <td scope="row"><strong>Skill Name :</strong></td>
+                                    <td>{{skill.skill_title}}</td>
+                                </tr>
+                                <tr>
+                                    <td scope="row"><i class='bx bx-file-blank'></i></td>
+                                    <td scope="row"><strong>Skill Proficiency :</strong></td>
+                                    <td>{{skill.skill_proficiency}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
@@ -111,13 +126,14 @@
                                 <h2>Languages</h2>
                             </div>
                             <div>
-                                <a class="cmn-btn" (click)="resetLang()">{{(boolVar1 ? 'Create' : 'Hide Form')}} <i class='bx bx-plus'></i></a>
+                                <a class="cmn-btn" (click)="resetLang()">{{(boolVar1 ? 'Create' : 'Hide Form')}} <i
+                                        class='bx bx-plus'></i></a>
                             </div>
                         </div>
                     </div>
 
                     <div class="work bottom-item" *ngFor="let lang of languageInfo; let i = index">
-                        <ul>
+                        <!-- <ul>
                             <li style="float: left;">
                                 <strong>
                                     {{lang.language_title}}
@@ -126,9 +142,24 @@
                                     ({{lang.language_proficiency}})
                                 </span>
                             </li>
-                            <i class="bx bx-trash bx-sm bx-tada-hover" style="float: right;" (click)="delLang(i)"></i>
-                            <i class="bx bx-edit bx-sm bx-tada-hover" style="float: right;" (click)="editLang(i)"></i>
-                        </ul>
+
+                        </ul> -->
+                        <i class="bx bx-trash bx-sm bx-tada-hover" style="float: right;" (click)="delLang(i)"></i>
+                        <i class="bx bx-edit bx-sm bx-tada-hover" style="float: right;" (click)="editLang(i)"></i>
+                        <table class="table">
+                            <tbody>
+                                <tr>
+                                    <td scope="row"><i class='bx bx-file-blank'></i></td>
+                                    <td scope="row"><strong>Language Name :</strong></td>
+                                    <td>{{lang.language_title}}</td>
+                                </tr>
+                                <tr>
+                                    <td scope="row"><i class='bx bx-file-blank'></i></td>
+                                    <td scope="row"><strong>Language Proficiency :</strong></td>
+                                    <td>{{lang.language_proficiency}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
@@ -201,4 +232,3 @@
             Update Your Language
         </button>
     </form>
-</div>

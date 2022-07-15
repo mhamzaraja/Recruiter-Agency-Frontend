@@ -27,49 +27,69 @@
                         <ul>
                             <li>
                                 <h3> <img src="assets/img/home-three/title-img.png" alt="Icon">
-                                    Details</h3>                            </li>
+                                    Details</h3>
+                            </li>
                         </ul>
-                        <div class="row">
-                            <div class="col">
-                                <p><strong>Email: </strong> {{ info.email }}</p>
-                                <p>
-                                    <strong>Phone no: </strong>
-                                    {{ info.mobile_number }}
-                                </p>
-                                <p>
-                                    <strong>Date of Birth: </strong>
-                                    {{ info.dob }}
-                                </p>
-                                <p>
-                                    <strong>Gender: </strong> {{ info.gender }}
-                                </p>
-                                <p>
-                                    <strong>Marital Status: </strong>
-                                    {{ info.marital_status }}
-                                </p>
-                                <p>
-                                    <strong>Nationality: </strong>
-                                    {{ info.nationality }}
-                                </p>
-                            </div>
-                            <div class="col">
-                                <p><strong>CNIC: </strong> {{ info.cnic }}</p>
-                                <p>
-                                    <strong>Career Level: </strong>
-                                    {{ info.career_level }}
-                                </p>
-                                <p>
-                                    <strong>Experience: </strong>
-                                    {{ info.experience }}
-                                </p>
-                                <p><strong>City: </strong> {{ info.city }}</p>
-                                <p><strong>Area: </strong> {{ info.area }}</p>
-                                <p>
-                                    <strong>Expected Salary: </strong>
-                                    {{ info.expected_salary }}
-                                </p>
-                            </div>
-                        </div>
+                        <table class="table">
+                            <tbody>
+                                <tr>
+                                    <td scope="row" ><i class='bx bx-envelope'></i></td>
+                                    <td scope="row" >Email :</td>
+                                    <td >{{info.email}}</td>
+                                </tr>
+                                <tr>
+                                    <td scope="row" ><i class='bx bxs-phone'></i></td>
+                                    <td scope="row" >Phone :</td>
+                                    <td >{{info.mobile_number}}</td>
+                                </tr>
+                                <tr>
+                                    <td scope="row" ><i class='bx bxs-calendar'></i></td>
+                                    <td scope="row" >Date of Birth :</td>
+                                    <td >{{info.dob}}</td>
+                                </tr>
+                                <tr>
+                                    <td scope="row" ><i class='bx bx-body' ></i></td>
+                                    <td scope="row" >Gender :</td>
+                                    <td >{{info.gender}}</td>
+                                </tr>
+                                <tr>
+                                    <td scope="row" ><i class='bx bx-heart-circle'></i></td>
+                                    <td scope="row" >Marital Status :</td>
+                                    <td >{{info.marital_status}}</td>
+                                </tr>
+                                <tr>
+                                    <td scope="row" ><i class='bx bxs-flag' ></i></td>
+                                    <td scope="row" >Nationality :</td>
+                                    <td >{{info.nationality}}</td>
+                                </tr>
+                                <tr>
+                                    <td scope="row" ><i class='bx bxs-book-content'></i></td>
+                                    <td scope="row" >CNIC :</td>
+                                    <td >{{info.cnic}}</td>
+                                </tr>
+                                <tr>
+                                    <td scope="row" ><i class='bx bxs-briefcase' ></i></td>
+                                    <td scope="row" >Career Level :</td>
+                                    <td >{{info.career_level}}</td>
+                                </tr>
+                                <tr>
+                                    <td scope="row" ><i class='bx bx-line-chart' ></i></td>
+                                    <td scope="row" >Experience :</td>
+                                    <td >{{info.experience}}</td>
+                                </tr>
+                                <tr>
+                                    <td scope="row" ><i class='bx bxs-city' ></i></td>
+                                    <td scope="row" >City :</td>
+                                    <td >{{info.city}}</td>
+                                </tr>
+                                <tr>
+                                    <td scope="row" ><i class='bx bx-money' ></i></td>
+                                    <td scope="row" >Expected Salary :</td>
+                                    <td >{{info.expected_salary}}</td>
+                                </tr>
+
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
@@ -168,11 +188,11 @@
 
                     <div class="col-lg-6 col-md-12">
                         <div class="form-group">
-                            <label>Date Of Birth:</label>
+                            <label>Date Of Birtd:</label>
                             <input type="date" class="form-control" placeholder="01/01/1995" formControlName="dob"
                                 [ngClass]="{ 'is-invalid': submitted && f.dob.errors }">
                             <div *ngIf="submitted && f.dob.errors" class="invalid-feedback">
-                                <div *ngIf="f.dob.errors.required">Date of birth is required</div>
+                                <div *ngIf="f.dob.errors.required">Date of birtd is required</div>
                             </div>
                         </div>
                     </div>
@@ -184,7 +204,7 @@
                                 <option value="" disabled selected>Please select</option>
                                 <option value="male">Male</option>
                                 <option value="female">Female</option>
-                                <option value="other">Other</option>
+                                <option value="otder">Otder</option>
                             </select>
                             <div class="invalid-feedback" *ngIf="submitted && f.gender.errors">
                                 <div *ngIf="f.gender.errors.required">
@@ -259,7 +279,7 @@
                                 [ngClass]="{ 'is-invalid': submitted && f.experience.errors }">
                                 <option value="" disabled selected>Choose any one</option>
                                 <option>Fresh</option>
-                                <option>Less than 1 Year</option>
+                                <option>Less tdan 1 Year</option>
                                 <option>1 Year</option>
                                 <option>2 Years</option>
                                 <option>3 Years</option>
@@ -295,7 +315,7 @@
                                 <option>33 Years</option>
                                 <option>34 Years</option>
                                 <option>35 Years</option>
-                                <option>More than 35 Years</option>
+                                <option>More tdan 35 Years</option>
 
                             </select>
                             <div class="invalid-feedback" *ngIf="submitted && f.experience.errors">

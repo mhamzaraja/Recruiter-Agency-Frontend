@@ -13,23 +13,42 @@
                     </div>
                 </div>
                 <div class="work bottom-item" *ngFor="let prj of projectsInfo; let i = index">
-                    <ul>
-                        <li>
-                            <img src="assets/img/home-three/title-img.png" alt="Icon">
-                            {{prj.project_url}}
-                        </li>
-                        <i class="bx bx-trash bx-sm bx-tada-hover" style="float: right;" (click)="delPrj(i)"></i>
-                        <i class="bx bx-edit bx-sm bx-tada-hover" style="float: right;" (click)="editPrj(i)"></i>
+                    <i class="bx bx-trash bx-sm bx-tada-hover" style="float: right;" (click)="delPrj(i)"></i>
+                    <i class="bx bx-edit bx-sm bx-tada-hover" style="float: right;" (click)="editPrj(i)"></i>
+                    <table class="table">
+                        <tbody>
+                            <tr>
+                                <td scope="row" ><i class='bx bx-code-curly' ></i></td>
+                                <td scope="row" >Project URL :</td>
+                                <td >{{prj.project_url}}</td>
+                            </tr>
+                            <tr>
+                                <td scope="row"  ><i class='bx bx-file-blank' ></i></td>
+                                <td scope="row" class="col-lg-2">Project Name :</td>
+                                <td >{{prj.project_name}}</td>
+                            </tr>
+                            <tr>
+                                <td scope="row" ><i class='bx bxs-bookmark-plus'></i></td>
+                                <td scope="row" >Associated With :</td>
+                                <td >{{prj.associated_with}}</td>
+                            </tr>
+                            <tr>
+                                <td scope="row" ><i class='bx bxs-calendar' ></i></td>
+                                <td scope="row" >Duration :</td>
+                                <td > <p>{{prj.start_date | date}} -
+                                    <span *ngIf="!prj.currently_ongoing">
+                                        {{prj.end_date | date}}
+                                    </span>
+                                    <span *ngIf="prj.currently_ongoing">Present</span></td>
+                            </tr>
+                            <tr>
+                                <td scope="row" ><i class='bx bxs-detail'></i></td>
+                                <td scope="row" >Description :</td>
+                                <td >{{prj.description}}</td>
+                            </tr>
 
-                    </ul>
-                    <h4>{{prj.project_name}}</h4>
-                    <p>{{prj.associated_with}}</p>
-                    <p>{{prj.start_date | date}} -
-                        <span *ngIf="!prj.currently_ongoing">
-                            {{prj.end_date | date}}
-                        </span>
-                        <span *ngIf="prj.currently_ongoing">Present</span>
-                    <p>{{prj.description}}</p>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
