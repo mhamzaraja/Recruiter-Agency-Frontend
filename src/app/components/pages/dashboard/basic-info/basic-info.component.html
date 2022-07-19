@@ -202,9 +202,9 @@
                             <select class="form-control form-select" formControlName="gender"
                                 [ngClass]="{ 'is-invalid': submitted && f.gender.errors }">
                                 <option value="" disabled selected>Please select</option>
-                                <option value="male">Male</option>
-                                <option value="female">Female</option>
-                                <option value="otder">Otder</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                                <option value="Otder">Otder</option>
                             </select>
                             <div class="invalid-feedback" *ngIf="submitted && f.gender.errors">
                                 <div *ngIf="f.gender.errors.required">
@@ -258,11 +258,11 @@
                             <select class="form-control form-select" formControlName="career_level"
                                 [ngClass]="{ 'is-invalid': submitted && f.career_level.errors }">
                                 <option value="" disabled selected>Choose any one</option>
-                                <option value="1">Intern/Student</option>
-                                <option value="2">Entry Level</option>
-                                <option value="3">Experienced Professional</option>
-                                <option value="4">Department Head</option>
-                                <option value="5">GM / CEO / Country Head / President</option>
+                                <option>Entry-level</option>
+                                <option>Intermediate</option>
+                                <option>Mid-level</option>
+                                <option>Senior-level </option>
+                                <option>Executive-level</option>
                             </select>
                             <div class="invalid-feedback" *ngIf="submitted && f.career_level.errors">
                                 <div *ngIf="f.career_level.errors.required">

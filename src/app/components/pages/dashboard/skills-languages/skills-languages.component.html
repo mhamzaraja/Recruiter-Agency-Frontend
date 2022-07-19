@@ -1,3 +1,4 @@
+
 <div *ngIf="skillInfo.length>0" class="person-details-area resume-area ptb-100">
         <div class="container">
             <div class="row">
@@ -48,7 +49,7 @@
             </div>
         </div>
     </div>
-    <form style="margin-bottom: 5%;" autocomplete="off" novalidate [formGroup]="skillsForm" [hidden]="!openForm">
+    <form style="margin-bottom: 5%;" autocomplete="off" novalidate [formGroup]="skillsForm" [hidden]="!openForm" class="profile-content">
 
         <div class="profile-content-inner">
             <h2>Skills</h2>
@@ -166,7 +167,7 @@
         </div>
     </div>
 
-    <form style="margin-bottom: 5%;" autocomplete="off" novalidate [formGroup]="languageForm" [hidden]="!openform">
+    <form style="margin-bottom: 5%;" autocomplete="off" novalidate [formGroup]="languageForm" [hidden]="!openform" class="profile-content">
 
         <div class="profile-content-inner">
             <h2>Languages</h2>
