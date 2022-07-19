@@ -1,0 +1,64 @@
+<!-- Navbar -->
+<app-navbar-style-three></app-navbar-style-three>
+<!-- End Navbar -->
+
+<!-- Page Title -->
+<div class="page-title-area">
+    <div class="d-table">
+        <div class="d-table-cell">
+            <div class="container">
+                <div class="title-item">
+                    <h2>Company's Info</h2>
+                    <ul>
+                        <li>
+                            <img src="assets/img/home-three/title-img-two.png" alt="Image">
+                            <a routerLink="/">Home</a>
+                        </li>
+                        <li><span>/</span></li>
+                        <li>Company dashboard</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Page Title -->
+
+<!-- tabs start -->
+<div class="dashboard-area ptb-100">
+    <div class="container">
+        <div class="row">
+            <div class="nav flex-column nav-pills">
+                <div class="create-button">
+                    <a class="nav-link col" aria-selected="true" routerLink="/companies" routerLinkActive="active"
+                        [routerLinkActiveOptions]="{exact:true}">
+                        <i class='bx bx-group'></i>
+                        Employees Info
+                    </a>
+
+                    <a class="nav-link col" routerLink="daily-tasks" aria-selected="false" routerLinkActive="active">
+                        <i class='bx bx-task'></i>
+                        Daily tasks of employees
+                    </a>
+                    <a class="nav-link col" routerLink="facilities" aria-selected="false" routerLinkActive="active">
+                        <i class='bx bx-coffee'></i>
+                        Facilities provided in company
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="table-responsive">
+                    <router-outlet></router-outlet>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- tabs end  -->
+
+<!-- Footer -->
+<app-footer-style-two></app-footer-style-two>
+<!-- End Footer -->
+

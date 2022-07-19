@@ -1,0 +1,99 @@
+<!-- Navbar -->
+<app-navbar-style-three class="employer-navbar"></app-navbar-style-three>
+<!-- End Navbar -->
+
+<!-- Dashboard -->
+<div class="dashboard-area emploer-dasboard-content">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4 col-md-12">
+                <div class="profile-item">
+                    <img src="assets/img/dashboard1.jpg" alt="Dashboard">
+                    <h2>
+                        {{fullNAme}}
+                        <i class='bx bx-edit bx-sm bx-tada-hover' routerLink="profile/create"></i>
+                    </h2>
+                    <span>{{designation}}</span>
+                </div>
+
+                <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                    <div class="widget-area">
+                        <div class="owner">
+                            <div class="top">
+                                <i routerLink="companies" class="bx bx-edit bx-sm bx-tada-hover"
+                                    style="float: right;cursor: pointer;"></i>
+                                <img src="assets/img/home-one/job4.png" alt="Owner">
+
+                                <h3 [routerLink]="['/companies']">Reichert-Wiza</h3>
+                                <i class="flaticon-send"></i>
+                                <span>Kansas City, US</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-8 col-md-12">
+                <div class="tab-content" id="v-pills-tabContent">
+                    <div class="blog-details-area">
+                        <div class="details-item">
+                            <div class="details-date">
+                                <div class="row">
+                                    <div class="col-sm-3 col-lg-3">
+                                        <div class="date-inner">
+                                            <span>POSTED JOBS</span>
+                                            <h1>{{jobsPosted}}</h1>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3 col-lg-3">
+                                        <div class="date-inner">
+                                            <span>REVIEWED</span>
+                                            <h1>50</h1>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3 col-lg-3">
+                                        <div class="date-inner">
+                                            <span>SHORTLISTED</span>
+                                            <h1>2</h1>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3 col-lg-3">
+                                        <div class="date-inner">
+                                            <span>INTERVIEWS</span>
+                                            <h1>0</h1>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <h2 _ngcontent-osu-c14="">Posted Jobs</h2>
+
+                    <div *ngIf="jobPostInfo.length>0" class="person-details-area resume-area ptb-100">
+                        <div class="container">
+                            <div class="employer-item" *ngFor="let jobs of jobPostInfo;">
+                                <a [routerLink]="['/job-details', jobs.id]">
+                                    <img src="assets/img/home-one/job1.png" alt="Employer">
+                                    <h3>{{jobs.job_title}}</h3>
+                                    <ul>
+                                        <li><i class="flaticon-send"></i> {{jobs.job_location}},
+                                            Pakistan</li>
+                                    </ul>
+                                    <p>{{jobs.job_description}}</p>
+                                    <span class="span-one">{{jobs.workplace_type}}</span>
+                                    <span class="span-two">{{jobs.job_shift}}</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Dashboard -->
+
+<!-- Footer -->
+<app-footer-style-two></app-footer-style-two>
+<!-- End Footer -->

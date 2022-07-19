@@ -1,0 +1,203 @@
+<!-- Navbar -->
+<app-navbar-style-three></app-navbar-style-three>
+<!-- End Navbar -->
+
+<!-- Page Title -->
+<div class="page-title-area">
+    <div class="d-table">
+        <div class="d-table-cell">
+            <div class="container">
+                <div class="title-item">
+                    <h2>Employer's Profile</h2>
+                    <ul>
+                        <li>
+                            <img src="assets/img/home-three/title-img-two.png" alt="Image">
+                            <a routerLink="/employer/dashboard/:id">Dashboard</a>
+                        </li>
+                        <li><span>/</span></li>
+                        <li>Employer's Profile</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Page Title -->
+
+<!-- company list -->
+
+<!-- <div *ngIf="companyInfo.length>0" class="person-details-area resume-area ptb-100">
+    <div class="container">
+        <div class="row">
+            <div class="details-item">
+                <div class="bottom-item">
+                    <div class="create-button">
+                        <div>
+                            <h2>Companies</h2>
+                        </div>
+                        <div>
+                            <a class="cmn-btn"  (click)="createButton()">Create <i class='bx bx-plus'></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="work bottom-item" *ngFor="let comp of companyInfo; let i = index">
+                    <ul>
+                        <li>
+                            <i class='bx bx-globe'></i>
+                            {{comp.company_url}}
+                        </li>
+                        <i class="bx bx-trash bx-sm bx-tada-hover" style="float: right;" (click)="delComp(i)"></i>
+                        <i class="bx bx-edit bx-sm bx-tada-hover" style="float: right;" (click)="editComp(i)"></i>
+                    </ul>
+                    <ul>
+                        <li>
+                            <i class='bx bx-envelope'></i>
+                            {{comp.contact_email}}
+                        </li>
+                    </ul>
+
+                    <p>{{comp.mobile_number}}, {{comp.office_number}}
+                        | {{comp.company_address}},Pakistan
+                    </p>
+
+                    <h3>
+                        {{comp.company_name}}
+                    </h3><span *ngIf="comp.is_default">(Present)</span>
+
+                    <p>Since: <strong>{{comp.operating_since | date}}</strong></p>
+                    <p>CEO: <strong>{{comp.ceo_name}}</strong></p>
+                    <p>HR / Dept Head: <strong>{{comp.hr_head_department}}</strong></p>
+                    <p>Designation: <strong>{{comp.job_designation}}</strong></p>
+                    <p>Industry: <strong>{{comp.industry}}</strong></p>
+                    <p>Ownership Type: <strong>{{comp.ownership_type}}</strong></p>
+                    <p>Description: <strong>{{comp.company_description}}</strong></p>
+                    <p>Origin: <strong>{{comp.origin_of_company}}</strong></p>
+                    <p># of Offices: <strong>{{comp.number_of_offices}}</strong></p>
+                    <p>Website: <strong>{{comp.company_url}}</strong></p>
+                    <p># of Employees: <strong>{{comp.number_of_employees}}</strong></p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div> -->
+
+<!--  end company list -->
+
+<!-- Create Company -->
+<div class="dashboard-area ptb-100">
+    <div class="container">
+        <div class="profile-content">
+
+            <form [formGroup]="employerForm">
+
+                <div class="profile-content-inner">
+                    <h2>Employer's Profile</h2>
+                    <div class="row">
+
+                        <div class="col-lg-6 col-md-12">
+                            <div class="form-group">
+                                <label>Full Name:</label>
+                                <input type="text" class="form-control" formControlName="full_name"
+                                    placeholder="e.g. John Doe."
+                                    [ngClass]="{ 'is-invalid': submitted && femp.full_name.errors }">
+                                <div class="invalid-feedback" *ngIf="submitted && femp.full_name.errors">
+                                    <div *ngIf="femp.full_name.errors.required">
+                                        Name is required
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6 col-md-12">
+                            <div class="form-group">
+                                <label>Job Designation:</label>
+                                <input type="text" class="form-control" formControlName="job_designation"
+                                    placeholder="Job Designation."
+                                    [ngClass]="{ 'is-invalid': submitted && femp.job_designation.errors }">
+                                <div class="invalid-feedback" *ngIf="submitted && femp.job_designation.errors">
+                                    <div *ngIf="femp.job_designation.errors.required">
+                                        Job Designation is required
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6 col-md-12">
+                            <div class="form-group">
+                                <label>Gender:</label>
+                                <select class="form-control form-select" formControlName="gender"
+                                    [ngClass]="{ 'is-invalid': submitted && femp.gender.errors }">
+                                    <option value="" disabled selected>Choose any one</option>
+                                    <option value="Male">Male</option>
+                                    <option value="Female">Female</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                                <div class="invalid-feedback" *ngIf="submitted && femp.gender.errors">
+                                    <div *ngIf="femp.gender.errors.required">
+                                        Gender is required
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6 col-md-12">
+                            <div class="form-group">
+                                <label>Date of Birth:</label>
+                                <input type="date" class="form-control" placeholder="01/01/1995"
+                                    formControlName="dob"
+                                    [ngClass]="{ 'is-invalid': submitted && femp.dob.errors }">
+                                <div *ngIf="submitted && femp.dob.errors" class="invalid-feedback">
+                                    <div *ngIf="femp.dob.errors.required">
+                                       Birth date is required
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6 col-md-12">
+                            <div class="form-group">
+                                <label>Mobile Number:</label>
+                                <input type="number" class="form-control" formControlName="mobile_number"
+                                    placeholder="Phone Number"
+                                    [ngClass]="{ 'is-invalid': submitted && femp.mobile_number.errors }">
+                                <div class="invalid-feedback" *ngIf="submitted && femp.mobile_number.errors">
+                                    <div *ngIf="femp.mobile_number.errors.required">
+                                        Mobile Number is required
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6 col-md-12">
+                            <div class="form-group">
+                                <label>Office Number:</label>
+                                <input type="number" class="form-control" formControlName="office_number"
+                                    placeholder="Office Number"
+                                    [ngClass]="{ 'is-invalid': submitted && femp.office_number.errors }">
+                                <div class="invalid-feedback" *ngIf="submitted && femp.office_number.errors">
+                                    <div *ngIf="femp.office_number.errors.required">
+                                        Office Number is required
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+
+                <button (click)="employerInfoForm()" class="btn dashboard-btn">
+                    Update Your Information
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- End create company -->
+
+<!-- Footer -->
+<app-footer-style-two></app-footer-style-two>
+<!-- End Footer -->

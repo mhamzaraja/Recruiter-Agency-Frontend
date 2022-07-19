@@ -1,0 +1,35 @@
+<table class="table table-hover" *ngIf="employersInfo.length>0">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Profession</th>
+            <th scope="col">Joining</th>
+            <th scope="col">Salary</th>
+            <th scope="col">Status</th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let comp of employersInfo; let i = index" [routerLink]="['/employer/dashboard', comp.id]">
+            <th scope="row">{{comp.id}}</th>
+            <td>{{comp.full_name}}</td>
+            <td>{{comp.job_designation}}</td>
+            <td>
+                {{comp.createdAt | date}} at
+                {{comp.createdAt | date:'shortTime'}}
+            </td>
+            <td>RS. 30,000</td>
+            <td>Working</td>
+            <td
+            (click)="$event.stopPropagation()"
+            (click)="$event.preventDefault()">
+                <i class="bx bx-trash bx-sm bx-tada-hover" (click)="delCand(i)"></i>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<div *ngIf="employersInfo.length==0">
+    <h2>No employees found</h2>
+</div>
