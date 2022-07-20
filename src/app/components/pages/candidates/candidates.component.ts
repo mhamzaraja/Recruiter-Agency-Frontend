@@ -10,7 +10,8 @@ import { CandidatesService } from "./services/candidates.service";
 })
 export class CandidatesComponent implements OnInit, OnDestroy {
 
-    candidatsInfo = []
+    candidatsInfo = [];
+    response: any;
     // public candidatsInfo: any;
     public candExperience: any;
     public candSkills: any;
@@ -24,11 +25,13 @@ export class CandidatesComponent implements OnInit, OnDestroy {
 
     ngOnInit(): void {
         this.getCandidates();
+        console.log(this.candExperience)
     }
 
     getCandidates() {
         this.candidatesService.getAllCandidates().subscribe(
             (res) => {
+                this.response = res.data;
                 this.candidatsInfo = res.data[0].profile;
                 this.candExperience = res.data[2].experience;
                 this.candSkills = res.data[4].skills;

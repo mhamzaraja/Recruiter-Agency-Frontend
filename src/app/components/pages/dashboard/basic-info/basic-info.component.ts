@@ -53,7 +53,7 @@ export class BasicInfoComponent implements OnInit, OnDestroy {
     baiscInfoForm() {
         this.submitted = true;
         if (this.basicInfoForm.invalid) {
-            this.toastr.error(this.response.message);
+            this.toastr.error("Please check the form before submitting!");
         }
         else {
             this.basicInfoService.basicInfoForm(this.basicInfoForm.value).subscribe(

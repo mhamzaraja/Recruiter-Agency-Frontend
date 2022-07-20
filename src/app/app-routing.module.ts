@@ -208,7 +208,7 @@ const routes: Routes = [
         component: CandidatesComponent,
         canActivate: [AuthGuard, RoleGuardGuard],
         data: {
-            expectedRoles: ["ROLE_SUPER_USER", "ROLE_CANDIDATE", "ROLE_EMPLOYER"]
+            expectedRoles: ["ROLE_SUPER_USER", "ROLE_EMPLOYER"]
         },
     },
     {

@@ -42,6 +42,7 @@ export class BasicInfoService {
             ...data,
             userId: this.userId
         };
+        console.log(basicInfoData);
 
         return this.http.post<any>(`${this.host}/api/user/profile/create`, basicInfoData, this.httpOptions);
     }
