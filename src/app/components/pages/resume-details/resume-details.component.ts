@@ -3,6 +3,7 @@ import { ToastrService } from 'ngx-toastr';
 import { ResumeService } from './services/resume.service';
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
+import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
     selector: 'app-resume-details',
@@ -19,10 +20,13 @@ export class ResumeDetailsComponent implements OnInit {
     public skillInfo: [];
     designation: string;
     public languageInfo: [];
+    hidden=false;
+    closeResult = '';
 
     constructor(
         private resumeService: ResumeService,
-        private toastr: ToastrService
+        private toastr: ToastrService,
+        private modalService: NgbModal
     ) { }
 
     ngOnInit(): void {
@@ -135,4 +139,9 @@ export class ResumeDetailsComponent implements OnInit {
             PDF.save('Resume.pdf');
         });
     }
+
+    //Resume Dialog Box
+    openXl(content) {
+        this.modalService.open(content, { size: 'xl'});
+      }
 }
