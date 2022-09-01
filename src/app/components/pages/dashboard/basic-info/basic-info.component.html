@@ -1,19 +1,19 @@
+<div class="bottom-item">
+    <div class="create-button">
+        <div>
+            <h2>Basic Information</h2>
+        </div>
+        <div>
+            <a media="print" class="cmn-btn" (click)="editInfo()">{{(boolVar ? 'Edit/Create' : 'Hide Form')}}<i
+                    class="bx bx-edit bx-sm bx-tada-hover"></i></a>
+            <!-- <i class="bx bx-edit bx-sm bx-tada-hover" style="float: right;" (click)="editInfo(i)"></i> -->
+        </div>
+    </div>
+</div>
 <div *ngIf="basicInfo.length > 0" class="person-details-area resume-area ptb-100">
     <div class="container">
         <div class="row">
             <div class="details-item">
-                <div class="bottom-item">
-                    <div class="create-button">
-                        <div>
-                            <h2>Basic Information</h2>
-                        </div>
-                        <div>
-                            <a media="print" class="cmn-btn" (click)="editInfo()">{{(boolVar ? 'Edit' : 'Hide Form')}}<i
-                                    class="bx bx-edit bx-sm bx-tada-hover"></i></a>
-                            <!-- <i class="bx bx-edit bx-sm bx-tada-hover" style="float: right;" (click)="editInfo(i)"></i> -->
-                        </div>
-                    </div>
-                </div>
                 <div class="work bottom-item" *ngFor="let info of basicInfo; let i = index">
                     <ul>
                         <li>

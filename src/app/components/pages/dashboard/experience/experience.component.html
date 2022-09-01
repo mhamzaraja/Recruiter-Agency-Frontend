@@ -1,18 +1,18 @@
+<div class="bottom-item">
+    <div class="create-button">
+        <div>
+            <h2>Experience</h2>
+        </div>
+        <div>
+            <a class="cmn-btn" (click)="resetExp()">{{(boolVar ? 'Create' : 'Hide Form')}} <i
+                    class='bx bx-plus'></i></a>
+        </div>
+    </div>
+</div>
 <div *ngIf="experienceInfo.length>0" class="person-details-area resume-area ptb-100">
     <div class="container">
         <div class="row">
             <div class="details-item">
-                <div class="bottom-item">
-                    <div class="create-button">
-                        <div>
-                            <h2>Experience</h2>
-                        </div>
-                        <div>
-                            <a class="cmn-btn" (click)="resetExp()">{{(boolVar ? 'Create' : 'Hide Form')}} <i
-                                    class='bx bx-plus'></i></a>
-                        </div>
-                    </div>
-                </div>
 
                 <div class="work bottom-item" *ngFor="let exp of experienceInfo; let i = index">
                     <i class="bx bx-trash bx-sm bx-tada-hover" style="float: right;" (click)="delExp(i)"></i>

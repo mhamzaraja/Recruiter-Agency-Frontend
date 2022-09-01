@@ -1,3 +1,4 @@
 export default {
-    host: "http://localhost:9000",
+    host: "https://recruiter-apis.herokuapp.com"
+    // host: "http://localhost:9000",
 };

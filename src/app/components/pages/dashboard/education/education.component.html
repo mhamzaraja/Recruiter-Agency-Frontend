@@ -1,17 +1,18 @@
+<div class="create-button">
+    <div>
+        <h2>Education</h2>
+    </div>
+    <div>
+        <a class="cmn-btn" (click)="clearEdu()" >{{(boolVar ? 'Create' : 'Hide Form')}}<i class='bx bx-plus'></i></a>
+    </div>
+</div>
 <div *ngIf="educationInfo.length>0" class="person-details-area resume-area ptb-100">
     <div class="container">
         <div class="row">
             <div class="details-item">
                 <div class="bottom-item">
-                    <div class="create-button">
-                        <div>
-                            <h2>Education</h2>
-                        </div>
-                        <div>
-                            <a class="cmn-btn" (click)="clearEdu()" >{{(boolVar ? 'Create' : 'Hide Form')}}<i class='bx bx-plus'></i></a>
-                        </div>
-                    </div>
                 </div>
+          
                 <div class="work bottom-item" *ngFor="let edu of educationInfo; let i = index">
                     <i class="bx bx-trash bx-sm bx-tada-hover" style="float: right;" (click)="delEdu(i)"></i>
                     <i class="bx bx-edit bx-sm bx-tada-hover" style="float: right;" (click)="editEdu(i)"></i>

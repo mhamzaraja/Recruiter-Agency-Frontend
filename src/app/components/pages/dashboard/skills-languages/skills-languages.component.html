@@ -1,9 +1,4 @@
 
-<div *ngIf="skillInfo.length>0" class="person-details-area resume-area ptb-100">
-        <div class="container">
-            <div class="row">
-                <div class="details-item">
-
                     <div class="bottom-item">
                         <div class="create-button">
                             <div>
@@ -15,6 +10,11 @@
                             </div>
                         </div>
                     </div>
+
+<div *ngIf="skillInfo.length>0" class="person-details-area resume-area ptb-100">
+        <div class="container">
+            <div class="row">
+                <div class="details-item">
 
                     <div class="work bottom-item" *ngFor="let skill of skillInfo; let i = index">
                         <!-- <ul>
@@ -116,22 +116,23 @@
         </button>
     </form>
 
+                     <!-- Languages -->
+    <div class="bottom-item">
+        <div class="create-button">
+            <div>
+                <h2>Languages</h2>
+            </div>
+            <div>
+                <a class="cmn-btn" (click)="resetLang()">{{(boolVar1 ? 'Create' : 'Hide Form')}} <i
+                        class='bx bx-plus'></i></a>
+            </div>
+        </div>
+    </div>
     <div *ngIf="languageInfo.length>0" class="person-details-area resume-area ptb-100">
         <div class="container">
             <div class="row">
                 <div class="details-item">
 
-                    <div class="bottom-item">
-                        <div class="create-button">
-                            <div>
-                                <h2>Languages</h2>
-                            </div>
-                            <div>
-                                <a class="cmn-btn" (click)="resetLang()">{{(boolVar1 ? 'Create' : 'Hide Form')}} <i
-                                        class='bx bx-plus'></i></a>
-                            </div>
-                        </div>
-                    </div>
 
                     <div class="work bottom-item" *ngFor="let lang of languageInfo; let i = index">
                         <!-- <ul>
