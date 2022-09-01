@@ -11,10 +11,11 @@
                     <div class="col-lg-8 col-md-12">
                         <div class="left two">
                             <img src="assets/img/candidate-details1.jpg" alt="Details">
-                            <h2>Markin M. Doland</h2>
+                            <h2>{{candBasicInfo?.name}}</h2>
                             <ul>
-                                <li><i class='bx bx-box'></i> UX/UI Designer</li>
-                                <li><i class='bx bx-phone-call'></i> <a href="+567908234875">+567 908 234 875</a></li>
+                                <li><i class='bx bx-box'></i> {{currentWorkValue}} </li>
+                                <li><i class='bx bx-phone-call'></i> <a
+                                        href="+567908234875">{{candBasicInfo?.mobile_number}}</a></li>
                             </ul>
                         </div>
                     </div>
@@ -43,107 +44,62 @@
                 <div class="details-item">
                     <div class="profile">
                         <h3>My Profile</h3>
-                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-                        <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search.</p>
+                        <p>{{candBasicInfo?.summary}}</p>
                     </div>
 
+                    <!-- <div *ngIf="jobPostInfo.length>0" class="person-details-area resume-area ptb-100"> -->
                     <div class="work bottom-item">
                         <h3>Work Experience</h3>
-
-                        <ul>
-                            <li><img src="assets/img/home-three/title-img.png" alt="Icon"> Path Technologies, Washington, DC, USA</li>
-                            <li><span>04/2011 - 01/2012</span></li>
-                        </ul>
-                        <h4>Senior Software Engineer</h4>
-                        <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text.</p>
-                    </div>
-
-                    <div class="work bottom-item">
-                        <ul>
-                            <li><img src="assets/img/home-three/title-img.png" alt="Icon"> University Of Maryland</li>
-                            <li><span>03/2014 - 03/2016</span></li>
-                        </ul>
-                        <h4>Professor</h4>
-                        <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text.</p>
-                    </div>
-
-                    <div class="work bottom-item bottom-item-last">
-                        <ul>
-                            <li><img src="assets/img/home-three/title-img.png" alt="Icon"> 3s Software Bangladesh</li>
-                            <li><span>02/2015 - 02/2018</span></li>
-                        </ul>
-                        <h4>John Hopkins, Bangladesh</h4>
-                        <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text.</p>
-                    </div>
-
-                    <div class="work bottom-item">
-                        <h3>Education</h3>
-                        <ul>
-                            <li><img src="assets/img/home-three/title-img.png" alt="Icon"> Path Technologies, Washington, DC, USA</li>
-                        </ul>
-                        <h4>MBA (2018-2019)</h4>
-                        <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text.</p>
-                    </div>
-
-                    <div class="work bottom-item">
-                        <ul>
-                            <li><img src="assets/img/home-three/title-img.png" alt="Icon"> School of Design at University of Michigan</li>
-                        </ul>
-                        <h4>BBA (2010-2014)</h4>
-                        <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text.</p>
-                    </div>
-
-                    <div class="work bottom-item bottom-item-last">
-                        <ul>
-                            <li><img src="assets/img/home-three/title-img.png" alt="Icon"> Design at Institute of Technology & Marketing</li>
-                        </ul>
-                        <h4>Section UX & UI design (2014 - 2018)</h4>
-                        <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text.</p>
+                        <div *ngFor="let exp of candExperience; let i = index">
+                            <ul>
+                                <li><img src="assets/img/home-three/title-img.png" alt="Icon">
+                                    {{exp?.company}}, {{exp?.location}}, Pakistan</li>
+                                <li>
+                                    <span>{{exp?.startDate | date}} -
+                                        <span *ngIf="!exp?.currentlyWorking">
+                                            {{exp?.endDate | date}}
+                                        </span>
+                                        <span *ngIf="exp?.currentlyWorking">
+                                            Present
+                                        </span>
+                                        {{currentWork(exp?.currentlyWorking, i)}}
+                                    </span>
+                                </li>
+                            </ul>
+                            <h4>{{exp?.jobTitle}}</h4>
+                            <p>{{exp?.description}}</p>
+                        </div>
                     </div>
 
                     <div class="skills">
                         <h3>Skills</h3>
-
-                        <div class="skill-wrap">
-                            <div class="skill">
-                                <h3>HTML/CSS</h3>
-                                <div class="skill-bar skill1 animate__slideInLeft animate__animated">
-                                    <span class="skill-count1">56%</span>
+                        <div *ngFor="let skill of candSkills;">
+                            <div class="skill-wrap">
+                                <div class="skill">
+                                    <h3>
+                                        {{skill?.skill_title}}
+                                        ({{skill?.skill_proficiency}})
+                                    </h3>
+                                    <!-- <div class="skill-bar skill1 animate__slideInLeft animate__animated">
+                                        <span class="skill-count1">56%</span>
+                                    </div> -->
                                 </div>
                             </div>
+                        </div>
+                    </div>
 
-                            <div class="skill">
-                                <h3>WORDPRESS</h3>
-                                <div class="skill-bar skill2 animate__slideInLeft animate__animated">
-                                    <span class="skill-count2">80%</span>
-                                </div>
-                            </div>
-
-                            <div class="skill">
-                                <h3>PHOTOSHOP</h3>
-                                <div class="skill-bar skill3 animate__slideInLeft animate__animated">
-                                    <span class="skill-count3">90%</span>
-                                </div>
-                            </div>
-
-                            <div class="skill">
-                                <h3>PHP</h3>
-                                <div class="skill-bar skill4 animate__slideInLeft animate__animated">
-                                    <span class="skill-count4">70%</span>
-                                </div>
-                            </div>
-
-                            <div class="skill">
-                                <h3>TEAM MANAGEMENT</h3>
-                                <div class="skill-bar skill5 animate__slideInLeft animate__animated">
-                                    <span class="skill-count5">80%</span>
-                                </div>
-                            </div>
-
-                            <div class="skill">
-                                <h3>SERVICE OF QUALITY</h3>
-                                <div class="skill-bar skill6 animate__slideInLeft animate__animated">
-                                    <span class="skill-count6">90%</span>
+                    <div class="skills">
+                        <h3>Languages</h3>
+                        <div *ngFor="let lang of candLanguages;">
+                            <div class="skill-wrap">
+                                <div class="skill">
+                                    <h3>
+                                        {{lang?.language_title}}
+                                        ({{lang?.language_proficiency}})
+                                    </h3>
+                                    <!-- <div class="skill-bar skill1 animate__slideInLeft animate__animated">
+                                        <span class="skill-count1">56%</span>
+                                    </div> -->
                                 </div>
                             </div>
                         </div>
@@ -171,7 +127,8 @@
                         <img src="assets/img/candidate-details-client1.png" alt="Candidate Details">
                         <h3>Devit Killer</h3>
                         <span>January 12, 2020</span>
-                        <p>Software hack from an initial feasibility study, continuing through l implna business you have to be But we know there's a better</p>
+                        <p>Software hack from an initial feasibility study, continuing through l implna business you
+                            have to be But we know there's a better</p>
                         <ul>
                             <li><span>05</span></li>
                             <li><i class='bx bxs-star checked'></i></li>
@@ -195,7 +152,9 @@
                         <form>
                             <div class="form-group form-check">
                                 <input type="checkbox" class="form-check-input" id="exampleCheck59">
-                                <label class="form-check-label" for="exampleCheck59">Save my name, email, and website in this browser for the next time I comment.</label>
+                                <label class="form-check-label" for="exampleCheck59">Save my name, email, and
+                                    website in
+                                    this browser for the next time I comment.</label>
                             </div>
 
                             <div class="row">
@@ -216,7 +175,8 @@
                                 <div class="col-lg-12 col-md-12">
                                     <div class="form-group">
                                         <i class='bx bx-mail-send'></i>
-                                        <textarea id="your-message" rows="10" class="form-control" placeholder="Write message"></textarea>
+                                        <textarea id="your-message" rows="10" class="form-control"
+                                            placeholder="Write message"></textarea>
                                     </div>
                                 </div>
 
@@ -319,7 +279,8 @@
                                 <li>HTML5</li>
                             </ul>
                             <div class="cmn-link">
-                                <a routerLink="/single-resume"><i class="flaticon-right-arrow one"></i> View Resume <i class="flaticon-right-arrow two"></i></a>
+                                <a routerLink="/single-resume"><i class="flaticon-right-arrow one"></i> View Resume
+                                    <i class="flaticon-right-arrow two"></i></a>
                             </div>
                         </div>
                     </div>
@@ -337,7 +298,8 @@
                                 <li>HTML5</li>
                             </ul>
                             <div class="cmn-link">
-                                <a routerLink="/single-resume"><i class="flaticon-right-arrow one"></i> View Resume <i class="flaticon-right-arrow two"></i></a>
+                                <a routerLink="/single-resume"><i class="flaticon-right-arrow one"></i> View Resume
+                                    <i class="flaticon-right-arrow two"></i></a>
                             </div>
                         </div>
                     </div>

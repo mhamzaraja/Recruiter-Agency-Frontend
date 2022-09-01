@@ -1,6 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import {HttpClientModule} from '@angular/common/http';
+import { ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeOneComponent } from './components/pages/home-one/home-one.component';
@@ -37,7 +39,22 @@ import { BlogComponent } from './components/pages/blog/blog.component';
 import { ContactComponent } from './components/pages/contact/contact.component';
 import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+
+
 import {AutocompleteLibModule} from 'angular-ng-autocomplete';
+
+import { EmploerDashboardComponent } from './components/pages/employer-dashboard/dashboard.component';
+import { EmployersLoginComponent } from './components/pages/employers-login/employers-login.component';
+import { EmployersRegisterComponent } from './components/pages/employers-register/employers-register.component';
+import { CompanyListComponent } from './components/pages/companys/companyList/companyList.component';
+import { CompanyCreateComponent } from './components/pages/companys/company-create/company-create.component';
+import { CompanyEditComponent } from './components/pages/companys/company-edit/company-edit.component';
+import { EmployerBasicInfoComponent } from './components/pages/employer-basic-info/employer-basic-info.component';
+import { AdminDashboardComponent } from './components/pages/admin-dashboard/admin-dashboard.component';
+import { CompaniesComponent } from './components/pages/companies/companies.component';
+import { AdminRegisterComponent } from './components/pages/admin-register/admin-register.component';
+import { AdminLoginComponent } from './components/pages/admin-login/admin-login.component';
+import { NgbDatepickerModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -73,15 +90,31 @@ import {AutocompleteLibModule} from 'angular-ng-autocomplete';
     CandidatesDetailsComponent,
     BlogDetailsComponent,
     BlogComponent,
-    ContactComponent
+    ContactComponent,
+    EmploerDashboardComponent,
+    CompanyListComponent,
+    EmployersLoginComponent,
+    EmployersRegisterComponent,
+    CompanyCreateComponent,
+    CompanyEditComponent,
+    EmployerBasicInfoComponent,
+    AdminDashboardComponent,
+    CompaniesComponent,
+    AdminRegisterComponent,
+    AdminLoginComponent
   ],
   imports: [
     CommonModule,
+    HttpClientModule,
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    AutocompleteLibModule
+    AutocompleteLibModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot(),
+    NgbModule,
+    NgbDatepickerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

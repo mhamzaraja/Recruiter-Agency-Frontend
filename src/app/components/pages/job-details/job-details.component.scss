@@ -1,0 +1,89 @@
+
+.candidate-item .left span {
+    color: #fff;
+}
+
+.candidate-item .left {
+    max-width: 100%;
+}
+
+.padder{
+    padding: 1rem 1rem;
+}
+
+.city{
+    padding-top: 1rem;
+}
+
+.timeContent{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.timeContent .cmn-btn{
+    top: 25%;
+    padding-right: 20px;
+}
+
+
+.create-button span{
+    text-align: center;
+}
+
+.bx-x{
+    font-size: 36px;
+}
+
+.bxs-x-circle{
+    color: #e20000;
+}
+
+.dp-hidden {
+    width: 0;
+    margin: 0;
+    border: none;
+    padding: 0;
+  }
+  .custom-day {
+    text-align: center;
+    padding: 0.185rem 0.25rem;
+    display: inline-block;
+    height: 2rem;
+    width: 2rem;
+  }
+  .custom-day.focused {
+    background-color: #e6e6e6;
+  }
+  .custom-day.range, .custom-day:hover {
+    background-color: rgb(2, 117, 216);
+    color: white;
+  }
+  .custom-day.faded {
+    background-color: rgba(2, 117, 216, 0.5);
+  }
+
+.bxs-calendar{
+    color: #1271a2;
+}
+
+.span-two {
+    color: #fff;
+    background-color: #21a212;
+    border-radius: 5px;
+    padding: 4px 10px;
+    font-size: 13px;
+
+    &.two {
+        background-color: #a28c12;
+    }
+
+    &.three {
+        background-color: #1271a2;
+    }
+
+    &.four {
+        background-color: #e20000;
+    }
+}

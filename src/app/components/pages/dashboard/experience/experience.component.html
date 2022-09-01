@@ -1,0 +1,227 @@
+<div class="bottom-item">
+    <div class="create-button">
+        <div>
+            <h2>Experience</h2>
+        </div>
+        <div>
+            <a class="cmn-btn" (click)="resetExp()">{{(boolVar ? 'Create' : 'Hide Form')}} <i
+                    class='bx bx-plus'></i></a>
+        </div>
+    </div>
+</div>
+<div *ngIf="experienceInfo.length>0" class="person-details-area resume-area ptb-100">
+    <div class="container">
+        <div class="row">
+            <div class="details-item">
+
+                <div class="work bottom-item" *ngFor="let exp of experienceInfo; let i = index">
+                    <i class="bx bx-trash bx-sm bx-tada-hover" style="float: right;" (click)="delExp(i)"></i>
+                    <i class="bx bx-edit bx-sm bx-tada-hover" style="float: right;" (click)="editExp(i)"></i>
+                    <table class="table">
+                        <tbody>  
+                            <tr>
+                                <td scope="row" ><i class='bx bx-file-blank' ></i></td>
+                                <td scope="row"  >Job Title :</td>
+                                <td >{{exp.jobTitle}}</td>
+                            </tr>
+                            <tr>
+                                <td scope="row" ><i class='bx bxs-buildings' ></i></td>
+                                <td scope="row" >Employer At :</td>
+                                <td >{{exp.company}}</td>
+                            </tr>
+                            <tr>
+                                <td scope="row" ><i class='bx bx-dollar-circle' ></i></td>
+                                <td scope="row" >Salary Range :</td>
+                                <td >{{exp.salary}}</td>
+                            </tr>
+                            <tr>
+                                <td scope="row" ><i class='bx bx-calendar' ></i></td>
+                                <td scope="row" >Duration :</td>
+                                <td >{{exp.startDate | date}} - 
+                                    <span *ngIf="!exp.currentlyWorking">
+                                        {{exp.endDate | date}}
+                                    </span>
+                                    <span *ngIf="exp.currentlyWorking">Present</span></td>
+                            </tr>
+                            <tr>
+                                <td scope="row" ><i class='bx bx-map' ></i></td>
+                                <td scope="row" >Location :</td>
+                                <td >{{exp.location}}, Pakistan</td>
+                            </tr>
+                            <tr>
+                                <td scope="row" ><i class='bx bxs-detail'></i></td>
+                                <td scope="row" >Job Description :</td>
+                                <td >{{exp.description}}</td>
+                            </tr>   
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="profile-content">
+    <form [formGroup]="experienceForm" [hidden]="!openform">
+
+        <div class="profile-content-inner">
+            <h2>Experience</h2>
+
+            <div class="row">
+                <div class="col-lg-6 col-md-12">
+                    <div class="form-group">
+                        <label>Job Title:</label>
+                        <input type="text" class="form-control" formControlName="jobTitle" placeholder=""
+                            [ngClass]="{ 'is-invalid': submittedExp && fexp.jobTitle.errors }">
+                        <div class="invalid-feedback" *ngIf="submittedExp && fexp.jobTitle.errors">
+                            <div *ngIf="fexp.jobTitle.errors.required">
+                                Job Title is required
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6 col-md-12">
+                    <div class="form-group">
+                        <label>Company:</label>
+                        <input type="text" class="form-control" formControlName="company" placeholder=""
+                            [ngClass]="{ 'is-invalid': submittedExp && fexp.company.errors }">
+                        <div class="invalid-feedback" *ngIf="submittedExp && fexp.company.errors">
+                            <div *ngIf="fexp.company.errors.required">
+                                Company is required
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6 col-md-12">
+                    <div class="form-group">
+                        <label>Industry:</label>
+                        <select class="form-control form-select" formControlName="industry"
+                            [ngClass]="{ 'is-invalid': submittedExp && fexp.industry.errors }">
+                            <option value="" disabled selected>Choose any one</option>
+                            <option value="Information Technology">Information Technology
+                            </option>
+                            <option value="Media/Communications">Media/Communications</option>
+                            <option value="Hospitality">Hospitality</option>
+                            <option value="Government">Government</option>
+                        </select>
+                        <div class="invalid-feedback" *ngIf="submittedExp && fexp.industry.errors">
+                            <div *ngIf="fexp.industry.errors.required">
+                                Industry is required
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6 col-md-12">
+                    <div class="form-group">
+                        <label>Did you directly manage a team:</label>
+                        <select class="form-control form-select" formControlName="manageTeam"
+                            [ngClass]="{ 'is-invalid': submittedExp && fexp.manageTeam.errors }">
+                            <option value="" disabled selected>Choose any one</option>
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+                        <div class="invalid-feedback" *ngIf="submittedExp && fexp.manageTeam.errors">
+                            <div *ngIf="fexp.manageTeam.errors.required">
+                                This field is required
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6 col-md-12">
+                    <div class="form-group">
+                        <label>Salary:</label>
+                        <select class="form-control form-select" formControlName="salary"
+                            [ngClass]="{ 'is-invalid': submittedExp && fexp.salary.errors }">
+                            <option value="" disabled selected>Choose any one</option>
+                            <option value="5,000 - 5,999">5,000 - 5,999</option>
+                            <option value="10,000 - 10,999">10,000 - 10,999</option>
+                            <option value="15,000 - 15,999">15,000 - 15,999</option>
+                            <option value="20,000 - 24,999">20,000 - 24,999</option>
+                        </select>
+                        <div class="invalid-feedback" *ngIf="submittedExp && fexp.salary.errors">
+                            <div *ngIf="fexp.salary.errors.required">
+                                Salary is required
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6 col-md-12">
+                    <div class="form-group">
+                        <label>Location:</label>
+                        <select class="form-control form-select" formControlName="location"
+                            [ngClass]="{ 'is-invalid': submittedExp && fexp.location.errors }">
+                            <option value="" disabled selected>
+                                Choose any one
+                            </option>
+                            <option *ngFor="let c of city" [value]="c">
+                                {{c}}
+                            </option>
+                        </select>
+                        <div class="invalid-feedback" *ngIf="submittedExp && fexp.location.errors">
+                            <div *ngIf="fexp.location.errors.required">
+                                Location is required
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6 col-md-12">
+                    <div class="form-group">
+                        <label>Start Date:</label>
+                        <input type="date" class="form-control" placeholder="01/01/1995" formControlName="startDate"
+                            [ngClass]="{ 'is-invalid': submittedExp && fexp.startDate.errors }">
+                        <div *ngIf="submittedExp && fexp.startDate.errors" class="invalid-feedback">
+                            <div *ngIf="fexp.startDate.errors.required">Start Date is required
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6 col-md-12">
+                    <div class="form-group">
+                        <label>End Date:</label>
+                        <input type="date" class="form-control" placeholder="01/01/1995" formControlName="endDate"
+                            [ngClass]="{ 'is-invalid': submittedExp && fexp.endDate.errors }">
+                        <div *ngIf="submittedExp && fexp.endDate.errors" class="invalid-feedback">
+                            <div *ngIf="fexp.endDate.errors.required">End Date is required</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-12 col-md-12">
+                    <div class="form-group">
+                        <input style="margin-right: 2%;" value="Present" type="checkbox"
+                            formControlName="currentlyWorking" class="form-check-input" />
+                        <label>Currently Working here</label>
+                    </div>
+                </div>
+
+                <div class="col-lg-12 col-md-12">
+                    <div class="form-group">
+                        <label>Summary:</label>
+                        <textarea type="text" class="form-control" placeholder="" formControlName="description"
+                            [ngClass]="{ 'is-invalid': submittedExp && fexp.description.errors }"></textarea>
+                        <div *ngIf="submittedExp && fexp.description.errors" class="invalid-feedback">
+                            <div *ngIf="fexp.description.errors.required">Summary is required
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <button (click)="experienceInfoForm()" class="btn dashboard-btn" *ngIf="saveExpBtn">
+            Save Your Information
+        </button>
+        <button (click)="experienceUpdateForm()" class="btn dashboard-btn" *ngIf="updateExpBtn">
+            Update Your Information
+        </button>
+    </form>
+</div>
