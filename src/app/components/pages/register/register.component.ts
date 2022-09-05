@@ -44,6 +44,7 @@ export class RegisterComponent implements OnInit, OnDestroy{
             this.registerService.signup(this.form.value).subscribe(
                 (res) => {
                     this.toastr.success(res.message);
+                    this.router.navigate(['/login']);
                 },
                 (error) => {
                     //if (error.status == 401) this.router.navigate(['/login']);
