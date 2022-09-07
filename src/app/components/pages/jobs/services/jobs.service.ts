@@ -27,4 +27,10 @@ export class JobsService {
     findAllJobs() {
         return this.http.get<any>(`${this.host}/api/jobs/list/getAll`, this.httpOptions);
     }
+    searchJobs(data: any) {
+        let searchData = {
+            ...data
+        }
+        return this.http.post<any>(`${this.host}/api/jobs/list/search`, searchData, this.httpOptions);
+    }
 }
