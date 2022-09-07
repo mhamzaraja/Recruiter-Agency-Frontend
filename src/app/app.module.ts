@@ -55,6 +55,8 @@ import { CompaniesComponent } from './components/pages/companies/companies.compo
 import { AdminRegisterComponent } from './components/pages/admin-register/admin-register.component';
 import { AdminLoginComponent } from './components/pages/admin-login/admin-login.component';
 import { NgbDatepickerModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 @NgModule({
   declarations: [
@@ -104,6 +106,7 @@ import { NgbDatepickerModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
     AdminLoginComponent
   ],
   imports: [
+    NgxPaginationModule,
     CommonModule,
     HttpClientModule,
     BrowserModule,
@@ -112,6 +115,7 @@ import { NgbDatepickerModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
     ReactiveFormsModule,
     AutocompleteLibModule,
     BrowserAnimationsModule,
+    Ng2SearchPipeModule,
     ToastrModule.forRoot(),
     NgbModule,
     NgbDatepickerModule

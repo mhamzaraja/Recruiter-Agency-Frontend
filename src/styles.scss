@@ -3885,6 +3885,14 @@ button {
             background-color: #e20000;
         }
     }
+    .span-icon{
+        color:black;
+        font-size: 30px;
+        display: inline-block;
+        position: absolute;
+        bottom: 10px;
+        right: 25px;
+    }
 }
 
 .section-title.three {
@@ -4806,8 +4814,6 @@ a {
 // }
 
 /*----- End Appliation CSS -----*/
-
-
 /*----- Jobs CSS -----*/
 .pagination-area {
     text-align: center;
@@ -4839,6 +4845,7 @@ a {
     }
 }
 
+
 .job-area-list {
     .job-list-item {
         margin: 0;
@@ -4862,7 +4869,6 @@ a {
                     display: inline-block;
                     margin-right: 8px;
                     position: relative;
-                    top: -16px;
                 }
 
                 form {
@@ -5005,6 +5011,8 @@ a {
                         border: 1px solid #e1e1e1;
                         font-size: 14px;
                         padding-left: 15px;
+                        // position: absolute;
+                        // z-index: 1;
 
                         &:focus {
                             box-shadow: none;
