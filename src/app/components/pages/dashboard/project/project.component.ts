@@ -21,6 +21,9 @@ export class ProjectComponent implements OnInit, OnDestroy {
     openform=false;
     boolVar=true;
 
+    p: number = 1;
+    collection: any[] ;
+
     constructor(private formBuilder: FormBuilder,
         private toastr: ToastrService,
         private router: Router,
@@ -60,6 +63,7 @@ export class ProjectComponent implements OnInit, OnDestroy {
                     if (res.success == true) {
                         this.toastr.success(res.message);
                         this.getAllProjects();
+                        this.proejctForm.reset();
                     } else {
                         this.toastr.error(res.error.message);
                     }
@@ -92,6 +96,9 @@ export class ProjectComponent implements OnInit, OnDestroy {
                 (res) => {
                     this.toastr.success(res.message);
                     this.getAllProjects();
+                    this.proejctForm.reset();
+                    this.savePrjBtn = true;
+                    this.updatePrjBtn = false;
                 },
                 (error) => {
                     //if (error.status == 401) this.router.navigate(['/login']);

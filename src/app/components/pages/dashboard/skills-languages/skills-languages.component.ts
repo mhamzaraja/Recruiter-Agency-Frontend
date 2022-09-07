@@ -80,6 +80,7 @@ export class SkillsLanguagesComponent implements OnInit, OnDestroy {
                 (res) => {
                     this.toastr.success(res.message);
                     this.getAllSkills();
+                    this.skillsForm.reset();
                 },
                 (error) => {
                     //if (error.status == 401) this.router.navigate(['/login']);
@@ -102,6 +103,9 @@ export class SkillsLanguagesComponent implements OnInit, OnDestroy {
                 (res) => {
                     this.toastr.success(res.message);
                     this.getAllSkills();
+                    this.skillsForm.reset();
+                    this.saveSkillBtn = true;
+                    this.updateSkillBtn = false;
                 },
                 (error) => {
                     //if (error.status == 401) this.router.navigate(['/login']);
@@ -159,6 +163,7 @@ export class SkillsLanguagesComponent implements OnInit, OnDestroy {
                 (res) => {
                     this.toastr.success(res.message);
                     this.getAllLanguages();
+                    this.languageForm.reset();
                 },
                 (error) => {
                     //if (error.status == 401) this.router.navigate(['/login']);
@@ -180,6 +185,9 @@ export class SkillsLanguagesComponent implements OnInit, OnDestroy {
             this.skillsLanguagesService.updateLanguage(data, this.langId).subscribe(
                 (res) => {
                     this.toastr.success(res.message);
+                    this.languageForm.reset();
+                        this.saveLangBtn = true;
+                        this.updateLangBtn = false;
                 },
                 (error) => {
                     //if (error.status == 401) this.router.navigate(['/login']);
