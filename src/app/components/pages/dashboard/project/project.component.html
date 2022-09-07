@@ -12,7 +12,7 @@
     <div class="container">
         <div class="row">
             <div class="details-item">
-                <div class="work bottom-item" *ngFor="let prj of projectsInfo; let i = index">
+                <div class="work bottom-item" *ngFor="let prj of projectsInfo | paginate: { itemsPerPage: 2, currentPage: p }; let i = index">
                     <i class="bx bx-trash bx-sm bx-tada-hover" style="float: right;" (click)="delPrj(i)"></i>
                     <i class="bx bx-edit bx-sm bx-tada-hover" style="float: right;" (click)="editPrj(i)"></i>
                     <table class="table">
@@ -50,6 +50,7 @@
                         </tbody>
                     </table>
                 </div>
+                <pagination-controls (pageChange)="p = $event" class="pagination-area"></pagination-controls>
             </div>
         </div>
     </div>

@@ -21,7 +21,11 @@ export class EducationComponent implements OnInit, OnDestroy {
     saveEduBtn: boolean = true;
     updateEduBtn: boolean = false;
     openform=false;
-    boolVar=true
+    boolVar=true;
+
+    p: number = 1;
+    collection: any[] ;
+
     constructor(private formBuilder: FormBuilder,
         private toastr: ToastrService,
         private educationService: EducationService,
@@ -52,14 +56,15 @@ export class EducationComponent implements OnInit, OnDestroy {
     educationInfoForm() {
         this.submittedEdu = true;
         if (this.educationForm.invalid) {
-            this.toastr.error(this.response.message);
+            this.toastr.error("Please fill all required fields","Education", { timeOut: 60000 });
         }
         else {
             this.educationService.educationForm(this.educationForm.value).subscribe(
                 (res) => {
                     this.getAllEducations();
-                    if (res.success == true) {
-                        this.toastr.success(res.message);
+                    if (res.success == true) {            
+                        this.toastr.success("Created Successfully");
+                        this.educationForm.reset();
                     } else {
                         this.toastr.error(res.message);
                     }
@@ -80,12 +85,16 @@ export class EducationComponent implements OnInit, OnDestroy {
                 (res) => {
                     if (res.success == true) {
                         this.toastr.success(res.message);
-                        this.getAllEducations()
+                        this.getAllEducations();
+                        this.educationForm.reset();
+                        this.saveEduBtn = true;
+                        this.updateEduBtn = false;
                     } else {
                         this.toastr.error(res.error.message);
                     }
                 });
             this.submitted = false;
+
         }
 
     }

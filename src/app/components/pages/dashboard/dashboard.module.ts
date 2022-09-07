@@ -15,6 +15,7 @@ import { DashboardRoutes } from './dashboard.routing';
 import { SkillsLanguagesService } from './skills-languages/services/skills-languages.service';
 import { ProjectComponent } from './project/project.component';
 import { ProjectService } from './project/services/project.service';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @NgModule({
     imports: [
@@ -22,6 +23,7 @@ import { ProjectService } from './project/services/project.service';
         FormsModule,
         ReactiveFormsModule,
         AutocompleteLibModule,
+        NgxPaginationModule,
         RouterModule.forChild(DashboardRoutes)
     ],
     declarations: [

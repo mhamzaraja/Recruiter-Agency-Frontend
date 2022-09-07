@@ -13,7 +13,7 @@
                 <div class="bottom-item">
                 </div>
           
-                <div class="work bottom-item" *ngFor="let edu of educationInfo; let i = index">
+                <div class="work bottom-item" *ngFor="let edu of educationInfo | paginate: { itemsPerPage: 2, currentPage: p }; let i = index">
                     <i class="bx bx-trash bx-sm bx-tada-hover" style="float: right;" (click)="delEdu(i)"></i>
                     <i class="bx bx-edit bx-sm bx-tada-hover" style="float: right;" (click)="editEdu(i)"></i>
                     <table class="table">
@@ -51,6 +51,7 @@
                         </tbody>
                     </table>
                 </div>
+                <pagination-controls (pageChange)="p = $event" class="pagination-area"></pagination-controls>
             </div>
         </div>
     </div>

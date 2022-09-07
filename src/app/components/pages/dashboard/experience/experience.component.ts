@@ -22,7 +22,10 @@ export class ExperienceComponent implements OnInit, OnDestroy {
     updateExpBtn: boolean = false;
     city = data.cities;
     openform=false;
-    boolVar=true
+    boolVar=true;
+
+    p: number = 1;
+    collection: any[] ;
 
 
 
@@ -69,6 +72,7 @@ export class ExperienceComponent implements OnInit, OnDestroy {
                 (res) => {
                     this.toastr.success(res.message);
                     this.getAllExperience();
+                    this.experienceForm.reset();
                 },
                 (error) => {
                     //if (error.status == 401) this.router.navigate(['/login']);
@@ -90,6 +94,9 @@ export class ExperienceComponent implements OnInit, OnDestroy {
                 (res) => {
                     this.toastr.success(res.message);
                     this.getAllExperience();
+                    this.experienceForm.reset();
+                        this.saveExpBtn = true;
+                        this.updateExpBtn = false;
                 },
                 (error) => {
                     //if (error.status == 401) this.router.navigate(['/login']);
