@@ -31,7 +31,7 @@
             <div class="col-lg-8 col-md-12">
                 <ul class="job-list-item align-items-center">
                     <li>
-                        <a href="#">Results Found <span>(17)</span></a>
+                        <a>Results Found <span>({{jobPostsInfo.length}})</span></a>
                         <a class="rss" routerLink="/"><i class='bx bx-rss'></i>RSS Feed</a>
                     </li>
                     <li>
@@ -51,19 +51,24 @@
 
                 <div *ngIf="jobPostsInfo.length > 0">
 
-                    <div class="employer-item" *ngFor="let job of jobPostsInfo;">
+                    <div class="employer-item"
+                        *ngFor="let job of jobPostsInfo | paginate: { itemsPerPage: 3, currentPage: p };">
                         <a [routerLink]="['/job-details', job.id]">
                             <img src="assets/img/home-one/job1.png" alt="Employer">
                             <h3>{{job.job_title}}</h3>
                             <ul>
                                 <li><i class="flaticon-send"></i> {{job.job_location}}, Pakistan</li>
                                 <li>{{job.createdAt | date}}</li>
+
                             </ul>
                             <p>{{job.job_description}}</p>
                             <span class="span-one">{{job.required_career_level}}</span>
                             <span class="span-two">{{job.workplace_type}}</span>
 
                         </a>
+                        <!-- <span class="span-icon"><i class='bx bx-heart'></i></span> -->
+                        <span (click)="enableDisableRule()" [ngClass]="{'black' : toggle, 'red': !toggle}"
+                            class="span-icon"><i class='bx bxs-heart'></i></span>
                     </div>
                 </div>
 
@@ -76,7 +81,7 @@
                 <span class="span-two four">REMOTE</span>
                 <span class="span-two one">FULL TIME</span> -->
 
-
+                <!-- 
                 <div class="pagination-area">
                     <ul>
                         <li><a routerLink="/jobs">Prev</a></li>
@@ -85,7 +90,9 @@
                         <li><a routerLink="/jobs">3</a></li>
                         <li><a routerLink="/jobs">Next</a></li>
                     </ul>
-                </div>
+                </div> -->
+                <pagination-controls (pageChange)="p = $event" class="pagination-area"></pagination-controls>
+
             </div>
 
             <div class="col-lg-4 col-md-12">
@@ -104,10 +111,15 @@
                         <div class="search">
                             <h3>Search Keywords</h3>
 
-                            <form>
-                                <input type="text" class="form-control" placeholder="Keyword">
-                                <button type="submit" class="btn"><i class="flaticon-send"></i></button>
+                            <form [formGroup]="searchForm">
+                                <input type="text" class="form-control" [(ngModel)]="firstName" placeholder="Keyword"
+                                    formControlName="search">
+                                <span style="color: red;" *ngIf="user && user.invalid && user.touched">Field
+                                    required</span>
+                                <button type="submit" (click)="search()" class="btn"><i
+                                        class="flaticon-send"></i></button>
                             </form>
+
 
                             <h3>Category</h3>
 
