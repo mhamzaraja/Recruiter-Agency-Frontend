@@ -14,6 +14,7 @@ import { FormGroup, FormBuilder, FormControl, AbstractControl } from '@angular/f
 export class JobsComponent implements OnInit, OnDestroy {
 
     jobPostsInfo = [];
+    favjobs=[];
     p: number = 1;
     collection: any[];
     toggle = true;
@@ -33,11 +34,6 @@ export class JobsComponent implements OnInit, OnDestroy {
         this.searchForm = this.formBuilder.group({
             search: [""]
         })
-    }
-
-    //favorite jobs
-    enableDisableRule() {
-        this.toggle = !this.toggle;
     }
 
     //get all jobs
@@ -66,6 +62,19 @@ export class JobsComponent implements OnInit, OnDestroy {
 
     get user() {
         return this.searchForm.get('search')
+    }
+
+    //favourite jobs
+    addFav(event){
+        console.log("hhgyggyf",event.target.id)
+        console.log("check aray", this.jobPostsInfo)
+       // let data=this.jobPostsInfo.push(id)
+        //console.log("check data", data);
+        //this.toggle = !this.toggle;
+        // this.jobsService.favouriteJobs(data).subscribe((res)=>{
+        //     this.toastr.success(res.message);
+        // })
+
     }
 
     ngOnDestroy(): void {
