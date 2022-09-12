@@ -39,10 +39,35 @@ import { TermsConditionsComponent } from './components/pages/terms-conditions/te
 import { TestimonialsComponent } from './components/pages/testimonials/testimonials.component';
 
 const routes: Routes = [
+//    {    path: '',
+//         canActivate: [AuthGuard, RoleGuardGuard],
+//         data: {
+//             expectedRoles: ['ROLE_CANDIDATE']
+//         },
+//         component: HomeOneComponent
+//     },
+
+//     {    path: '',
+//         canActivate: [AuthGuard, RoleGuardGuard],
+//         data: {
+//             expectedRoles: ['ROLE_EMPLOYER']
+//         },
+//         component: HomeTwoComponent
+//     },
+
+//     {    path: '',
+//         canActivate: [AuthGuard, RoleGuardGuard],
+//         data: {
+//             expectedRoles: ['ROLE_SUPER_USER']
+//         },
+//         component: HomeThreeComponent
+//     },
+
     { path: '', component: HomeOneComponent },
     { path: 'home-two', component: HomeTwoComponent },
     { path: 'home-three', component: HomeThreeComponent },
     { path: 'login', component: LoginComponent },
+    { path: 'single-resume', component: ResumeDetailsComponent},
     { path: 'register', component: RegisterComponent },
     { path: 'jobs', component: JobsComponent },
     { path: 'privacy-policy', component: PrivacyPolicyComponent },
@@ -97,14 +122,14 @@ const routes: Routes = [
         },
         component: EmployersDetailsComponent
     },
-    {
-        path: 'single-resume',
-        canActivate: [AuthGuard, RoleGuardGuard],
-        data: {
-            expectedRoles: ['']
-        },
-        component: ResumeDetailsComponent
-    },
+    // {
+    //     path: 'single-resume',
+    //     canActivate: [AuthGuard, RoleGuardGuard],
+    //     data: {
+    //         expectedRoles: ['']
+    //     },
+    //     component: ResumeDetailsComponent
+    // },
     {
         path: 'post-a-job',
         canActivate: [AuthGuard, RoleGuardGuard],

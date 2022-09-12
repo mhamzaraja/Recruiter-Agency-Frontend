@@ -31,7 +31,7 @@
             <div class="col-lg-8 col-md-12">
                 <ul class="job-list-item align-items-center">
                     <li>
-                        <a>Results Found <span>({{jobPostsInfo.length}})</span></a>
+                        <a>Results Found <span>({{jobCounts}})</span></a>
                         <a class="rss" routerLink="/"><i class='bx bx-rss'></i>RSS Feed</a>
                     </li>
                     <li>
@@ -52,7 +52,7 @@
                 <div *ngIf="jobPostsInfo.length > 0">
 
                     <div class="employer-item"
-                        *ngFor="let job of jobPostsInfo | paginate: { itemsPerPage: 3, currentPage: p };">
+                        *ngFor="let job of jobPostsInfo | paginate: { itemsPerPage: 10, currentPage: p, totalItems: jobCounts };">
                         <a [routerLink]="['/job-details', job.id]">
                             <img src="assets/img/home-one/job1.png" alt="Employer">
                             <h3>{{job.job_title}}</h3>
@@ -91,7 +91,7 @@
                         <li><a routerLink="/jobs">Next</a></li>
                     </ul>
                 </div> -->
-                <pagination-controls (pageChange)="p = $event" class="pagination-area"></pagination-controls>
+                <pagination-controls (pageChange)="getpage($event)" class="pagination-area"></pagination-controls>
 
             </div>
 

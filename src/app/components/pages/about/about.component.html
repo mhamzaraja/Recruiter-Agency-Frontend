@@ -1,6 +1,4 @@
-<!-- Navbar -->
-<app-navbar-style-three></app-navbar-style-three>
-<!-- End Navbar -->
+
 
 <!-- Page Title -->
 <div class="page-title-area">
@@ -61,7 +59,7 @@
                 <div class="counter-item">
                     <i class="flaticon-hiring"></i>
                     <p>CANDIDATES</p>
-                    <h3><span class="odometer" data-count="87360">00</span> </h3>
+                    <h3><span class="odometer">{{company.totalCandidates}}</span> </h3>
                 </div>
             </div>
 
@@ -69,7 +67,7 @@
                 <div class="counter-item">
                     <i class="flaticon-candidate"></i>
                     <p>TOTAL JOBS</p>
-                    <h3><span class="odometer" data-count="45257">00</span> </h3>
+                    <h3><span class="odometer">{{company.totalJobs}}</span> </h3>
                 </div>
             </div>
 
@@ -78,7 +76,7 @@
                     <i class="flaticon-working-at-home"></i>
                     <p>EMPLOYERS</p>
                     <h3>
-                        <span class="odometer" data-count="9650">00</span> 
+                        <span class="odometer">{{company.totalEmployers}}</span> 
                     </h3>
                 </div>
             </div>
@@ -87,7 +85,7 @@
                 <div class="counter-item">
                     <i class="flaticon-choice"></i>
                     <p>JOB APPLICATIONS</p>
-                    <h3><span class="odometer" data-count="70299">00</span> </h3>
+                    <h3><span class="odometer">{{company.totalApplication}}</span> </h3>
                 </div>
             </div>
         </div>
