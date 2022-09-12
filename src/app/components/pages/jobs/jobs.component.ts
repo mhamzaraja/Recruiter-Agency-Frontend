@@ -4,6 +4,7 @@ import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import { stringify } from 'querystring';
 import { FormGroup, FormBuilder, FormControl, AbstractControl } from '@angular/forms';
+import { data } from 'jquery';
 
 
 @Component({
@@ -14,7 +15,6 @@ import { FormGroup, FormBuilder, FormControl, AbstractControl } from '@angular/f
 export class JobsComponent implements OnInit, OnDestroy {
 
     jobPostsInfo = [];
-    favjobs=[];
     p: number = 1;
     collection: any[];
     toggle = true;
@@ -22,12 +22,14 @@ export class JobsComponent implements OnInit, OnDestroy {
     searchForm: FormGroup;
 
 
+
     constructor(
         private jobsService: JobsService,
         private toastr: ToastrService,
         private router: Router,
         private formBuilder: FormBuilder
-    ) { }
+    ) {}
+
 
     ngOnInit(): void {
         this.getAllJobs();
@@ -65,18 +67,25 @@ export class JobsComponent implements OnInit, OnDestroy {
     }
 
     //favourite jobs
-    addFav(event){
-        console.log("hhgyggyf",event.target.id)
-        console.log("check aray", this.jobPostsInfo)
-       // let data=this.jobPostsInfo.push(id)
-        //console.log("check data", data);
-        //this.toggle = !this.toggle;
-        // this.jobsService.favouriteJobs(data).subscribe((res)=>{
-        //     this.toastr.success(res.message);
-        // })
 
-    }
+    click(user:any){
+        user.toggle = !user.toggle;
+        // console.log();
+        // let job = user.id
+        console.log(user.id);
+        
+        this.jobsService.favouriteJobs(user.id).subscribe(
+            (res)=>{
+            // this.jobPostsInfo = res.data;
+            this.toastr.success(res.message)
+        },
+        (error)=>{
+this.toastr.error(error.message)
+        })
+        
 
+        // your code here....
+      }
     ngOnDestroy(): void {
 
     }

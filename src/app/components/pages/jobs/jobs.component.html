@@ -52,7 +52,7 @@
                 <div *ngIf="jobPostsInfo.length > 0">
 
                     <div class="employer-item"
-                        *ngFor="let job of jobPostsInfo | paginate: { itemsPerPage: 3, currentPage: p };">
+                        *ngFor="let job of jobPostsInfo | paginate: { itemsPerPage: 3, currentPage: p }; let i = index" >
                         <a [routerLink]="['/job-details', job.id]">
                             <img src="assets/img/home-one/job1.png" alt="Employer">
                             <h3>{{job.job_title}}</h3>
@@ -66,8 +66,7 @@
                             <span class="span-two">{{job.workplace_type}}</span>
 
                         </a>
-                        <!-- <span class="span-icon"><i class='bx bx-heart'></i></span> -->
-                        <span (click)="addFav($event)" [ngClass]="{'black' : toggle, 'red': !toggle}"
+                        <span (click)="click(job)" [ngClass]="{'black' :job.toggle, 'red': !job.toggle}"
                             class="span-icon"><i class='bx bxs-heart'></i></span>
                     </div>
                 </div>

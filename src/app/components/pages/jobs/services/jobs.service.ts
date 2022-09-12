@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from "@angular/common/http";
 import config from '../../../config/config';
 import userToken from "../../../config/userToken";
+import { data } from 'jquery';
 
 @Injectable({
     providedIn: 'root'
@@ -35,18 +36,15 @@ export class JobsService {
         }
         return this.http.post<any>(`${this.host}/api/jobs/list/search`, searchData, this.httpOptions);
     }
-    favouriteJobs(data) {
-
-        let body = {
-            ...data,
-            userId: this.userId,
-            id: data.id
-        }
-        console.log(body)
-        // let data = {
-        //     userId: this.userId,
-        //     jobId: this.jobId
-        // }
+    favouriteJobs(data: any) {
+        console.log("data" ,data)
+        let body={
+            userId:this.userId,
+            jobId:data
+            // jobId:id
+        };
+        console.log("api", body);
+        
         return this.http.post<any>(`${this.host}/api/job/favaourite/create`, body, this.httpOptions);
     }
 }
