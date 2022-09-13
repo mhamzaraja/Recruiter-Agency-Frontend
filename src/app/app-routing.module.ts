@@ -70,6 +70,7 @@ const routes: Routes = [
     { path: 'single-resume', component: ResumeDetailsComponent},
     { path: 'register', component: RegisterComponent },
     { path: 'jobs', component: JobsComponent },
+    // {path:'favourite-jobs', component: FavouriteJobsComponent},
     { path: 'privacy-policy', component: PrivacyPolicyComponent },
     { path: 'about', component: AboutComponent },
     { path: 'contact', component: ContactComponent },
@@ -150,7 +151,7 @@ const routes: Routes = [
         path: 'favourite-jobs',
         canActivate: [AuthGuard, RoleGuardGuard],
         data: {
-            expectedRoles: ['ROLE_CANDIDATE']
+            expectedRoles: ['ROLE_EMPLOYER']
         },
         component: FavouriteJobsComponent
     },
@@ -233,7 +234,7 @@ const routes: Routes = [
         component: CandidatesComponent,
         canActivate: [AuthGuard, RoleGuardGuard],
         data: {
-            expectedRoles: ["ROLE_SUPER_USER", "ROLE_CANDIDATE", "ROLE_EMPLOYER"]
+            expectedRoles: ["ROLE_SUPER_USER", "ROLE_EMPLOYER"]
         },
     },
     {
@@ -241,7 +242,7 @@ const routes: Routes = [
         component: CandidatesDetailsComponent,
         canActivate: [AuthGuard, RoleGuardGuard],
         data: {
-            expectedRoles: ["ROLE_SUPER_USER", "ROLE_CANDIDATE", "ROLE_EMPLOYER"]
+            expectedRoles: ["ROLE_SUPER_USER", "ROLE_EMPLOYER"]
         },
     },
 
