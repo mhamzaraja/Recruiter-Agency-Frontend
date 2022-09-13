@@ -77,9 +77,8 @@
                                 job.workplace_type
                                 }}</span>
                         </a>
-                        <!-- <span class="span-icon"><i class='bx bx-heart'></i></span> -->
-                        <span (click)="enableDisableRule()" [ngClass]="{ black: toggle, red: !toggle }"
-                            class="span-icon"><i class="bx bxs-heart"></i></span>
+                        <span (click)="click(job)" [ngClass]="{'black' :job.toggle, 'red': !job.toggle}"
+                            class="span-icon"><i class='bx bxs-heart'></i></span>
                     </div>
                 </div>
 
@@ -125,12 +124,11 @@
 
                             <form [formGroup]="searchForm">
                                 <input type="text" class="form-control" [(ngModel)]="firstName" placeholder="Keyword"
-                                    formControlName="search" />
-                                <span style="color: red" *ngIf="user && user.invalid && user.touched">Field
-                                    required</span>
-                                <button type="submit" (click)="search()" class="btn">
-                                    <i class="flaticon-send"></i>
-                                </button>
+                                    formControlName="search">
+                                <!-- <span style="color: red;" *ngIf="user && user.invalid && user.touched">Field
+                                    required</span> -->
+                                <button type="submit" (click)="search()" class="btn"><i
+                                        class="flaticon-send"></i></button>
                             </form>
 
                             <h3>Category</h3>

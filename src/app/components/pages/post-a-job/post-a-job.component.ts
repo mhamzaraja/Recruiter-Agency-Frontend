@@ -12,12 +12,9 @@ import { Router } from '@angular/router';
 export class PostAJobComponent implements OnInit, OnDestroy {
 
     submittedJob: boolean = false;
-
     jobPostForm: FormGroup;
     public jobPostInfo = [];
-
     response: any;
-
     jobId: number = null;
     saveJobBtn: boolean = true;
     updateJobBtn: boolean = false;

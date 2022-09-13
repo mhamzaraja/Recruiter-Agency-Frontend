@@ -29,29 +29,54 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-md-12">
-                <div class="employer-item">
-                    <a routerLink="/job-details">
-                        <img src="assets/img/home-one/job1.png" alt="Employer">
-                        <h3>Product Designer</h3>
-                        <ul>
-                            <li><i class="flaticon-send"></i> Los Angeles, CS, USA</li>
-                            <li>5 months ago</li>
-                        </ul>
-                        <p>We are Looking for a skilled Ul/UX designer amet conscu adiing elitsed do eusmod tempor</p>
-                        <span class="span-one">Accounting</span>
-                        <span class="span-two">FULL TIME</span>
-                    </a>
+                <ul class="job-list-item align-items-center">
+                    <li>
+                        <a>Results Found <span>({{favJobs.length}})</span></a>
+                        <a class="rss" routerLink="/"><i class='bx bx-rss'></i>RSS Feed</a>
+                    </li>
+                    <li>
+                        <span class="sort">Sort By:</span>
+                        <form>
+                            <div class="form-group">
+                                <select>
+                                    <option>Title</option>
+                                    <option>Another option</option>
+                                    <option>A option</option>
+                                    <option>Potato</option>
+                                </select>
+                            </div>
+                        </form>
+                    </li>
+                </ul>
+
+                <div *ngIf="favJobs.length > 0">
+
+                    <div class="employer-item"
+                        *ngFor="let favjob of favJobs | paginate: { itemsPerPage: 5, currentPage: p }; let i = index" >
+                        <a [routerLink]="['/job-details', favjob.id]">
+                            <img src="assets/img/home-one/job1.png" alt="Employer">
+                            <h3>{{favjob.job_title}}</h3>
+                            <ul>
+                                <li><i class="flaticon-send"></i> {{favjob.job_location}}, Pakistan</li>
+                                <li>{{favjob.createdAt | date}}</li>
+
+                            </ul>
+                            <p>{{favjob.job_description}}</p>
+                            <span class="span-one">{{favjob.required_career_level}}</span>
+                            <span class="span-two">{{favjob.workplace_type}}</span>
+
+                        </a>
+                        <span (click)="deletFav(i)" style="color: red;"
+                            class="span-icon"><i class='bx bxs-heart'></i></span>
+                    </div>
                 </div>
 
-                <div class="pagination-area">
-                    <ul>
-                        <li><a routerLink="/jobs">Prev</a></li>
-                        <li><a routerLink="/jobs">1</a></li>
-                        <li><a routerLink="/jobs">2</a></li>
-                        <li><a routerLink="/jobs">3</a></li>
-                        <li><a routerLink="/jobs">Next</a></li>
-                    </ul>
+                <div *ngIf="favJobs.length <= 0">
+                    <h3>No Job Posted Yet!</h3>
                 </div>
+
+                <pagination-controls (pageChange)="p = $event" class="pagination-area"></pagination-controls>
+
             </div>
 
             <div class="col-lg-4 col-md-12">

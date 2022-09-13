@@ -4,6 +4,7 @@ import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import { stringify } from 'querystring';
 import { FormGroup, FormBuilder, FormControl, AbstractControl } from '@angular/forms';
+import { data } from 'jquery';
 
 
 @Component({
@@ -22,12 +23,14 @@ export class JobsComponent implements OnInit, OnDestroy {
     jobCounts = [];
 
 
+
     constructor(
         private jobsService: JobsService,
         private toastr: ToastrService,
         private router: Router,
         private formBuilder: FormBuilder
-    ) { }
+    ) {}
+
 
     ngOnInit(): void {
         this.getAllJobs();
@@ -35,11 +38,6 @@ export class JobsComponent implements OnInit, OnDestroy {
             search: [""],
             page:this.p
         })
-    }
-
-    //favorite jobs
-    enableDisableRule() {
-        this.toggle = !this.toggle;
     }
 
     //get all jobs
@@ -72,6 +70,26 @@ export class JobsComponent implements OnInit, OnDestroy {
         return this.searchForm.get('search')
     }
 
+    //favourite jobs
+
+    click(user:any){
+        user.toggle = !user.toggle;
+        // console.log();
+        // let job = user.id
+        console.log(user.id);
+        
+        this.jobsService.favouriteJobs(user.id).subscribe(
+            (res)=>{
+            // this.jobPostsInfo = res.data;
+            this.toastr.success(res.message)
+        },
+        (error)=>{
+this.toastr.error(error.message)
+        })
+        
+
+        // your code here....
+      }
     ngOnDestroy(): void {
 
     }
