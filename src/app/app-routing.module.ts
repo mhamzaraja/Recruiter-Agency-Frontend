@@ -151,7 +151,7 @@ const routes: Routes = [
         path: 'favourite-jobs',
         canActivate: [AuthGuard, RoleGuardGuard],
         data: {
-            expectedRoles: ['ROLE_EMPLOYER']
+            expectedRoles: ['ROLE_EMPLOYER','ROLE_CANDIDATE']
         },
         component: FavouriteJobsComponent
     },
