@@ -20,6 +20,7 @@ export class JobsComponent implements OnInit, OnDestroy {
     toggle = true;
     firstName: any;
     searchForm: FormGroup;
+    jobCounts = [];
 
 
 
@@ -34,15 +35,17 @@ export class JobsComponent implements OnInit, OnDestroy {
     ngOnInit(): void {
         this.getAllJobs();
         this.searchForm = this.formBuilder.group({
-            search: [""]
+            search: [""],
+            page:this.p
         })
     }
 
     //get all jobs
     getAllJobs() {
-        this.jobsService.findAllJobs().subscribe(
+        this.jobsService.findAllJobs(this.p).subscribe(
             (res) => {
                 this.jobPostsInfo = res.data.jobsList;
+                this.jobCounts= res.data.jobsCount;
             },
             (error) => {
                 //if (error.status == 401) this.router.navigate(['/login']);
@@ -55,6 +58,7 @@ export class JobsComponent implements OnInit, OnDestroy {
         this.jobsService.searchJobs(this.searchForm.value).subscribe(
             (res) => {
                 this.jobPostsInfo = res.data.jobsList;
+                this.jobCounts = res.data.jobsCount;
             },
             (error) => {
                 //if (error.status == 401) this.router.navigate(['/login']);
@@ -88,6 +92,19 @@ this.toastr.error(error.message)
       }
     ngOnDestroy(): void {
 
+    }
+
+    getpage(page:number){
+        this.p= page
+        this.jobsService.findAllJobs(this.p).subscribe((res)=>{
+            
+            this.jobPostsInfo = res.data.jobsList;
+            this.jobCounts= res.data.jobsCount;
+        })
+        this.jobsService.searchJobs(this.p).subscribe((res)=>{
+            this.jobPostsInfo = res.data.jobsList;
+            this.jobCounts= res.data.jobsCount;
+        })
     }
 
 }

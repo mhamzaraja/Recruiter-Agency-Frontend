@@ -27,13 +27,16 @@ export class JobsService {
 
     constructor(private http: HttpClient) { }
 
-    findAllJobs() {
-        return this.http.get<any>(`${this.host}/api/jobs/list/getAll`, this.httpOptions);
+    findAllJobs(p: number) {
+        let page = p;
+        return this.http.get<any>(`${this.host}/api/jobs/list/getAll?page=${page}`, this.httpOptions);
     }
-    searchJobs(data: any) {
+    searchJobs(data: any,) {
         let searchData = {
-            ...data
+            ...data,
         }
+        console.log("serdata", data);
+        
         return this.http.post<any>(`${this.host}/api/jobs/list/search`, searchData, this.httpOptions);
     }
     favouriteJobs(data: any) {
