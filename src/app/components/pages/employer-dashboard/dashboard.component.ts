@@ -28,6 +28,9 @@ export class EmploerDashboardComponent implements OnInit, OnDestroy {
 
     response: any;
     public placeholder: string = '';
+    jobCounts = [];
+    p: number = 1;
+
 
     constructor(private formBuilder: FormBuilder,
         private toastr: ToastrService,
@@ -46,10 +49,10 @@ export class EmploerDashboardComponent implements OnInit, OnDestroy {
     }
 
     getAllJobsData() {
-        this.dashboardService.findAllJobs().subscribe(
+        this.dashboardService.findAllJobs(this.p).subscribe(
             (res) => {
-                this.jobPostInfo = res.data;
-                this.jobsPosted = this.jobPostInfo.length;
+                this.jobPostInfo = res.data.jobsList;
+                this.jobCounts= res.data.jobsCount;
                 console.log(this.jobPostInfo);
             },
             (error) => {
@@ -83,6 +86,14 @@ export class EmploerDashboardComponent implements OnInit, OnDestroy {
                 //if (error.status == 401) this.router.navigate(['/login']);
                 this.toastr.error(error.error.message);
             });
+    }
+
+    getpage(page:number){
+        this.p= page
+        this.dashboardService.findAllJobs(this.p).subscribe((res)=>{
+            this.jobPostInfo = res.data.jobsList;
+            this.jobCounts= res.data.jobsCount;
+        })
     }
 
     ngOnDestroy(): void {

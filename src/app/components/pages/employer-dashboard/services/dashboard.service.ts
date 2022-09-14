@@ -25,8 +25,9 @@ export class DashboardService {
 
     constructor(private http: HttpClient) { }
 
-    findAllJobs(){
-        return this.http.get<any>(`${this.host}/api/employer/job/getAll`, this.httpOptions);
+    findAllJobs(p: number) {
+        let page = p;
+        return this.http.get<any>(`${this.host}/api/jobs/list/getAll?page=${page}`, this.httpOptions);
     }
 
     findAllCompanys() {

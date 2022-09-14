@@ -65,19 +65,40 @@ const routes: Routes = [
 
     { path: '', component: HomeOneComponent },
     { path: 'home-two', component: HomeTwoComponent },
+    
     { path: 'home-three', component: HomeThreeComponent },
     { path: 'login', component: LoginComponent },
-    { path: 'single-resume', component: ResumeDetailsComponent},
+    // { path: 'single-resume', component: ResumeDetailsComponent},
+    {
+        path:'single-resume',
+        canActivate: [AuthGuard],
+        component: ResumeDetailsComponent
+    },
+
     { path: 'register', component: RegisterComponent },
-    { path: 'jobs', component: JobsComponent },
-    // {path:'favourite-jobs', component: FavouriteJobsComponent},
-    { path: 'privacy-policy', component: PrivacyPolicyComponent },
-    { path: 'about', component: AboutComponent },
+    // { path: 'jobs', component: JobsComponent },
+    {    path: 'jobs',
+        canActivate: [AuthGuard],
+        component: JobsComponent
+    },
+
+    // { path: 'privacy-policy', component: PrivacyPolicyComponent },
+    {
+        path: 'privacy-policy',
+        canActivate: [AuthGuard],
+        component: PrivacyPolicyComponent
+    },
+    // { path: 'about', component: AboutComponent },
+    {
+        path:'about',
+        canActivate: [AuthGuard],
+        component: AboutComponent
+    },
     { path: 'contact', component: ContactComponent },
     { path: 'terms-conditions', component: TermsConditionsComponent },
     { path: 'employers-login', component: EmployersLoginComponent },
     { path: 'employers-register', component: EmployersRegisterComponent },
-
+    
 
     {
         path: 'employers',
@@ -113,8 +134,8 @@ const routes: Routes = [
         canActivate: [AuthGuard],
         component: ErrorComponent
     },
-
-
+    
+    
     {
         path: 'employer-details',
         canActivate: [AuthGuard, RoleGuardGuard],
@@ -135,7 +156,7 @@ const routes: Routes = [
         path: 'post-a-job',
         canActivate: [AuthGuard, RoleGuardGuard],
         data: {
-            expectedRoles: ['ROLE_EMPLOYER']
+                expectedRoles: ['ROLE_EMPLOYER']
         },
         component: PostAJobComponent
     },
@@ -147,12 +168,11 @@ const routes: Routes = [
         },
         component: PricingComponent
     },
+
+    // {path:'favourite-jobs', component: FavouriteJobsComponent},
     {
         path: 'favourite-jobs',
-        canActivate: [AuthGuard, RoleGuardGuard],
-        data: {
-            expectedRoles: ['ROLE_EMPLOYER','ROLE_CANDIDATE']
-        },
+        canActivate: [AuthGuard],
         component: FavouriteJobsComponent
     },
 

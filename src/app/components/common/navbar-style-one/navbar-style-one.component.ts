@@ -11,6 +11,7 @@ import { NavbarService } from '../services/navbar.service';
 export class NavbarStyleOneComponent implements OnInit {
     token: any = userToken.token;
     isToken: boolean = false;
+    userId: number = userToken.id;
 
     constructor(private navbarService: NavbarService,
         private toastr: ToastrService
