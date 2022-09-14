@@ -8,33 +8,31 @@ import userToken from "../../../config/userToken";
 export class FavouriteService {
   host: string = config.host;
   token: any = userToken.token;
-  userId:number = userToken.id;
+  userId: number = userToken.id;
 
 
   httpOptions = {
     headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Headers': 'Authorization, X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Allow-Request-Method',
-        'Authorization': 'Bearer ' + this.token,
-        'Access-Control-Allow-Methods': 'GET,POST,OPTIONS,DELETE,PUT',
-        'Allow': 'GET, POST, OPTIONS, PUT, DELETE'
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Headers': 'Authorization, X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Allow-Request-Method',
+      'Authorization': 'Bearer ' + this.token,
+      'Access-Control-Allow-Methods': 'GET,POST,OPTIONS,DELETE,PUT',
+      'Allow': 'GET, POST, OPTIONS, PUT, DELETE'
     })
-};
+  };
 
   constructor(private http: HttpClient) { }
 
-  findAllFavJobs(userId: number){
-    userId=this.userId    
+  findAllFavJobs(userId: number) {
+    userId = this.userId
     return this.http.get<any>(`${this.host}/api/jobs/list/getAllFavaouriteJobs?userId=${userId}`, this.httpOptions)
 
   }
-  deleteFavJobs(i:number){
-    
-    let id = i;
-    console.log("deleeee", id);
+  deleteFavJobs(i: number) {
 
+    let id = i;
     return this.http.get<any>(`${this.host}/api/job/favaourite/delete?id=${id}`, this.httpOptions)
   }
-  
+
 }

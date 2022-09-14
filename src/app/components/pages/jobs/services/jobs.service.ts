@@ -10,7 +10,7 @@ import { data } from 'jquery';
 export class JobsService {
     host: string = config.host;
     token: any = userToken.token;
-    userId: string = userToken.id;
+    userId: number = userToken.id;
     jobId: number;
 
 
@@ -29,25 +29,31 @@ export class JobsService {
 
     findAllJobs(p: number) {
         let page = p;
-        return this.http.get<any>(`${this.host}/api/jobs/list/getAll?page=${page}`, this.httpOptions);
+        return this.http.get<any>(`${this.host}/api/jobs/list/getAll?page=${page}&userId=${this.userId}`, this.httpOptions);
     }
     searchJobs(data: any,) {
         let searchData = {
             ...data,
         }
-        console.log("serdata", data);
-        
         return this.http.post<any>(`${this.host}/api/jobs/list/search`, searchData, this.httpOptions);
     }
     favouriteJobs(data: any) {
-        console.log("data" ,data)
-        let body={
-            userId:this.userId,
-            jobId:data
-            // jobId:id
+        let body = {
+            userId: this.userId,
+            jobId: data
         };
-        console.log("api", body);
-        
         return this.http.post<any>(`${this.host}/api/job/favaourite/create`, body, this.httpOptions);
+    }
+
+    deleteFavJobs(candidateFavjobId: any) {
+
+        let id = candidateFavjobId;
+        return this.http.get<any>(`${this.host}/api/job/favaourite/delete?id=${id}`, this.httpOptions)
+    }
+
+    findAllFavJobs(userId: number) {
+        userId = this.userId
+        return this.http.get<any>(`${this.host}/api/jobs/list/getAllFavaouriteJobs?userId=${userId}`, this.httpOptions)
+
     }
 }
