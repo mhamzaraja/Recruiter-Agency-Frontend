@@ -77,7 +77,8 @@
                                 job.workplace_type
                                 }}</span>
                         </a>
-                        <span (click)="click(job)" [ngClass]="{'black' :job.toggle, 'red': !job.toggle}"
+                        <span (click)="addFavourite(job)"
+                            [ngClass]="{'red' :job.candidate_favourite_jobs.length>0, 'black': job.candidate_favourite_jobs.length==0}"
                             class="span-icon"><i class='bx bxs-heart'></i></span>
                     </div>
                 </div>
@@ -85,22 +86,6 @@
                 <div *ngIf="jobPostsInfo.length <= 0">
                     <h3>No Job Posted Yet!</h3>
                 </div>
-
-                <!-- <span class="span-two">FULL TIME</span>
-                <span class="span-two three">FREELANCER</span>
-                <span class="span-two four">REMOTE</span>
-                <span class="span-two one">FULL TIME</span> -->
-
-                <!-- 
-                <div class="pagination-area">
-                    <ul>
-                        <li><a routerLink="/jobs">Prev</a></li>
-                        <li><a routerLink="/jobs">1</a></li>
-                        <li><a routerLink="/jobs">2</a></li>
-                        <li><a routerLink="/jobs">3</a></li>
-                        <li><a routerLink="/jobs">Next</a></li>
-                    </ul>
-                </div> -->
                 <pagination-controls (pageChange)="getpage($event)" class="pagination-area"></pagination-controls>
             </div>
 

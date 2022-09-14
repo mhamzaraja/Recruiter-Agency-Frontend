@@ -29,9 +29,7 @@ export class FavouriteJobsComponent implements OnInit {
   getAllFavJobs() {
     this.favouriteService.findAllFavJobs(this.userId).subscribe(
       (res) => {
-        console.log("resssss", res)
         this.favJobs = res.data;
-        console.log("data122 ", this.favJobs)
       },
       (error) => {
         this.toaster.error(error.error.message)
@@ -42,7 +40,7 @@ export class FavouriteJobsComponent implements OnInit {
   deletFav(i: number) {
     this.userId = this.favJobs[i].candidate_favourite_jobs[0].id;
     this.favouriteService.deleteFavJobs(this.userId).subscribe((res) => {
-      this.toaster.success("Deleted Successfully")
+      this.toaster.success("Removed From Favourites")
     })
   }
 }
