@@ -1,5 +1,5 @@
 <!-- Navbar -->
-<app-navbar-style-three class="employer-navbar"></app-navbar-style-three>
+<app-navbar-style-two class="employer-navbar"></app-navbar-style-two>
 <!-- End Navbar -->
 
 <!-- Dashboard -->
@@ -42,7 +42,7 @@
                                     <div class="col-sm-3 col-lg-3">
                                         <div class="date-inner">
                                             <span>POSTED JOBS</span>
-                                            <h1>{{jobsPosted}}</h1>
+                                            <h1>{{jobCounts}}</h1>
                                         </div>
                                     </div>
                                     <div class="col-sm-3 col-lg-3">
@@ -71,7 +71,12 @@
 
                     <div *ngIf="jobPostInfo.length>0" class="person-details-area resume-area ptb-100">
                         <div class="container">
-                            <div class="employer-item" *ngFor="let jobs of jobPostInfo;">
+                            <div class="employer-item" *ngFor="let jobs of jobPostInfo 
+                            | paginate: {
+                                  itemsPerPage: 10,
+                                  currentPage: p,
+                                  totalItems: jobCounts
+                              };">
                                 <a [routerLink]="['/job-details', jobs.id]">
                                     <img src="assets/img/home-one/job1.png" alt="Employer">
                                     <h3>{{jobs.job_title}}</h3>
@@ -84,6 +89,7 @@
                                     <span class="span-two">{{jobs.job_shift}}</span>
                                 </a>
                             </div>
+                            <pagination-controls (pageChange)="getpage($event)" class="pagination-area"></pagination-controls>
                         </div>
                     </div>
 
