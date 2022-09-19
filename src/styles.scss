@@ -225,7 +225,7 @@ button {
         font-size: 12px;
         position: absolute;
         top: -10px;
-        right: 10px;
+        right: 20px;
         padding: 3px 10px;
         border-radius: 4px;
         transition: $transition;
@@ -3598,10 +3598,10 @@ button {
 
 .side-nav.three {
     .login-left {
-        color: $white-color;
+        color: $blue-color;
 
         i {
-            color: $white-color;
+            color: $blue-color;
         }
 
         &:hover {
@@ -3611,14 +3611,22 @@ button {
 
     .job-right {
         background-color: $pink-color;
+        height: 50px;
+        padding-left: 15px;
+        padding-right: 15px;
+        line-height: 40px;
 
         i {
-            background-color: #c02932;
+            display: inline-block;
+            color: $white-color;
+            font-size: 16px;
+            position: relative;
+            padding: 0px;
+            top: 0px;
+            
         }
 
-        &:hover {
-            background-color: #c02932;
-        }
+
     }
 }
 

@@ -7,12 +7,12 @@
     <div class="main-nav two">
         <div class="container-fluid">
             <nav class="navbar navbar-expand-md navbar-light">
-                <a class="navbar-brand" routerLink=""><img src="assets/img/logo-two.png" alt="Logo"></a>
+                <a class="navbar-brand" routerLink="/"><img src="assets/img/logo-two.png" alt="Logo"></a>
 
                 <div class="collapse navbar-collapse mean-menu" id="navbarSupportedContent">
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a routerLink="" class="nav-link" routerLinkActive="active"[routerLinkActiveOptions]="{exact: true}">Home</a>
+                            <a routerLink="/" class="nav-link" routerLinkActive="active"[routerLinkActiveOptions]="{exact: true}">Home</a>
                         </li>
                         
 
@@ -20,16 +20,6 @@
                             <a href="javascript:void(0)" class="nav-link dropdown-toggle">Pages <i class='bx bx-chevron-down'></i></a>
 
                             <ul class="dropdown-menu">
-                                <li class="nav-item">
-                                    <a href="javascript:void(0)" class="nav-link dropdown-toggle">Users <i class='bx bx-chevron-down'></i></a>
-
-                                    <ul class="dropdown-menu">
-                                        <li class="nav-item"><a routerLink="/login" class="nav-link" routerLinkActive="active"[routerLinkActiveOptions]="{exact: true}">Login</a></li>
-
-                                        <li class="nav-item"><a routerLink="/register" class="nav-link" routerLinkActive="active"[routerLinkActiveOptions]="{exact: true}">Register</a></li>
-                                    </ul>
-                                </li>
-
                                 <li class="nav-item">
                                     <a href="javascript:void(0)" class="nav-link dropdown-toggle">Employers <i class='bx bx-chevron-down'></i></a>
 
@@ -40,7 +30,7 @@
                                     </ul>
                                 </li>
 
-                                <li class="nav-item"><a routerLink="employer/dashboard/:id" class="nav-link" routerLinkActive="active"[routerLinkActiveOptions]="{exact: true}">Dashboard</a></li>
+                                <li class="nav-item"><a [routerLink]="['/employer/dashboard', userId]" class="nav-link" routerLinkActive="active"[routerLinkActiveOptions]="{exact: true}">Dashboard</a></li>
 
                                 <li class="nav-item"><a routerLink="/single-resume" class="nav-link" routerLinkActive="active"[routerLinkActiveOptions]="{exact: true}">Single Resume</a></li>
 
@@ -103,11 +93,11 @@
                         <li class="nav-item"><a routerLink="/contact" class="nav-link" routerLinkActive="active"[routerLinkActiveOptions]="{exact: true}">Contact</a></li>
                     </ul>
 
-                    <div class="side-nav">
+                    <div class="side-nav three">
                         <a class="login-left" routerLink="/login" *ngIf="!isToken"><i class="flaticon-enter"></i> Login/Register</a>
-                        <a class="login-left" *ngIf="isToken" (click)="onLogout($event)"><i class="flaticon-enter"></i> Logout</a>
-
-                        <a class="job-right" routerLink="/post-a-job">Post A Job <i class='bx bx-plus'></i></a>
+                        <!-- <a class="login-left" *ngIf="isToken" (click)="onLogout($event)"><i class="flaticon-enter"></i> Logout</a> -->
+                        <!-- <a class="job-right" routerLink="">Post A Job <i class='bx bx-plus'></i></a> -->
+                        <a class="job-right" *ngIf="isToken" (click)="onLogout($event)"><i class="flaticon-enter"></i>Logout</a>
                     </div>
                 </div>
             </nav>
