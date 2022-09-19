@@ -42,12 +42,39 @@
         <div class="row">
             <div class="col-lg-8 col-md-12">
                 <div class="details-item">
-                    <div class="profile">
-                        <h3>My Profile</h3>
+                    <div class="work bottom-item">
+                        <h3>About me</h3>
                         <p>{{candBasicInfo?.summary}}</p>
                     </div>
 
                     <!-- <div *ngIf="jobPostInfo.length>0" class="person-details-area resume-area ptb-100"> -->
+                    <!-- Education -->
+                    <div class="work bottom-item">
+                        <h3>Education</h3>
+                        <div *ngFor="let edu of candEducation; let i = index">
+                            <ul>
+                                <i class='bx bxs-graduation' style="font-size: 25px;"></i>
+                                <li>
+                                    <span>{{edu?.degree_title}}</span>
+                                    <span>({{edu?.field_of_study}})</span>
+                                </li>
+                            </ul>
+                            <ul>
+                                <i class='bx bxs-institution' style="font-size: 25px;"></i>                                
+                                <li>
+                                    <span>{{edu?.institution}}</span>
+                                    <span>{{edu?.location}}, Pakistan</span>
+                                </li>
+                            </ul>
+                            <ul>
+                                <i class='bx bx-calendar' style="font-size: 25px;"></i>
+                                <li><span>{{edu?.completion_year}} - </span>
+                                     Obtained CGPA<span>- {{edu?.obtained_gpa}}</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- Work Experience -->
                     <div class="work bottom-item">
                         <h3>Work Experience</h3>
                         <div *ngFor="let exp of candExperience; let i = index">
@@ -192,38 +219,43 @@
             <div class="col-lg-4 col-md-12">
                 <div class="widget-area">
                     <div class="information widget-item">
-                        <h3>Job Overview</h3>
+                        <h3>Details</h3>
 
                         <ul>
                             <li>
                                 <img src="assets/img/job-details-icon.png" alt="Details">
-                                <h4>Salary:</h4>
-                                <span>$1,500 - $2,000</span>
+                                <h4>Expected Salary:</h4>
+                                <span>{{candBasicInfo?.expected_salary}}</span>
                             </li>
                             <li>
                                 <img src="assets/img/job-details-icon.png" alt="Details">
                                 <h4>Experience:</h4>
-                                <span>5 years</span>
+                                <span>{{candBasicInfo?.experience}}</span>
                             </li>
                             <li>
                                 <img src="assets/img/job-details-icon.png" alt="Details">
-                                <h4>Age:</h4>
-                                <span>30-35</span>
+                                <h4>Date of Birth</h4>
+                                <span>{{candBasicInfo?.dob}}</span>
                             </li>
                             <li>
                                 <img src="assets/img/job-details-icon.png" alt="Details">
                                 <h4>Gender:</h4>
-                                <span>Both</span>
+                                <span>{{candBasicInfo?.gender}}</span>
                             </li>
                             <li>
                                 <img src="assets/img/job-details-icon.png" alt="Details">
-                                <h4>Languages:</h4>
-                                <span>Bangla, English, Arbi, Spanish</span>
+                                <h4>CNIC:</h4>
+                                <span>{{candBasicInfo?.cnic}}</span>
                             </li>
                             <li>
                                 <img src="assets/img/job-details-icon.png" alt="Details">
-                                <h4>Qualification:</h4>
-                                <span>Certificate, Associate Degree</span>
+                                <h4>Nationality:</h4>
+                                <span>{{candBasicInfo?.nationality}}</span>
+                            </li>
+                            <li>
+                                <img src="assets/img/job-details-icon.png" alt="Details">
+                                <h4>City:</h4>
+                                <span>{{candBasicInfo?.city}}</span>
                             </li>
                         </ul>
                     </div>

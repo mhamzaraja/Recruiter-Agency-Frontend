@@ -29,9 +29,10 @@ export class CandidatesComponent implements OnInit, OnDestroy {
     getCandidates() {
         this.candidatesService.getAllCandidates().subscribe(
             (res) => {
-                this.candidatsInfo = res.data[0].profile;
-                this.candExperience = res.data[2].experience;
-                this.candSkills = res.data[4].skills;
+                this.candidatsInfo=res.data;
+                // this.candidatsInfo = res.data[0].profile;
+                // this.candExperience = res.data[2].experience;
+                // this.candSkills = res.data[4].skills;
             },
             (error) => {
                 //if (error.status == 401) this.router.navigate(['/login']);
@@ -39,16 +40,16 @@ export class CandidatesComponent implements OnInit, OnDestroy {
             });
     }
 
-    currentWork(currentWork: boolean, i: number) {
-        let currentWorkValue = "Unemployed";
-        if (currentWork) {
-            console.log(this.candExperience[i].jobTitle);
-            return currentWorkValue = this.candExperience[i].jobTitle;
-        }
-        else {
-            return currentWorkValue;
-        }
-    }
+    // currentWork(currentWork: boolean, i: number) {
+    //     let currentWorkValue = "Unemployed";
+    //     if (currentWork) {
+    //         console.log(this.candExperience[i].jobTitle);
+    //         return currentWorkValue = this.candExperience[i].jobTitle;
+    //     }
+    //     else {
+    //         return currentWorkValue;
+    //     }
+    // }
 
     ngOnDestroy(): void {
 

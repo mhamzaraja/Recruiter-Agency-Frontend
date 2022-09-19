@@ -76,7 +76,7 @@
                 <div class="candidate-item two">
                     <div *ngFor="let cand of candidatsInfo; let id = index">
                         <div class="left">
-                            <h3><a routerLink="/candidate-details">{{cand?.name}}</a></h3>
+                            <h3><a routerLink="/candidates">{{cand?.name}}</a></h3>
                             <div>
                                 <span *ngFor="let exp of candExperience; let i = index">
                                     <span *ngIf="exp?.currentlyWorking">
@@ -85,6 +85,7 @@
                                 </span>
                             </div>
                             <ul class="experience">
+                                <li>Email: <span>{{cand?.email}}</span></li>
                                 <li>Experience: <span>{{cand?.experience}}</span></li>
                                 <li>Expected Salary: <span>RS. {{cand?.expected_salary}}</span></li>
                                 <li><i class="flaticon-send"></i> {{cand?.city}}</li>
