@@ -26,7 +26,7 @@ export class CamdidatesDetailsService {
   constructor(private http: HttpClient) { }
 
   getCandidateData(id: number){
-    return this.http.get<any>(`${this.host}/api/user/profile/getOne?id=${id}`, this.httpOptions);
+    return this.http.get<any>(`${this.host}/api/admin/user/profile/getOne?id=${id}&userId=${this.userId}`, this.httpOptions);
   }
 
 }

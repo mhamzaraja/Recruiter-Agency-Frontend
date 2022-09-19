@@ -33,13 +33,16 @@ export class CandidatesDetailsComponent implements OnInit , OnDestroy{
     }
 
     getAllCandidateData() {
+        
         this.camdidatesDetailsService.getCandidateData(this.id).subscribe(
             (res) => {
-                this.candBasicInfo = res.data[0].profile;
-                this.candEducation = res.data[1].education;
-                this.candExperience = res.data[2].experience;
-                this.candSkills = res.data[4].skills;
-                this.candLanguages = res.data[5].languages;
+                // console.log(" res data",res.data[this.id]);
+
+                this.candBasicInfo = res.data.profile;
+                this.candEducation = res.data.profile.candidate_educations;                 
+                this.candExperience = res.data.profile.candidate_experiences;
+                this.candSkills = res.data.profile.candidate_skills;
+                this.candLanguages = res.data.profile.candidate_languages;
             },
             (error) => {
                 //if (error.status == 401) this.router.navigate(['/login']);

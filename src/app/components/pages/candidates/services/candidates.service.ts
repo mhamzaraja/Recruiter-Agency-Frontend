@@ -25,6 +25,6 @@ export class CandidatesService {
   constructor(private http: HttpClient) { }
 
   getAllCandidates(){
-    return this.http.get<any>(`${this.host}/api/user/profile/getAll`, this.httpOptions);
+    return this.http.get<any>(`${this.host}/api/admin/user/profile/getAll`, this.httpOptions);
   }
 }
