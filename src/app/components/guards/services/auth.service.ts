@@ -21,7 +21,8 @@ export class AuthService {
                 : (((this.role === "ROLE_EMPLOYER") ? ("employer")
                     : (null))))
         if (userRole !== null)  return this.router.navigate([`/${userRole}/dashboard`, this.userId])
-        return this.router.navigate(["/jobs"])
+        // if user is not logged in and try to access the dashboard or any authorized components, he will redirect to home screen
+        return this.router.navigate(["/"]);
     }
 
     isAuthorized(route: ActivatedRouteSnapshot): boolean {
@@ -34,5 +35,13 @@ export class AuthService {
     isloggedIn() {
         if (!this.token) return of(false).pipe(delay(300));
         return of(true).pipe();
+    }
+
+    loggedin(){
+        if (this.token){
+            return true
+        }else{
+            return false
+        }
     }
 }

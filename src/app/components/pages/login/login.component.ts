@@ -13,7 +13,7 @@ import userToken from "../../config/userToken";
 export class LoginComponent implements OnInit, OnDestroy {
 
     userId: number = userToken.id;
-
+    role: any = userToken.role;
     submitted: boolean = false;
     form: FormGroup;
     constructor(private formBuilder: FormBuilder,
@@ -43,7 +43,13 @@ export class LoginComponent implements OnInit, OnDestroy {
 
                     if (res.success == true) {
                         localStorage.setItem('userToken', JSON.stringify(res.data));
-                        this.router.navigate(['/']);
+                        // const userRole = (this.role === "ROLE_SUPER_USER") ? ("admin")
+                        //     : ((this.role === "ROLE_CANDIDATE") ? ("candidate")
+                        //         : (((this.role === "ROLE_EMPLOYER") ? ("employer")
+                        //             : (null))))
+                        //                 if (userRole !== null)  return this.router.navigate([`/${userRole}/dashboard`, this.userId])
+                        window.location.reload();
+                        this.router.navigate(["/dashboard", this.userId])
                         this.toastr.success("Login Successfully");
                     } else {
                         this.toastr.error(res.message);

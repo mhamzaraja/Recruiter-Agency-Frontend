@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import userToken from "../../config/userToken";
 import { NavbarService } from '../services/navbar.service';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-navbar-style-one',
@@ -14,7 +15,8 @@ export class NavbarStyleOneComponent implements OnInit {
     userId: number = userToken.id;
 
     constructor(private navbarService: NavbarService,
-        private toastr: ToastrService
+        private toastr: ToastrService,
+        private router: Router
         ) { }
 
     ngOnInit(): void {
@@ -29,6 +31,8 @@ export class NavbarStyleOneComponent implements OnInit {
         event.preventDefault();
         this.navbarService.logout().subscribe(
             (res) => {
+                window.location.reload();
+                this.router.navigate(['/']);
                 this.toastr.success(res.message);
             },
             (error) => {

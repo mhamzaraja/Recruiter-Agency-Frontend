@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from './components/guards/auth.guard';
+import { LoggedinGuard } from './components/guards/loggedin.guard';
 import { RoleGuardGuard } from './components/guards/role-guard.guard';
 import { AboutComponent } from './components/pages/about/about.component';
 import { AdminDashboardComponent } from './components/pages/admin-dashboard/admin-dashboard.component';
@@ -39,75 +40,99 @@ import { TermsConditionsComponent } from './components/pages/terms-conditions/te
 import { TestimonialsComponent } from './components/pages/testimonials/testimonials.component';
 
 const routes: Routes = [
-//    {    path: '',
-//         canActivate: [AuthGuard, RoleGuardGuard],
-//         data: {
-//             expectedRoles: ['ROLE_CANDIDATE']
-//         },
-//         component: HomeOneComponent
-//     },
-
-//     {    path: '',
-//         canActivate: [AuthGuard, RoleGuardGuard],
-//         data: {
-//             expectedRoles: ['ROLE_EMPLOYER']
-//         },
-//         component: HomeTwoComponent
-//     },
-
-//     {    path: '',
-//         canActivate: [AuthGuard, RoleGuardGuard],
-//         data: {
-//             expectedRoles: ['ROLE_SUPER_USER']
-//         },
-//         component: HomeThreeComponent
-//     },
-
-    { path: '', component: HomeOneComponent },
-    { path: 'home-two', component: HomeTwoComponent },
     
-    { path: 'home-three', component: HomeThreeComponent },
-    { path: 'login', component: LoginComponent },
-    // { path: 'single-resume', component: ResumeDetailsComponent},
+    // {    path: 'home-two',
+    //     canActivate: [AuthGuard, RoleGuardGuard],
+    //     data: {
+    //         expectedRoles: ['ROLE_EMPLOYER']
+    //     },
+    //     component: HomeTwoComponent
+    // },
+
+    // {    path: 'home-three',
+    //     canActivate: [AuthGuard, RoleGuardGuard],
+    //     data: {
+    //         expectedRoles: ['ROLE_SUPER_USER']
+    //     },
+    //     component: HomeThreeComponent
+    // },
+
+    // { 
+    //     path: 'employers-login',
+    //     component: EmployersLoginComponent 
+    // },
+
+    // {
+    //     path: 'employers-register', 
+    //     component: EmployersRegisterComponent 
+    // },
+
+    // { 
+    //     path: 'admin/login', 
+    //     component: AdminLoginComponent 
+    // },
+    
+    // { 
+    //     path: 'admin/register', 
+    //     component: AdminRegisterComponent 
+    // },
+
+    {    path: '',
+        component: HomeOneComponent
+    },
+
+    { 
+        path: 'login',
+        canActivate: [LoggedinGuard],
+        component: LoginComponent
+    },
+
     {
         path:'single-resume',
         canActivate: [AuthGuard],
         component: ResumeDetailsComponent
     },
 
-    { path: 'register', component: RegisterComponent },
-    // { path: 'jobs', component: JobsComponent },
+    { 
+        path: 'register',
+        canActivate: [LoggedinGuard],
+        component: RegisterComponent
+    },
+
     {    path: 'jobs',
-        canActivate: [AuthGuard],
         component: JobsComponent
     },
 
-    // { path: 'privacy-policy', component: PrivacyPolicyComponent },
     {
         path: 'privacy-policy',
-        canActivate: [AuthGuard],
         component: PrivacyPolicyComponent
     },
-    // { path: 'about', component: AboutComponent },
-    {
-        path:'about',
-        canActivate: [AuthGuard],
-        component: AboutComponent
+
+    { 
+        path: 'about',
+        component: AboutComponent 
     },
-    { path: 'contact', component: ContactComponent },
-    { path: 'terms-conditions', component: TermsConditionsComponent },
-    { path: 'employers-login', component: EmployersLoginComponent },
-    { path: 'employers-register', component: EmployersRegisterComponent },
-    
+
+    { 
+        path: 'contact',
+        component: ContactComponent 
+    },
+
+    {
+        path:'terms-conditions',
+        component: TermsConditionsComponent
+    },
 
     {
         path: 'employers',
-        canActivate: [AuthGuard],
+        canActivate: [AuthGuard, RoleGuardGuard],
+        data: {
+            expectedRoles: ['ROLE_SUPER_USER']
+        },
         component: EmployersComponent
     },
     {
         path: 'testimonials',
-        canActivate: [AuthGuard],
         component: TestimonialsComponent
     },
     {
@@ -116,22 +141,18 @@ const routes: Routes = [
     },
     {
         path: 'blog',
-        canActivate: [AuthGuard],
         component: BlogComponent
     },
     {
         path: 'blog-details',
-        canActivate: [AuthGuard],
         component: BlogDetailsComponent
     },
     {
         path: 'coming-soon',
-        canActivate: [AuthGuard],
         component: ComingSoonComponent
     },
     {
         path: 'error',
-        canActivate: [AuthGuard],
         component: ErrorComponent
     },
     
@@ -140,39 +161,30 @@ const routes: Routes = [
         path: 'employer-details',
         canActivate: [AuthGuard, RoleGuardGuard],
         data: {
-            expectedRoles: ['']
+            expectedRoles: ['ROLE_SUPER_USER']
         },
         component: EmployersDetailsComponent
     },
-    // {
-    //     path: 'single-resume',
-    //     canActivate: [AuthGuard, RoleGuardGuard],
-    //     data: {
-    //         expectedRoles: ['']
-    //     },
-    //     component: ResumeDetailsComponent
-    // },
+   
     {
         path: 'post-a-job',
         canActivate: [AuthGuard, RoleGuardGuard],
         data: {
-                expectedRoles: ['ROLE_EMPLOYER']
+            expectedRoles: ['ROLE_EMPLOYER']
         },
         component: PostAJobComponent
     },
     {
         path: 'pricing',
-        canActivate: [AuthGuard, RoleGuardGuard],
-        data: {
-            expectedRoles: ['ROLE_EMPLOYER']
-        },
         component: PricingComponent
     },
 
-    // {path:'favourite-jobs', component: FavouriteJobsComponent},
     {
         path: 'favourite-jobs',
-        canActivate: [AuthGuard],
+        canActivate: [AuthGuard, RoleGuardGuard],
+        data: {
+            expectedRoles: ['ROLE_CANDIDATE']
+        },
         component: FavouriteJobsComponent
     },
 
@@ -268,24 +280,20 @@ const routes: Routes = [
 
     {
         path: 'job-details/:id',
-        canActivate: [AuthGuard, RoleGuardGuard],
-        data: {
-            expectedRoles: ["ROLE_SUPER_USER", "ROLE_CANDIDATE", "ROLE_EMPLOYER"]
-        },
         component: JobDetailsComponent
     },
 
 
-    { path: 'companies/create', component: CompanyCreateComponent },
-
-    { path: 'employer/login', component: EmployersLoginComponent },
-    { path: 'employer/register', component: EmployersRegisterComponent },
-
-    // ADMIN
-    { path: 'admin/login', component: AdminLoginComponent },
-    { path: 'admin/register', component: AdminRegisterComponent },
-
-    { path: '**', component: ErrorComponent } // This line will remain down from the whole component list
+    { 
+        path: 'companies/create',
+        component: CompanyCreateComponent 
+    },
+    
+    { 
+        path: '**', 
+        component: ErrorComponent 
+    }
+    
 ];
 
 @NgModule({

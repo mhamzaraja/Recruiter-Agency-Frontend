@@ -57,6 +57,7 @@ import { AdminLoginComponent } from './components/pages/admin-login/admin-login.
 import { NgbDatepickerModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { LoggedinGuard } from './components/guards/loggedin.guard';
 
 @NgModule({
   declarations: [
@@ -120,7 +121,7 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
     NgbModule,
     NgbDatepickerModule
   ],
-  providers: [],
+  providers: [LoggedinGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
