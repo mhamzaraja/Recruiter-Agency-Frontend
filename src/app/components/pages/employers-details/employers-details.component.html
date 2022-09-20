@@ -1,5 +1,5 @@
 <!-- Navbar -->
-<app-navbar-style-three></app-navbar-style-three>
+<app-navbar-style-one></app-navbar-style-one>
 <!-- End Navbar -->
 
 <!-- Page Title -->
@@ -9,12 +9,13 @@
             <div class="container">
                 <div class="row align-items-end">
                     <div class="col-lg-8 col-md-12">
-                        <div class="left">
-                            <img src="assets/img/home-one/job3.png" alt="Details">
-                            <h2>Tax Manager</h2>
+                        <div class="left two">
+                            <img src="assets/img/candidate-details1.jpg" alt="Details">
+                            <h2>{{empBasicInfo.full_name}}</h2>
                             <ul>
-                                <li><i class='bx bx-pie-chart-alt-2'></i> Sales & Marketing</li>
-                                <li><i class='bx bx-time'></i> New York, USA</li>
+                                <li><i class='bx bxs-briefcase'></i>{{empBasicInfo.job_designation}}</li>
+                                <li><i class='bx bxs-phone-call'></i>{{empBasicInfo.mobile_number}}</li>
+                                <li><i class='bx bx-male'></i>{{empBasicInfo.gender}}</li>
                             </ul>
                         </div>
                     </div>

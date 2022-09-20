@@ -98,7 +98,7 @@ button {
 
 // end employer navbar
 .main-nav {
-    background: transparent;
+    background: rgba(255, 255, 255, 0.63);
     padding-top: 30px;
     transition: $transition;
 
@@ -225,7 +225,7 @@ button {
         font-size: 12px;
         position: absolute;
         top: -10px;
-        right: 20px;
+        right: -10px;
         padding: 3px 10px;
         border-radius: 4px;
         transition: $transition;
@@ -3591,7 +3591,7 @@ button {
     }
 
     &.menu-shrink {
-        background: #161616;
+        background: #221668;
         box-shadow: 0px 0px 20px 0px #6363636b;
     }
 }
@@ -7140,7 +7140,7 @@ a {
         max-width: 800px;
         margin-left: auto;
         margin-right: auto;
-        background-color: #fafafa;
+        background-color: #faf2f2;
         padding: 30px 30px 30px;
         border-radius: 5px;
         position: relative;

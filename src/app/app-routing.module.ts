@@ -158,7 +158,7 @@ const routes: Routes = [
     
     
     {
-        path: 'employer-details',
+        path: 'employers-details/:id',
         canActivate: [AuthGuard, RoleGuardGuard],
         data: {
             expectedRoles: ['ROLE_SUPER_USER']

@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 })
 export class NavbarStyleOneComponent implements OnInit {
     token: any = userToken.token;
+    userRole: any = userToken.role;
     isToken: boolean = false;
     userId: number = userToken.id;
 
