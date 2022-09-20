@@ -6,16 +6,16 @@ import userToken from "../../../config/userToken";
 @Injectable({
   providedIn: 'root'
 })
-export class EmployerService {
+export class EmployersDetailsService {
 
-  host: string = config.host;
+  host: string = config.host; 
   token: any = userToken.token;
+  userId: string = userToken.id;
   httpOptions = userToken.httpOptions;
 
   constructor(private http: HttpClient) { }
 
-
-  getAllEmployers() {
-    return this.http.get<any>(`${this.host}/api/admin/employer/profile/getAll`, this.httpOptions);
+  getemployerdata(id: number){
+    return this.http.get<any>(`${this.host}/api/admin/employer/profile/getOne?id=${id}`, this.httpOptions);
   }
 }
