@@ -35,7 +35,7 @@ export class DashboardService {
     }
 
     findEmployerData(){
-        return this.http.get<any>(`${this.host}/api/employer/profile/getAll`, this.httpOptions);
+        return this.http.get<any>(`${this.host}/api/employer/profile/getOne?userId=${this.userId}`, this.httpOptions);
       }
 
     resumeForm() {
