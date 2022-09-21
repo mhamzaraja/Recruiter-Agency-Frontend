@@ -27,7 +27,7 @@ export class DashboardService {
 
     findAllJobs(p: number) {
         let page = p;
-        return this.http.get<any>(`${this.host}/api/jobs/list/getAll?page=${page}`, this.httpOptions);
+        return this.http.get<any>(`${this.host}/api/employer/job/getAll?page=${page}?userId=${this.userId}`, this.httpOptions);
     }
 
     findAllCompanys() {

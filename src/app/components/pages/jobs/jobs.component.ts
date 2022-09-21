@@ -3,6 +3,7 @@ import { JobsService } from './services/jobs.service';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import { FormGroup, FormBuilder } from '@angular/forms';
+import userToken from '../../config/userToken';
 
 @Component({
     selector: 'app-jobs',
@@ -10,6 +11,9 @@ import { FormGroup, FormBuilder } from '@angular/forms';
     styleUrls: ['./jobs.component.scss']
 })
 export class JobsComponent implements OnInit, OnDestroy {
+    token: any = userToken.token;
+    isToken: boolean = false;
+    userRole: any = userToken.role;
     jobPostsInfo = [];
     p: number = 1;
     collection: any[];
@@ -33,6 +37,7 @@ export class JobsComponent implements OnInit, OnDestroy {
     ngOnInit(): void {
         this.getAllJobs();
         this.getAllFavJobs();
+        this.getToken();
         this.searchForm = this.formBuilder.group({
             search: [""],
             page: this.p
@@ -54,6 +59,10 @@ export class JobsComponent implements OnInit, OnDestroy {
             }
         }, 200);
 
+    }
+
+    getToken(){
+        if(this.token) this.isToken = true;
     }
 
     //get all jobs

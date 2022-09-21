@@ -150,7 +150,7 @@
         <div class="row">
             <div class="col-lg-6 col-md-12">
                 <div class="candidate-item two">
-                    <div *ngFor="let emp of employerInfo; let id = index">
+                    <div *ngFor="let emp of employerInfo;">
                         <div class="left">
                             <h3><a routerLink="/employers">{{emp.full_name}}</a></h3>
                             <ul class="experience">
@@ -161,7 +161,7 @@
                                 <li>Gender: <span>{{emp.gender}}</span></li>
                             </ul>
                             <div class="cmn-link">
-                                <a [routerLink]="['/employers-details', id+1]"><i class="flaticon-right-arrow one"></i>
+                                <a [routerLink]="['/employers-details', emp.id]"><i class="flaticon-right-arrow one"></i>
                                     View Profile
                                     <i class="flaticon-right-arrow two"></i></a>
                             </div>

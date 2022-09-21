@@ -12,18 +12,7 @@ export class JobsService {
     token: any = userToken.token;
     userId: number = userToken.id;
     jobId: number;
-
-
-    httpOptions = {
-        headers: new HttpHeaders({
-            'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin': '*',
-            'Access-Control-Allow-Headers': 'Authorization, X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Allow-Request-Method',
-            'Authorization': 'Bearer ' + this.token,
-            'Access-Control-Allow-Methods': 'GET,POST,OPTIONS,DELETE,PUT',
-            'Allow': 'GET, POST, OPTIONS, PUT, DELETE'
-        })
-    };
+    httpOptions = userToken.httpOptions;
 
     constructor(private http: HttpClient) { }
 

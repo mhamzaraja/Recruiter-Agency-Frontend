@@ -45,8 +45,7 @@ export class EmploerDashboardComponent implements OnInit, OnDestroy {
     getAllJobsData() {
         this.dashboardService.findAllJobs(this.p).subscribe(
             (res) => {
-                this.jobPostInfo = res.data.jobsList;
-                this.jobCounts = res.data.jobsCount;
+                this.jobPostInfo = res.data;
                 console.log(this.jobPostInfo);
             },
             (error) => {
