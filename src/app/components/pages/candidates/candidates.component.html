@@ -74,7 +74,7 @@
         <div class="row">
             <div class="col-lg-6 col-md-12">
                 <div class="candidate-item two">
-                    <div *ngFor="let cand of candidatsInfo; let id = index">
+                    <div *ngFor="let cand of candidatsInfo;">
                         <div class="left">
                             <h3><a routerLink="/candidates">{{cand?.name}}</a></h3>
                             <div>
@@ -96,7 +96,7 @@
                                 </ul>
                             </div>
                             <div class="cmn-link">
-                                <a [routerLink]="['/candidate-details', id+1]"><i class="flaticon-right-arrow one"></i> View Profile
+                                <a [routerLink]="['/candidate-details', cand.id]"><i class="flaticon-right-arrow one"></i> View Profile
                                     <i class="flaticon-right-arrow two"></i></a>
                             </div>
                         </div>

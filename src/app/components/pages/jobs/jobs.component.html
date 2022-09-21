@@ -77,7 +77,7 @@
                                 job.workplace_type
                                 }}</span>
                         </a>
-                        <span (click)="addFavourite(job)"
+                        <span *ngIf="isToken && userRole == 'ROLE_CANDIDATE'" (click)="addFavourite(job)"
                             [ngClass]="{'red' :job.candidate_favourite_jobs.length>0, 'black': job.candidate_favourite_jobs.length==0}"
                             class="span-icon"><i class='bx bxs-heart'></i></span>
                     </div>

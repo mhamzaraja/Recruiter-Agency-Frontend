@@ -62,11 +62,6 @@ const routes: Routes = [
     //     component: EmployersLoginComponent 
     // },
 
-    // {
-    //     path: 'employers-register', 
-    //     component: EmployersRegisterComponent 
-    // },
-
     // { 
     //     path: 'admin/login', 
     //     component: AdminLoginComponent 
@@ -97,6 +92,12 @@ const routes: Routes = [
         path: 'register',
         canActivate: [LoggedinGuard],
         component: RegisterComponent
+    },
+
+    {
+        path: 'employers-register', 
+        canActivate: [LoggedinGuard],
+        component: EmployersRegisterComponent 
     },
 
     {    path: 'jobs',

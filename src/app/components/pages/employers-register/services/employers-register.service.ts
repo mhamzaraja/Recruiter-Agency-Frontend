@@ -3,13 +3,14 @@ import { HttpClient } from '@angular/common/http';
 import config from '../../../config/config';
 import userToken from "../../../config/userToken";
 
+
 @Injectable({
     providedIn: 'root'
 })
 export class EmployersRegisterService {
     host: string = config.host;
 
-    constructor(private http: HttpClient) { }
+    constructor(private http: HttpClient) {}
 
     signup(data: any) {
         var signupData = data;
