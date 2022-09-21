@@ -9,11 +9,13 @@
             <div class="col-lg-4 col-md-12">
                 <div class="profile-item">
                     <img src="assets/img/dashboard1.jpg" alt="Dashboard">
+                    <i class='bx bx-edit bx-sm bx-tada-hover' routerLink="profile/create"></i>
+
                     <h2>
-                        {{fullNAme}}
-                        <i class='bx bx-edit bx-sm bx-tada-hover' routerLink="profile/create"></i>
+                        {{empInformation?.full_name}}
                     </h2>
-                    <span>{{designation}}</span>
+                    <span>{{empInformation?.job_designation}}</span>
+                    <span itemprop="telephone"><i class='bx bxs-phone-call' >-</i>{{empInformation?.mobile_number}}</span>
                 </div>
 
                 <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
@@ -89,7 +91,8 @@
                                     <span class="span-two">{{jobs.job_shift}}</span>
                                 </a>
                             </div>
-                            <pagination-controls (pageChange)="getpage($event)" class="pagination-area"></pagination-controls>
+                            <pagination-controls (pageChange)="getpage($event)" class="pagination-area">
+                            </pagination-controls>
                         </div>
                     </div>
 

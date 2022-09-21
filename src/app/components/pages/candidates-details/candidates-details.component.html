@@ -53,23 +53,21 @@
                         <h3>Education</h3>
                         <div *ngFor="let edu of candEducation; let i = index">
                             <ul>
-                                <i class='bx bxs-graduation' style="font-size: 25px;"></i>
                                 <li>
-                                    <span>{{edu?.degree_title}}</span>
+                                    Degree<span>{{edu?.degree_title}}</span>
                                     <span>({{edu?.field_of_study}})</span>
                                 </li>
                             </ul>
                             <ul>
-                                <i class='bx bxs-institution' style="font-size: 25px;"></i>                                
                                 <li>
-                                    <span>{{edu?.institution}}</span>
+                                    Instituition <span>{{edu?.institution}}</span>
                                     <span>{{edu?.location}}, Pakistan</span>
                                 </li>
                             </ul>
                             <ul>
-                                <i class='bx bx-calendar' style="font-size: 25px;"></i>
-                                <li><span>{{edu?.completion_year}} - </span>
-                                     Obtained CGPA<span>- {{edu?.obtained_gpa}}</span>
+                                <li>
+                                    Year<span>{{edu?.completion_year}} - </span>
+                                    Obtained CGPA<span>- {{edu?.obtained_gpa}}</span>
                                 </li>
                             </ul>
                         </div>
@@ -79,10 +77,16 @@
                         <h3>Work Experience</h3>
                         <div *ngFor="let exp of candExperience; let i = index">
                             <ul>
-                                <li><img src="assets/img/home-three/title-img.png" alt="Icon">
-                                    {{exp?.company}}, {{exp?.location}}, Pakistan</li>
                                 <li>
-                                    <span>{{exp?.startDate | date}} -
+                                    Designation <span>{{exp?.jobTitle}}</span>
+                                </li>
+                            </ul>
+                            <ul>
+                                <li>
+                                    Company<span>{{exp?.company}}, {{exp?.location}}, Pakistan / </span>
+                                </li>
+                                <li>
+                                    Duration <span>{{exp?.startDate | date}} -
                                         <span *ngIf="!exp?.currentlyWorking">
                                             {{exp?.endDate | date}}
                                         </span>
@@ -93,42 +97,41 @@
                                     </span>
                                 </li>
                             </ul>
-                            <h4>{{exp?.jobTitle}}</h4>
-                            <p>{{exp?.description}}</p>
+                            <ul>
+                                <li>
+                                    Description<span>{{exp?.description}}</span>
+                                </li>
+                            </ul>
                         </div>
                     </div>
-
-                    <div class="skills">
+                    <!-- Skills -->
+                    <div class="work bottom-item">
                         <h3>Skills</h3>
                         <div *ngFor="let skill of candSkills;">
-                            <div class="skill-wrap">
-                                <div class="skill">
-                                    <h3>
+                            <ul>
+                                <span><i class='bx bxs-right-arrow'></i></span>
+                                <li>
+                                    <span>
                                         {{skill?.skill_title}}
                                         ({{skill?.skill_proficiency}})
-                                    </h3>
-                                    <!-- <div class="skill-bar skill1 animate__slideInLeft animate__animated">
-                                        <span class="skill-count1">56%</span>
-                                    </div> -->
-                                </div>
-                            </div>
+                                    </span>
+                                </li>
+                            </ul>
                         </div>
                     </div>
-
-                    <div class="skills">
+                    <!-- Languagues -->
+                    <div class="work bottom-item">
                         <h3>Languages</h3>
                         <div *ngFor="let lang of candLanguages;">
-                            <div class="skill-wrap">
-                                <div class="skill">
-                                    <h3>
+                            <ul>
+                                <span><i class='bx bxs-right-arrow'></i></span>
+                                <li>
+                                    <span>
                                         {{lang?.language_title}}
                                         ({{lang?.language_proficiency}})
-                                    </h3>
-                                    <!-- <div class="skill-bar skill1 animate__slideInLeft animate__animated">
-                                        <span class="skill-count1">56%</span>
-                                    </div> -->
-                                </div>
-                            </div>
+                                    </span>
+                                </li>
+                            </ul>
                         </div>
                     </div>
 

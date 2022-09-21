@@ -12,25 +12,19 @@ import { Router } from "@angular/router";
 export class EmploerDashboardComponent implements OnInit, OnDestroy {
 
     public jobPostInfo = [];
+    public empInformation: any;
     public companyInfo: any;
-    public employerInfo = [];
     public lastCompany: any;
     submitted: boolean = false;
     jobsPosted: number;
-
     empId: number;
-    fullNAme: string;
-    designation: string;
-
     jobId: number;
-
     proejctForm: FormGroup;
-
+    userId: number;
     response: any;
     public placeholder: string = '';
     jobCounts = [];
     p: number = 1;
-
 
     constructor(private formBuilder: FormBuilder,
         private toastr: ToastrService,
@@ -41,7 +35,7 @@ export class EmploerDashboardComponent implements OnInit, OnDestroy {
     ngOnInit(): void {
         this.getAllCompanysData();
         this.getAllJobsData();
-        this.getUserData();
+        this.getEmployeData();
     }
 
     get fprj(): { [key: string]: AbstractControl } {
@@ -52,7 +46,7 @@ export class EmploerDashboardComponent implements OnInit, OnDestroy {
         this.dashboardService.findAllJobs(this.p).subscribe(
             (res) => {
                 this.jobPostInfo = res.data.jobsList;
-                this.jobCounts= res.data.jobsCount;
+                this.jobCounts = res.data.jobsCount;
                 console.log(this.jobPostInfo);
             },
             (error) => {
@@ -73,14 +67,10 @@ export class EmploerDashboardComponent implements OnInit, OnDestroy {
             });
     }
 
-    getUserData() {
+    getEmployeData() {
         this.dashboardService.findEmployerData().subscribe(
             (res) => {
-                this.employerInfo = res.data;
-
-                this.empId = this.employerInfo[0].id;
-                this.fullNAme = this.employerInfo[0].full_name;
-                this.designation = this.employerInfo[0].job_designation;
+                this.empInformation = res.data;
             },
             (error) => {
                 //if (error.status == 401) this.router.navigate(['/login']);
@@ -88,11 +78,11 @@ export class EmploerDashboardComponent implements OnInit, OnDestroy {
             });
     }
 
-    getpage(page:number){
-        this.p= page
-        this.dashboardService.findAllJobs(this.p).subscribe((res)=>{
+    getpage(page: number) {
+        this.p = page
+        this.dashboardService.findAllJobs(this.p).subscribe((res) => {
             this.jobPostInfo = res.data.jobsList;
-            this.jobCounts= res.data.jobsCount;
+            this.jobCounts = res.data.jobsCount;
         })
     }
 
