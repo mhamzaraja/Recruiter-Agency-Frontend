@@ -95,6 +95,7 @@
                                 </a>
                                 <span>
                                     <i class='bx bx-edit bx-sm bx-tada-hover span-icon' (click)="edit(content, i)"></i>
+                                    <i class='bx bx-trash bx-sm bx-tada-hover span-icon-del' (click)="delJob(i)"></i>
                                 </span>
                             </div>
                             <pagination-controls (pageChange)="getpage($event)" class="pagination-area">

@@ -166,4 +166,17 @@ export class EmploerDashboardComponent implements OnInit, OnDestroy {
         this.jobPostForm.controls.is_sponsor.setValue(this.jobPostInfo[i].is_sponsor);
 
     }
+
+    delJob(i: number) {
+        this.jobId = this.jobPostInfo[i].id;
+        this.dashboardService.deleteJobPost(this.jobId).subscribe(
+            (res) => {
+                if (res.success == true) {
+                    this.toastr.success(res.message);
+                    this.getAllJobsData();
+                } else {
+                    this.toastr.error(res.error.message);
+                }
+            });
+    }
 }
