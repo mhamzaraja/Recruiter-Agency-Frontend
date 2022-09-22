@@ -38,20 +38,4 @@ export class PostAJobService {
         }
         return this.http.post<any>(`${this.host}/api/employer/job/create`, jobPostData, this.httpOptions);
     }
-
-    deleteJobPost(id: number){
-        return this.http.delete<any>(`${this.host}/api/employer/job/delete?id=${id}`, this.httpOptions);
-    }
-
-    updateJobPost(id: number, data: any){
-        data.is_active = Boolean(data.is_active);
-        data.is_sponsor = Boolean(data.is_sponsor);
-        data.positions_available = Number(data.positions_available);
-
-        let jobPostData = {
-            ...data,
-            employerId: this.userId
-        }
-        return this.http.put<any>(`${this.host}/api/employer/job/update?id=${id}`, jobPostData, this.httpOptions);
-    }
 }
