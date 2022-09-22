@@ -44,4 +44,16 @@ export class DashboardService {
 
     logoutForm() {
     }
+
+    updateJobPost(id: number, data: any){
+        data.is_active = Boolean(data.is_active);
+        data.is_sponsor = Boolean(data.is_sponsor);
+        data.positions_available = Number(data.positions_available);
+
+        let jobPostData = {
+            ...data,
+            employerId: this.userId
+        }
+        return this.http.put<any>(`${this.host}/api/employer/job/update?id=${id}`, jobPostData, this.httpOptions);
+    }
 }
