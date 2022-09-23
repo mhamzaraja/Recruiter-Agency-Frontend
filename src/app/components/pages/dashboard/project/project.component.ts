@@ -3,6 +3,7 @@ import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/fo
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { ProjectService } from './services/project.service';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
     selector: 'app-project',
@@ -18,8 +19,6 @@ export class ProjectComponent implements OnInit, OnDestroy {
     proejctForm: FormGroup;
     public projectsInfo = [];
     response: any;
-    openform=false;
-    boolVar=true;
 
     p: number = 1;
     collection: any[] ;
@@ -27,7 +26,8 @@ export class ProjectComponent implements OnInit, OnDestroy {
     constructor(private formBuilder: FormBuilder,
         private toastr: ToastrService,
         private router: Router,
-        private projectService: ProjectService
+        private projectService: ProjectService,
+        private modalService: NgbModal
     ) { }
 
     ngOnInit(): void {
@@ -63,7 +63,7 @@ export class ProjectComponent implements OnInit, OnDestroy {
                     if (res.success == true) {
                         this.toastr.success(res.message);
                         this.getAllProjects();
-                        this.proejctForm.reset();
+                        this.modalService.dismissAll();
                     } else {
                         this.toastr.error(res.error.message);
                     }
@@ -96,7 +96,7 @@ export class ProjectComponent implements OnInit, OnDestroy {
                 (res) => {
                     this.toastr.success(res.message);
                     this.getAllProjects();
-                    this.proejctForm.reset();
+                    this.modalService.dismissAll();
                     this.savePrjBtn = true;
                     this.updatePrjBtn = false;
                 },
@@ -121,9 +121,8 @@ export class ProjectComponent implements OnInit, OnDestroy {
             });
     }
 
-    editPrj(i: number) {
-        this.openform=!this.openform;
-        this.boolVar=!this.boolVar;
+    editPrj(content, i: number) {
+        this.modalService.open(content, { size: 'lg' });
         this.savePrjBtn = false;
         this.updatePrjBtn = true;
         this.prjId = this.projectsInfo[i].id;
@@ -136,9 +135,8 @@ export class ProjectComponent implements OnInit, OnDestroy {
         this.proejctForm.controls.description.setValue(this.projectsInfo[i].description);
     }
 
-    clearPrj() {
-        this.openform=!this.openform;
-        this.boolVar=!this.boolVar;
+    clearPrj(content) {
+        this.modalService.open(content, { size: 'lg' });
         this.savePrjBtn = true;
         this.updatePrjBtn = false;
         this.proejctForm.reset();

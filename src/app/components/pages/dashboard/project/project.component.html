@@ -4,7 +4,7 @@
             <h2>Projects</h2>
         </div>
         <div>
-            <a class="cmn-btn" (click)="clearPrj()">{{(boolVar ? 'Create' : 'Hide Form')}}<i class='bx bx-plus'></i></a>
+            <a class="cmn-btn" (click)="clearPrj(content)"><i class='bx bx-plus'></i>Create</a>
         </div>
     </div>
 </div>
@@ -12,9 +12,9 @@
     <div class="container">
         <div class="row">
             <div class="details-item">
-                <div class="work bottom-item" *ngFor="let prj of projectsInfo | paginate: { itemsPerPage: 2, currentPage: p }; let i = index">
+                <div class="work bottom-item" *ngFor="let prj of projectsInfo | paginate: { itemsPerPage: 5, currentPage: p }; let i = index">
                     <i class="bx bx-trash bx-sm bx-tada-hover" style="float: right;" (click)="delPrj(i)"></i>
-                    <i class="bx bx-edit bx-sm bx-tada-hover" style="float: right;" (click)="editPrj(i)"></i>
+                    <i class="bx bx-edit bx-sm bx-tada-hover" style="float: right;" (click)="editPrj(content, i)"></i>
                     <table class="table">
                         <tbody>
                             <tr>
@@ -56,9 +56,11 @@
     </div>
 </div>
 
+<!-- Project Form -->
+<ng-template #content let-modal>
 <div class="profile-content" id="form">
 
-    <form [formGroup]="proejctForm" [hidden]="!openform">
+    <form [formGroup]="proejctForm">
 
         <div class="profile-content-inner">
             <h2>Projects</h2>
@@ -170,3 +172,4 @@
         </button>
     </form>
 </div>
+</ng-template>

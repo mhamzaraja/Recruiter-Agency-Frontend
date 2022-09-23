@@ -3,6 +3,8 @@ import { FormGroup, FormBuilder, Validators, FormControl, AbstractControl } from
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { BasicInfoService } from './services/basic-info.service';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+
 
 @Component({
     selector: 'app-basic-info',
@@ -22,7 +24,8 @@ export class BasicInfoComponent implements OnInit, OnDestroy {
     constructor(private formBuilder: FormBuilder,
         private toastr: ToastrService,
         private router: Router,
-        private basicInfoService: BasicInfoService
+        private basicInfoService: BasicInfoService,
+        private modalService: NgbModal
     ) { }
 
     ngOnInit(): void {
@@ -60,6 +63,7 @@ export class BasicInfoComponent implements OnInit, OnDestroy {
                 (res) => {
                     this.toastr.success(res.message);
                     this.getUser();
+                    window.location.reload();
                 },
                 (error) => {
                     //if (error.status == 401) this.router.navigate(['/login']);
@@ -91,9 +95,8 @@ export class BasicInfoComponent implements OnInit, OnDestroy {
         return Object.keys(obj).length != 0;
     }
 
-    editInfo() {
-        this.openform=!this.openform;
-        this.boolVar=!this.boolVar;
+    editInfo(content) {
+        this.modalService.open(content, { size: 'lg' });
         let i = 0;
         this.basicInfoForm.controls.name.setValue(this.basicInfo[i].name);
         this.basicInfoForm.controls.email.setValue(this.basicInfo[i].email);

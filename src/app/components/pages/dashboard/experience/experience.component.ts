@@ -4,6 +4,7 @@ import { FormGroup, FormBuilder, Validators, FormControl, AbstractControl } from
 import { ExperienceService } from './services/experience.service';
 import { Router } from '@angular/router';
 import data from '../../../data/data';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
     selector: 'app-experience',
@@ -21,8 +22,6 @@ export class ExperienceComponent implements OnInit, OnDestroy {
     saveExpBtn: boolean = true;
     updateExpBtn: boolean = false;
     city = data.cities;
-    openform=false;
-    boolVar=true;
 
     p: number = 1;
     collection: any[] ;
@@ -32,7 +31,8 @@ export class ExperienceComponent implements OnInit, OnDestroy {
     constructor(private formBuilder: FormBuilder,
         private toastr: ToastrService,
         private router: Router,
-        private experienceService: ExperienceService
+        private experienceService: ExperienceService,
+        private modalService: NgbModal
     ) { }
 
     ngOnInit(): void {
@@ -72,7 +72,7 @@ export class ExperienceComponent implements OnInit, OnDestroy {
                 (res) => {
                     this.toastr.success(res.message);
                     this.getAllExperience();
-                    this.experienceForm.reset();
+                    this.modalService.dismissAll();
                 },
                 (error) => {
                     //if (error.status == 401) this.router.navigate(['/login']);
@@ -94,9 +94,9 @@ export class ExperienceComponent implements OnInit, OnDestroy {
                 (res) => {
                     this.toastr.success(res.message);
                     this.getAllExperience();
-                    this.experienceForm.reset();
-                        this.saveExpBtn = true;
-                        this.updateExpBtn = false;
+                    this.modalService.dismissAll();
+                    this.saveExpBtn = true;
+                    this.updateExpBtn = false;
                 },
                 (error) => {
                     //if (error.status == 401) this.router.navigate(['/login']);
@@ -117,9 +117,8 @@ export class ExperienceComponent implements OnInit, OnDestroy {
             });
     }
 
-    editExp(i: number) {
-        this.openform=!this.openform;
-        this.boolVar=!this.boolVar;
+    editExp(content, i: number) {
+        this.modalService.open(content, { size: 'lg' });
         this.saveExpBtn = false;
         this.updateExpBtn = true;
         this.expId = this.experienceInfo[i].id;
@@ -149,9 +148,8 @@ export class ExperienceComponent implements OnInit, OnDestroy {
             });
     }
 
-    resetExp(){
-        this.openform=!this.openform;
-        this.boolVar=!this.boolVar;
+    resetExp(content){
+        this.modalService.open(content, { size: 'lg' });
         this.saveExpBtn = true;
         this.updateExpBtn = false;
         this.experienceForm.reset();
