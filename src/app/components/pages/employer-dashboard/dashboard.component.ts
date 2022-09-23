@@ -30,6 +30,7 @@ export class EmploerDashboardComponent implements OnInit, OnDestroy {
     jobCounts = [];
     p: number = 1;
     submittedJob: boolean = false;
+    currentDelJob: any;
 
 
     constructor(private formBuilder: FormBuilder,
@@ -122,6 +123,9 @@ export class EmploerDashboardComponent implements OnInit, OnDestroy {
         this.editJob(i);
     }
 
+
+    // Update Job
+
     jobUpdateInfoForm() {
         this.submittedJob = true;
         let data = this.jobPostForm.value;
@@ -133,6 +137,7 @@ export class EmploerDashboardComponent implements OnInit, OnDestroy {
             this.dashboardService.updateJobPost(this.jobId, data).subscribe(
                 (res) => {
                     this.toastr.success(res.message);
+                    this.modalService.dismissAll()
                     this.getAllJobsData();
 
                 },
@@ -167,16 +172,25 @@ export class EmploerDashboardComponent implements OnInit, OnDestroy {
 
     }
 
-    delJob(i: number) {
-        this.jobId = this.jobPostInfo[i].id;
+    // Delete Job
+    openVerticallyCentered(content: any, i: number) {
+        this.currentDelJob = i;
+        this.modalService.open(content, { centered: true });
+    }
+
+    delJob() {
+        this.jobId = this.jobPostInfo[this.currentDelJob].id;
         this.dashboardService.deleteJobPost(this.jobId).subscribe(
             (res) => {
                 if (res.success == true) {
                     this.toastr.success(res.message);
+                    this.modalService.dismissAll();
                     this.getAllJobsData();
                 } else {
                     this.toastr.error(res.error.message);
                 }
             });
     }
+
+
 }
