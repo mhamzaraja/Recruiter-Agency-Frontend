@@ -4,6 +4,7 @@ import { EducationService } from './services/education.service';
 import { FormGroup, FormBuilder, Validators, FormControl, AbstractControl } from '@angular/forms';
 import { Router } from "@angular/router";
 import data from '../../../data/data';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
     selector: 'app-education',
@@ -20,8 +21,6 @@ export class EducationComponent implements OnInit, OnDestroy {
     eduId: number = null;
     saveEduBtn: boolean = true;
     updateEduBtn: boolean = false;
-    openform=false;
-    boolVar=true;
 
     p: number = 1;
     collection: any[] ;
@@ -29,7 +28,8 @@ export class EducationComponent implements OnInit, OnDestroy {
     constructor(private formBuilder: FormBuilder,
         private toastr: ToastrService,
         private educationService: EducationService,
-        private router: Router
+        private router: Router,
+        private modalService: NgbModal
 
     ) { }
 
@@ -64,7 +64,7 @@ export class EducationComponent implements OnInit, OnDestroy {
                     this.getAllEducations();
                     if (res.success == true) {            
                         this.toastr.success("Created Successfully");
-                        this.educationForm.reset();
+                        this.modalService.dismissAll();
                     } else {
                         this.toastr.error(res.message);
                     }
@@ -86,7 +86,7 @@ export class EducationComponent implements OnInit, OnDestroy {
                     if (res.success == true) {
                         this.toastr.success(res.message);
                         this.getAllEducations();
-                        this.educationForm.reset();
+                        this.modalService.dismissAll();
                         this.saveEduBtn = true;
                         this.updateEduBtn = false;
                     } else {
@@ -110,9 +110,8 @@ export class EducationComponent implements OnInit, OnDestroy {
             });
     }
 
-    editEdu(i: number) {
-        this.openform=!this.openform;
-        this.boolVar=!this.boolVar;
+    editEdu(content, i: number,) {
+        this.modalService.open(content, { size: 'lg' });
         this.saveEduBtn = false;
         this.updateEduBtn = true;
         this.eduId = this.educationInfo[i].id;
@@ -137,9 +136,8 @@ export class EducationComponent implements OnInit, OnDestroy {
             });
     }
 
-    clearEdu(){
-        this.openform=!this.openform;
-        this.boolVar=!this.boolVar;
+    clearEdu(content){
+        this.modalService.open(content, { size: 'lg' });
         this.saveEduBtn = true;
         this.updateEduBtn = false;
         this.educationForm.reset();

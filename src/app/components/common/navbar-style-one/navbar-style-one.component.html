@@ -60,7 +60,7 @@
                             </ul>
         
                             <div class="side-nav three">
-                                <a class="job-right" *ngIf="!isToken" routerLink="/login"><i class="flaticon-enter"></i> Login/Register</a>
+                                <a class="job-right" routerLink="/login"><i class="flaticon-enter"></i> Login/Register</a>
                             </div>
                         </div>
                     </nav>
@@ -135,7 +135,7 @@
                     </ul>
 
                     <div class="side-nav three">
-                        <a class="job-right" *ngIf="isToken" (click)="onLogout($event)"><i class="flaticon-enter"></i>Logout</a>
+                        <a class="job-right" (click)="onLogout($event)"><i class="flaticon-enter"></i>Logout</a>
                     </div>
                 </div>
             </nav>

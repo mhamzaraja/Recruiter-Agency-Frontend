@@ -5,8 +5,8 @@
                                 <h2>Skills</h2>
                             </div>
                             <div>
-                                <a class="cmn-btn" (click)="resetSkill()">{{(boolVar ? 'Create' : 'Hide Form')}} <i
-                                        class='bx bx-plus'></i></a>
+                                <a class="cmn-btn" (click)="resetSkill(content)"><i
+                                        class='bx bx-plus'></i>Create</a>
                             </div>
                         </div>
                     </div>
@@ -29,7 +29,7 @@
 
                         </ul> -->
                         <i class="bx bx-trash bx-sm bx-tada-hover" style="float: right;" (click)="delSkill(i)"></i>
-                        <i class="bx bx-edit bx-sm bx-tada-hover" style="float: right;" (click)="editSkill(i)"></i>
+                        <i class="bx bx-edit bx-sm bx-tada-hover" style="float: right;" (click)="editSkill(content, i)"></i>
                         <table class="table">
                             <tbody>
                                 <tr>
@@ -49,7 +49,8 @@
             </div>
         </div>
     </div>
-    <form style="margin-bottom: 5%;" autocomplete="off" novalidate [formGroup]="skillsForm" [hidden]="!openForm" class="profile-content">
+<ng-template #content let-modal>
+    <form style="margin-bottom: 5%;" autocomplete="off" novalidate [formGroup]="skillsForm" class="profile-content">
 
         <div class="profile-content-inner">
             <h2>Skills</h2>
@@ -78,11 +79,6 @@
                         <ng-template #notFoundTemplate let-notFound>
                             <div [innerHTML]="notFound"></div>
                         </ng-template>
-                        <div class="invalid-feedback" *ngIf="submittedSkill && fskill.skill_title.errors">
-                            <div *ngIf="fskill.skill_title.errors.required">
-                                This field is required
-                            </div>
-                        </div>
                     </div>
                 </div>
 
@@ -115,6 +111,7 @@
             Update Your Skill
         </button>
     </form>
+</ng-template>
 
                      <!-- Languages -->
     <div class="bottom-item">
@@ -123,8 +120,8 @@
                 <h2>Languages</h2>
             </div>
             <div>
-                <a class="cmn-btn" (click)="resetLang()">{{(boolVar1 ? 'Create' : 'Hide Form')}} <i
-                        class='bx bx-plus'></i></a>
+                <a class="cmn-btn" (click)="resetLang(content2)"><i
+                        class='bx bx-plus'></i>Create</a>
             </div>
         </div>
     </div>
@@ -147,7 +144,7 @@
 
                         </ul> -->
                         <i class="bx bx-trash bx-sm bx-tada-hover" style="float: right;" (click)="delLang(i)"></i>
-                        <i class="bx bx-edit bx-sm bx-tada-hover" style="float: right;" (click)="editLang(i)"></i>
+                        <i class="bx bx-edit bx-sm bx-tada-hover" style="float: right;" (click)="editLang(content2, i)"></i>
                         <table class="table">
                             <tbody>
                                 <tr>
@@ -168,7 +165,8 @@
         </div>
     </div>
 
-    <form style="margin-bottom: 5%;" autocomplete="off" novalidate [formGroup]="languageForm" [hidden]="!openform" class="profile-content">
+<ng-template #content2 let-modal>
+    <form style="margin-bottom: 5%;" autocomplete="off" novalidate [formGroup]="languageForm" class="profile-content">
 
         <div class="profile-content-inner">
             <h2>Languages</h2>
@@ -197,11 +195,6 @@
                         <ng-template #notFoundTemplate let-notFound>
                             <div [innerHTML]="notFound"></div>
                         </ng-template>
-                        <div class="invalid-feedback" *ngIf="submittedLanguage && flang.language_title.errors">
-                            <div *ngIf="flang.language_title.errors.required">
-                                This field is required
-                            </div>
-                        </div>
                     </div>
                 </div>
 
@@ -234,3 +227,4 @@
             Update Your Language
         </button>
     </form>
+</ng-template>

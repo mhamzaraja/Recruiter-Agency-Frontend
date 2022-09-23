@@ -4,6 +4,7 @@ import { FormGroup, FormBuilder, Validators, FormControl, AbstractControl } from
 import { SkillsLanguagesService } from './services/skills-languages.service';
 import { Router } from '@angular/router';
 import data from '../../../data/data';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
     selector: 'app-skills-languages',
@@ -32,29 +33,26 @@ export class SkillsLanguagesComponent implements OnInit, OnDestroy {
     public skillsData = data.skillsData;
     public langData = data.langData;
     public proficiency = data.proficiency;
-    openform=false;
-    openForm=false;
-    boolVar=true;
-    boolVar1=true;
 
 
     constructor(private formBuilder: FormBuilder,
         private toastr: ToastrService,
         private router: Router,
-        private skillsLanguagesService: SkillsLanguagesService
+        private skillsLanguagesService: SkillsLanguagesService,
+        private modalService: NgbModal
     ) { }
 
     ngOnInit(): void {
 
         this.skillsForm = this.formBuilder.group({
             skill_title: [{ value: '', disabled: false }, Validators.required],
-            skill_proficiency: ['']
+            skill_proficiency: ['', Validators.required]
         })
         this.getAllSkills();
 
         this.languageForm = this.formBuilder.group({
             language_title: [{ value: '', disabled: false }, Validators.required],
-            language_proficiency: ['']
+            language_proficiency: ['', Validators.required]
 
         })
         this.getAllLanguages();
@@ -80,7 +78,7 @@ export class SkillsLanguagesComponent implements OnInit, OnDestroy {
                 (res) => {
                     this.toastr.success(res.message);
                     this.getAllSkills();
-                    this.skillsForm.reset();
+                    this.modalService.dismissAll();
                 },
                 (error) => {
                     //if (error.status == 401) this.router.navigate(['/login']);
@@ -103,7 +101,7 @@ export class SkillsLanguagesComponent implements OnInit, OnDestroy {
                 (res) => {
                     this.toastr.success(res.message);
                     this.getAllSkills();
-                    this.skillsForm.reset();
+                    this.modalService.dismissAll();
                     this.saveSkillBtn = true;
                     this.updateSkillBtn = false;
                 },
@@ -127,9 +125,8 @@ export class SkillsLanguagesComponent implements OnInit, OnDestroy {
             });
     }
 
-    editSkill(i: number) {
-        this.openForm=!this.openForm;
-        this.boolVar=!this.boolVar;
+    editSkill(content, i: number) {
+        this.modalService.open(content, { size: 'lg' });
         this.saveSkillBtn = false;
         this.updateSkillBtn = true;
         this.skillId = this.skillInfo[i].id;
@@ -162,9 +159,8 @@ export class SkillsLanguagesComponent implements OnInit, OnDestroy {
             this.skillsLanguagesService.languagesForm(this.languageForm.value).subscribe(
                 (res) => {
                     this.toastr.success(res.message);
-                    this.getAllLanguages();
-                    this.languageForm.reset();
-                },
+                    this.modalService.dismissAll();
+                    this.getAllLanguages();                },
                 (error) => {
                     //if (error.status == 401) this.router.navigate(['/login']);
                 this.toastr.error(error.error.message);
@@ -185,9 +181,10 @@ export class SkillsLanguagesComponent implements OnInit, OnDestroy {
             this.skillsLanguagesService.updateLanguage(data, this.langId).subscribe(
                 (res) => {
                     this.toastr.success(res.message);
-                    this.languageForm.reset();
-                        this.saveLangBtn = true;
-                        this.updateLangBtn = false;
+                    this.getAllLanguages();
+                    this.modalService.dismissAll();
+                    this.saveLangBtn = true;
+                    this.updateLangBtn = false;
                 },
                 (error) => {
                     //if (error.status == 401) this.router.navigate(['/login']);
@@ -207,9 +204,8 @@ export class SkillsLanguagesComponent implements OnInit, OnDestroy {
             });
     }
 
-    editLang(i: number) {
-        this.openform=!this.openform;
-        this.boolVar1=!this.boolVar1;
+    editLang(content2, i: number) {
+        this.modalService.open(content2, { size: 'lg' });
         this.saveLangBtn = false;
         this.updateLangBtn = true;
         this.langId = this.languageInfo[i].id;
@@ -231,16 +227,14 @@ export class SkillsLanguagesComponent implements OnInit, OnDestroy {
             });
     }
 
-    resetSkill(){
-        this.openForm=!this.openForm;
-        this.boolVar=!this.boolVar;
+    resetSkill(content){
+        this.modalService.open(content, { size: 'lg' });
         this.saveSkillBtn = true;
         this.updateSkillBtn = false;
         this.skillsForm.reset();
     }
-    resetLang(){
-        this.openform=!this.openform;
-        this.boolVar1=!this.boolVar1;
+    resetLang(content2){
+        this.modalService.open(content2, { size: 'lg' });
         this.saveLangBtn = true;
         this.updateLangBtn = false;
         this.languageForm.reset();

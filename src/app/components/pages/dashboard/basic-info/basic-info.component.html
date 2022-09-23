@@ -4,8 +4,7 @@
             <h2>Basic Information</h2>
         </div>
         <div>
-            <a media="print" class="cmn-btn" (click)="editInfo()">{{(boolVar ? 'Edit/Create' : 'Hide Form')}}<i
-                    class="bx bx-edit bx-sm bx-tada-hover"></i></a>
+            <a media="print" class="cmn-btn" (click)="editInfo(content)"><i class="bx bx-edit bx-sm bx-tada-hover"></i>Edit/Create</a>
             <!-- <i class="bx bx-edit bx-sm bx-tada-hover" style="float: right;" (click)="editInfo(i)"></i> -->
         </div>
     </div>
@@ -132,10 +131,11 @@
 </div> -->
 
 <!-- Basic Info Form -->
+<ng-template #content let-modal>
 <div class="tab-pane fade show active" id="v-pills-basicInfo" role="tabpanel" aria-labelledby="v-pills-basicInfo-tab">
     <div class="profile-content">
 
-        <form [formGroup]="basicInfoForm" id="noScreen" [hidden]="!openform">
+        <form [formGroup]="basicInfoForm" id="noScreen">
             <div class="profile-content-inner">
                 <h2>Basic Info</h2>
 
@@ -374,3 +374,4 @@
         </form>
     </div>
 </div>
+</ng-template>
