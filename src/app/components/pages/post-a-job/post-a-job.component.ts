@@ -36,8 +36,9 @@ export class PostAJobComponent implements OnInit, OnDestroy {
             positions_available: ["", [Validators.required]],
             gender_requirement: ["", [Validators.required]],
             minimum_qualification: ["", [Validators.required]],
-            years_of_experience: ["", [Validators.required]],
             workplace_type: ["", [Validators.required]],
+            years_of_experience: ["", [Validators.required]],
+            job_category: ["", [Validators.required]],
             is_active: false,
             is_sponsor: false
         })
@@ -53,6 +54,8 @@ export class PostAJobComponent implements OnInit, OnDestroy {
             this.toastr.error("this.response.message");
         }
         else {
+            console.log("thisis job", this.jobPostForm.value);
+                        
             this.postAJobService.jobPostForm(this.jobPostForm.value).subscribe(
                 (res) => {
                     this.toastr.success(res.message);

@@ -66,16 +66,16 @@
                                 <li>
                                     <i class="flaticon-send"></i>
                                     {{ job.job_location }}, Pakistan
+
                                 </li>
                                 <li>{{ job.createdAt | date }}</li>
                             </ul>
                             <p>{{ job.job_description }}</p>
-                            <span class="span-one">{{
-                                job.required_career_level
-                                }}</span>
-                            <span class="span-two">{{
-                                job.workplace_type
-                                }}</span>
+                            <span class="span-one">{{job.required_career_level}}</span>
+                            <span class="span-three">{{ job.job_category}}</span>
+                            <span class="span-two">{{job.workplace_type}}</span>
+                            
+
                         </a>
                         <span *ngIf="isToken && userRole == 'ROLE_CANDIDATE'" (click)="addFavourite(job)"
                             [ngClass]="{'red' :job.candidate_favourite_jobs.length>0, 'black': job.candidate_favourite_jobs.length==0}"
