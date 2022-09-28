@@ -412,6 +412,9 @@ button {
                     border-right: 0;
                 }
             }
+            &.three{
+                margin-top: 15px;;
+            }
 
             label {
                 margin-bottom: 0;
@@ -3882,6 +3885,29 @@ button {
         top: 10px;
         right: 10px;
 
+        &.two {
+            background-color: #a28c12;
+        }
+
+        &.three {
+            background-color: #1271a2;
+        }
+
+        &.four {
+            background-color: #e20000;
+        }
+    }
+
+    .span-three {
+        color: #fff;
+        background-color: #fe4a55;
+        border-radius: 5px;
+        padding: 4px 10px;
+        font-size: 13px;
+        display: inline-block;
+        position: absolute;
+        bottom: 25px;
+        left: 27%;
         &.two {
             background-color: #a28c12;
         }

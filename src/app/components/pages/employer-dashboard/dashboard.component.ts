@@ -57,8 +57,9 @@ export class EmploerDashboardComponent implements OnInit, OnDestroy {
             positions_available: ["", [Validators.required]],
             gender_requirement: ["", [Validators.required]],
             minimum_qualification: ["", [Validators.required]],
-            years_of_experience: ["", [Validators.required]],
             workplace_type: ["", [Validators.required]],
+            years_of_experience: ["", [Validators.required]],
+            job_category: ["", [Validators.required]],
             is_active: false,
             is_sponsor: false
         })
@@ -75,7 +76,6 @@ export class EmploerDashboardComponent implements OnInit, OnDestroy {
         this.dashboardService.findAllJobs(this.p).subscribe(
             (res) => {
                 this.jobPostInfo = res.data;
-                console.log(this.jobPostInfo);
             },
             (error) => {
                 //if (error.status == 401) this.router.navigate(['/login']);
@@ -123,7 +123,6 @@ export class EmploerDashboardComponent implements OnInit, OnDestroy {
         this.editJob(i);
     }
 
-
     // Update Job
 
     jobUpdateInfoForm() {
@@ -139,7 +138,6 @@ export class EmploerDashboardComponent implements OnInit, OnDestroy {
                     this.toastr.success(res.message);
                     this.modalService.dismissAll()
                     this.getAllJobsData();
-
                 },
                 (error) => {
                     //if (error.status == 401) this.router.navigate(['/login']);
@@ -150,10 +148,7 @@ export class EmploerDashboardComponent implements OnInit, OnDestroy {
     }
 
     editJob(i: number) {
-        // this.saveJobBtn = false;
-        // this.updateJobBtn = true;
         this.jobId = this.jobPostInfo[i].id;
-
         this.jobPostForm.controls.job_title.setValue(this.jobPostInfo[i].job_title);
         this.jobPostForm.controls.job_description.setValue(this.jobPostInfo[i].job_description);
         this.jobPostForm.controls.enter_skills.setValue(this.jobPostInfo[i].enter_skills);
@@ -165,8 +160,9 @@ export class EmploerDashboardComponent implements OnInit, OnDestroy {
         this.jobPostForm.controls.positions_available.setValue(this.jobPostInfo[i].positions_available);
         this.jobPostForm.controls.gender_requirement.setValue(this.jobPostInfo[i].gender_requirement);
         this.jobPostForm.controls.minimum_qualification.setValue(this.jobPostInfo[i].minimum_qualification);
-        this.jobPostForm.controls.years_of_experience.setValue(this.jobPostInfo[i].years_of_experience);
         this.jobPostForm.controls.workplace_type.setValue(this.jobPostInfo[i].workplace_type);
+        this.jobPostForm.controls.years_of_experience.setValue(this.jobPostInfo[i].years_of_experience);
+        this.jobPostForm.controls.job_category.setValue(this.jobPostInfo[i].job_category);
         this.jobPostForm.controls.is_active.setValue(this.jobPostInfo[i].is_active);
         this.jobPostForm.controls.is_sponsor.setValue(this.jobPostInfo[i].is_sponsor);
 

@@ -93,6 +93,8 @@
                                     <p>{{jobs.job_description}}</p>
                                     <span class="span-one">{{jobs.workplace_type}}</span>
                                     <span class="span-two">{{jobs.job_shift}}</span>
+                                    <span class="span-three">{{jobs.job_category}}</span>
+
                                 </a>
                                 <span>
                                     <i class='bx bx-edit bx-sm bx-tada-hover span-icon' (click)="edit(content, i)"></i>
@@ -215,11 +217,10 @@
                                                 Choose any one
                                             </option>
                                             <option value="Islamabad">Islamabad</option>
-                                            <option value="Khrachi">Khrachi</option>
+                                            <option value="Karachi">Karachi</option>
                                             <option value="Lahore">Lahore</option>
-                                            <option value="Rawalpindi">
-                                                Rawalpindi
-                                            </option>
+                                            <option value="Multan">Multan</option>
+                                            <option value="Rawalpindi">Rawalpindi</option>
                                         </select>
                                         <div class="invalid-feedback" *ngIf="
                                                 submittedJob && fjob.job_location.errors
@@ -245,8 +246,9 @@
                                             <option value="" disabled selected>
                                                 Choose any one
                                             </option>
-                                            <option value="Senior">Senior</option>
+                                            <option value="Internship">Internship</option>
                                             <option value="Junior">Junior</option>
+                                            <option value="Senior">Senior</option>
                                             <option value="Manager">Manager</option>
                                             <option value="Lead">Lead</option>
                                         </select>
@@ -363,7 +365,7 @@
                                             </option>
                                             <option value="Male">Male</option>
                                             <option value="Female">Female</option>
-                                            <option value="None">None</option>
+                                            <option value="Both">Both</option>
                                         </select>
                                         <div class="invalid-feedback" *ngIf="
                                                 submittedJob &&
@@ -445,6 +447,62 @@
                                         </div>
                                     </div>
                                 </div>
+
+                               <div class="col-lg-6 col-md-12">
+                            <div class="form-group">
+                                <label>Job Category:</label>
+                                <select
+                                    class="form-control form-select"
+                                    formControlName="job_category"
+                                    [ngClass]="{
+                                        'is-invalid':
+                                            submittedJob &&
+                                            fjob.job_category.errors
+                                    }"
+                                >
+                                    <option value="" disabled selected>
+                                        Choose any one
+                                    </option>
+                                    <option value="Administration">Administration</option>
+                                    <option value="Business">Business</option>
+                                    <option value="Management">Management</option>
+                                    <option value="Information Technology">Information Technology</option>
+                                    <option value="Construction">Construction</option>
+                                    <option value="Design">Design</option>
+                                    <option value="Arts">Arts</option>
+                                    <option value="Education">Education</option>
+                                    <option value="Engineering">Engineering</option>
+                                    <option value="Financial">Financial</option>
+                                    <option value="Beauty">Beauty</option>
+                                    <option value="Healthcare">Healthcare</option>
+                                    <option value="Hotels">Hotels</option>
+                                    <option value="Tourism">Tourism</option>
+                                    <option value="Teachig">Teachig</option>
+                                    <option value="Law">Law</option>
+                                    <option value="Manufacturing">Manufacturing</option>
+                                    <option value="Media">Media</option>
+                                    <option value="Security">Security</option>
+                                    <option value="Sports">Sports</option>
+                                    <option value="Transport">Transport</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                                <div
+                                    class="invalid-feedback"
+                                    *ngIf="
+                                        submittedJob &&
+                                        fjob.job_category.errors
+                                    "
+                                >
+                                    <div
+                                        *ngIf="
+                                            fjob.job_category.errors.required
+                                        "
+                                    >
+                                        Job Category is required
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
                                 <div class="col-lg-6 col-md-12">
                                     <div class="form-group">

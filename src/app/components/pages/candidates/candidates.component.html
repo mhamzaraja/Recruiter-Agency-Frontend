@@ -11,15 +11,16 @@
                     <h2>Candidates</h2>
                     <ul>
                         <li>
-                            <img src="assets/img/home-three/title-img-two.png" alt="Image">
+                            <img
+                                src="assets/img/home-three/title-img-two.png"
+                                alt="Image"
+                            />
                             <a href="index.html">Home</a>
                         </li>
                         <li>
                             <span>/</span>
                         </li>
-                        <li>
-                            Candidates
-                        </li>
+                        <li>Candidates</li>
                     </ul>
                 </div>
             </div>
@@ -51,12 +52,12 @@
                         <ul>
                             <li>
                                 <a href="#">
-                                    <i class='bx bx-dots-horizontal'></i>
+                                    <i class="bx bx-dots-horizontal"></i>
                                 </a>
                             </li>
                             <li>
                                 <a href="#">
-                                    <i class='bx bx-menu'></i>
+                                    <i class="bx bx-menu"></i>
                                 </a>
                             </li>
                         </ul>
@@ -71,41 +72,49 @@
 <!-- Candidate -->
 <div class="candidate-area pb-100">
     <div class="container">
-        <div class="row">
-            <div class="col-lg-6 col-md-12">
-                <div class="candidate-item two">
-                    <div *ngFor="let cand of candidatsInfo;">
-                        <div class="left">
-                            <h3><a routerLink="/candidates">{{cand?.name}}</a></h3>
-                            <div>
-                                <span *ngFor="let exp of candExperience; let i = index">
-                                    <span *ngIf="exp?.currentlyWorking">
-                                        {{currentWork(exp?.currentlyWorking, i)}}
-                                    </span>
-                                </span>
-                            </div>
-                            <ul class="experience">
-                                <li>Email: <span>{{cand?.email}}</span></li>
-                                <li>Experience: <span>{{cand?.experience}}</span></li>
-                                <li>Expected Salary: <span>RS. {{cand?.expected_salary}}</span></li>
-                                <li><i class="flaticon-send"></i> {{cand?.city}}</li>
-                            </ul>
-                            <div *ngFor="let skill of candSkills">
-                                <ul>
-                                    <li>{{skill?.skill_title}}</li>
-                                </ul>
-                            </div>
-                            <div class="cmn-link">
-                                <a [routerLink]="['/candidate-details', cand.id]"><i class="flaticon-right-arrow one"></i> View Profile
-                                    <i class="flaticon-right-arrow two"></i></a>
-                            </div>
-                        </div>
-                        <img src="assets/img/candidate1.jpg" alt="Candidate">
+        <div class="col-lg-6 col-md-12">
+            <div class="candidate-item two" *ngFor="let cand of candidatsInfo">
+                <div class="left">
+                    <h3>
+                        <a routerLink="/candidates">{{ cand?.name }}</a>
+                    </h3>
+                    <div>
+                        <span *ngFor="let exp of candExperience; let i = index">
+                            <span *ngIf="exp?.currentlyWorking">
+                                {{ currentWork(exp?.currentlyWorking, i) }}
+                            </span>
+                        </span>
+                    </div>
+                    <ul class="experience">
+                        <li>
+                            Email: <span>{{ cand?.email }}</span>
+                        </li>
+                        <li>
+                            Experience: <span>{{ cand?.experience }}</span>
+                        </li>
+                        <li>
+                            Expected Salary:
+                            <span>RS. {{ cand?.expected_salary }}</span>
+                        </li>
+                        <li><i class="flaticon-send"></i> {{ cand?.city }}</li>
+                    </ul>
+                    <div *ngFor="let skill of candSkills">
+                        <ul>
+                            <li>{{ skill?.skill_title }}</li>
+                        </ul>
+                    </div>
+                    <div class="cmn-link">
+                        <a [routerLink]="['/candidate-details', cand.id]"
+                            ><i class="flaticon-right-arrow one"></i> View
+                            Profile <i class="flaticon-right-arrow two"></i
+                        ></a>
                     </div>
                 </div>
+                <img src="assets/img/candidate1.jpg" alt="Candidate" />
             </div>
         </div>
-
+    </div>
+            
         <div class="pagination-area">
             <ul>
                 <li><a routerLink="/candidates">Prev</a></li>
@@ -115,7 +124,6 @@
                 <li><a routerLink="/candidates">Next</a></li>
             </ul>
         </div>
-    </div>
 </div>
 <!-- End Candidate -->
 
