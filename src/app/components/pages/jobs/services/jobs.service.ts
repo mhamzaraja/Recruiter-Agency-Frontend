@@ -20,7 +20,7 @@ export class JobsService {
         let page = p;
         return this.http.get<any>(`${this.host}/api/jobs/list/getAll?page=${page}&userId=${this.userId}`, this.httpOptions);
     }
-    searchJobs(data: any,) {
+    searchJobs(data: any) {
         let searchData = {
             ...data,
         }

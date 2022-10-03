@@ -8,19 +8,10 @@ import userToken from "../../config/userToken";
 })
 export class HomeTwoService {
   host: string = config.host;
-    token: any = userToken.token;
-    userId: string = userToken.id;
+  token: any = userToken.token;
+  userId: string = userToken.id;
+  httpOptions = userToken.httpOptions;
 
-    httpOptions = {
-        headers: new HttpHeaders({
-            'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin': '*',
-            'Access-Control-Allow-Headers': 'Authorization, X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Allow-Request-Method',
-            'Authorization': 'Bearer ' + this.token,
-            'Access-Control-Allow-Methods': 'GET,POST,OPTIONS,DELETE,PUT',
-            'Allow': 'GET, POST, OPTIONS, PUT, DELETE'
-        })
-    };
 
   constructor(private http: HttpClient) { }
 
