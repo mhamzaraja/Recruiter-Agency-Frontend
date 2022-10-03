@@ -149,25 +149,23 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-6 col-md-12">
-                <div class="candidate-item two">
-                    <div *ngFor="let emp of employerInfo;">
-                        <div class="left">
-                            <h3><a routerLink="/employers">{{emp.full_name}}</a></h3>
-                            <ul class="experience">
-                                <li>Designation: <span>{{emp.job_designation}}</span></li>
-                                <li>Contact: <span>{{emp.mobile_number}}</span></li>
-                                <li>Office Contact: <span>{{emp.office_number}}</span></li>
-                                <li>DOB: <span>{{emp.dob}}</span></li>
-                                <li>Gender: <span>{{emp.gender}}</span></li>
-                            </ul>
-                            <div class="cmn-link">
-                                <a [routerLink]="['/employers-details', emp.id]"><i class="flaticon-right-arrow one"></i>
-                                    View Profile
-                                    <i class="flaticon-right-arrow two"></i></a>
-                            </div>
+                <div class="candidate-item two" *ngFor="let emp of employerInfo;">
+                    <div class="left">
+                        <h3><a routerLink="/employers">{{emp.full_name}}</a></h3>
+                        <ul class="experience">
+                            <li>Designation: <span>{{emp.job_designation}}</span></li>
+                            <li>Contact: <span>{{emp.mobile_number}}</span></li>
+                            <li>Office Contact: <span>{{emp.office_number}}</span></li>
+                            <li>DOB: <span>{{emp.dob}}</span></li>
+                            <li>Gender: <span>{{emp.gender}}</span></li>
+                        </ul>
+                        <div class="cmn-link">
+                            <a [routerLink]="['/employers-details', emp.id]"><i class="flaticon-right-arrow one"></i>
+                                View Profile
+                                <i class="flaticon-right-arrow two"></i></a>
                         </div>
-                        <img src="assets/img/candidate1.jpg" alt="Candidate">
                     </div>
+                    <img src="assets/img/candidate1.jpg" alt="Candidate">
                 </div>
             </div>
         </div>
