@@ -18,7 +18,6 @@ export class NavbarService {
 
   logout(){
     localStorage.removeItem('userToken');
-    this.router.navigate(['/login']);
     return this.http.post<any>(`${this.host}/api/auth/signout`, this.httpOptions);
   }
 }
