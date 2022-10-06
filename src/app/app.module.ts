@@ -58,6 +58,7 @@ import { NgbDatepickerModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { LoggedinGuard } from './components/guards/loggedin.guard';
+import { DatePipe } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -121,7 +122,7 @@ import { LoggedinGuard } from './components/guards/loggedin.guard';
     NgbModule,
     NgbDatepickerModule
   ],
-  providers: [LoggedinGuard],
+  providers: [LoggedinGuard, DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

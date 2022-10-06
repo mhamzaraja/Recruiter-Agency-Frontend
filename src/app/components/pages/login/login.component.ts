@@ -43,11 +43,6 @@ export class LoginComponent implements OnInit, OnDestroy {
 
                     if (res.success == true) {
                         localStorage.setItem('userToken', JSON.stringify(res.data));
-                        // const userRole = (this.role === "ROLE_SUPER_USER") ? ("admin")
-                        //     : ((this.role === "ROLE_CANDIDATE") ? ("candidate")
-                        //         : (((this.role === "ROLE_EMPLOYER") ? ("employer")
-                        //             : (null))))
-                        //                 if (userRole !== null)  return this.router.navigate([`/${userRole}/dashboard`, this.userId])
                         window.location.reload();
                         this.router.navigate(["/dashboard", this.userId])
                         this.toastr.success("Login Successfully");

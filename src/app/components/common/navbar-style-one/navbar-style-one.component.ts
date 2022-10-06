@@ -33,7 +33,7 @@ export class NavbarStyleOneComponent implements OnInit {
         this.navbarService.logout().subscribe(
             (res) => {
                 window.location.reload();
-                this.router.navigate(['/']);
+                this.router.navigate([""]);
                 this.toastr.success(res.message);
             },
             (error) => {
