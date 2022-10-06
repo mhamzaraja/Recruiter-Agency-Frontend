@@ -5267,10 +5267,13 @@ a {
 .page-title-area.two {
     .d-table-cell {
         vertical-align: bottom;
+        background-color: rgba(0, 0, 0, 0);
+        opacity: 0.9;   
     }
 
     .left {
         margin-bottom: 30px;
+      
 
         img {
             margin-bottom: 15px;
@@ -5278,7 +5281,7 @@ a {
 
         h2 {
             margin-bottom: 15px;
-            color: $white-color;
+            color: #ffffff;
             font-size: 35px;
         }
 
@@ -5289,7 +5292,7 @@ a {
             li {
                 list-style-type: none;
                 display: inline-block;
-                color: #d9d9d9;
+                color: #ffffff;
                 margin-right: 20px;
 
                 &:last-child {
@@ -5297,7 +5300,7 @@ a {
                     color: white;
 
                     i {
-                        color: #d9d9d9;
+                        color: #ffffff;
                     }
                 }
 

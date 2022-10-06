@@ -83,19 +83,17 @@
                                   currentPage: p,
                                   totalItems: jobCounts
                               }; let i = index">
-                                <a [routerLink]="['/job-details', jobs.id]">
-                                    <img src="assets/img/home-one/job1.png" alt="Employer">
-                                    <h3>{{jobs.job_title}}</h3>
-                                    <ul>
-                                        <li><i class="flaticon-send"></i> {{jobs.job_location}},
-                                            Pakistan</li>
-                                    </ul>
-                                    <p>{{jobs.job_description}}</p>
-                                    <span class="span-one">{{jobs.workplace_type}}</span>
-                                    <span class="span-two">{{jobs.job_shift}}</span>
-                                    <span class="span-three">{{jobs.job_category}}</span>
-
-                                </a>
+                              <a [routerLink]="['/job-details', jobs.id]">
+                                <img src="assets/img/home-one/job1.png" alt="Employer" />
+                                <h3>{{ jobs.job_title }}</h3>
+                                <ul>
+                                    <li><i class='bx bx-buildings'></i> {{jobs.company}}</li>
+                                    <li><i class='bx bxs-map'></i>{{ jobs.job_location }}, Pakistan</li>
+                                </ul>
+                                <span class="span-one">{{jobs.required_career_level}}</span>
+                                <span class="span-three">{{ jobs.job_category}}</span>
+                                <span class="span-two">{{jobs.workplace_type}}</span>
+                            </a>
                                 <span>
                                     <i class='bx bx-edit bx-sm bx-tada-hover span-icon' (click)="edit(content, i)"></i>
                                     <i class='bx bx-trash bx-sm bx-tada-hover span-icon-del'
