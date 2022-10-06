@@ -12,11 +12,6 @@
                         <div class="left">
                             <img src="assets/img/job-details1.png" alt="Details">
                             <h2>{{jobPostsInfo?.job_title}}</h2>
-                            <ul>
-                                <li><i class='bx bx-pie-chart-alt-2'></i> {{jobPostsInfo?.required_career_level}}
-                                </li>
-                                <li><i class='bx bx-time'></i> {{jobPostsInfo?.createdAt | date}}</li>
-                            </ul>
                         </div>
                     </div>
 
@@ -48,6 +43,11 @@
                         <div class="details-inner">
                             <h3>Job Description</h3>
                             <p>{{jobPostsInfo?.job_description}}</p>
+                         
+                        </div>
+                        <div class="details-inner">
+                            <h3>Skills Required</h3>
+                            <p>{{jobPostsInfo?.enter_skills}}</p>
                         </div>
 
                         <div class="details-inner">
@@ -56,75 +56,6 @@
                                 a page when looking at its layout. The point of using Lorem Ipsum is that it has a
                                 more-or-less normal distribution of letters, as opposed to using 'Content here, content
                                 here.</p>
-                        </div>
-
-                        <div class="details-inner">
-                            <h3>Previous Interview</h3>
-
-                            <div class="job-details-slider owl-theme owl-carousel">
-                                <div class="slider-item">
-                                    <img src="assets/img/job-details1.jpg" alt="Details">
-
-                                    <div class="video-wrap">
-                                        <a href="https://www.youtube.com/watch?v=07d2dXHYb94&t=88s"
-                                            class="popup-youtube"><i class='bx bx-play'></i></a>
-                                    </div>
-                                </div>
-
-                                <div class="slider-item">
-                                    <img src="assets/img/job-details2.jpg" alt="Details">
-
-                                    <div class="video-wrap">
-                                        <a href="https://www.youtube.com/watch?v=07d2dXHYb94&t=88s"
-                                            class="popup-youtube"><i class='bx bx-play'></i></a>
-                                    </div>
-                                </div>
-
-                                <div class="slider-item">
-                                    <img src="assets/img/job-details3.jpg" alt="Details">
-
-                                    <div class="video-wrap">
-                                        <a href="https://www.youtube.com/watch?v=07d2dXHYb94&t=88s"
-                                            class="popup-youtube"><i class='bx bx-play'></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="details-inner">
-                            <h3>Job Responsibilities</h3>
-
-                            <ul>
-                                <li>
-                                    <i class='bx bx-message-square-check'></i>
-                                    They want to know that you weren’t lying on your resume about responsibilities.
-                                </li>
-                                <li>
-                                    <i class='bx bx-message-square-check'></i>
-                                    They want to check if your job responsibilities overlap with the role on offer.
-                                </li>
-                                <li>
-                                    <i class='bx bx-message-square-check'></i>
-                                    They want to put you at ease. Let’s face it. It’s an easy question.
-                                </li>
-                                <li>
-                                    <i class='bx bx-message-square-check'></i>
-                                    They want you to expand on the points that you included in your resume.
-                                </li>
-
-                                <li>
-                                    <i class='bx bx-message-square-check'></i>
-                                    They want to put you at ease. Let’s face it. It’s an easy question.
-                                </li>
-                                <li>
-                                    <i class='bx bx-message-square-check'></i>
-                                    They want to check if your job responsibilities overlap with the role on offer.
-                                </li>
-                                <li>
-                                    <i class='bx bx-message-square-check'></i>
-                                    Want you to expand on the points that you included in your resume.
-                                </li>
-                            </ul>
                         </div>
 
                         <div class="details-inner">
@@ -599,47 +530,42 @@
                             <ul>
                                 <li>
                                     <img src="assets/img/job-details-icon.png" alt="Details">
-                                    <h4>Salary</h4>
-                                    <span>$1,500 - $2,000</span>
-                                </li>
-                                <li>
-                                    <img src="assets/img/job-details-icon.png" alt="Details">
-                                    <h4>Category</h4>
-                                    <span>Sales & Marketing</span>
-                                </li>
-                                <li>
-                                    <img src="assets/img/job-details-icon.png" alt="Details">
-                                    <h4>Location</h4>
-                                    <span>10th St Long Island, NY</span>
-                                </li>
-                                <li>
-                                    <img src="assets/img/job-details-icon.png" alt="Details">
                                     <h4>Offered Salary</h4>
-                                    <span>$2,000 - $2,500/month</span>
+                                    <span>{{jobPostsInfo?.salary_range}}</span>
                                 </li>
                                 <li>
                                     <img src="assets/img/job-details-icon.png" alt="Details">
-                                    <h4>Posted</h4>
-                                    <span>7 Months Ago</span>
+                                    <h4>Workplace Type</h4>
+                                    <span>{{jobPostsInfo?.workplace_type}}</span>
                                 </li>
                                 <li>
                                     <img src="assets/img/job-details-icon.png" alt="Details">
-                                    <h4>Experience</h4>
-                                    <span>2 Years</span>
+                                    <h4>Job Location</h4>
+                                    <span>{{jobPostsInfo?.job_location}}</span>
+                                </li>
+                                <li>
+                                    <img src="assets/img/job-details-icon.png" alt="Details">
+                                    <h4>Posted Date</h4>
+                                    <span>{{jobPostsInfo?.createdAt | date}}</span>
+                                </li>
+                                <li>
+                                    <img src="assets/img/job-details-icon.png" alt="Details">
+                                    <h4>Required Experience</h4>
+                                    <span>{{jobPostsInfo?.years_of_experience}}</span>
                                 </li>
                                 <li>
                                     <img src="assets/img/job-details-icon.png" alt="Details">
                                     <h4>Industry</h4>
-                                    <span>Development</span>
+                                    <span>{{jobPostsInfo?.job_category}}</span>
                                 </li>
                                 <li>
                                     <img src="assets/img/job-details-icon.png" alt="Details">
-                                    <h4>Level</h4>
-                                    <span>Employee</span>
+                                    <h4>Required Level</h4>
+                                    <span>{{jobPostsInfo?.required_career_level}}</span>
                                 </li>
                                 <li>
                                     <img src="assets/img/job-details-icon.png" alt="Details">
-                                    <h4>Applied</h4>
+                                    <h4>Applications</h4>
                                     <span>{{applied}}</span>
                                 </li>
                             </ul>
