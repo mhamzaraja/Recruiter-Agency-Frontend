@@ -72,8 +72,8 @@ export class ProjectComponent implements OnInit, OnDestroy {
         }
     }
 
-    getAllProjects() {
-        this.projectService.findAllProjects().subscribe(
+    async getAllProjects() {
+        (await this.projectService.findAllProjects()).subscribe(
             (res) => {
                 this.projectsInfo = res.data;
                 console.log("project data: ", this.projectsInfo);

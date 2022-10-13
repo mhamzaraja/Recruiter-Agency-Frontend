@@ -16,8 +16,9 @@ export class SkillsLanguagesService {
 
     //skills form
 
-    findAllSkill() {
-        return this.http.get<any>(`${this.host}/api/user/skills/getAll?userId=${this.userId}`, this.httpOptions);
+    async findAllSkill() {
+        let userid = JSON.parse(await localStorage.getItem('candID'))?.ProfID;
+        return this.http.get<any>(`${this.host}/api/user/skills/getAll?userId=${userid}`, this.httpOptions);
     }
 
     findSkill(data: any, id: number) {
@@ -48,8 +49,9 @@ export class SkillsLanguagesService {
 
 
     //languages form
-    findAllLanguages() {
-        return this.http.get<any>(`${this.host}/api/user/languages/getAll?userId=${this.userId}`, this.httpOptions);
+    async findAllLanguages() {
+        let userid = JSON.parse(await localStorage.getItem('candID'))?.ProfID;
+        return this.http.get<any>(`${this.host}/api/user/languages/getAll?userId=${userid}`, this.httpOptions);
     }
 
     findLanguage(data: any, id: number) {

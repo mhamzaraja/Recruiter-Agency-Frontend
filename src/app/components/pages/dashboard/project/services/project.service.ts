@@ -16,8 +16,9 @@ export class ProjectService {
 
   constructor(private http: HttpClient) { }
 
-  findAllProjects(){
-    return this.http.get<any>(`${this.host}/api/user/projects/getAll?userId=${this.userId}`, this.httpOptions);
+  async findAllProjects(){
+    let userid = JSON.parse(await localStorage.getItem('candID'))?.ProfID;
+    return this.http.get<any>(`${this.host}/api/user/projects/getAll?userId=${userid}`, this.httpOptions);
   }
 
   updateProject(data: any, id: number){
