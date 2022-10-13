@@ -23,6 +23,7 @@ export class DashboardService {
 
     logout() {
         localStorage.removeItem('userToken');
+        localStorage.removeItem('candID');
         this.router.navigate(['/login']);
         return this.http.post<any>(`${this.host}/api/auth/signout`, this.httpOptions);
     }

@@ -98,6 +98,13 @@ export class EmploerDashboardComponent implements OnInit, OnDestroy {
     getEmployeData() {
         this.dashboardService.findEmployerData().subscribe(
             (res) => {
+                console.log("idddd", res.data.id);
+                let datad = {
+                    ProfID: res.data.id
+                }
+
+                localStorage.setItem('candID', JSON.stringify(datad));
+
                 this.empInformation = res.data;
             },
             (error) => {

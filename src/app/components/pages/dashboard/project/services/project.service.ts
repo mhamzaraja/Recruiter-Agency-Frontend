@@ -10,14 +10,14 @@ export class ProjectService {
 
     host: string = config.host;
     token: any = userToken.token;
-    userId: string = userToken.id;
+    userId: string = userToken.CandID;
     httpOptions = userToken.httpOptions;
 
 
   constructor(private http: HttpClient) { }
 
   findAllProjects(){
-    return this.http.get<any>(`${this.host}/api/user/projects/getAll`, this.httpOptions);
+    return this.http.get<any>(`${this.host}/api/user/projects/getAll?userId=${this.userId}`, this.httpOptions);
   }
 
   updateProject(data: any, id: number){

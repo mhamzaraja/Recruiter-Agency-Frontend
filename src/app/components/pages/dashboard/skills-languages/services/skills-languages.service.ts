@@ -9,7 +9,7 @@ import userToken from "../../../../config/userToken";
 export class SkillsLanguagesService {
     host: string = config.host;
     token: any = userToken.token;
-    userId: string = userToken.id;
+    userId: string = userToken.CandID;
     httpOptions = userToken.httpOptions;
 
     constructor(private http: HttpClient) { }
@@ -17,7 +17,7 @@ export class SkillsLanguagesService {
     //skills form
 
     findAllSkill() {
-        return this.http.get<any>(`${this.host}/api/user/skills/getAll`, this.httpOptions);
+        return this.http.get<any>(`${this.host}/api/user/skills/getAll?userId=${this.userId}`, this.httpOptions);
     }
 
     findSkill(data: any, id: number) {
@@ -49,7 +49,7 @@ export class SkillsLanguagesService {
 
     //languages form
     findAllLanguages() {
-        return this.http.get<any>(`${this.host}/api/user/languages/getAll`, this.httpOptions);
+        return this.http.get<any>(`${this.host}/api/user/languages/getAll?userId=${this.userId}`, this.httpOptions);
     }
 
     findLanguage(data: any, id: number) {

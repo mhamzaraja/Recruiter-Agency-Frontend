@@ -9,13 +9,13 @@ import userToken from "../../../../config/userToken";
 export class ExperienceService {
     host: string = config.host;
     token: any = userToken.token;
-    userId: string = userToken.id;
+    userId: string = userToken.CandID;
     httpOptions = userToken.httpOptions;
 
     constructor(private http: HttpClient) { }
 
     findAllExperiences() {
-        return this.http.get<any>(`${this.host}/api/user/experience/getAll`, this.httpOptions);
+        return this.http.get<any>(`${this.host}/api/user/experience/getAll?userId=${this.userId}`, this.httpOptions);
     }
 
     findExperience( id: number) {
