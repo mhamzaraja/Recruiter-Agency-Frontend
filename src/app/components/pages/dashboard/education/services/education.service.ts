@@ -16,8 +16,10 @@ export class EducationService {
 
     //education form
 
-    findAllEducations() {
-        return this.http.get<any>(`${this.host}/api/user/education/getAll?userId=${this.userId}`, this.httpOptions);
+    async findAllEducations() {
+        let userid = JSON.parse(await localStorage.getItem('candID'))?.ProfID;
+        
+        return this.http.get<any>(`${this.host}/api/user/education/getAll?userId=${userid}`, this.httpOptions);
     }
 
     findEducation(data: any, id: number) {

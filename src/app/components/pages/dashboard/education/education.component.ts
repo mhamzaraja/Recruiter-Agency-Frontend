@@ -99,8 +99,8 @@ export class EducationComponent implements OnInit, OnDestroy {
 
     }
 
-    getAllEducations() {
-        this.educationService.findAllEducations().subscribe(
+    async getAllEducations() {
+        (await this.educationService.findAllEducations()).subscribe(
             (res) => {
                 this.educationInfo = res.data;
             },

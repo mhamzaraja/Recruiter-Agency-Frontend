@@ -14,8 +14,9 @@ export class ExperienceService {
 
     constructor(private http: HttpClient) { }
 
-    findAllExperiences() {
-        return this.http.get<any>(`${this.host}/api/user/experience/getAll?userId=${this.userId}`, this.httpOptions);
+    async findAllExperiences() {
+        let userid = JSON.parse(await localStorage.getItem('candID'))?.ProfID;
+        return this.http.get<any>(`${this.host}/api/user/experience/getAll?userId=${userid}`, this.httpOptions);
     }
 
     findExperience(id: number) {

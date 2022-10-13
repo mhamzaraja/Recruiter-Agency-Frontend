@@ -113,8 +113,8 @@ export class SkillsLanguagesComponent implements OnInit, OnDestroy {
         }
     }
 
-    getAllSkills() {
-        this.skillsLanguagesService.findAllSkill().subscribe(
+    async getAllSkills() {
+        (await this.skillsLanguagesService.findAllSkill()).subscribe(
             (res) => {
                 this.skillInfo = res.data;
                 console.log(this.skillInfo);
@@ -193,8 +193,8 @@ export class SkillsLanguagesComponent implements OnInit, OnDestroy {
             this.submitted = false;
         }
     }
-    getAllLanguages() {
-        this.skillsLanguagesService.findAllLanguages().subscribe(
+    async getAllLanguages() {
+        (await this.skillsLanguagesService.findAllLanguages()).subscribe(
             (res) => {
                 this.languageInfo = res.data;
             },

@@ -9,7 +9,7 @@ import userToken from "../../../../config/userToken";
 export class BasicInfoService {
     host: string = config.host;
     token: any = userToken.token;
-    userId: string = userToken.id;
+    userId: string = userToken.CandID;
     httpOptions = userToken.httpOptions;
 
     constructor(private http: HttpClient) { }
