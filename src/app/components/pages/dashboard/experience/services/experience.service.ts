@@ -18,7 +18,7 @@ export class ExperienceService {
         return this.http.get<any>(`${this.host}/api/user/experience/getAll?userId=${this.userId}`, this.httpOptions);
     }
 
-    findExperience( id: number) {
+    findExperience(id: number) {
         return this.http.get<any>(`${this.host}/api/user/experience/getOne?id=${id}`, this.httpOptions);
     }
 
@@ -40,13 +40,13 @@ export class ExperienceService {
             ...data,
             userId: this.userId
         }
-        return this.http.put<any>(`${this.host}/api/user/experience/update?id=${id}`, experienceData, this.httpOptions);
+        return this.http.put<any>(`${this.host}/api/user/experience/update?userId=${this.userId}&id=${id}`, experienceData, this.httpOptions);
 
     }
 
-    deleteExperience(i: number){
+    deleteExperience(i: number) {
         let id = i;
-        return this.http.delete<any>(`${this.host}/api/user/experience/delete?id=${id}`, this.httpOptions);
+        return this.http.delete<any>(`${this.host}/api/user/experience/delete?userId=${this.userId}&id=${id}`, this.httpOptions);
     }
 
 }
