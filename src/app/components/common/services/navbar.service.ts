@@ -18,6 +18,7 @@ export class NavbarService {
 
   logout(){
     localStorage.removeItem('userToken');
+    localStorage.removeItem('candID');
     return this.http.post<any>(`${this.host}/api/auth/signout`, this.httpOptions);
   }
 }

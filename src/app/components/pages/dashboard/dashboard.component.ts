@@ -33,6 +33,13 @@ export class DashboardComponent implements OnInit, OnDestroy {
         this.dashboardService.findUsers().subscribe(
             (res) => {
                 this.candidateInfo = res.data;
+                console.log("idddd", res.data[0].profile[0].id);
+                
+                let datad = {
+                    ProfID: res.data[0].profile[0].id
+                }
+
+                localStorage.setItem('candID', JSON.stringify(datad));
 
                 if (this.candidateInfo[0].profile.length > 0) {
                     this.name = this.candidateInfo[0].profile[0].name;
@@ -56,6 +63,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
         event.preventDefault();
         this.dashboardService.logout().subscribe(
             (res) => {
+                window.location.reload();
+                this.router.navigate([""]);
                 this.toastr.success(res.message);
             },
             (error) => {

@@ -9,7 +9,7 @@ import userToken from "../../../../config/userToken";
 export class EducationService {
     host: string = config.host;
     token: any = userToken.token;
-    userId: string = userToken.id;
+    userId: string = userToken.CandID;
     httpOptions = userToken.httpOptions;
 
     constructor(private http: HttpClient) { }
@@ -17,7 +17,7 @@ export class EducationService {
     //education form
 
     findAllEducations() {
-        return this.http.get<any>(`${this.host}/api/user/education/getAll`, this.httpOptions);
+        return this.http.get<any>(`${this.host}/api/user/education/getAll?userId=${this.userId}`, this.httpOptions);
     }
 
     findEducation(data: any, id: number) {
