@@ -39,11 +39,11 @@ export class SkillsLanguagesService {
             ...data,
             userId: this.userId
         };
-        return this.http.put<any>(`${this.host}/api/user/skills/update?id=${id}`, skillsData, this.httpOptions);
+        return this.http.put<any>(`${this.host}/api/user/skills/update?userId=${this.userId}&id=${id}`, skillsData, this.httpOptions);
     }
 
     deleteSkill(id: number) {
-        return this.http.delete<any>(`${this.host}/api/user/skills/delete?id=${id}`, this.httpOptions);
+        return this.http.delete<any>(`${this.host}/api/user/skills/delete?userId=${this.userId}&id=${id}`, this.httpOptions);
     }
 
 
@@ -69,10 +69,10 @@ export class SkillsLanguagesService {
             ...data,
             userId: this.userId
         };
-        return this.http.put<any>(`${this.host}/api/user/languages/update?id=${id}`, languagesData, this.httpOptions);
+        return this.http.put<any>(`${this.host}/api/user/languages/update?userId=${this.userId}&id=${id}`, languagesData, this.httpOptions);
     }
 
     deleteLanguage(id: number) {
-        return this.http.delete<any>(`${this.host}/api/user/languages/delete?id=${id}`, this.httpOptions);
+        return this.http.delete<any>(`${this.host}/api/user/languages/delete?userId=${this.userId}&id=${id}`, this.httpOptions);
     }
 }

@@ -35,8 +35,8 @@ export class EducationService {
         return this.http.post<any>(`${this.host}/api/user/education/create`, educationData, this.httpOptions);
     }
 
-    updateEducation(data: any, i: number) {
-        let id = i;
+    updateEducation(data: any, id: number) {
+    
 
         data.completion_year = Number(data.completion_year);
         data.obtained_gpa = parseFloat(data.obtained_gpa);
@@ -47,12 +47,12 @@ export class EducationService {
         };
 
 
-        return this.http.put<any>(`${this.host}/api/user/education/update?id=${id}`, educationData, this.httpOptions);
+        return this.http.put<any>(`${this.host}/api/user/education/update?userId=${this.userId}&id=${id}`, educationData, this.httpOptions);
     }
 
     deleteEducation(i: number) {
         let id = i;
-        return this.http.delete<any>(`${this.host}/api/user/education/delete?id=${id}`, this.httpOptions);
+        return this.http.delete<any>(`${this.host}/api/user/education/delete?userId=${this.userId}&id=${id}`, this.httpOptions);
     }
 
 }

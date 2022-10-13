@@ -27,7 +27,7 @@ export class ProjectService {
           ...data,
           userId: this.userId
         }
-        return this.http.put<any>(`${this.host}/api/user/projects/update?id=${id}`, projectData, this.httpOptions);
+        return this.http.put<any>(`${this.host}/api/user/projects/update?userId=${this.userId}&id=${id}`, projectData, this.httpOptions);
     }
 
     projectForm(data: any){
@@ -41,6 +41,6 @@ export class ProjectService {
     }
 
     deleteProject(id: number){
-      return this.http.delete<any>(`${this.host}/api/user/projects/delete?id=${id}`, this.httpOptions);
+      return this.http.delete<any>(`${this.host}/api/user/projects/delete?userId=${this.userId}&id=${id}`, this.httpOptions);
     }
 }
