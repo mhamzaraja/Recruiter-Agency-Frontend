@@ -9,7 +9,7 @@ import userToken from '../../../config/userToken';
 export class ResumeService {
     host: string = config.host;
     token: any = userToken.token;
-    userId: string = userToken.id;
+    userId: string = userToken.CandID;
     httpOptions = userToken.httpOptions;
 
     constructor(private http: HttpClient) {}
@@ -17,21 +17,21 @@ export class ResumeService {
     //EducationService
     findAllEducations() {
         return this.http.get<any>(
-            `${this.host}/api/user/education/getAll`,
+            `${this.host}/api/user/education/getAll?userId=${this.userId}`,
             this.httpOptions
         );
     }
     //WorkExperience
     findAllExperiences() {
         return this.http.get<any>(
-            `${this.host}/api/user/experience/getAll`,
+            `${this.host}/api/user/experience/getAll?userId=${this.userId}`,
             this.httpOptions
         );
     }
     //Basic Info
     findUsers() {
         return this.http.get<any>(
-            `${this.host}/api/user/profile/getAll`,
+            `${this.host}/api/user/profile/getAll?userId=${this.userId}`,
             this.httpOptions
         );
     }
@@ -39,21 +39,21 @@ export class ResumeService {
     //Projects
     findAllProjects() {
         return this.http.get<any>(
-            `${this.host}/api/user/projects/getAll`,
+            `${this.host}/api/user/projects/getAll?userId=${this.userId}`,
             this.httpOptions
         );
     }
     //Skills
     findAllSkill() {
         return this.http.get<any>(
-            `${this.host}/api/user/skills/getAll`,
+            `${this.host}/api/user/skills/getAll?userId=${this.userId}`,
             this.httpOptions
         );
     }
     //languages
     findAllLanguages() {
         return this.http.get<any>(
-            `${this.host}/api/user/languages/getAll`,
+            `${this.host}/api/user/languages/getAll?userId=${this.userId}`,
             this.httpOptions
         );
     }
