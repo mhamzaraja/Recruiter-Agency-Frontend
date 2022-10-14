@@ -63,7 +63,7 @@ export class BasicInfoComponent implements OnInit, OnDestroy {
                 (res) => {
                     this.toastr.success(res.message);
                     this.getUser();
-                    window.location.reload();
+                    // window.location.reload();
                 },
                 (error) => {
                     //if (error.status == 401) this.router.navigate(['/login']);
@@ -73,8 +73,8 @@ export class BasicInfoComponent implements OnInit, OnDestroy {
         }
     }
 
-    getUser() {
-        this.basicInfoService.findUsers().subscribe(
+    async getUser() {
+        (await this.basicInfoService.findUsers()).subscribe(
             (res) => {
                 this.basicInfo = res.data[0].profile;
 

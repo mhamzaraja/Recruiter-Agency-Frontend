@@ -34,7 +34,7 @@ export class EducationService {
             ...data,
             userId: this.userId
         };
-        return this.http.post<any>(`${this.host}/api/user/education/create`, educationData, this.httpOptions);
+        return this.http.post<any>(`${this.host}/api/user/education/create?userId=${this.userId}`, educationData, this.httpOptions);
     }
 
     updateEducation(data: any, id: number) {

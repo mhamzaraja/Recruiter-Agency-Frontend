@@ -31,7 +31,7 @@ export class SkillsLanguagesService {
             ...data,
             userId: this.userId
         };
-        return this.http.post<any>(`${this.host}/api/user/skills/create`, skillsData, this.httpOptions);
+        return this.http.post<any>(`${this.host}/api/user/skills/create?userId=${this.userId}`, skillsData, this.httpOptions);
     }
 
     updateSkill(data: any, id: number) {
@@ -63,7 +63,7 @@ export class SkillsLanguagesService {
             ...data,
             userId: this.userId
         };
-        return this.http.post<any>(`${this.host}/api/user/languages/create`, languagesData, this.httpOptions);
+        return this.http.post<any>(`${this.host}/api/user/languages/create?userId=${this.userId}`, languagesData, this.httpOptions);
     }
 
     updateLanguage(data: any, id: number) {

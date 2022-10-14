@@ -38,7 +38,7 @@ export class ProjectService {
           ...data,
           userId: this.userId
         }
-        return this.http.post<any>(`${this.host}/api/user/projects/create`, projectData, this.httpOptions);
+        return this.http.post<any>(`${this.host}/api/user/projects/create?userId=${this.userId}`, projectData, this.httpOptions);
     }
 
     deleteProject(id: number){

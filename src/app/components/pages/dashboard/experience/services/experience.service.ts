@@ -31,7 +31,7 @@ export class ExperienceService {
             ...data,
             userId: this.userId
         }
-        return this.http.post<any>(`${this.host}/api/user/experience/create`, experienceData, this.httpOptions);
+        return this.http.post<any>(`${this.host}/api/user/experience/create?userId=${this.userId}`, experienceData, this.httpOptions);
     }
 
     updateExperience(data: any, id: number) {
