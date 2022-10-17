@@ -24,7 +24,7 @@ export class ExperienceComponent implements OnInit, OnDestroy {
     city = data.cities;
 
     p: number = 1;
-    collection: any[] ;
+    collection: any[];
 
 
 
@@ -76,7 +76,7 @@ export class ExperienceComponent implements OnInit, OnDestroy {
                 },
                 (error) => {
                     //if (error.status == 401) this.router.navigate(['/login']);
-                this.toastr.error(error.error.message);
+                    this.toastr.error(error.error.message);
                 });
             this.submittedExp = false;
         }
@@ -100,14 +100,14 @@ export class ExperienceComponent implements OnInit, OnDestroy {
                 },
                 (error) => {
                     //if (error.status == 401) this.router.navigate(['/login']);
-                this.toastr.error(error.error.message);
+                    this.toastr.error(error.error.message);
                 });
             this.submitted = false;
         }
     }
 
-    async getAllExperience() {
-        (await this.experienceService.findAllExperiences()).subscribe(
+    getAllExperience() {
+        this.experienceService.findAllExperiences().subscribe(
             (res) => {
                 this.experienceInfo = res.data;
             },
@@ -148,7 +148,7 @@ export class ExperienceComponent implements OnInit, OnDestroy {
             });
     }
 
-    resetExp(content){
+    resetExp(content) {
         this.modalService.open(content, { size: 'lg' });
         this.saveExpBtn = true;
         this.updateExpBtn = false;
