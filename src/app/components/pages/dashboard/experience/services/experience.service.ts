@@ -10,9 +10,11 @@ export class ExperienceService {
     host: string = config.host;
     token: any = userToken.token;
     profileId: string = userToken.CandID;
+    userId: string = userToken.id;
     httpOptions = userToken.httpOptions;
 
     constructor(private http: HttpClient) { }
+
 
     async findAllExperiences() {
         let profileId = JSON.parse(await localStorage.getItem('candID'))?.ProfID;

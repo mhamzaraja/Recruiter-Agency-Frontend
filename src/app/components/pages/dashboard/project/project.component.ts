@@ -21,7 +21,7 @@ export class ProjectComponent implements OnInit, OnDestroy {
     response: any;
 
     p: number = 1;
-    collection: any[] ;
+    collection: any[];
 
     constructor(private formBuilder: FormBuilder,
         private toastr: ToastrService,
@@ -72,8 +72,8 @@ export class ProjectComponent implements OnInit, OnDestroy {
         }
     }
 
-    async getAllProjects() {
-        (await this.projectService.findAllProjects()).subscribe(
+    getAllProjects() {
+        (this.projectService.findAllProjects()).subscribe(
             (res) => {
                 this.projectsInfo = res.data;
                 console.log("project data: ", this.projectsInfo);
@@ -102,7 +102,7 @@ export class ProjectComponent implements OnInit, OnDestroy {
                 },
                 (error) => {
                     //if (error.status == 401) this.router.navigate(['/login']);
-                this.toastr.error(error.error.message);
+                    this.toastr.error(error.error.message);
                 });
             this.submitted = false;
         }

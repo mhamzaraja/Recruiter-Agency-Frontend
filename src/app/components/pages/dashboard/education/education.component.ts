@@ -23,7 +23,7 @@ export class EducationComponent implements OnInit, OnDestroy {
     updateEduBtn: boolean = false;
 
     p: number = 1;
-    collection: any[] ;
+    collection: any[];
 
     constructor(private formBuilder: FormBuilder,
         private toastr: ToastrService,
@@ -56,13 +56,13 @@ export class EducationComponent implements OnInit, OnDestroy {
     async educationInfoForm() {
         this.submittedEdu = true;
         if (this.educationForm.invalid) {
-            this.toastr.error("Please fill all required fields","Education", { timeOut: 60000 });
+            this.toastr.error("Please fill all required fields", "Education", { timeOut: 60000 });
         }
         else {
             (await this.educationService.educationForm(this.educationForm.value)).subscribe(
                 (res) => {
                     this.getAllEducations();
-                    if (res.success == true) {            
+                    if (res.success == true) {
                         this.toastr.success("Created Successfully");
                         this.modalService.dismissAll();
                     } else {
@@ -99,8 +99,8 @@ export class EducationComponent implements OnInit, OnDestroy {
 
     }
 
-    async getAllEducations() {
-        (await this.educationService.findAllEducations()).subscribe(
+    getAllEducations() {
+        this.educationService.findAllEducations().subscribe(
             (res) => {
                 this.educationInfo = res.data;
             },
@@ -136,7 +136,7 @@ export class EducationComponent implements OnInit, OnDestroy {
             });
     }
 
-    clearEdu(content){
+    clearEdu(content) {
         this.modalService.open(content, { size: 'lg' });
         this.saveEduBtn = true;
         this.updateEduBtn = false;
