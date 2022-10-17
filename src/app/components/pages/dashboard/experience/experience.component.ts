@@ -62,13 +62,13 @@ export class ExperienceComponent implements OnInit, OnDestroy {
     }
 
     //Experience
-    experienceInfoForm() {
+    async experienceInfoForm() {
         this.submittedExp = true;
         if (this.experienceForm.invalid) {
             this.toastr.error("this.response.message");
         }
         else {
-            this.experienceService.experienceForm(this.experienceForm.value).subscribe(
+            (await this.experienceService.experienceForm(this.experienceForm.value)).subscribe(
                 (res) => {
                     this.toastr.success(res.message);
                     this.getAllExperience();
@@ -82,7 +82,7 @@ export class ExperienceComponent implements OnInit, OnDestroy {
         }
     }
 
-    experienceUpdateForm() {
+    async experienceUpdateForm() {
         this.submittedExp = true;
         let data = this.experienceForm.value;
 
@@ -90,7 +90,7 @@ export class ExperienceComponent implements OnInit, OnDestroy {
             this.toastr.error(this.response.message);
         }
         else {
-            this.experienceService.updateExperience(data, this.expId).subscribe(
+            (await this.experienceService.updateExperience(data, this.expId)).subscribe(
                 (res) => {
                     this.toastr.success(res.message);
                     this.getAllExperience();
@@ -135,9 +135,9 @@ export class ExperienceComponent implements OnInit, OnDestroy {
         this.experienceForm.controls.description.setValue(this.experienceInfo[i].description);
     }
 
-    delExp(i: number) {
+    async delExp(i: number) {
         this.expId = this.experienceInfo[i].id;
-        this.experienceService.deleteExperience(this.expId).subscribe(
+        (await this.experienceService.deleteExperience(this.expId)).subscribe(
             (res) => {
                 if (res.success == true) {
                     this.toastr.success(res.message);

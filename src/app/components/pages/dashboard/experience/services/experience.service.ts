@@ -15,8 +15,10 @@ export class ExperienceService {
 
     constructor(private http: HttpClient) { }
 
-    findAllExperiences() {
-        return this.http.get<any>(`${this.host}/api/user/experience/getAll?userId=${this.profileId}`, this.httpOptions);
+
+    async findAllExperiences() {
+        let profileId = JSON.parse(await localStorage.getItem('candID'))?.ProfID;
+        return this.http.get<any>(`${this.host}/api/user/experience/getAll?userId=${profileId}`, this.httpOptions);
     }
 
     findExperience(id: number) {
@@ -24,30 +26,33 @@ export class ExperienceService {
     }
 
     //experience form
-    experienceForm(data: any) {
+    async experienceForm(data: any) {
+        let profileId = JSON.parse(await localStorage.getItem('candID'))?.ProfID;
         data.currentlyWorking = Boolean(data.currentlyWorking);
 
         let experienceData = {
             ...data,
-            userId: this.profileId
+            userId: profileId
         }
-        return this.http.post<any>(`${this.host}/api/user/experience/create`, experienceData, this.httpOptions);
+        return this.http.post<any>(`${this.host}/api/user/experience/create?userId=${profileId}`, experienceData, this.httpOptions);
     }
 
-    updateExperience(data: any, id: number) {
+    async updateExperience(data: any, id: number) {
+        let profileId = JSON.parse(await localStorage.getItem('candID'))?.ProfID;
         data.currentlyWorking = Boolean(data.currentlyWorking);
 
         let experienceData = {
             ...data,
-            userId: this.profileId
+            userId: profileId
         }
-        return this.http.put<any>(`${this.host}/api/user/experience/update?userId=${this.profileId}&id=${id}`, experienceData, this.httpOptions);
+        return this.http.put<any>(`${this.host}/api/user/experience/update?userId=${profileId}&id=${id}`, experienceData, this.httpOptions);
 
     }
 
-    deleteExperience(i: number) {
+    async deleteExperience(i: number) {
+        let profileId = JSON.parse(await localStorage.getItem('candID'))?.ProfID;
         let id = i;
-        return this.http.delete<any>(`${this.host}/api/user/experience/delete?userId=${this.profileId}&id=${id}`, this.httpOptions);
+        return this.http.delete<any>(`${this.host}/api/user/experience/delete?userId=${profileId}&id=${id}`, this.httpOptions);
     }
 
 }

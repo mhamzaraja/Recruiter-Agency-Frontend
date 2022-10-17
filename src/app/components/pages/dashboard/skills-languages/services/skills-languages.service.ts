@@ -9,72 +9,80 @@ import userToken from "../../../../config/userToken";
 export class SkillsLanguagesService {
     host: string = config.host;
     token: any = userToken.token;
-    userId: string = userToken.CandID;
+    profileId: string = userToken.CandID;
+    userId: string = userToken.id;
     httpOptions = userToken.httpOptions;
 
     constructor(private http: HttpClient) { }
 
     //skills form
-
+ 
     async findAllSkill() {
-        let userid = JSON.parse(await localStorage.getItem('candID'))?.ProfID;
-        return this.http.get<any>(`${this.host}/api/user/skills/getAll?userId=${userid}`, this.httpOptions);
+        let profileId = JSON.parse(await localStorage.getItem('candID'))?.ProfID;
+        return this.http.get<any>(`${this.host}/api/user/skills/getAll?userId=${profileId}`, this.httpOptions);
     }
 
     findSkill(data: any, id: number) {
         return this.http.get<any>(`${this.host}/api/user/skills/getOne?id=${id}`, this.httpOptions);
     }
 
-    skillsForm(data: any) {
-
+    async skillsForm(data: any) {
+        let profileId = JSON.parse(await localStorage.getItem('candID'))?.ProfID;
         let skillsData = {
             ...data,
-            userId: this.userId
+            userId:profileId
         };
-        return this.http.post<any>(`${this.host}/api/user/skills/create?userId=${this.userId}`, skillsData, this.httpOptions);
+        return this.http.post<any>(`${this.host}/api/user/skills/create`, skillsData, this.httpOptions);
     }
 
-    updateSkill(data: any, id: number) {
-
+    async updateSkill(data: any, id: number) {
+        let profileId = JSON.parse(await localStorage.getItem('candID'))?.ProfID;
         var skillsData = {
             ...data,
-            userId: this.userId
+            userId: profileId
         };
-        return this.http.put<any>(`${this.host}/api/user/skills/update?userId=${this.userId}&id=${id}`, skillsData, this.httpOptions);
+        return this.http.put<any>(`${this.host}/api/user/skills/update?userId=${profileId}&id=${id}`, skillsData, this.httpOptions);
     }
 
-    deleteSkill(id: number) {
-        return this.http.delete<any>(`${this.host}/api/user/skills/delete?userId=${this.userId}&id=${id}`, this.httpOptions);
+    async deleteSkill(id: number) {
+        let profileId = JSON.parse(await localStorage.getItem('candID'))?.ProfID;
+        return this.http.delete<any>(`${this.host}/api/user/skills/delete?userId=${profileId}&id=${id}`, this.httpOptions);
     }
 
 
     //languages form
     async findAllLanguages() {
-        let userid = JSON.parse(await localStorage.getItem('candID'))?.ProfID;
-        return this.http.get<any>(`${this.host}/api/user/languages/getAll?userId=${userid}`, this.httpOptions);
+        let profileId = JSON.parse(await localStorage.getItem('candID'))?.ProfID;
+        return this.http.get<any>(`${this.host}/api/user/languages/getAll?userId=${profileId}`, this.httpOptions);
     }
 
     findLanguage(data: any, id: number) {
         return this.http.get<any>(`${this.host}/api/user/languages/getOne?id=${id}`, this.httpOptions);
     }
 
-    languagesForm(data: any) {
+    async languagesForm(data: any) {
+        let profileId = JSON.parse(await localStorage.getItem('candID'))?.ProfID;
+        
         var languagesData = {
             ...data,
-            userId: this.userId
+            userId:profileId
         };
-        return this.http.post<any>(`${this.host}/api/user/languages/create?userId=${this.userId}`, languagesData, this.httpOptions);
+        return this.http.post<any>(`${this.host}/api/user/languages/create`, languagesData, this.httpOptions);
     }
 
-    updateLanguage(data: any, id: number) {
+    async updateLanguage(data: any, id: number) {
+        let profileId = JSON.parse(await localStorage.getItem('candID'))?.ProfID;
+
         var languagesData = {
             ...data,
-            userId: this.userId
+            userId: profileId
         };
-        return this.http.put<any>(`${this.host}/api/user/languages/update?userId=${this.userId}&id=${id}`, languagesData, this.httpOptions);
+        return this.http.put<any>(`${this.host}/api/user/languages/update?userId=${profileId}&id=${id}`, languagesData, this.httpOptions);
     }
 
-    deleteLanguage(id: number) {
-        return this.http.delete<any>(`${this.host}/api/user/languages/delete?userId=${this.userId}&id=${id}`, this.httpOptions);
+    async deleteLanguage(id: number) {
+        let profileId = JSON.parse(await localStorage.getItem('candID'))?.ProfID;
+
+        return this.http.delete<any>(`${this.host}/api/user/languages/delete?userId=${profileId}&id=${id}`, this.httpOptions);
     }
 }

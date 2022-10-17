@@ -15,34 +15,42 @@ export class ProjectService {
   httpOptions = userToken.httpOptions;
 
 
+
   constructor(private http: HttpClient) { }
 
-  findAllProjects() {
-    // let userid = JSON.parse(await localStorage.getItem('candID'))?.ProfID;
-    return this.http.get<any>(`${this.host}/api/user/projects/getAll?userId=${this.profileId}`, this.httpOptions);
+
+  async findAllProjects(){
+    let profileId = JSON.parse(await localStorage.getItem('candID'))?.ProfID;
+    
+    return this.http.get<any>(`${this.host}/api/user/projects/getAll?userId=${profileId}`, this.httpOptions);
   }
 
-  updateProject(data: any, id: number) {
-    data.currently_ongoing = Boolean(data.currently_ongoing);
+  async updateProject(data: any, id: number){
+    let profileId = JSON.parse(await localStorage.getItem('candID'))?.ProfID;
+      data.currently_ongoing = Boolean(data.currently_ongoing);
 
-    let projectData = {
-      ...data,
-      userId: this.profileId
+      let projectData = {
+          ...data,
+          userId: profileId
+        }
+        return this.http.put<any>(`${this.host}/api/user/projects/update?userId=${profileId}&id=${id}`, projectData, this.httpOptions);
+  }
+
+
+    async projectForm(data: any){
+      let profileId = JSON.parse(await localStorage.getItem('candID'))?.ProfID;
+      data.currently_ongoing = Boolean(data.currently_ongoing);
+
+      let projectData = {
+          ...data,
+          userId: profileId
+        }
+        return this.http.post<any>(`${this.host}/api/user/projects/create?userId=${profileId}`, projectData, this.httpOptions);
+  }
+
+    async deleteProject(id: number){
+      let profileId = JSON.parse(await localStorage.getItem('candID'))?.ProfID;
+      return this.http.delete<any>(`${this.host}/api/user/projects/delete?userId=${profileId}&id=${id}`, this.httpOptions);
     }
-    return this.http.put<any>(`${this.host}/api/user/projects/update?userId=${this.profileId}&id=${id}`, projectData, this.httpOptions);
-  }
 
-  projectForm(data: any) {
-    data.currently_ongoing = Boolean(data.currently_ongoing);
-
-    let projectData = {
-      ...data,
-      userId: this.profileId
-    }
-    return this.http.post<any>(`${this.host}/api/user/projects/create`, projectData, this.httpOptions);
-  }
-
-  deleteProject(id: number) {
-    return this.http.delete<any>(`${this.host}/api/user/projects/delete?userId=${this.profileId}&id=${id}`, this.httpOptions);
-  }
 }
