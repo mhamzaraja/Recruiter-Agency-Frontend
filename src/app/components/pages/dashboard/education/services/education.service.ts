@@ -9,17 +9,18 @@ import userToken from "../../../../config/userToken";
 export class EducationService {
     host: string = config.host;
     token: any = userToken.token;
-    userId: string = userToken.CandID;
+    profileId: string = userToken.CandID;
+    userId: string = userToken.id;
     httpOptions = userToken.httpOptions;
 
     constructor(private http: HttpClient) { }
 
     //education form
 
-    async findAllEducations() {
-        let userid = JSON.parse(await localStorage.getItem('candID'))?.ProfID;
-        
-        return this.http.get<any>(`${this.host}/api/user/education/getAll?userId=${userid}`, this.httpOptions);
+    findAllEducations() {
+        // let profileId = JSON.parse(localStorage.getItem('candID'))?.ProfID;
+
+        return this.http.get<any>(`${this.host}/api/user/education/getAll?userId=${this.profileId}`, this.httpOptions);
     }
 
     findEducation(data: any, id: number) {
@@ -27,34 +28,32 @@ export class EducationService {
     }
 
     educationForm(data: any) {
+        // let profileId = JSON.parse(localStorage.getItem('candID'))?.ProfID;
+
         data.completion_year = Number(data.completion_year);
         data.obtained_gpa = parseFloat(data.obtained_gpa);
 
         let educationData = {
             ...data,
-            userId: this.userId
+            userId:this.profileId
         };
-        return this.http.post<any>(`${this.host}/api/user/education/create?userId=${this.userId}`, educationData, this.httpOptions);
+        return this.http.post<any>(`${this.host}/api/user/education/create`, educationData, this.httpOptions);
     }
 
     updateEducation(data: any, id: number) {
-    
-
         data.completion_year = Number(data.completion_year);
         data.obtained_gpa = parseFloat(data.obtained_gpa);
 
         let educationData = {
             ...data,
-            userId: this.userId
+            userId: this.profileId
         };
-
-
-        return this.http.put<any>(`${this.host}/api/user/education/update?userId=${this.userId}&id=${id}`, educationData, this.httpOptions);
+        return this.http.put<any>(`${this.host}/api/user/education/update?userId=${this.profileId}&id=${id}`, educationData, this.httpOptions);
     }
 
     deleteEducation(i: number) {
         let id = i;
-        return this.http.delete<any>(`${this.host}/api/user/education/delete?userId=${this.userId}&id=${id}`, this.httpOptions);
+        return this.http.delete<any>(`${this.host}/api/user/education/delete?userId=${this.profileId}&id=${id}`, this.httpOptions);
     }
 
 }
