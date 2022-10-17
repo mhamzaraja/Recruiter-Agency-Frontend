@@ -10,38 +10,42 @@ export class ProjectService {
 
     host: string = config.host;
     token: any = userToken.token;
-    userId: string = userToken.CandID;
+    profileId: string = userToken.CandID;
     httpOptions = userToken.httpOptions;
 
 
   constructor(private http: HttpClient) { }
 
   async findAllProjects(){
-    let userid = JSON.parse(await localStorage.getItem('candID'))?.ProfID;
-    return this.http.get<any>(`${this.host}/api/user/projects/getAll?userId=${userid}`, this.httpOptions);
+    let profileId = JSON.parse(await localStorage.getItem('candID'))?.ProfID;
+    
+    return this.http.get<any>(`${this.host}/api/user/projects/getAll?userId=${profileId}`, this.httpOptions);
   }
 
-  updateProject(data: any, id: number){
+  async updateProject(data: any, id: number){
+    let profileId = JSON.parse(await localStorage.getItem('candID'))?.ProfID;
       data.currently_ongoing = Boolean(data.currently_ongoing);
 
       let projectData = {
           ...data,
-          userId: this.userId
+          userId: profileId
         }
-        return this.http.put<any>(`${this.host}/api/user/projects/update?userId=${this.userId}&id=${id}`, projectData, this.httpOptions);
+        return this.http.put<any>(`${this.host}/api/user/projects/update?userId=${profileId}&id=${id}`, projectData, this.httpOptions);
     }
 
-    projectForm(data: any){
+    async projectForm(data: any){
+      let profileId = JSON.parse(await localStorage.getItem('candID'))?.ProfID;
       data.currently_ongoing = Boolean(data.currently_ongoing);
 
       let projectData = {
           ...data,
-          userId: this.userId
+          userId: profileId
         }
-        return this.http.post<any>(`${this.host}/api/user/projects/create?userId=${this.userId}`, projectData, this.httpOptions);
+        return this.http.post<any>(`${this.host}/api/user/projects/create?userId=${profileId}`, projectData, this.httpOptions);
     }
 
-    deleteProject(id: number){
-      return this.http.delete<any>(`${this.host}/api/user/projects/delete?userId=${this.userId}&id=${id}`, this.httpOptions);
+    async deleteProject(id: number){
+      let profileId = JSON.parse(await localStorage.getItem('candID'))?.ProfID;
+      return this.http.delete<any>(`${this.host}/api/user/projects/delete?userId=${profileId}&id=${id}`, this.httpOptions);
     }
 }

@@ -18,7 +18,7 @@ export class BasicInfoService {
     //     return this.http.get<any>(`${this.host}/api/user/profile/getOne?id=${id}`, this.httpOptions);
     // }
 
-    async findUsers(){
+    findUsers(){
         // let userid = JSON.parse(await localStorage.getItem('candID'))?.ProfID;
 
         return this.http.get<any>(`${this.host}/api/user/profile/getAll?userId=${this.userId}`, this.httpOptions);

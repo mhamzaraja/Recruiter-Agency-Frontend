@@ -17,43 +17,45 @@ export class EducationService {
 
     //education form
 
-    findAllEducations() {
-        // let profileId = JSON.parse(localStorage.getItem('candID'))?.ProfID;
+    async findAllEducations() {
+        let profileId = JSON.parse(await localStorage.getItem('candID'))?.ProfID;
 
-        return this.http.get<any>(`${this.host}/api/user/education/getAll?userId=${this.profileId}`, this.httpOptions);
+        return this.http.get<any>(`${this.host}/api/user/education/getAll?userId=${profileId}`, this.httpOptions);
     }
 
     findEducation(data: any, id: number) {
         return this.http.get<any>(`${this.host}/api/user/education/getOne?id=${id}`, this.httpOptions);
     }
 
-    educationForm(data: any) {
-        // let profileId = JSON.parse(localStorage.getItem('candID'))?.ProfID;
+    async educationForm(data: any) {
+        let profileId = JSON.parse(await localStorage.getItem('candID'))?.ProfID;
 
         data.completion_year = Number(data.completion_year);
         data.obtained_gpa = parseFloat(data.obtained_gpa);
 
         let educationData = {
             ...data,
-            userId:this.profileId
+            userId:profileId
         };
         return this.http.post<any>(`${this.host}/api/user/education/create`, educationData, this.httpOptions);
     }
 
-    updateEducation(data: any, id: number) {
+    async updateEducation(data: any, id: number) {
+        let profileId = JSON.parse(await localStorage.getItem('candID'))?.ProfID;
         data.completion_year = Number(data.completion_year);
         data.obtained_gpa = parseFloat(data.obtained_gpa);
 
         let educationData = {
             ...data,
-            userId: this.profileId
+            userId: profileId
         };
-        return this.http.put<any>(`${this.host}/api/user/education/update?userId=${this.profileId}&id=${id}`, educationData, this.httpOptions);
+        return this.http.put<any>(`${this.host}/api/user/education/update?userId=${profileId}&id=${id}`, educationData, this.httpOptions);
     }
 
-    deleteEducation(i: number) {
+    async deleteEducation(i: number) {
+        let profileId = JSON.parse(await localStorage.getItem('candID'))?.ProfID;
         let id = i;
-        return this.http.delete<any>(`${this.host}/api/user/education/delete?userId=${this.profileId}&id=${id}`, this.httpOptions);
+        return this.http.delete<any>(`${this.host}/api/user/education/delete?userId=${profileId}&id=${id}`, this.httpOptions);
     }
 
 }

@@ -67,14 +67,14 @@ export class SkillsLanguagesComponent implements OnInit, OnDestroy {
     }
 
     //Skills
-    skillsInfoForm() {
+    async skillsInfoForm() {
         this.submittedSkill = true;
         if (this.skillsForm.invalid) {
             this.toastr.error(this.response.message);
         }
         else {
 
-            this.skillsLanguagesService.skillsForm(this.skillsForm.value).subscribe(
+            (await this.skillsLanguagesService.skillsForm(this.skillsForm.value)).subscribe(
                 (res) => {
                     this.toastr.success(res.message);
                     this.getAllSkills();
@@ -88,7 +88,7 @@ export class SkillsLanguagesComponent implements OnInit, OnDestroy {
         }
     }
 
-    skillsUpdateForm() {
+    async skillsUpdateForm() {
         this.submittedSkill = true;
         let data = this.skillsForm.value;
 
@@ -97,7 +97,7 @@ export class SkillsLanguagesComponent implements OnInit, OnDestroy {
         }
         else {
 
-            this.skillsLanguagesService.updateSkill(data, this.skillId).subscribe(
+            (await this.skillsLanguagesService.updateSkill(data, this.skillId)).subscribe(
                 (res) => {
                     this.toastr.success(res.message);
                     this.getAllSkills();
@@ -135,9 +135,9 @@ export class SkillsLanguagesComponent implements OnInit, OnDestroy {
         this.skillsForm.controls.skill_proficiency.setValue(this.skillInfo[i].skill_proficiency);
     }
 
-    delSkill(i: number) {
+    async delSkill(i: number) {
         this.skillId = this.skillInfo[i].id;
-        this.skillsLanguagesService.deleteSkill(this.skillId).subscribe(
+        (await this.skillsLanguagesService.deleteSkill(this.skillId)).subscribe(
             (res) => {
                 this.toastr.success(res.message);
                 this.getAllSkills();
@@ -149,14 +149,14 @@ export class SkillsLanguagesComponent implements OnInit, OnDestroy {
     }
 
     //Languages
-    languageInfoForm() {
+    async languageInfoForm() {
         this.submittedLanguage = true;
         if (this.languageForm.invalid) {
             this.toastr.error(this.response.message);
             this.getAllLanguages();
         }
         else {
-            this.skillsLanguagesService.languagesForm(this.languageForm.value).subscribe(
+            (await this.skillsLanguagesService.languagesForm(this.languageForm.value)).subscribe(
                 (res) => {
                     this.toastr.success(res.message);
                     this.modalService.dismissAll();
@@ -169,7 +169,7 @@ export class SkillsLanguagesComponent implements OnInit, OnDestroy {
         }
     }
 
-    languageUpdateForm() {
+    async languageUpdateForm() {
         this.submittedLanguage = true;
         let data = this.languageForm.value;
 
@@ -178,7 +178,7 @@ export class SkillsLanguagesComponent implements OnInit, OnDestroy {
             this.getAllLanguages();
         }
         else {
-            this.skillsLanguagesService.updateLanguage(data, this.langId).subscribe(
+            (await this.skillsLanguagesService.updateLanguage(data, this.langId)).subscribe(
                 (res) => {
                     this.toastr.success(res.message);
                     this.getAllLanguages();
@@ -214,9 +214,9 @@ export class SkillsLanguagesComponent implements OnInit, OnDestroy {
         this.languageForm.controls.language_proficiency.setValue(this.languageInfo[i].language_proficiency);
     }
 
-    delLang(i: number) {
+    async delLang(i: number) {
         this.langId = this.languageInfo[i].id;
-        this.skillsLanguagesService.deleteLanguage(this.langId).subscribe(
+        (await this.skillsLanguagesService.deleteLanguage(this.langId)).subscribe(
             (res) => {
                 this.toastr.success(res.message);
                 this.getAllLanguages();

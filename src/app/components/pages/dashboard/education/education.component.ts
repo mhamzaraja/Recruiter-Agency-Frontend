@@ -53,13 +53,13 @@ export class EducationComponent implements OnInit, OnDestroy {
     }
 
     //Education
-    educationInfoForm() {
+    async educationInfoForm() {
         this.submittedEdu = true;
         if (this.educationForm.invalid) {
             this.toastr.error("Please fill all required fields","Education", { timeOut: 60000 });
         }
         else {
-            this.educationService.educationForm(this.educationForm.value).subscribe(
+            (await this.educationService.educationForm(this.educationForm.value)).subscribe(
                 (res) => {
                     this.getAllEducations();
                     if (res.success == true) {            
@@ -73,7 +73,7 @@ export class EducationComponent implements OnInit, OnDestroy {
         }
     }
 
-    educationUpdateForm() {
+    async educationUpdateForm() {
         this.submittedEdu = true;
         let data = this.educationForm.value;
 
@@ -81,7 +81,7 @@ export class EducationComponent implements OnInit, OnDestroy {
             this.toastr.error(this.response.message);
         }
         else {
-            this.educationService.updateEducation(data, this.eduId).subscribe(
+            (await this.educationService.updateEducation(data, this.eduId)).subscribe(
                 (res) => {
                     if (res.success == true) {
                         this.toastr.success(res.message);
@@ -123,9 +123,9 @@ export class EducationComponent implements OnInit, OnDestroy {
         this.educationForm.controls.obtained_gpa.setValue(this.educationInfo[i].obtained_gpa);
     }
 
-    delEdu(i: number) {
+    async delEdu(i: number) {
         this.eduId = this.educationInfo[i].id;
-        this.educationService.deleteEducation(this.eduId).subscribe(
+        (await this.educationService.deleteEducation(this.eduId)).subscribe(
             (res) => {
                 if (res.success == true) {
                     this.toastr.success(res.message);

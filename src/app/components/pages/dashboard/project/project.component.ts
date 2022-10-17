@@ -52,13 +52,13 @@ export class ProjectComponent implements OnInit, OnDestroy {
         return this.proejctForm.controls;
     }
 
-    projectInfoForm() {
+    async projectInfoForm() {
         this.submittedPrj = true;
         if (this.proejctForm.invalid) {
             this.toastr.error("Error submitting form!");
         }
         else {
-            this.projectService.projectForm(this.proejctForm.value).subscribe(
+            (await this.projectService.projectForm(this.proejctForm.value)).subscribe(
                 (res) => {
                     if (res.success == true) {
                         this.toastr.success(res.message);
@@ -84,7 +84,7 @@ export class ProjectComponent implements OnInit, OnDestroy {
             });
     }
 
-    projectUpdateForm() {
+    async projectUpdateForm() {
         this.submittedPrj = true;
         let data = this.proejctForm.value;
 
@@ -92,7 +92,7 @@ export class ProjectComponent implements OnInit, OnDestroy {
             this.toastr.error(this.response.message);
         }
         else {
-            this.projectService.updateProject(data, this.prjId).subscribe(
+            (await this.projectService.updateProject(data, this.prjId)).subscribe(
                 (res) => {
                     this.toastr.success(res.message);
                     this.getAllProjects();
@@ -108,9 +108,9 @@ export class ProjectComponent implements OnInit, OnDestroy {
         }
     }
 
-    delPrj(i: number) {
+    async delPrj(i: number) {
         this.prjId = this.projectsInfo[i].id;
-        this.projectService.deleteProject(this.prjId).subscribe(
+        (await this.projectService.deleteProject(this.prjId)).subscribe(
             (res) => {
                 this.toastr.success(res.message);
                 this.getAllProjects()
