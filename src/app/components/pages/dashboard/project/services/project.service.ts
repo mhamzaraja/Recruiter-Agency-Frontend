@@ -8,40 +8,41 @@ import userToken from "../../../../config/userToken";
 })
 export class ProjectService {
 
-    host: string = config.host;
-    token: any = userToken.token;
-    userId: string = userToken.CandID;
-    httpOptions = userToken.httpOptions;
+  host: string = config.host;
+  token: any = userToken.token;
+  profileId: string = userToken.CandID;
+  userId: string = userToken.id;
+  httpOptions = userToken.httpOptions;
 
 
   constructor(private http: HttpClient) { }
 
-  async findAllProjects(){
-    let userid = JSON.parse(await localStorage.getItem('candID'))?.ProfID;
-    return this.http.get<any>(`${this.host}/api/user/projects/getAll?userId=${userid}`, this.httpOptions);
+  findAllProjects() {
+    // let userid = JSON.parse(await localStorage.getItem('candID'))?.ProfID;
+    return this.http.get<any>(`${this.host}/api/user/projects/getAll?userId=${this.profileId}`, this.httpOptions);
   }
 
-  updateProject(data: any, id: number){
-      data.currently_ongoing = Boolean(data.currently_ongoing);
+  updateProject(data: any, id: number) {
+    data.currently_ongoing = Boolean(data.currently_ongoing);
 
-      let projectData = {
-          ...data,
-          userId: this.userId
-        }
-        return this.http.put<any>(`${this.host}/api/user/projects/update?userId=${this.userId}&id=${id}`, projectData, this.httpOptions);
+    let projectData = {
+      ...data,
+      userId: this.profileId
     }
+    return this.http.put<any>(`${this.host}/api/user/projects/update?userId=${this.profileId}&id=${id}`, projectData, this.httpOptions);
+  }
 
-    projectForm(data: any){
-      data.currently_ongoing = Boolean(data.currently_ongoing);
+  projectForm(data: any) {
+    data.currently_ongoing = Boolean(data.currently_ongoing);
 
-      let projectData = {
-          ...data,
-          userId: this.userId
-        }
-        return this.http.post<any>(`${this.host}/api/user/projects/create?userId=${this.userId}`, projectData, this.httpOptions);
+    let projectData = {
+      ...data,
+      userId: this.profileId
     }
+    return this.http.post<any>(`${this.host}/api/user/projects/create`, projectData, this.httpOptions);
+  }
 
-    deleteProject(id: number){
-      return this.http.delete<any>(`${this.host}/api/user/projects/delete?userId=${this.userId}&id=${id}`, this.httpOptions);
-    }
+  deleteProject(id: number) {
+    return this.http.delete<any>(`${this.host}/api/user/projects/delete?userId=${this.profileId}&id=${id}`, this.httpOptions);
+  }
 }
