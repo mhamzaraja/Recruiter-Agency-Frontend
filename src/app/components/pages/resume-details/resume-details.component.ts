@@ -38,8 +38,8 @@ export class ResumeDetailsComponent implements OnInit {
         this.getAllLanguages();
     }
     //Education
-    getAllEducations() {
-        this.resumeService.findAllEducations().subscribe(
+    async getAllEducations() {
+        (await this.resumeService.findAllEducations()).subscribe(
             (res) => {
                 this.educationInfo = res.data;
                 console.log('Results', this.educationInfo);
@@ -52,8 +52,8 @@ export class ResumeDetailsComponent implements OnInit {
     }
 
     //Experience
-    getAllExperience() {
-        this.resumeService.findAllExperiences().subscribe(
+    async getAllExperience() {
+        (await this.resumeService.findAllExperiences()).subscribe(
             (res) => {
                 this.experienceInfo = res.data;
             },
@@ -83,8 +83,8 @@ export class ResumeDetailsComponent implements OnInit {
     }
 
     //Projects
-    getAllProjects() {
-        this.resumeService.findAllProjects().subscribe(
+    async getAllProjects() {
+        (await this.resumeService.findAllProjects()).subscribe(
             (res) => {
                 this.projectsInfo = res.data;
                 // console.log('project data: ', this.projectsInfo);
@@ -98,8 +98,8 @@ export class ResumeDetailsComponent implements OnInit {
 
     //Skills
 
-    getAllSkills() {
-        this.resumeService.findAllSkill().subscribe(
+    async getAllSkills() {
+        (await this.resumeService.findAllSkill()).subscribe(
             (res) => {
                 this.skillInfo = res.data;
                 // console.log(this.skillInfo);
@@ -112,8 +112,8 @@ export class ResumeDetailsComponent implements OnInit {
     }
 
     //languages
-    getAllLanguages() {
-        this.resumeService.findAllLanguages().subscribe(
+    async getAllLanguages() {
+        (await this.resumeService.findAllLanguages()).subscribe(
             (res) => {
                 this.languageInfo = res.data;
             },
