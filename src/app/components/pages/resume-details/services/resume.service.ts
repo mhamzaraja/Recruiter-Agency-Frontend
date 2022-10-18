@@ -9,22 +9,24 @@ import userToken from '../../../config/userToken';
 export class ResumeService {
     host: string = config.host;
     token: any = userToken.token;
-    userId: string = userToken.CandID;
+    userId: string = userToken.id;
     httpOptions = userToken.httpOptions;
 
     constructor(private http: HttpClient) {}
 
     //EducationService
-    findAllEducations() {
+    async findAllEducations() {
+        let profileId = JSON.parse(await localStorage.getItem('candID'))?.ProfID;
         return this.http.get<any>(
-            `${this.host}/api/user/education/getAll?userId=${this.userId}`,
+            `${this.host}/api/user/education/getAll?userId=${profileId}`,
             this.httpOptions
         );
     }
     //WorkExperience
-    findAllExperiences() {
+    async findAllExperiences() {
+        let profileId = JSON.parse(await localStorage.getItem('candID'))?.ProfID;
         return this.http.get<any>(
-            `${this.host}/api/user/experience/getAll?userId=${this.userId}`,
+            `${this.host}/api/user/experience/getAll?userId=${profileId}`,
             this.httpOptions
         );
     }
@@ -37,23 +39,28 @@ export class ResumeService {
     }
 
     //Projects
-    findAllProjects() {
+    async findAllProjects() {
+        let profileId = JSON.parse(await localStorage.getItem('candID'))?.ProfID;
         return this.http.get<any>(
-            `${this.host}/api/user/projects/getAll?userId=${this.userId}`,
+            `${this.host}/api/user/projects/getAll?userId=${profileId}`,
             this.httpOptions
         );
     }
     //Skills
-    findAllSkill() {
+    async findAllSkill() {
+        let profileId = JSON.parse(await localStorage.getItem('candID'))?.ProfID;
+
         return this.http.get<any>(
-            `${this.host}/api/user/skills/getAll?userId=${this.userId}`,
+            `${this.host}/api/user/skills/getAll?userId=${profileId}`,
             this.httpOptions
         );
     }
     //languages
-    findAllLanguages() {
+    async findAllLanguages() {
+        let profileId = JSON.parse(await localStorage.getItem('candID'))?.ProfID;
+
         return this.http.get<any>(
-            `${this.host}/api/user/languages/getAll?userId=${this.userId}`,
+            `${this.host}/api/user/languages/getAll?userId=${profileId}`,
             this.httpOptions
         );
     }

@@ -106,8 +106,8 @@ export class ExperienceComponent implements OnInit, OnDestroy {
         }
     }
 
-    getAllExperience() {
-        this.experienceService.findAllExperiences().subscribe(
+    async getAllExperience() {
+        (await this.experienceService.findAllExperiences()).subscribe(
             (res) => {
                 this.experienceInfo = res.data;
             },
