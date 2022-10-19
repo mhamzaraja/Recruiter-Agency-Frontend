@@ -11,11 +11,10 @@ import { CandidatesService } from "./services/candidates.service";
 export class CandidatesComponent implements OnInit, OnDestroy {
 
     candidatesInfo = []
-
     constructor(private toastr: ToastrService,
         private candidatesService: CandidatesService,
         private router: Router
-        ) { }
+    ) { }
 
     ngOnInit(): void {
         this.getAllCandidatesData()
@@ -25,7 +24,12 @@ export class CandidatesComponent implements OnInit, OnDestroy {
         let eId: number;
         this.candidatesService.findAllCandidatesData().subscribe(
             (res) => {
-                this.candidatesInfo = res.data[0].profile;
+                console.log("cand data", res.data);
+                // let datad = {
+                //     ProfID: res.data[0].profile[0].id
+                // }
+                // localStorage.setItem('candID', JSON.stringify(datad));
+                this.candidatesInfo = res.data;
                 // for (let keys in this.employersInfo) {
                 //     eId = this.employersInfo[keys].employerId;
                 // }
@@ -36,20 +40,23 @@ export class CandidatesComponent implements OnInit, OnDestroy {
             });
     }
 
-    delCand(i: number) {
-        // let candId = this.candidatesInfo[i].id;
-        console.log("delete isnt active");
-        // this.candidatesService.deleteCandidate(candId).subscribe(
-        //     (res) => {
-        //         if (res.success == true) {
-        //             this.toastr.success(res.message);
-        //             this.getAllCandidatesData();
-        //         } else {
-        //             this.toastr.error(res.error.message);
-        //         }
-        //     });
+    async delCand(i: number) {
+        let datad = {
+            // ProfID: res.data[0].profile[0].id
+            ProfID: this.candidatesInfo[i].id
+        }
+        localStorage.setItem('candID', JSON.stringify(datad));
+        let candId = this.candidatesInfo[i].userId;
+        (await this.candidatesService.deleteCandidate(candId)).subscribe(
+            (res) => {
+                if (res.success == true) {
+                    this.toastr.success(res.message);
+                    this.getAllCandidatesData();
+                } else {
+                    this.toastr.error(res.error.message);
+                }
+            });
     }
-
     ngOnDestroy() {
         // if(this.getAllCandidatesData) this.getAllCandidatesData.unsubscribe();
     }

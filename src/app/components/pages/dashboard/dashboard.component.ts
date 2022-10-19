@@ -33,23 +33,18 @@ export class DashboardComponent implements OnInit, OnDestroy {
         this.dashboardService.findUsers().subscribe(
             (res) => {
                 this.candidateInfo = res.data;
-                console.log("idddd", res.data[0].profile[0].id);
-                
                 let datad = {
                     ProfID: res.data[0].profile[0].id
                 }
-
                 localStorage.setItem('candID', JSON.stringify(datad));
-
                 if (this.candidateInfo[0].profile.length > 0) {
                     this.name = this.candidateInfo[0].profile[0].name;
-                } else{
+                } else {
                     this.name = "User";
                 }
-
                 if (this.candidateInfo[2].experience.length > 0) {
                     this.designation = this.candidateInfo[2].experience.reverse()[0].jobTitle;
-                } else{
+                } else {
                     this.designation = "Job Designation";
                 }
             },

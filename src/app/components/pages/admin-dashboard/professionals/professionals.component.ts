@@ -39,17 +39,16 @@ export class ProfessionalsComponent implements OnInit, OnDestroy {
     }
 
     delEmp(i: number) {
-        // let empId = this.employersInfo[i].id;
-        console.log("delete isnt active");
-        // this.professionalsService.deleteEmployer(empId).subscribe(
-        //     (res) => {
-        //         if (res.success == true) {
-        //             this.toastr.success(res.message);
-        //             this.getAllEmployersData();
-        //         } else {
-        //             this.toastr.error(res.error.message);
-        //         }
-        //     });
+        let empId = this.employersInfo[i].id;
+        this.professionalsService.deleteEmployer(empId).subscribe(
+            (res) => {
+                if (res.success == true) {
+                    this.toastr.success(res.message);
+                    this.getAllEmployersData();
+                } else {
+                    this.toastr.error(res.error.message);
+                }
+            });
     }
 
     ngOnDestroy(): void {
