@@ -14,6 +14,7 @@ import { CandidatesComponent } from './components/pages/candidates/candidates.co
 import { ComingSoonComponent } from './components/pages/coming-soon/coming-soon.component';
 import { CompaniesComponent } from './components/pages/companies/companies.component';
 import { CompanyCreateComponent } from './components/pages/companys/company-create/company-create.component';
+import { CompanyListComponent } from './components/pages/companys/companyList/companyList.component';
 import { ContactComponent } from './components/pages/contact/contact.component';
 import { DashboardComponent } from './components/pages/dashboard/dashboard.component';
 import { EmployerBasicInfoComponent } from './components/pages/employer-basic-info/employer-basic-info.component';
@@ -287,14 +288,27 @@ const routes: Routes = [
 
     { 
         path: 'companies/create',
-        component: CompanyCreateComponent 
+        component: CompanyCreateComponent,
+        canActivate: [AuthGuard, RoleGuardGuard],
+        data: {
+            expectedRoles: ['ROLE_EMPLOYER']
+        }
+    },
+    
+    {
+        path: 'companylist',
+        component: CompanyListComponent,
+        canActivate: [AuthGuard, RoleGuardGuard],
+        data: {
+            expectedRoles: ['ROLE_EMPLOYER']
+        }
     },
     
     { 
         path: '**', 
         component: ErrorComponent 
-    }
-    
+    },
+
 ];
 
 @NgModule({
