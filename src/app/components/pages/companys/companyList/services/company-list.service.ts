@@ -36,4 +36,24 @@ export class CompanyListService {
         return this.http.put<any>(`${this.host}/api/employer/company/update?id=${id}`, companyData, this.httpOptions);
     }
 
+    companyUpdateForm(data: any, id: number) {
+
+        data.is_default = Boolean(data.is_default);
+        data.is_active = Boolean(data.is_active);
+        data.office_number = Number(data.office_number);
+        data.mobile_number = Number(data.mobile_number);
+
+        let companyData = {
+            ...data,
+            employerId: this.userId
+        }
+        return this.http.put<any>(`${this.host}/api/employer/company/update?id=${id}`, companyData, this.httpOptions);
+
+    }
+
+    deleteCompany(i: number) {
+        let id = i;
+        return this.http.delete<any>(`${this.host}/api/employer/company/delete?id=${id}`, this.httpOptions);
+    }
+
 }
