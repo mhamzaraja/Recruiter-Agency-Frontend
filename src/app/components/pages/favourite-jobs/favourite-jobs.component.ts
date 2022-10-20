@@ -41,6 +41,7 @@ export class FavouriteJobsComponent implements OnInit {
     this.userId = this.favJobs[i].candidate_favourite_jobs[0].id;
     this.favouriteService.deleteFavJobs(this.userId).subscribe((res) => {
       this.toaster.success("Removed From Favourites")
+      this.getAllFavJobs();
     })
   }
 }

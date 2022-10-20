@@ -19,9 +19,9 @@ export class ProjectComponent implements OnInit, OnDestroy {
     proejctForm: FormGroup;
     public projectsInfo = [];
     response: any;
-
     p: number = 1;
     collection: any[];
+    currentDelProject:any;
 
     constructor(private formBuilder: FormBuilder,
         private toastr: ToastrService,
@@ -108,11 +108,16 @@ export class ProjectComponent implements OnInit, OnDestroy {
         }
     }
 
+    openVerticallyCentered(content: any, i: number) {
+        this.currentDelProject = i;
+        this.modalService.open(content, { centered: true });
+    }
     async delPrj(i: number) {
-        this.prjId = this.projectsInfo[i].id;
+        this.prjId = this.projectsInfo[this.currentDelProject].id;
         (await this.projectService.deleteProject(this.prjId)).subscribe(
             (res) => {
                 this.toastr.success(res.message);
+                this.modalService.dismissAll();
                 this.getAllProjects()
             },
             (error) => {

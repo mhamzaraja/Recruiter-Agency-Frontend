@@ -15,7 +15,7 @@
             <div class="details-item">
 
                 <div class="work bottom-item" *ngFor="let exp of experienceInfo | paginate: { itemsPerPage: 3, currentPage: p }; let i = index">
-                    <i class="bx bx-trash bx-sm bx-tada-hover" style="float: right;" (click)="delExp(i)"></i>
+                    <i class="bx bx-trash bx-sm bx-tada-hover" style="float: right;" (click)="openVerticallyCentered(remove, i)"></i>
                     <i class="bx bx-edit bx-sm bx-tada-hover" style="float: right;" (click)="editExp(content, i)"></i>
                     <table class="table">
                         <tbody>  
@@ -228,3 +228,17 @@
     </form>
 </div>
 </ng-template>
+<!-- Delete Modal -->
+<ng-template #remove let-modal>
+    <div class="modal-header">
+        <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    </div>
+    <div class="modal-body">
+        <h5>Are you sure you want to delete experience?</h5>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-danger" (click)="delExp()">Yes</button>
+        <button type="button" class="btn btn-light" (click)="modal.close('Close click')">No</button>
+    </div>
+</ng-template>
+<!-- Delete Modal Ends -->

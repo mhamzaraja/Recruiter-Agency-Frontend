@@ -44,6 +44,10 @@
                             <img class="comp-pointer" src="assets/img/home-one/job1.png" alt="Employer" [routerLink]="['/company/employee/', i+1]">
                             <h3 class="comp-pointer" style="text-transform:capitalize" [routerLink]="['/company/employee/', i+1]">{{comp.company_name}}</h3>
                             <p>{{comp.company_description}}</p>
+                            <ul>
+                                <li><i class='bx bx-buildings'></i> {{comp.company_url}}</li>
+                                <li><i class='bx bxs-map'></i>{{ comp.company_address }}, Pakistan</li>
+                            </ul>
 
 
                                 <span class="span-one" *ngIf="compActive" (click)="activate(i)">
@@ -59,6 +63,7 @@
                             <span class="span-two four" *ngIf="compActive">
                                 Deactivated
                             </span>
+                            <span class="span-three">{{ comp.industry}}</span>
                             <i class="bx bx-trash bx-sm bx-tada-hover" style="float: right;" (click)="openVerticallyCentered(remove, i)"></i>
                             <i class="bx bx-edit bx-sm bx-tada-hover" style="float: right;" (click)="editComp(content, i)"></i>
                         </a>

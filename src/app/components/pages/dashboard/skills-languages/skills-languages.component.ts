@@ -33,6 +33,8 @@ export class SkillsLanguagesComponent implements OnInit, OnDestroy {
     public skillsData = data.skillsData;
     public langData = data.langData;
     public proficiency = data.proficiency;
+    currentDelSkill: any;
+    currentDelLang: any;
 
 
     constructor(private formBuilder: FormBuilder,
@@ -82,7 +84,7 @@ export class SkillsLanguagesComponent implements OnInit, OnDestroy {
                 },
                 (error) => {
                     //if (error.status == 401) this.router.navigate(['/login']);
-                this.toastr.error(error.error.message);
+                    this.toastr.error(error.error.message);
                 });
             this.submitted = false;
         }
@@ -107,7 +109,7 @@ export class SkillsLanguagesComponent implements OnInit, OnDestroy {
                 },
                 (error) => {
                     //if (error.status == 401) this.router.navigate(['/login']);
-                this.toastr.error(error.error.message);
+                    this.toastr.error(error.error.message);
                 });
             this.submitted = false;
         }
@@ -135,11 +137,16 @@ export class SkillsLanguagesComponent implements OnInit, OnDestroy {
         this.skillsForm.controls.skill_proficiency.setValue(this.skillInfo[i].skill_proficiency);
     }
 
+    openVerticallyCentered(content: any, i: number) {
+        this.currentDelSkill = i;
+        this.modalService.open(content, { centered: true });
+    }
     async delSkill(i: number) {
-        this.skillId = this.skillInfo[i].id;
+        this.skillId = this.skillInfo[this.currentDelSkill].id;
         (await this.skillsLanguagesService.deleteSkill(this.skillId)).subscribe(
             (res) => {
                 this.toastr.success(res.message);
+                this.modalService.dismissAll();
                 this.getAllSkills();
             },
             (error) => {
@@ -160,10 +167,11 @@ export class SkillsLanguagesComponent implements OnInit, OnDestroy {
                 (res) => {
                     this.toastr.success(res.message);
                     this.modalService.dismissAll();
-                    this.getAllLanguages();                },
+                    this.getAllLanguages();
+                },
                 (error) => {
                     //if (error.status == 401) this.router.navigate(['/login']);
-                this.toastr.error(error.error.message);
+                    this.toastr.error(error.error.message);
                 });
             this.submitted = false;
         }
@@ -188,7 +196,7 @@ export class SkillsLanguagesComponent implements OnInit, OnDestroy {
                 },
                 (error) => {
                     //if (error.status == 401) this.router.navigate(['/login']);
-                this.toastr.error(error.error.message);
+                    this.toastr.error(error.error.message);
                 });
             this.submitted = false;
         }
@@ -214,11 +222,16 @@ export class SkillsLanguagesComponent implements OnInit, OnDestroy {
         this.languageForm.controls.language_proficiency.setValue(this.languageInfo[i].language_proficiency);
     }
 
+    openModalService(content: any, i: number) {
+        this.currentDelLang = i;
+        this.modalService.open(content, { centered: true });
+    }
     async delLang(i: number) {
-        this.langId = this.languageInfo[i].id;
+        this.langId = this.languageInfo[this.currentDelLang].id;
         (await this.skillsLanguagesService.deleteLanguage(this.langId)).subscribe(
             (res) => {
                 this.toastr.success(res.message);
+                this.modalService.dismissAll();
                 this.getAllLanguages();
             },
             (error) => {
@@ -227,13 +240,13 @@ export class SkillsLanguagesComponent implements OnInit, OnDestroy {
             });
     }
 
-    resetSkill(content){
+    resetSkill(content) {
         this.modalService.open(content, { size: 'lg' });
         this.saveSkillBtn = true;
         this.updateSkillBtn = false;
         this.skillsForm.reset();
     }
-    resetLang(content2){
+    resetLang(content2) {
         this.modalService.open(content2, { size: 'lg' });
         this.saveLangBtn = true;
         this.updateLangBtn = false;
