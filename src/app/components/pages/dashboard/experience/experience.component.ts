@@ -22,9 +22,9 @@ export class ExperienceComponent implements OnInit, OnDestroy {
     saveExpBtn: boolean = true;
     updateExpBtn: boolean = false;
     city = data.cities;
-
     p: number = 1;
     collection: any[];
+    currentDelExp:any;    
 
 
 
@@ -135,12 +135,17 @@ export class ExperienceComponent implements OnInit, OnDestroy {
         this.experienceForm.controls.description.setValue(this.experienceInfo[i].description);
     }
 
+        openVerticallyCentered(content: any, i: number) {
+            this.currentDelExp = i;
+            this.modalService.open(content, { centered: true });
+        }
     async delExp(i: number) {
-        this.expId = this.experienceInfo[i].id;
+        this.expId = this.experienceInfo[this.currentDelExp].id;
         (await this.experienceService.deleteExperience(this.expId)).subscribe(
             (res) => {
                 if (res.success == true) {
                     this.toastr.success(res.message);
+                    this.modalService.dismissAll();
                     this.getAllExperience()
                 } else {
                     this.toastr.error(res.error.message);

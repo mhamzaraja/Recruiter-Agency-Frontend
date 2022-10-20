@@ -21,9 +21,9 @@ export class EducationComponent implements OnInit, OnDestroy {
     eduId: number = null;
     saveEduBtn: boolean = true;
     updateEduBtn: boolean = false;
-
     p: number = 1;
     collection: any[];
+    currentDelEdu:any;
 
     constructor(private formBuilder: FormBuilder,
         private toastr: ToastrService,
@@ -123,12 +123,17 @@ export class EducationComponent implements OnInit, OnDestroy {
         this.educationForm.controls.obtained_gpa.setValue(this.educationInfo[i].obtained_gpa);
     }
 
+    openVerticallyCentered(content: any, i: number) {
+        this.currentDelEdu = i;
+        this.modalService.open(content, { centered: true });
+    }
     async delEdu(i: number) {
-        this.eduId = this.educationInfo[i].id;
+        this.eduId = this.educationInfo[this.currentDelEdu].id;
         (await this.educationService.deleteEducation(this.eduId)).subscribe(
             (res) => {
                 if (res.success == true) {
                     this.toastr.success(res.message);
+                    this.modalService.dismissAll();
                     this.getAllEducations()
                 } else {
                     this.toastr.error(res.error.message);
