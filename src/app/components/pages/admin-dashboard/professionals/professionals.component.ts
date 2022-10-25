@@ -39,8 +39,9 @@ export class ProfessionalsComponent implements OnInit, OnDestroy {
     }
 
     delEmp(i: number) {
+        let empProfId = this.employersInfo[i].employerId;
         let empId = this.employersInfo[i].id;
-        this.professionalsService.deleteEmployer(empId).subscribe(
+        this.professionalsService.deleteEmployer(empId, empProfId).subscribe(
             (res) => {
                 if (res.success == true) {
                     this.toastr.success(res.message);
