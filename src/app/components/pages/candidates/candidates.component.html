@@ -11,10 +11,7 @@
                     <h2>Candidates</h2>
                     <ul>
                         <li>
-                            <img
-                                src="assets/img/home-three/title-img-two.png"
-                                alt="Image"
-                            />
+                            <img src="assets/img/home-three/title-img-two.png" alt="Image" />
                             <a href="index.html">Home</a>
                         </li>
                         <li>
@@ -69,64 +66,300 @@
 </div>
 <!-- End Showing -->
 
-<!-- Candidate -->
+<!-- All Candidates -->
 <div class="candidate-area pb-100">
-    <div class="container">
-        <div class="col-lg-6 col-md-12">
-            <div class="candidate-item two" *ngFor="let cand of candidatsInfo">
-                <div class="left">
-                    <h3>
-                        <a routerLink="/candidates">{{ cand?.name }}</a>
-                    </h3>
-                    <div>
-                        <span *ngFor="let exp of candExperience; let i = index">
-                            <span *ngIf="exp?.currentlyWorking">
-                                {{ currentWork(exp?.currentlyWorking, i) }}
-                            </span>
-                        </span>
+    <table class="table table-hover" *ngIf="candidatesInfo.length>0">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">#Id</th>
+                <th scope="col">Avatar</th>
+                <th scope="col">Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">Experience</th>
+                <th scope="col">Updated on</th>
+                <th scope="col">Status</th>
+                <th scope="col">Resume</th>
+                <th scope="col" *ngIf="userRole === 'ROLE_SUPER_USER'">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let cand of candidatesInfo; let i = index">
+                <td scope="row">{{cand.id}}</td>
+                <td><img src="assets/img/candidate1.jpg" alt="Candidate" /></td>
+                <td><a class="title" [routerLink]="['/candidate-details', cand.id]">{{cand.name}}</a></td>
+                <td>{{cand.email}}</td>
+                <td>{{cand.experience}}</td>
+                <td>
+                    {{cand.updatedAt | date}} at
+                    {{cand.updatedAt | date:'shortTime'}}
+                </td>
+                <td>status</td>
+                <td>
+                    <button class="btn btn-danger" (click)="openXl(content, cand.id)">Resume</button>
+                </td>
+                <td *ngIf="userRole === 'ROLE_SUPER_USER'"><i class="bx bx-trash bx-sm bx-tada-hover" (click)="delCand(i)"></i></td>
+            </tr>
+        </tbody>
+    </table>
+    <div *ngIf="candidatesInfo.length==0">
+        <h2>No Candidates Found</h2>
+    </div>
+    <div class="pagination-area">
+        <ul>
+            <li><a routerLink="/candidates">Prev</a></li>
+            <li><a routerLink="/candidates">1</a></li>
+            <li><a routerLink="/candidates">2</a></li>
+            <li><a routerLink="/candidates">3</a></li>
+            <li><a routerLink="/candidates">Next</a></li>
+        </ul>
+    </div>
+</div>
+<!-- End Candidate -->
+    <!-- Resume Dialod Box -->
+<ng-template #content let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title">Resume</h4>
+      <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    </div>
+    <div class="modal-body">
+        <div class="person-details-area resume-area ptb-100" id="htmlData">
+            <div class="container">
+                <div class="row">
+                    <div id="noScreen" class=" col-lg-4 col-md-12">
+                        <div class="widget-area" *ngFor="let cand of filterArray; let i = index">
+                            <div class="resume-profile">
+                                <img src="assets/img/dashboard1.jpg" alt="Dashboard" />
+                                <h2>{{ cand.name }}</h2>
+                                <span>{{ designation }}</span>
+                            </div>
+                            <div class="information widget-item" *ngFor="let cand of filterArray; let i = index" >
+                                <h3>Overview</h3>
+                                <ul>
+                                    <li>
+                                        <img src="assets/img/job-details-icon.png" alt="Details" />
+                                        <h4>Contact:</h4>
+                                        <span>{{ cand.mobile_number }}</span>
+                                    </li>
+                                    <li>
+                                        <img src="assets/img/job-details-icon.png" alt="Details" />
+                                        <h4>Email:</h4>
+                                        <span>{{ cand.email }}</span>
+                                    </li>
+                                    <li>
+                                        <img src="assets/img/job-details-icon.png" alt="Details" />
+                                        <h4>Salary:</h4>
+                                        <span>{{ cand.expected_salary }}</span>
+                                    </li>
+                                    <li>
+                                        <img src="assets/img/job-details-icon.png" alt="Details" />
+                                        <h4>Experience:</h4>
+                                        <span>{{ cand.experience }}</span>
+                                    </li>
+                                    <li>
+                                        <img src="assets/img/job-details-icon.png" alt="Details" />
+                                        <h4>Date of Birth:</h4>
+                                        <span>{{ cand.dob }}</span>
+                                    </li>
+                                    <li>
+                                        <img src="assets/img/job-details-icon.png" alt="Details" />
+                                        <h4>Gender:</h4>
+                                        <span>{{ cand.gender }}</span>
+                                    </li>
+                                    <li>
+                                        <img src="assets/img/job-details-icon.png" alt="Details" />
+                                        <h4>Marital Status:</h4>
+                                        <span>{{ cand.marital_status }}</span>
+                                    </li>
+                                    <li>
+                                        <img src="assets/img/job-details-icon.png" alt="Details" />
+                                        <h4>CNIC:</h4>
+                                        <span>{{ cand.cnic }}</span>
+                                    </li>
+                                    <li>
+                                        <img src="assets/img/job-details-icon.png" alt="Details" />
+                                        <h4>City:</h4>
+                                        <span>{{ cand.city }}</span>
+                                    </li>
+                                    <li>
+                                        <img src="assets/img/job-details-icon.png" alt="Details" />
+                                        <h4>Area:</h4>
+                                        <span>{{ cand.area }}</span>
+                                    </li>
+                                    <li>
+                                        <img src="assets/img/job-details-icon.png" alt="Details" />
+                                        <h4>Nationality:</h4>
+                                        <span>{{ cand.nationality }}</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
-                    <ul class="experience">
-                        <li>
-                            Email: <span>{{ cand?.email }}</span>
-                        </li>
-                        <li>
-                            Experience: <span>{{ cand?.experience }}</span>
-                        </li>
-                        <li>
-                            Expected Salary:
-                            <span>RS. {{ cand?.expected_salary }}</span>
-                        </li>
-                        <li><i class="flaticon-send"></i> {{ cand?.city }}</li>
-                    </ul>
-                    <div *ngFor="let skill of candSkills">
-                        <ul>
-                            <li>{{ skill?.skill_title }}</li>
-                        </ul>
-                    </div>
-                    <div class="cmn-link">
-                        <a [routerLink]="['/candidate-details', cand.id]"
-                            ><i class="flaticon-right-arrow one"></i> View
-                            Profile <i class="flaticon-right-arrow two"></i
-                        ></a>
+                    <div class="col-lg-8 col-md-12">
+                        <div class="details-item">
+                            <div class="profile" *ngFor="let cand of filterArray">
+                                <h3>About Me</h3>
+                                <span>{{ cand.summary }}</span>
+                            </div>
+                            <!-- Work Experience -->
+                            <h2>Work Experience</h2>
+                            <div class="work bottom-item" *ngFor="let exp of candidatesExperience; let i = index">
+                                <div class="row">
+                                    <div class="col-1">
+                                        <h3 style="color: red">
+                                            <strong> {{ i + 1 }}</strong>
+                                        </h3>
+                                    </div>
+                                    <div class="col-11">
+                                        <ul>
+                                            <li>
+                                                <i class="bx bxs-shopping-bag"></i><strong>Job Title:</strong>
+                                                {{ exp.jobTitle }},
+                                                <i class="bx bxs-buildings"></i><strong>Company:</strong>
+                                                {{ exp.company }}
+                                            </li>
+                                        </ul>
+                                        <h4>
+                                            <strong>Industry:</strong>
+                                            {{ exp.industry }}
+                                        </h4>
+                                        <p>
+                                            <strong>Salary Range:</strong>
+                                            {{ exp.salary }}
+                                        </p>
+                                        <p>
+                                            {{ exp.startDate | date }} -
+                                            <span *ngIf="!exp.currentlyWorking">
+                                                {{ exp.endDate | date }}
+                                            </span>
+                                            <span *ngIf="exp.currentlyWorking">Present</span>
+                                            | {{ exp.location }},Pakistan
+                                        </p>
+                                        <p>{{ exp.description }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Education Service -->
+        
+                            <h2>Education</h2>
+                            <div class="work bottom-item" *ngFor="let edu of candidatesEducation; let i = index">
+                                <div class="row">
+                                    <div class="col-1">
+                                        <h3 style="color: red">
+                                            <strong> {{ i + 1 }}</strong>
+                                        </h3>
+                                    </div>
+                                    <div class="col-11">
+                                        <ul>
+                                            <li>
+                                                <i class="bx bxs-institution"></i>
+                                                <strong> Instituition : </strong>{{ edu.institution }} ,
+                                                <i class="bx bxs-edit-location"></i>
+                                                <strong> Location : </strong>{{ edu.location }}
+                                            </li>
+                                        </ul>
+                                        <h4>
+                                            Degree Title : {{ edu.degree_title }}
+                                        </h4>
+                                        <p>
+                                            Field of Study :
+                                            {{ edu.field_of_study }}
+                                        </p>
+                                        <p>
+                                            Completion year :
+                                            {{ edu.completion_year }}
+                                        </p>
+                                        <p>CGPA/Grade : {{ edu.obtained_gpa }}</p>
+                                    </div>
+                                </div>
+                            </div>
+        
+                            <!-- Skills -->
+        
+                            <h2>Skills</h2>
+                            <div class="work bottom-item" *ngFor="let skill of candidatesSkills; let i = index">
+                                <div class="row">
+                                    <div class="col-1">
+                                        <h3 style="color: red">
+                                            <strong>{{ i + 1 }}</strong>
+                                        </h3>
+                                    </div>
+                                    <div class="col-11">
+                                        <h4>
+                                            <strong> {{ skill.skill_title}}</strong>
+                                            &nbsp; &nbsp; &nbsp;
+                                            <span>({{skill.skill_proficiency}}</span>
+                                        </h4>
+                                    </div>
+                                </div>
+                            </div>
+        
+                            <!-- Languages -->
+        
+                            <h2>Languages</h2>
+                            <div class="work bottom-item" *ngFor="let lang of candidatesLanguages; let i = index">
+                                <div class="row">
+                                    <div class="col-1">
+                                        <h3 style="color: red">
+                                            <strong>{{ i + 1 }}</strong>
+                                        </h3>
+                                    </div>
+                                    <div class="col-11">
+                                        <h4>
+                                            <strong> {{ lang.language_title }}</strong>
+                                            &nbsp; &nbsp; &nbsp;
+                                            <span>({{lang.language_proficiency}})</span>
+                                        </h4>
+                                    </div>
+                                </div>
+                            </div>
+        
+                            <!-- Projects -->
+                            <h2>My Projects</h2>
+                            <div class="work bottom-item" *ngFor="let prj of candidatesProjects; let i = index">
+                                <div class="row">
+                                    <div class="col-1">
+                                        <h3 style="color: red">
+                                            <strong>{{ i + 1 }}</strong>
+                                        </h3>
+                                    </div>
+                                    <div class="col-11">
+                                        <h4>
+                                            <strong>Project URL: </strong>
+                                            {{ prj.project_url }}
+                                        </h4>
+                                        <h4>
+                                            <strong>Project Name: </strong>{{ prj.project_name }}
+                                        </h4>
+                                        <h4>
+                                            <strong>Associated With: </strong>
+                                            {{ prj.associated_with }}
+                                        </h4>
+                                        <p>
+                                            {{ prj.start_date | date }} -
+                                            <span *ngIf="!prj.currently_ongoing">
+                                                {{ prj.end_date | date }}
+                                            </span>
+                                            <span *ngIf="prj.currently_ongoing">Present</span>
+                                            |
+                                            {{ prj.description }}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <img src="assets/img/candidate1.jpg" alt="Candidate" />
             </div>
         </div>
     </div>
-            
-        <div class="pagination-area">
-            <ul>
-                <li><a routerLink="/candidates">Prev</a></li>
-                <li><a routerLink="/candidates">1</a></li>
-                <li><a routerLink="/candidates">2</a></li>
-                <li><a routerLink="/candidates">3</a></li>
-                <li><a routerLink="/candidates">Next</a></li>
-            </ul>
-        </div>
-</div>
-<!-- End Candidate -->
-
+    <div class="modal-footer">
+      <button type="button" class="btn btn-danger" (click)="modal.close('Close click')">Close</button>
+      <button type="button" class="btn btn-success" (click)="openPDF()">Download</button>
+    </div>
+  </ng-template>  
+  <hr>
+  
+  <pre>{{ closeResult }}</pre>
 <!-- Footer -->
 <app-footer-style-two></app-footer-style-two>
 <!-- End Footer -->
