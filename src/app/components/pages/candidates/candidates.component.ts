@@ -111,7 +111,7 @@ export class CandidatesComponent implements OnInit, OnDestroy {
     //Resume Dialog Box
     openXl(content: any, i: number) {
         this.candId = i
-        this.modalService.open(content, { size: 'lg' });
+        this.modalService.open(content, { size: 'xl' });
         this.getCandidates();
 
 

@@ -18,4 +18,7 @@ export class EmployerService {
   getAllEmployers() {
     return this.http.get<any>(`${this.host}/api/admin/employer/profile/getAll`, this.httpOptions);
   }
+  deleteEmployer(id: number, empProfId: number){
+    return this.http.delete<any>(`${this.host}/api/employer/profile/delete?id=${id}&employerId=${empProfId}`, this.httpOptions);
+}
 }

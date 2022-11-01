@@ -33,4 +33,18 @@ export class EmployersComponent implements OnInit {
         this.toastr.error(error.error.message);
       });
   }
+  delEmp(i: number) {
+    let empProfId = this.employerInfo[i].employerId;
+    let empId = this.employerInfo[i].id;
+    this.employerService.deleteEmployer(empId, empProfId).subscribe(
+        (res) => {
+            if (res.success == true) {
+                this.toastr.success(res.message);
+                this.getEmployers();
+            } else {
+                this.toastr.error(res.error.message);
+            }
+        });
+}
+  
 }
